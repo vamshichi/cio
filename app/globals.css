@@ -1,0 +1,132 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Premium Light Mode - CIO Logo Color Palette */
+  --background: #f0f4f9;
+  --foreground: #0a0e27;
+  --card: #ffffff;
+  --card-foreground: #0a0e27;
+  --popover: #ffffff;
+  --popover-foreground: #0a0e27;
+  --primary: #0052cc;
+  --primary-foreground: #ffffff;
+  --secondary: #e8f0ff;
+  --secondary-foreground: #0a0e27;
+  --muted: #d4dce9;
+  --muted-foreground: #505a7f;
+  --accent: #00a8e8;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #d9e4f0;
+  --input: #ffffff;
+  --ring: #0052cc;
+  --chart-1: #0052cc;
+  --chart-2: #00a8e8;
+  --chart-3: #0077be;
+  --chart-4: #004b87;
+  --chart-5: #003d6b;
+  --radius: 0.625rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0a0e27;
+  --sidebar-primary: #0052cc;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8f0ff;
+  --sidebar-accent-foreground: #0052cc;
+  --sidebar-border: #d9e4f0;
+  --sidebar-ring: #0052cc;
+}
+
+.dark {
+  /* Premium Dark Mode - CIO Inspired */
+  --background: #0a0e27;
+  --foreground: #f0f4f9;
+  --card: #1a2847;
+  --card-foreground: #f0f4f9;
+  --popover: #1a2847;
+  --popover-foreground: #f0f4f9;
+  --primary: #0077be;
+  --primary-foreground: #f0f4f9;
+  --secondary: #2a3f5f;
+  --secondary-foreground: #f0f4f9;
+  --muted: #3a4a6f;
+  --muted-foreground: #a5b5d5;
+  --accent: #00a8e8;
+  --accent-foreground: #0a0e27;
+  --destructive: #ff4d4f;
+  --destructive-foreground: #0a0e27;
+  --border: #2a3f5f;
+  --input: #1a2847;
+  --ring: #0077be;
+  --chart-1: #0077be;
+  --chart-2: #00a8e8;
+  --chart-3: #0052cc;
+  --chart-4: #004b87;
+  --chart-5: #003d6b;
+  --sidebar: #1a2847;
+  --sidebar-foreground: #f0f4f9;
+  --sidebar-primary: #0077be;
+  --sidebar-primary-foreground: #f0f4f9;
+  --sidebar-accent: #2a3f5f;
+  --sidebar-accent-foreground: #00a8e8;
+  --sidebar-border: #2a3f5f;
+  --sidebar-ring: #0077be;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
