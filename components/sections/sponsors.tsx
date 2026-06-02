@@ -15,7 +15,7 @@ const tiers = [
     cardBorder: 'hover:border-amber-300',
     cardGlow: 'hover:shadow-amber-100/80',
     logoWidth: 220,
-    cardSize: 'h-32 w-72',
+    cardSize: 'h-24 w-full max-w-[320px] sm:h-28 sm:w-72',
     cols: 'flex justify-center',
     logos: ['/sponsors/gs.png'],
   },
@@ -28,7 +28,7 @@ const tiers = [
     cardBorder: 'hover:border-sky-300',
     cardGlow: 'hover:shadow-sky-100/80',
     logoWidth: 200,
-    cardSize: 'h-28 w-64',
+    cardSize: 'h-24 w-full max-w-[280px] sm:h-28 sm:w-64',
     cols: 'flex justify-center',
     logos: ['/sponsors/digis.png'],
   },
@@ -41,7 +41,7 @@ const tiers = [
     cardBorder: 'hover:border-slate-300',
     cardGlow: 'hover:shadow-slate-100/80',
     logoWidth: 180,
-    cardSize: 'h-24 w-56',
+    cardSize: 'h-20 w-full sm:h-24 sm:w-56',
     cols: 'grid grid-cols-2 gap-5 max-w-xl mx-auto',
     logos: ['/sponsors/sp.png', '/sponsors/sp1.png'],
   },
@@ -54,7 +54,7 @@ const tiers = [
     cardBorder: 'hover:border-emerald-300',
     cardGlow: 'hover:shadow-emerald-100/80',
     logoWidth: 140,
-    cardSize: 'h-24 w-44',
+    cardSize: 'h-20 w-full sm:h-24 sm:w-44',
     cols: 'grid grid-cols-2 gap-5 md:grid-cols-4 max-w-3xl mx-auto',
     logos: ['/sponsors/np1.png', '/sponsors/np2.png', '/sponsors/np3.png', '/sponsors/np4.png'],
   },
@@ -67,7 +67,7 @@ const tiers = [
     cardBorder: 'hover:border-violet-300',
     cardGlow: 'hover:shadow-violet-100/80',
     logoWidth: 160,
-    cardSize: 'h-24 w-52',
+    cardSize: 'h-20 w-full max-w-[220px] sm:h-24 sm:w-52',
     cols: 'flex justify-center',
     logos: ['/sponsors/gp1.png'],
   },
@@ -88,16 +88,21 @@ export function Sponsors() {
   return (
     <section
       id="sponsors"
-      className="relative overflow-hidden bg-slate-950 py-28"
+      className="relative overflow-hidden bg-slate-950 py-16 md:py-24 lg:py-28"
     >
       {/* Dot-grid texture */}
       {/* <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,#e0e7ff_1px,transparent_1px)] [background-size:32px_32px] opacity-50" /> */}
-
+       {/* ── Background Effects ── */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-[120px] sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px]" />
+        <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-500/10 blur-[120px] sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.015)_1px,transparent_1px)] bg-[size:60px_60px] sm:bg-[size:80px_80px]" />
+      </div>
       {/* Soft colour washes */}
-      <div className="pointer-events-none absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-indigo-100/60 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-sky-100/60 blur-[120px]" />
+      {/* <div className="pointer-events-none absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-indigo-100/60 blur-[120px]" /> */}
+      {/* <div className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-sky-100/60 blur-[120px]" /> */}
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
 
         {/* ── Header ── */}
         <motion.div {...fadeUp()} className="mb-20 text-center">
@@ -105,7 +110,7 @@ export function Sponsors() {
             Strategic Partners
           </span>
 
-          <h2 className="mt-6 text-5xl font-black tracking-tight text-white/80 md:text-6xl">
+          <h2 className="mt-6 text-3xl font-black tracking-tight text-white/80 sm:text-4xl md:text-5xl lg:text-6xl">
             Brands That{' '}
             <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-500 bg-clip-text text-transparent">
               Back The Vision
@@ -125,7 +130,7 @@ export function Sponsors() {
         </motion.div>
 
         {/* ── Tiers ── */}
-        <div className="flex flex-col gap-14">
+        <div className="flex flex-col gap-10 md:gap-14">
           {tiers.map((tier, ti) => (
             <motion.div key={tier.label} {...fadeUp(ti * 0.1)}>
 

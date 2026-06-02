@@ -3,9 +3,15 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { FiMenu, FiX, FiCalendar, FiUsers, FiAward, FiInfo } from 'react-icons/fi'
-import { BiBuildings } from 'react-icons/bi'
-import { motion } from 'framer-motion'
+import {
+  FiMenu,
+  FiX,
+  FiCalendar,
+  FiUsers,
+  FiAward,
+  FiInfo,
+} from 'react-icons/fi'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 export function Header() {
@@ -14,10 +20,11 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      setIsScrolled(window.scrollY > 50)
     }
 
     window.addEventListener('scroll', handleScroll)
+
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -29,136 +36,156 @@ export function Header() {
   ]
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-500 ${isScrolled
-        ? 'bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/70 shadow-[0_8px_32px_rgba(0,82,204,0.1)]'
-        : 'bg-card/60 backdrop-blur supports-[backdrop-filter]:bg-card/40 border-b border-border/40'
-      }`}>
-<div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
-          {/* Logo */}
-        <Link href="#home" className="flex items-center gap-3 group">
+    <header
+      className={`sticky top-0 left-0 z-50 w-full transition-all duration-500 ${
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-slate-200'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
+        {/* Logo */}
+        <Link href="#home" className="flex items-center">
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             <Image
               src="/logo.png"
-              alt="CIO Tech Leadership Conference"
+              alt="CIO Tech Leadership Summit"
               width={220}
               height={60}
               priority
-              className="h-14 w-auto"
+              className="h-12 md:h-14 w-auto"
             />
           </motion.div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden gap-1 md:flex">
+        <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => {
             const Icon = item.icon
+
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative group px-3 py-2"
+                className="group relative px-4 py-2"
               >
-                <motion.div
-                  className="flex items-center gap-2 text-sm font-medium text-foreground/70 transition group-hover:text-primary"
-                  whileHover={{ x: 2 }}
+                <div
+                  className={`flex items-center gap-2 text-sm font-medium transition-all ${
+                    isScrolled
+                      ? 'text-slate-700 hover:text-cyan-600'
+                      : 'text-slate-700 hover:text-cyan-600'
+                  }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="h-4 w-4" />
                   {item.label}
-                </motion.div>
-                <motion.span
-                  className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: '100%' }}
-                  transition={{ duration: 0.3 }}
-                />
+                </div>
+
+                <span className="absolute bottom-0 left-0 h-0.5 w-0 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-300 group-hover:w-full" />
               </Link>
             )
           })}
         </nav>
 
-       {/* Actions */}
-<div className="flex items-center gap-3">
-  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-    <Button
-      variant="outline"
-      size="sm"
-      asChild
-      className="
-        hidden sm:flex
-        border-primary/30
-        hover:border-primary
-        hover:bg-primary/10
-        font-semibold
-      "
-    >
-      <Link href="#sponsor-registration">
-        Sponsor Registration
-      </Link>
-    </Button>
-  </motion.div>
+        {/* Desktop Buttons */}
+        <div className="hidden md:flex items-center gap-3">
+          <Button
+            variant="outline"
+            size="sm"
+            asChild
+            className="font-semibold"
+          >
+            <Link href="#sponsor-registration">
+              Sponsor Registration
+            </Link>
+          </Button>
 
-  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-    <Button
-      size="sm"
-      asChild
-      className="
-        bg-gradient-to-r
-        from-primary
-        to-accent
-        text-white
-        font-semibold
-        hover:shadow-lg
-        hover:shadow-primary/40
-      "
-    >
-      <Link href="#delegate-registration">
-        Delegate Registration
-      </Link>
-    </Button>
-  </motion.div>
+          <Button
+            size="sm"
+            asChild
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold"
+          >
+            <Link href="#delegate-registration">
+              Delegate Registration
+            </Link>
+          </Button>
+        </div>
 
-  {/* Mobile Menu Button */}
-  <button
-    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-    className="md:hidden p-2 hover:bg-secondary rounded-lg transition"
-  >
-    {mobileMenuOpen ? (
-      <FiX className="w-5 h-5" />
-    ) : (
-      <FiMenu className="w-5 h-5" />
-    )}
-  </button>
-</div>
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className={`md:hidden rounded-lg p-2 transition ${
+            isScrolled ? 'text-slate-800' : 'text-white'
+          }`}
+        >
+          {mobileMenuOpen ? (
+            <FiX className="h-6 w-6" />
+          ) : (
+            <FiMenu className="h-6 w-6" />
+          )}
+        </button>
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <motion.div
-          className="md:hidden border-t border-border/40 bg-card/50 backdrop-blur"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <div className="px-4 py-4 space-y-2">
-            {navItems.map((item) => {
-              const Icon = item.icon
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-4 py-2 rounded-lg text-foreground/70 hover:text-primary hover:bg-secondary/50 transition"
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden border-t border-slate-200 bg-white"
+          >
+            <div className="space-y-2 px-4 py-5">
+              {navItems.map((item) => {
+                const Icon = item.icon
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition hover:bg-slate-100"
+                  >
+                    <Icon className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                )
+              })}
+
+              {/* Mobile CTA Buttons */}
+              <div className="mt-4 space-y-3 border-t border-slate-200 pt-4">
+                <Button
+                  variant="outline"
+                  asChild
+                  className="w-full"
                 >
-                  <Icon className="w-4 h-4" />
-                  {item.label}
-                </Link>
-              )
-            })}
-          </div>
-        </motion.div>
-      )}
+                  <Link
+                    href="#sponsor-registration"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Sponsor Registration
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
+                >
+                  <Link
+                    href="#delegate-registration"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Delegate Registration
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }

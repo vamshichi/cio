@@ -21,14 +21,21 @@ export function Partners() {
   return (
     <section
       id="partners"
-      className="relative overflow-hidden bg-white py-28"
+      className="relative overflow-hidden bg-slate-950  py-28"
     >
       {/* Subtle dot-grid texture */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,#e0e7ff_1px,transparent_1px)] [background-size:32px_32px] opacity-60" />
-
+      {/* <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,#e0e7ff_1px,transparent_1px)] [background-size:32px_32px] opacity-60" /> */}
+      
+       {/* ── Background Effects ── */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-[120px] sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px]" />
+        <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-500/10 blur-[120px] sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.015)_1px,transparent_1px)] bg-[size:60px_60px] sm:bg-[size:80px_80px]" />
+      </div>
+      
       {/* Soft color washes */}
-      <div className="pointer-events-none absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-indigo-100/60 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-sky-100/60 blur-[120px]" />
+      {/* <div className="pointer-events-none absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-indigo-100/60 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-sky-100/60 blur-[120px]" /> */}
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
 
@@ -44,7 +51,7 @@ export function Partners() {
             Strategic Partners
           </span>
 
-          <h2 className="mt-7 text-5xl font-black tracking-tight text-slate-900 md:text-6xl">
+          <h2 className="mt-7 text-5xl font-black tracking-tight text-slate-100 md:text-6xl">
             Trusted By{' '}
             <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-500 bg-clip-text text-transparent">
               Industry Leaders
@@ -90,7 +97,7 @@ export function Partners() {
           alt={`Partner ${(index % partners.length) + 1}`}
           width={160}
           height={64}
-          className="object-contain opacity-60 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105"
+          className="object-contain  duration-300 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105"
         />
       </div>
     ))}

@@ -329,10 +329,18 @@ export  function Awards() {
   const [showModal, setShowModal] = useState(false)
 
   return (
-    <main className="min-h-screen bg-[#0a0f1e] px-6 py-20">
+    <main className="min-h-screen bg-slate-950 px-6 py-20">
+
+      
 
       {/* ── Header ── */}
       <section className="mb-16 text-center">
+         {/* ── Background Effects ── */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-[120px] sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px]" />
+        <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-500/10 blur-[120px] sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.015)_1px,transparent_1px)] bg-[size:60px_60px] sm:bg-[size:80px_80px]" />
+      </div>
         <span className="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-300">
           <FaAward />
           CIO Excellence Awards 2025

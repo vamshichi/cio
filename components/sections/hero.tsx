@@ -51,7 +51,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden py-20"
+      className="relative min-h-screen overflow-hidden py-24 pt-10"
     >
       {/* Background Image */}
       <div className="absolute inset-0">
