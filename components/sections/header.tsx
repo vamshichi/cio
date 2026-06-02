@@ -13,10 +13,15 @@ import {
 } from 'react-icons/fi'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { DelegateForm } from '@/components/sections/DelegateForm'
+import { SponsorForm } from '@/components/sections/SponsorForm'
+import { FormModal } from '@/components/common/FormModal'
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [showDelegateForm, setShowDelegateForm] = useState(false)
+const [showSponsorForm, setShowSponsorForm] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,25 +97,21 @@ export function Header() {
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center gap-3">
           <Button
-            variant="outline"
-            size="sm"
-            asChild
-            className="font-semibold"
-          >
-            <Link href="#sponsor-registration">
-              Sponsor Registration
-            </Link>
-          </Button>
+  variant="outline"
+  size="sm"
+  className="font-semibold"
+  onClick={() => setShowSponsorForm(true)}
+>
+  Sponsor Registration
+</Button>
 
-          <Button
-            size="sm"
-            asChild
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold"
-          >
-            <Link href="#delegate-registration">
-              Delegate Registration
-            </Link>
-          </Button>
+<Button
+  size="sm"
+  className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold"
+  onClick={() => setShowDelegateForm(true)}
+>
+  Delegate Registration
+</Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -157,35 +158,47 @@ export function Header() {
 
               {/* Mobile CTA Buttons */}
               <div className="mt-4 space-y-3 border-t border-slate-200 pt-4">
-                <Button
-                  variant="outline"
-                  asChild
-                  className="w-full"
-                >
-                  <Link
-                    href="#sponsor-registration"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Sponsor Registration
-                  </Link>
-                </Button>
+               <Button
+  variant="outline"
+  className="w-full"
+  onClick={() => {
+    setShowSponsorForm(true)
+    setMobileMenuOpen(false)
+  }}
+>
+  Sponsor Registration
+</Button>
 
-                <Button
-                  asChild
-                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
-                >
-                  <Link
-                    href="#delegate-registration"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Delegate Registration
-                  </Link>
-                </Button>
+<Button
+  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
+  onClick={() => {
+    setShowDelegateForm(true)
+    setMobileMenuOpen(false)
+  }}
+>
+  Delegate Registration
+</Button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+      <FormModal
+  open={showDelegateForm}
+  onClose={() => setShowDelegateForm(false)}
+  title="Delegate Registration"
+>
+  <DelegateForm />
+</FormModal>
+
+<FormModal
+  open={showSponsorForm}
+  onClose={() => setShowSponsorForm(false)}
+  title="Sponsor Registration"
+>
+  <SponsorForm />
+</FormModal>
     </header>
   )
+  
 }

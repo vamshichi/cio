@@ -11,8 +11,93 @@ import {
   FiPhone,
   FiBriefcase,
 } from 'react-icons/fi'
+import { useState } from 'react'
 
 export function Contact() {
+
+  const [formData, setFormData] = useState({
+    fullName: '',
+    jobTitle: '',
+    company: '',
+    industry: '',
+    email: '',
+    phone: '',
+    linkedin: '',
+
+    interestedIn: [] as string[],
+    interests: [] as string[],
+    objectives: [] as string[],
+
+    attendAwards: '',
+    partnerConsent: false,
+    eventConsent: false,
+  })
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleCheckbox = (
+    field: 'interestedIn' | 'interests' | 'objectives',
+    value: string
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: prev[field].includes(value)
+        ? prev[field].filter((item) => item !== value)
+        : [...prev[field], value],
+    }))
+  }
+
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        alert('Registration Submitted Successfully')
+
+        setFormData({
+          fullName: '',
+          jobTitle: '',
+          company: '',
+          industry: '',
+          email: '',
+          phone: '',
+          linkedin: '',
+          interestedIn: [],
+          interests: [],
+          objectives: [],
+          attendAwards: '',
+          partnerConsent: false,
+          eventConsent: false,
+        })
+      } else {
+        alert('Submission Failed')
+      }
+    } catch (error) {
+      console.error(error)
+      alert('Something went wrong')
+    }
+  }
+
   return (
     <section
       id="contact"
@@ -72,178 +157,269 @@ export function Contact() {
           ))}
         </div>
 
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
-          {/* Left Side */}
-          <div className="space-y-6">
-            {/* Event Card */}
-            <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-2xl">
-              <h3 className="mb-8 text-2xl font-bold text-white">
-                Event Details
-              </h3>
+        <div className="mx-auto max-w-3xl rounded-xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-2xl">
 
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="rounded-xl bg-cyan-500/10 p-3">
-                    <FiCalendar className="text-xl text-cyan-400" />
-                  </div>
 
-                  <div>
-                    <p className="text-sm text-slate-400">Date</p>
-                    <p className="font-semibold text-white">
-                      23 July 2026
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="rounded-xl bg-cyan-500/10 p-3">
-                    <FiMapPin className="text-xl text-cyan-400" />
-                  </div>
-
-                  <div>
-                    <p className="text-sm text-slate-400">Venue</p>
-                    <p className="font-semibold text-white">
-                      Four Seasons Hotel, Bengaluru
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="rounded-xl bg-cyan-500/10 p-3">
-                    <FiUsers className="text-xl text-cyan-400" />
-                  </div>
-
-                  <div>
-                    <p className="text-sm text-slate-400">Delegates</p>
-                    <p className="font-semibold text-white">
-                      200+ CIOs & Technology Leaders
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="rounded-xl bg-cyan-500/10 p-3">
-                    <FiMic className="text-xl text-cyan-400" />
-                  </div>
-
-                  <div>
-                    <p className="text-sm text-slate-400">Speakers</p>
-                    <p className="font-semibold text-white">
-                      20+ Industry Experts
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="rounded-xl bg-cyan-500/10 p-3">
-                    <FiAward className="text-xl text-cyan-400" />
-                  </div>
-
-                  <div>
-                    <p className="text-sm text-slate-400">Awards</p>
-                    <p className="font-semibold text-white">
-                      CIO Leadership Excellence Awards
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Card */}
-            <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 p-8 backdrop-blur-2xl">
-              <h3 className="mb-6 text-2xl font-bold text-white">
-                Need Assistance?
-              </h3>
-
-              <div className="space-y-5">
-                <div className="flex items-center gap-4">
-                  <FiMail className="text-cyan-400" />
-                  <span className="text-slate-300">
-                    info@ciotech.in
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <FiPhone className="text-cyan-400" />
-                  <span className="text-slate-300">
-                    +91 98765 43210
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <FiBriefcase className="text-cyan-400" />
-                  <span className="text-slate-300">
-                    Sponsorship & Partnerships
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Registration Form */}
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-2xl">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-8 backdrop-blur-2xl">
             <h3 className="mb-8 text-3xl font-bold text-white">
-              Reserve Your Seat
+              Registration Form
             </h3>
 
-            <form className="space-y-5">
-              <div className="grid gap-5 md:grid-cols-2">
-                <input
-                  placeholder="Full Name *"
-                  className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white outline-none placeholder:text-slate-500 focus:border-cyan-500"
-                />
+            <form onSubmit={handleSubmit} className="space-y-8">
 
-                <input
-                  placeholder="Business Email *"
-                  className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white outline-none placeholder:text-slate-500 focus:border-cyan-500"
-                />
+              {/* Personal Information */}
+              <div>
+                <h4 className="mb-5 text-xl font-semibold text-cyan-400">
+                  Personal Information
+                </h4>
+
+                <div className="grid gap-5 md:grid-cols-2">
+                  <input
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    placeholder="Full Name *"
+                    className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white"
+                  />
+
+                  <input
+                    name="jobTitle"
+                    value={formData.jobTitle}
+                    onChange={handleChange}
+                    placeholder="Job Title *"
+                    className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white"
+                  />
+
+                  <input
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Organization / Company Name *"
+                    className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white"
+                  />
+
+                  <select
+                    name="industry"
+                    value={formData.industry}
+                    onChange={handleChange}
+                    className="h-14 rounded-xl border border-white/10 bg-slate-900 px-4 text-white"
+                  >
+                    <option value="">Select Industry *</option>
+                    <option>BFSI</option>
+                    <option>Technology</option>
+                    <option>Retail</option>
+                    <option>Manufacturing</option>
+                    <option>Healthcare</option>
+                    <option>Telecom</option>
+                    <option>Energy</option>
+                    <option>Consulting</option>
+                    <option>Government</option>
+                    <option>Startup</option>
+                    <option>Others</option>
+                  </select>
+
+                  <input
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Work Email Address *"
+                    className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white"
+                  />
+
+                  <input
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Mobile Number (with country code) *"
+                    className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white"
+                  />
+
+                  <input
+                    name="linkedin"
+                    value={formData.linkedin}
+                    onChange={handleChange}
+                    placeholder="LinkedIn Profile URL"
+                    className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white md:col-span-2"
+                  />
+                </div>
               </div>
 
-              <div className="grid gap-5 md:grid-cols-2">
-                <input
-                  placeholder="Company *"
-                  className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white outline-none placeholder:text-slate-500 focus:border-cyan-500"
-                />
+              {/* Interested In */}
+              <div>
+                <h4 className="mb-5 text-xl font-semibold text-cyan-400">
+                  I am Interested In
+                </h4>
 
-                <input
-                  placeholder="Job Title *"
-                  className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white outline-none placeholder:text-slate-500 focus:border-cyan-500"
-                />
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {[
+                    'Attending as a Delegate',
+                    'Speaking Opportunities',
+                    'Sponsorship & Partnership',
+                    'Exhibiting',
+                    'Awards Participation',
+                  ].map((item) => (
+                    <label
+                      key={item}
+                      className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-slate-300"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={formData.interestedIn.includes(item)}
+                        onChange={() =>
+                          handleCheckbox('interestedIn', item)
+                        }
+                      />
+                      {item}
+                    </label>
+                  ))}
+                </div>
               </div>
 
-              <div className="grid gap-5 md:grid-cols-2">
-                <input
-                  placeholder="Mobile Number *"
-                  className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white outline-none placeholder:text-slate-500 focus:border-cyan-500"
-                />
+              {/* Key Areas */}
+              <div>
+                <h4 className="mb-5 text-xl font-semibold text-cyan-400">
+                  Key Areas Of Interest
+                </h4>
 
-                <select className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white outline-none">
-                  <option>Industry</option>
-                  <option>Technology</option>
-                  <option>Banking</option>
-                  <option>Healthcare</option>
-                  <option>Manufacturing</option>
-                  <option>Retail</option>
-                </select>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {[
+                    'AI & Enterprise Automation',
+                    'Cloud, Multi-Cloud & FinOps',
+                    'Cybersecurity & Zero Trust',
+                    'Data, Analytics & AI Governance',
+                    'Digital Transformation Strategy',
+                    'Customer Experience & Personalisation',
+                    'Smart Operations & Supply Chain',
+                    'Enterprise Modernisation',
+                  ].map((item) => (
+                    <label
+                      key={item}
+                      className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-slate-300"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={formData.interests.includes(item)}
+                        onChange={() =>
+                          handleCheckbox('interests', item)
+                        }
+                      />
+                      {item}
+                    </label>
+                  ))}
+                </div>
               </div>
 
-              <textarea
-                rows={5}
-                placeholder="Areas of Interest (AI, Cybersecurity, Cloud, Digital Transformation, Data Analytics...)"
-                className="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-white outline-none placeholder:text-slate-500 focus:border-cyan-500"
-              />
+              {/* Objectives */}
+              <div>
+                <h4 className="mb-5 text-xl font-semibold text-cyan-400">
+                  What Are You Looking To Achieve?
+                </h4>
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {[
+                    'Networking with CIOs & Industry Leaders',
+                    'Exploring Enterprise Technology Solutions',
+                    'Learning & Strategic Insights',
+                    'Partnerships & Collaborations',
+                    'Business & Growth Opportunities',
+                  ].map((item) => (
+                    <label
+                      key={item}
+                      className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-slate-300"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={formData.objectives.includes(item)}
+                        onChange={() =>
+                          handleCheckbox('objectives', item)
+                        }
+                      />
+                      {item}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Awards Ceremony */}
+              <div>
+                <h4 className="mb-5 text-xl font-semibold text-cyan-400">
+                  Networking & Awards Ceremony
+                </h4>
+
+                <p className="mb-4 text-slate-300">
+                  Will you attend the Networking High Tea & Awards Ceremony?
+                </p>
+
+                <div className="flex gap-8">
+                  <label className="flex items-center gap-2 text-slate-300">
+                    <input
+                      type="radio"
+                      name="attendAwards"
+                      value="Yes"
+                      checked={formData.attendAwards === 'Yes'}
+                      onChange={handleChange}
+                    />
+                    Yes
+                  </label>
+
+                  <label className="flex items-center gap-2 text-slate-300">
+                    <input
+                      type="radio"
+                      name="attendAwards"
+                      value="No"
+                      checked={formData.attendAwards === 'No'}
+                      onChange={handleChange}
+                    />
+                    No
+                  </label>
+                </div>
+              </div>
+
+              {/* Consent */}
+              <div>
+                <h4 className="mb-5 text-xl font-semibold text-cyan-400">
+                  Data Privacy & Consent
+                </h4>
+
+                <div className="space-y-4">
+                  <label className="flex items-start gap-3 text-slate-300">
+                    <input
+                      type="checkbox"
+                      checked={formData.partnerConsent}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          partnerConsent: e.target.checked,
+                        })
+                      }
+                    />
+                    I agree to share my details with event partners for networking purposes
+                  </label>
+
+                  <label className="flex items-start gap-3 text-slate-300">
+                    <input
+                      type="checkbox"
+                      checked={formData.eventConsent}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          eventConsent: e.target.checked,
+                        })
+                      }
+                    />
+                    I agree to receive updates about this and future events
+                  </label>
+                </div>
+              </div>
 
               <button
                 type="submit"
-                className="h-14 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(0,174,255,0.35)]"
+                className="h-14 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-semibold text-white transition-all duration-300 hover:scale-[1.01]"
               >
-                Reserve My Seat
+                Submit Registration
               </button>
 
-              <p className="text-center text-xs text-slate-500">
-                By registering, you agree to receive event updates and
-                conference information.
-              </p>
             </form>
           </div>
         </div>

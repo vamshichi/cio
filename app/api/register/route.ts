@@ -1,63 +1,69 @@
-import { NextRequest, NextResponse } from 'next/server'
+import nodemailer from 'nodemailer'
+import { NextResponse } from 'next/server'
 
-interface RegistrationData {
-  name: string
-  email: string
-  company?: string
-  jobTitle?: string
-  message?: string
-}
-
-// Simple in-memory storage for demo (replace with database in production)
-const registrations: RegistrationData[] = []
-
-export async function POST(request: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const body: RegistrationData = await request.json()
+    const data = await req.json()
 
-    // Validation
-    if (!body.name || !body.email) {
-      return NextResponse.json(
-        { error: 'Name and email are required' },
-        { status: 400 }
-      )
-    }
+    const transporter = nodemailer.createTransport({
+  host: 'smtp.zoho.in', // India
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+})
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(body.email)) {
-      return NextResponse.json(
-        { error: 'Invalid email format' },
-        { status: 400 }
-      )
-    }
+    const html = `
+      <h2>New CIO Summit Registration</h2>
 
-    // Store registration (in production, this would go to a database)
-    registrations.push(body)
+      <h3>Personal Information</h3>
+      <p><b>Name:</b> ${data.fullName}</p>
+      <p><b>Job Title:</b> ${data.jobTitle}</p>
+      <p><b>Company:</b> ${data.company}</p>
+      <p><b>Industry:</b> ${data.industry}</p>
+      <p><b>Email:</b> ${data.email}</p>
+      <p><b>Phone:</b> ${data.phone}</p>
+      <p><b>LinkedIn:</b> ${data.linkedin}</p>
 
-    // Log for demo purposes
-    console.log(`[Registration] New registration from: ${body.name} (${body.email})`)
+      <h3>Interested In</h3>
+      <p>${data.interestedIn?.join(', ')}</p>
+
+      <h3>Key Areas Of Interest</h3>
+      <p>${data.interests?.join(', ')}</p>
+
+      <h3>Objectives</h3>
+      <p>${data.objectives?.join(', ')}</p>
+
+      <h3>Networking & Awards</h3>
+      <p>${data.attendAwards}</p>
+
+      <h3>Consent</h3>
+      <p>Partner Sharing: ${data.partnerConsent ? 'Yes' : 'No'}</p>
+      <p>Future Updates: ${data.eventConsent ? 'Yes' : 'No'}</p>
+    `
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_TO,
+      subject: `New Registration - ${data.fullName}`,
+      html,
+    })
+
+    return NextResponse.json({
+      success: true,
+      message: 'Registration submitted successfully',
+    })
+  } catch (error) {
+    console.error(error)
 
     return NextResponse.json(
       {
-        success: true,
-        message: 'Registration successful! We will contact you soon.',
-        registrationId: `REG-${Date.now()}`,
+        success: false,
+        message: 'Failed to submit registration',
       },
-      { status: 201 }
-    )
-  } catch (error) {
-    console.error('Registration error:', error)
-    return NextResponse.json(
-      { error: 'Failed to process registration' },
       { status: 500 }
     )
   }
-}
-
-// GET endpoint to retrieve total registrations count (demo only)
-export async function GET() {
-  return NextResponse.json({
-    totalRegistrations: registrations.length,
-  })
 }
