@@ -1,106 +1,254 @@
 'use client'
 
-import { Card } from '@/components/ui/card'
 import { motion } from 'framer-motion'
-import { FiClock, FiUsers, FiMic, FiLayers, FiAward, FiCoffee } from 'react-icons/fi'
-import { GiRobotAntennas } from 'react-icons/gi'
-import { containerVariants, itemVariants } from '@/lib/animations'
+import {
+  FiCoffee,
+  FiMic,
+  FiUsers,
+  FiCloud,
+  FiMessageCircle,
+  FiTarget,
+  FiShare2,
+  FiBarChart2,
+  FiShield,
+  FiAward,
+} from 'react-icons/fi'
+
+const agendaItems = [
+  {
+    time: '08:00 AM',
+    title: 'Registration & Networking Breakfast',
+    description:
+      'An exclusive networking experience with industry peers.',
+    icon: FiCoffee,
+  },
+  {
+    time: '09:00 AM',
+    title: 'Opening Remarks',
+    description:
+      'Setting the tone for cross-industry innovation and leadership.',
+    icon: FiMic,
+  },
+  {
+    time: '09:15 AM',
+    title: 'Opening Keynote',
+    description:
+      'The Modern CIO: Leading Cross-Industry Transformation in an AI-First World.',
+    icon: FiMic,
+  },
+  {
+    time: '10:00 AM',
+    title: 'Leadership Panel 1',
+    description:
+      'Scaling AI Across the Enterprise: From Pilots to Business Impact.',
+    icon: FiUsers,
+  },
+  {
+    time: '10:45 AM',
+    title: 'Leadership Panel 2',
+    description:
+      'Cloud, Data & FinOps: Building Intelligent Enterprises.',
+    icon: FiCloud,
+  },
+  {
+    time: '11:30 AM',
+    title: 'Networking Coffee Break',
+    description:
+      'Meaningful peer-to-peer engagement across industries.',
+    icon: FiCoffee,
+  },
+  {
+    time: '12:15 PM',
+    title: 'Executive Fireside Chat',
+    description:
+      'Legacy to Digital Core: Transformation Strategies That Work.',
+    icon: FiMessageCircle,
+  },
+  {
+    time: '01:15 PM',
+    title: 'Mega Panel',
+    description:
+      'Reinventing Customer Experience: AI, Data & Digital Across Industries.',
+    icon: FiUsers,
+  },
+  {
+    time: '02:15 PM',
+    title: 'Strategic Networking Lunch',
+    description:
+      'Cross-industry roundtables for deeper collaboration.',
+    icon: FiCoffee,
+  },
+  {
+    time: '03:00 PM',
+    title: 'Spotlight Keynote',
+    description:
+      'Winning Customers Across Industries with AI & Data.',
+    icon: FiTarget,
+  },
+  {
+    time: '03:45 PM',
+    title: 'Cross-Industry Panel',
+    description:
+      'Smart Operations & Digital Supply Chains.',
+    icon: FiShare2,
+  },
+  {
+    time: '04:30 PM',
+    title: 'Keynote Address',
+    description:
+      'Modernisation Without Limits: Building Scalable Digital Enterprises.',
+    icon: FiBarChart2,
+  },
+  {
+    time: '05:15 PM',
+    title: 'Leadership Excellence Panel',
+    description:
+      'Cybersecurity & Resilience Across Industries.',
+    icon: FiShield,
+  },
+  {
+    time: '06:00 PM',
+    title: 'Networking High Tea & Closing',
+    description:
+      'Where conversations become business opportunities.',
+    icon: FiAward,
+  },
+]
 
 export function Agenda() {
-  const agendaItems = [
-    { time: '8:00 AM', title: 'Breakfast & Networking', speaker: '', icon: FiCoffee },
-    { time: '9:00 AM', title: 'Opening Keynote: The Future of CIO Leadership', speaker: 'Industry Visionary', icon: FiMic },
-    { time: '10:00 AM', title: 'Panel: Digital Transformation in 2025', speaker: 'Executive Panel', icon: FiUsers },
-    { time: '11:00 AM', title: 'Breakout Sessions', speaker: 'Multiple tracks', icon: FiLayers },
-    { time: '12:30 PM', title: 'Lunch & Roundtables', speaker: '', icon: FiCoffee },
-    { time: '1:30 PM', title: 'Workshop: Building High-Performance Teams', speaker: 'Tech Leaders', icon: GiRobotAntennas },
-    { time: '2:30 PM', title: 'Innovation Showcase', speaker: 'Partner Demonstrations', icon: FiLayers },
-    { time: '3:30 PM', title: 'Awards Ceremony', speaker: '', icon: FiAward },
-    { time: '4:30 PM', title: 'Closing Reception & Networking', speaker: '', icon: FiCoffee },
-  ]
-
   return (
-    <section id="agenda" className="bg-gradient-to-b from-secondary/50 to-background py-20 px-4 md:py-32 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <motion.div 
-        className="absolute inset-0 -z-10 overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <div className="absolute top-1/3 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-      </motion.div>
+    <section
+      id="agenda"
+      className="relative overflow-hidden bg-slate-950 py-24"
+    >
+      {/* Background Effects */}
+      <div className="absolute inset-0">
 
-      <div className="mx-auto max-w-6xl relative z-10">
-        <motion.div 
-          className="mb-16 text-center md:mb-20"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+        <div className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[150px]" />
+
+        <div className="absolute right-0 bottom-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[150px]" />
+
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:80px_80px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
+
+        {/* Header */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          className="mb-20 text-center"
         >
-          <motion.span 
-            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-xs font-semibold text-primary uppercase tracking-widest mb-4"
-            variants={itemVariants}
-          >
-            Schedule
-          </motion.span>
-          <motion.h2 
-            className="mb-4 text-4xl font-bold text-foreground md:text-5xl bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent"
-            variants={itemVariants}
-          >
-            Conference Agenda
-          </motion.h2>
-          <motion.p 
-            className="text-lg text-foreground/60 max-w-2xl mx-auto"
-            variants={itemVariants}
-          >
-            Two full days packed with insights, networking, and opportunities to shape the future
-          </motion.p>
+          <span className="rounded-full border border-cyan-500/20 bg-cyan-500/10 px-5 py-2 text-sm uppercase tracking-[3px] text-cyan-300">
+            Agenda Overview
+          </span>
+
+          <h2 className="mt-8 text-5xl font-black uppercase text-white md:text-7xl">
+            Agenda
+            <span className="ml-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent">
+              Overview
+            </span>
+          </h2>
+
+          <div className="mx-auto mt-6 h-1 w-32 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" />
+
+          <p className="mx-auto mt-8 max-w-3xl text-lg text-slate-400">
+            A power-packed day of insights,
+            collaboration, networking and leadership.
+          </p>
         </motion.div>
 
-        <motion.div 
-          className="space-y-3"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {agendaItems.map((item, idx) => {
-            const Icon = item.icon
-            return (
-              <motion.div 
-                key={idx} 
-                className="group relative"
-                variants={itemVariants}
-                whileHover={{ x: 5 }}
-              >
-                <Card className="flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between transition border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 bg-card/40 backdrop-blur">
-                  <div className="flex items-start gap-6 flex-1">
-                    <motion.div 
-                      className="flex-shrink-0 pt-1"
-                      whileHover={{ scale: 1.1, rotate: 10 }}
-                    >
-                      <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-primary">
-                        <Icon className="w-5 h-5" />
+        {/* Timeline */}
+        <div className="relative">
+
+          {/* Vertical Line */}
+          <div className="absolute left-[38px] top-0 hidden h-full w-[2px] bg-gradient-to-b from-cyan-400 via-blue-500 to-cyan-400 lg:block" />
+
+          <div className="space-y-8">
+            {agendaItems.map((item, index) => {
+              const Icon = item.icon
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{
+                    opacity: 0,
+                    x: -30,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    delay: index * 0.03,
+                  }}
+                  className="group relative"
+                >
+                  <div className="flex gap-6">
+
+                    {/* Icon Column */}
+                    <div className="hidden lg:block">
+                      <div className="relative z-20 flex h-20 w-20 items-center justify-center rounded-full border border-cyan-500/30 bg-white/5 backdrop-blur-xl transition-all duration-300 group-hover:border-cyan-400 group-hover:bg-cyan-500/10">
+                        <Icon className="text-2xl text-cyan-400" />
                       </div>
-                    </motion.div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-bold text-primary uppercase tracking-wide">{item.time}</div>
-                      <h3 className="mt-2 text-lg font-semibold text-foreground">{item.title}</h3>
                     </div>
+
+                    {/* Time */}
+                    <div className="min-w-[130px] pt-6">
+                      <span className="text-xl font-semibold text-cyan-300">
+                        {item.time}
+                      </span>
+                    </div>
+
+                    {/* Content Card */}
+                    <div
+                      className="
+                        flex-1
+                        rounded-3xl
+                        border
+                        border-white/10
+                        bg-white/5
+                        p-6
+                        backdrop-blur-2xl
+                        transition-all
+                        duration-300
+                        hover:border-cyan-500/30
+                        hover:bg-white/10
+                      "
+                    >
+                      <h3 className="text-2xl font-bold text-white">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-3 text-slate-400">
+                        {item.description}
+                      </p>
+                    </div>
+
                   </div>
-                  {item.speaker && (
-                    <div className="text-sm font-medium text-foreground/60 md:text-right">
-                      {item.speaker}
-                    </div>
-                  )}
-                </Card>
-              </motion.div>
-            )
-          })}
-        </motion.div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+
+       
+
+       
+
+
       </div>
     </section>
   )

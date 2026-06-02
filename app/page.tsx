@@ -9,6 +9,7 @@ import { Partners } from '@/components/sections/partners'
 import { Awards } from '@/components/sections/awards'
 import { Contact } from '@/components/sections/contact'
 import { Footer } from '@/components/sections/footer'
+import { Sponsors } from '@/components/sections/sponsors'
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <Agenda />
         <Speakers />
         <Partners />
+        <Sponsors />
         <Awards />
         <Contact />
       </main>

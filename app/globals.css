@@ -130,3 +130,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-33.333%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-right {
+  animation: marquee-right linear infinite;
+}

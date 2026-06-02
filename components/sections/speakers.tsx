@@ -1,156 +1,171 @@
 'use client'
 
-import { Card } from '@/components/ui/card'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { FiLinkedin, FiTwitter } from 'react-icons/fi'
-import { containerVariants, itemVariants } from '@/lib/animations'
+
+const speakers = [
+  {
+    name: 'Anand Vaitheeswaran',
+    title: 'Chief Information Officer - APAC',
+    company: 'Randstad',
+    image: '/speakers/anand.png',
+  },
+  {
+    name: 'Venkat Krishnan V',
+    title: 'CIO & CTO',
+    company: 'Karnataka Bank',
+    image: '/speakers/venkat.png',
+  },
+  {
+    name: 'Mythili Kandula',
+    title: 'CTO',
+    company: 'Happiest Health',
+    image: '/speakers/mythili.png',
+  },
+  {
+    name: 'Devi Singh',
+    title: 'Director – Deputy Head of IT Infrastructure',
+    company: 'BNP Paribas',
+    image: '/speakers/devi.png',
+  },
+  {
+    name: 'Yogesh Bhalla',
+    title: 'CTO',
+    company: 'DSP Mutual Funds',
+    image: '/speakers/yogesh.png',
+  },
+  {
+    name: 'Shashank Shankar',
+    title: 'Director of Applied AI | CTO',
+    company: 'Barclays',
+    image: '/speakers/shashank.png',
+  },
+  {
+    name: 'Anup Mishra',
+    title: 'AGM – Supply Chain Planning & Analytics',
+    company: 'METRO Cash & Carry India',
+    image: '/speakers/anup.png',
+  },
+  {
+    name: 'Garvit Saxena',
+    title: 'Executive Director, IT Service Delivery APAC',
+    company: 'Colliers',
+    image: '/speakers/garvit.png',
+  },
+  {
+    name: 'Roshan A',
+    title: 'Senior General Manager – IT',
+    company: 'Healthcare Global Enterprise',
+    image: '/speakers/roshan.png',
+  },
+]
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay },
+})
 
 export function Speakers() {
-  const speakers = [
-    {
-      name: 'Sarah Chen',
-      title: 'Chief Technology Officer',
-      company: 'Global Tech Corp',
-      bio: 'Leading digital transformation initiatives',
-      initials: 'SC',
-    },
-    {
-      name: 'Michael Rodriguez',
-      title: 'VP of Innovation',
-      company: 'Future Systems Inc',
-      bio: 'Expert in emerging technologies',
-      initials: 'MR',
-    },
-    {
-      name: 'Lisa Park',
-      title: 'Chief Information Officer',
-      company: 'Enterprise Solutions',
-      bio: 'Infrastructure and cloud strategy specialist',
-      initials: 'LP',
-    },
-    {
-      name: 'James Morrison',
-      title: 'Director of Digital Strategy',
-      company: 'Innovation Labs',
-      bio: 'Driving organizational transformation',
-      initials: 'JM',
-    },
-    {
-      name: 'Angela Williams',
-      title: 'Head of Technology',
-      company: 'Next Gen Industries',
-      bio: 'Building tomorrow&apos;s tech teams',
-      initials: 'AW',
-    },
-    {
-      name: 'David Kim',
-      title: 'Chief Digital Officer',
-      company: 'Connected World',
-      bio: 'IoT and AI integration leader',
-      initials: 'DK',
-    },
-  ]
-
   return (
-    <section id="speakers" className="py-20 px-4 md:py-32 bg-gradient-to-b from-background via-background to-secondary/30 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <motion.div 
-        className="absolute inset-0 -z-10 overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <div className="absolute -top-96 right-0 w-96 h-96 bg-primary/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 left-0 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
-      </motion.div>
+    <section
+      id="speakers"
+      className="relative overflow-hidden bg-white py-24"
+    >
+      {/* Dot-grid texture */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,#e0e7ff_1px,transparent_1px)] [background-size:32px_32px] opacity-50" />
 
-      <div className="mx-auto max-w-7xl relative z-10">
-        <motion.div 
-          className="mb-16 text-center md:mb-20"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.span 
-            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-xs font-semibold text-primary uppercase tracking-widest mb-4"
-            variants={itemVariants}
-          >
-            Expert Speakers
-          </motion.span>
-          <motion.h2 
-            className="mb-4 text-4xl font-bold text-foreground md:text-5xl bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent"
-            variants={itemVariants}
-          >
-            Industry Leaders & Visionaries
-          </motion.h2>
-          <motion.p 
-            className="text-lg text-foreground/60 max-w-2xl mx-auto"
-            variants={itemVariants}
-          >
-            Learn from C-suite executives and thought leaders driving innovation in technology
-          </motion.p>
+      {/* Soft washes */}
+      <div className="pointer-events-none absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-indigo-100/60 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-sky-100/60 blur-[120px]" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
+
+        {/* ── Header ── */}
+        <motion.div {...fadeUp()} className="mb-16 text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[3px] text-indigo-600">
+            Industry Visionaries
+          </span>
+
+          <h2 className="mt-6 text-5xl font-black tracking-tight text-slate-900 md:text-6xl">
+            Featured{' '}
+            <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-500 bg-clip-text text-transparent">
+              Speakers
+            </span>
+          </h2>
+
+          {/* Ornament */}
+          <div className="mx-auto mt-5 flex items-center justify-center gap-3">
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-indigo-300" />
+            <div className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-indigo-300" />
+          </div>
+
+          <p className="mx-auto mt-5 max-w-2xl text-base text-slate-500">
+            Learn from leading CIOs, CTOs and technology pioneers shaping the
+            future of enterprise innovation.
+          </p>
         </motion.div>
 
-        <motion.div 
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {speakers.map((speaker, idx) => (
-            <motion.div key={idx} variants={itemVariants}>
-              <Card className="group flex flex-col overflow-hidden border-primary/20 hover:border-primary/50 transition hover:shadow-xl hover:shadow-primary/10 h-full bg-card/40 backdrop-blur">
-                <motion.div 
-                  className="h-40 bg-gradient-to-br from-primary/20 via-accent/15 to-primary/10 flex items-center justify-center relative overflow-hidden"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {/* Animated background gradient */}
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/20"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
+        {/* ── Speaker Grid ── */}
+        <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {speakers.map((speaker, i) => (
+            <motion.div
+              key={speaker.name}
+              {...fadeUp(i * 0.06)}
+              whileHover={{ y: -6 }}
+              className="group"
+            >
+              <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:border-indigo-200 hover:shadow-md">
+
+                {/* Photo */}
+                <div className="relative h-52 w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={speaker.image}
+                    alt={speaker.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <motion.div 
-                    className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl font-bold text-white relative z-10"
-                    whileHover={{ scale: 1.15, rotate: 10 }}
-                  >
-                    {speaker.initials}
-                  </motion.div>
-                </motion.div>
-                <div className="flex flex-1 flex-col gap-3 p-6">
-                  <h3 className="text-lg font-bold text-foreground">{speaker.name}</h3>
-                  <div>
-                    <p className="text-sm font-semibold text-primary">{speaker.title}</p>
-                    <p className="text-sm text-foreground/60">{speaker.company}</p>
+                  {/* Bottom fade */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
+
+                  {/* Company pill — bottom-left */}
+                  <div className="absolute bottom-3 left-3">
+                    <span className="inline-block rounded-full border border-indigo-100 bg-white/90 px-2.5 py-0.5 text-[10px] font-semibold text-indigo-600 backdrop-blur-sm">
+                      {speaker.company}
+                    </span>
                   </div>
-                  <p className="mt-1 flex-1 text-sm leading-relaxed text-foreground/70">{speaker.bio}</p>
-                  <motion.div 
-                    className="flex gap-2 pt-2"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileHover={{ opacity: 1, y: 0 }}
-                  >
-                    <motion.button 
-                      className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary transition"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <FiLinkedin className="w-4 h-4" />
-                    </motion.button>
-                    <motion.button 
-                      className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary transition"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <FiTwitter className="w-4 h-4" />
-                    </motion.button>
-                  </motion.div>
                 </div>
-              </Card>
+
+                {/* Info */}
+                <div className="px-4 pb-5 pt-3">
+                  <h4 className="text-sm font-bold leading-snug text-slate-900">
+                    {speaker.name}
+                  </h4>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-500 line-clamp-2">
+                    {speaker.title}
+                  </p>
+                </div>
+
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+
+          {/* "More Speakers" placeholder card */}
+          <motion.div {...fadeUp(speakers.length * 0.06)} className="group">
+            <div className="flex h-full min-h-[260px] flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-indigo-200 bg-indigo-50/50 p-6 text-center transition-all duration-300 hover:border-indigo-400 hover:bg-indigo-50">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-indigo-200 bg-white text-2xl font-black text-indigo-400">
+                +
+              </div>
+              <p className="text-sm font-semibold text-indigo-600">More Speakers</p>
+              <p className="text-xs text-slate-400">Announcements coming soon</p>
+            </div>
+          </motion.div>
+        </div>
+
+      
+
       </div>
     </section>
   )
