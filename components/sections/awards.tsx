@@ -172,27 +172,49 @@ function NominationModal({
     }
   }
 
-  function handleSubmit() {
-    const required: (keyof FormState)[] = [
-      'nomineeName',
-      'nomineeTitle',
-      'nomineeCompany',
-      'nomineeCategory',
-      'nominatorName',
-      'nominatorEmail',
-      'nomineeReason',
-    ]
-    const newErrors: Partial<Record<keyof FormState, boolean>> = {}
-    required.forEach((k) => {
-      if (!form[k].trim()) newErrors[k] = true
-    })
-    if (Object.keys(newErrors).length) {
-      setErrors(newErrors)
-      return
-    }
-    setSubmitted(true)
+const handleSubmit = async () => {
+  const required: (keyof FormState)[] = [
+    'nomineeName',
+    'nomineeTitle',
+    'nomineeCompany',
+    'nomineeCategory',
+    'nominatorName',
+    'nominatorEmail',
+    'nomineeReason',
+  ]
+
+  const newErrors: Partial<Record<keyof FormState, boolean>> = {}
+
+  required.forEach((k) => {
+    if (!form[k].trim()) newErrors[k] = true
+  })
+
+  if (Object.keys(newErrors).length) {
+    setErrors(newErrors)
+    return
   }
 
+  try {
+    const response = await fetch('/api/nomination', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(form),
+    })
+
+    const result = await response.json()
+
+    if (result.success) {
+      setSubmitted(true)
+    } else {
+      alert(result.message)
+    }
+  } catch (error) {
+    console.error(error)
+    alert('Something went wrong')
+  }
+}
   return (
     /* Backdrop */
     <div

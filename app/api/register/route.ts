@@ -46,7 +46,7 @@ export async function POST(req: Request) {
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_TO,
+      to: 'enquary@confexmeet.com, ramesh.confexmeet@gmail.com',
       subject: `New Registration - ${data.fullName}`,
       html,
     })

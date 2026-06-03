@@ -1,72 +1,119 @@
-import { NextRequest, NextResponse } from 'next/server'
+import nodemailer from 'nodemailer'
+import { NextResponse } from 'next/server'
 
-interface NominationData {
-  nominatorName: string
-  nominatorEmail: string
-  candidateName: string
-  candidateTitle: string
-  candidateCompany: string
-  reason: string
-  category: string
-}
-
-// Simple in-memory storage for demo (replace with database in production)
-const nominations: NominationData[] = []
-
-export async function POST(request: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const body: NominationData = await request.json()
+    const data = await req.json()
 
-    // Validation
-    if (
-      !body.nominatorName ||
-      !body.nominatorEmail ||
-      !body.candidateName ||
-      !body.reason
-    ) {
-      return NextResponse.json(
-        { error: 'Please fill in all required fields' },
-        { status: 400 }
-      )
-    }
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.zoho.in',
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    })
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(body.nominatorEmail)) {
-      return NextResponse.json(
-        { error: 'Invalid email format' },
-        { status: 400 }
-      )
-    }
+    await transporter.sendMail({
+      from: `"CIO Excellence Awards" <${process.env.EMAIL_USER}>`,
+      to: [
+        'enquary@confexmeet.com',
+        'ramesh.confexmeet@gmail.com',
+      ],
+      subject: `New Award Nomination - ${data.nomineeName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 700px;">
+          <h2>New Award Nomination</h2>
 
-    // Store nomination (in production, this would go to a database)
-    nominations.push(body)
+          <table style="width:100%; border-collapse:collapse;">
+            <tr>
+              <td><strong>Nominee Name</strong></td>
+              <td>${data.nomineeName}</td>
+            </tr>
 
-    // Log for demo purposes
-    console.log(
-      `[Nomination] New nomination for: ${body.candidateName} by ${body.nominatorName}`
-    )
+            <tr>
+              <td><strong>Job Title</strong></td>
+              <td>${data.nomineeTitle}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Company</strong></td>
+              <td>${data.nomineeCompany}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Award Category</strong></td>
+              <td>${data.nomineeCategory}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Nominator Name</strong></td>
+              <td>${data.nominatorName}</td>
+            </tr>
+
+            <tr>
+              <td><strong>Nominator Email</strong></td>
+              <td>${data.nominatorEmail}</td>
+            </tr>
+          </table>
+
+          <br/>
+
+          <h3>Nomination Reason</h3>
+
+          <p>
+            ${data.nomineeReason}
+          </p>
+        </div>
+      `,
+    })
+
+    // Confirmation email to nominator
+
+    await transporter.sendMail({
+      from: `"CIO Excellence Awards" <${process.env.EMAIL_USER}>`,
+      to: data.nominatorEmail,
+      subject: 'Nomination Received - CIO Excellence Awards',
+      html: `
+        <div style="font-family: Arial, sans-serif;">
+          <h2>Thank You For Your Nomination</h2>
+
+          <p>Dear ${data.nominatorName},</p>
+
+          <p>
+            We have successfully received your nomination for
+            <strong>${data.nomineeName}</strong>.
+          </p>
+
+          <p>
+            Our awards committee will review all submissions and
+            shortlisted nominees will be notified.
+          </p>
+
+          <br/>
+
+          <p>
+            Regards,<br/>
+            CIO Excellence Awards Team
+          </p>
+        </div>
+      `,
+    })
+
+    return NextResponse.json({
+      success: true,
+      message: 'Nomination submitted successfully',
+    })
+  } catch (error) {
+    console.error('Nomination Error:', error)
 
     return NextResponse.json(
       {
-        success: true,
-        message: 'Thank you for your nomination! We appreciate your recognition of excellence in technology leadership.',
-        nominationId: `NOM-${Date.now()}`,
+        success: false,
+        message: 'Failed to submit nomination',
       },
-      { status: 201 }
-    )
-  } catch (error) {
-    console.error('Nomination error:', error)
-    return NextResponse.json(
-      { error: 'Failed to process nomination' },
       { status: 500 }
     )
   }
-}
-
-// GET endpoint to retrieve total nominations count (demo only)
-export async function GET() {
-  return NextResponse.json({
-    totalNominations: nominations.length,
-  })
 }
