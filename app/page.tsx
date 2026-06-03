@@ -10,6 +10,7 @@ import { Awards } from '@/components/sections/awards'
 import { Contact } from '@/components/sections/contact'
 import { Footer } from '@/components/sections/footer'
 import { Sponsors } from '@/components/sections/sponsors'
+import { Gallery } from '@/components/sections/Gallery'
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <Partners />
         <Sponsors />
         <Awards />
+        <Gallery />
         <Contact />
       </main>
       <Footer />
