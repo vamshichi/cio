@@ -513,7 +513,7 @@ export function Awards() {
   const [showModal, setShowModal] = useState(false)
 
   return (
-    <main className="relative min-h-screen bg-slate-950 px-6 py-20 overflow-hidden">
+    <main id='#awards' className="relative min-h-screen bg-slate-950 px-6 py-20 overflow-hidden">
 
       {/* Background Effects */}
       <div className="pointer-events-none absolute inset-0">

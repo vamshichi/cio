@@ -10,6 +10,9 @@ import {
   FiMapPin,
   FiUsers,
 } from 'react-icons/fi'
+import { DelegateForm } from '@/components/sections/DelegateForm'
+import { SponsorForm } from '@/components/sections/SponsorForm'
+import { FormModal } from '@/components/common/FormModal'
 
 import { Button } from '@/components/ui/button'
 
@@ -26,6 +29,12 @@ import { AIGlobe } from './AIGlobe'
 import { FloatingCards } from './FloatingCards'
 
 export function Hero() {
+  const [showDelegateForm, setShowDelegateForm] =
+  useState(false)
+
+const [showSponsorForm, setShowSponsorForm] =
+  useState(false)
+
   const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0,
@@ -224,51 +233,39 @@ export function Hero() {
   className="mt-12 flex flex-wrap justify-center gap-4"
 >
   <Button
-    size="lg"
-    className="
-      group
-      h-14
-      rounded-xl
-      bg-gradient-to-r
-      from-cyan-500
-      to-blue-600
-      px-10
-      text-white
-      transition-all
-      duration-300
-      hover:scale-105
-      hover:shadow-xl
-      hover:shadow-cyan-500/30
-    "
-    asChild
-  >
-    <Link href="#delegate-registration">
-      Delegate Registration
+  size="lg"
+  className="
+    group
+    h-14
+    rounded-xl
+    bg-gradient-to-r
+    from-cyan-500
+    to-blue-600
+    px-10
+    text-white
+  "
+  onClick={() => setShowDelegateForm(true)}
+>
+  Delegate Registration
 
-      <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
-    </Link>
-  </Button>
+  <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+</Button>
 
   <Button
-    variant="outline"
-    size="lg"
-    className="
-      h-14
-      rounded-xl
-      border-cyan-500/30
-      bg-white/5
-      px-10
-      text-white
-      backdrop-blur-xl
-      hover:bg-cyan-500/10
-      hover:border-cyan-500
-    "
-    asChild
-  >
-    <Link href="#sponsor-registration">
-      Sponsor Registration
-    </Link>
-  </Button>
+  variant="outline"
+  size="lg"
+  className="
+    h-14
+    rounded-xl
+    border-cyan-500/30
+    bg-white/5
+    px-10
+    text-white
+  "
+  onClick={() => setShowSponsorForm(true)}
+>
+  Sponsor Registration
+</Button>
 </motion.div>
 
         {/* Stats Section */}

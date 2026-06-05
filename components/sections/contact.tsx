@@ -41,6 +41,8 @@ export function Contact() {
   const [formData, setFormData] = useState<FormData>(initialForm)
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, boolean>>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+const [errorMessage, setErrorMessage] = useState('')
 
   const inputClass =
     'h-14 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white placeholder-slate-500 outline-none focus:border-cyan-500/50 transition-colors'
@@ -67,39 +69,117 @@ export function Contact() {
     setErrors((prev) => ({ ...prev, [field]: false }))
   }
 
+  const isBusinessEmail = (email: string) => {
+  const personalDomains = [
+    'gmail.com',
+    'yahoo.com',
+    'hotmail.com',
+    'outlook.com',
+    'live.com',
+    'aol.com',
+    'icloud.com',
+    'proton.me',
+    'protonmail.com',
+    'rediffmail.com',
+  ]
+
+  const domain = email.split('@')[1]?.toLowerCase()
+
+  return domain && !personalDomains.includes(domain)
+}
+
   const validate = () => {
-    const newErrors: Partial<Record<keyof FormData, boolean>> = {}
-    if (!formData.fullName.trim()) newErrors.fullName = true
-    if (!formData.jobTitle.trim()) newErrors.jobTitle = true
-    if (!formData.company.trim()) newErrors.company = true
-    if (!formData.email.trim()) newErrors.email = true
-    if (!formData.phone.trim()) newErrors.phone = true
-    if (!formData.brochureConsent) newErrors.brochureConsent = true
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
+  const newErrors: Partial<
+    Record<keyof FormData, boolean>
+  > = {}
+
+  if (!formData.fullName.trim())
+    newErrors.fullName = true
+
+  if (!formData.jobTitle.trim())
+    newErrors.jobTitle = true
+
+  if (!formData.company.trim())
+    newErrors.company = true
+
+  if (!formData.email.trim())
+    newErrors.email = true
+
+  if (!formData.phone.trim())
+    newErrors.phone = true
+
+  if (!formData.brochureConsent)
+    newErrors.brochureConsent = true
+
+  setErrors(newErrors)
+
+  if (Object.keys(newErrors).length > 0) {
+    setErrorMessage(
+      'Please fill all mandatory fields.'
+    )
+    return false
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!validate()) return
+  if (!isBusinessEmail(formData.email)) {
+    setErrorMessage(
+      'Please use your business email address.'
+    )
+    return false
+  }
 
-    try {
-      const response = await fetch('/api/register', {
+  if (formData.interestedIn.length === 0) {
+    setErrorMessage(
+      'Please select at least one interest.'
+    )
+    return false
+  }
+
+  setErrorMessage('')
+  return true
+}
+
+  const handleSubmit = async (
+  e: React.FormEvent
+) => {
+  e.preventDefault()
+
+  if (!validate()) return
+
+  try {
+    setLoading(true)
+
+    const response = await fetch(
+      '/api/register',
+      {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type':
+            'application/json',
+        },
         body: JSON.stringify(formData),
-      })
-      const result = await response.json()
-      if (result.success) {
-        setSubmitted(true)
-      } else {
-        alert(result.message || 'Submission failed. Please try again.')
       }
-    } catch (error) {
-      console.error(error)
-      alert('Something went wrong. Please try again.')
+    )
+
+    const result = await response.json()
+
+    if (result.success) {
+      setSubmitted(true)
+    } else {
+      setErrorMessage(
+        result.message ||
+          'Submission failed.'
+      )
     }
+  } catch (error) {
+    console.error(error)
+
+    setErrorMessage(
+      'Something went wrong. Please try again.'
+    )
+  } finally {
+    setLoading(false)
   }
+}
 
   return (
     <section
@@ -317,12 +397,57 @@ export function Contact() {
                   </div>
                 </div>
 
+                {errorMessage && (
+  <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
+    {errorMessage}
+  </div>
+)}
+
                 <button
-                  type="submit"
-                  className="h-14 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-semibold text-white transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_10px_30px_rgba(0,174,255,0.25)]"
-                >
-                  Submit Registration →
-                </button>
+  type="submit"
+  disabled={loading}
+  className="
+    h-14
+    w-full
+    rounded-xl
+    bg-gradient-to-r
+    from-cyan-500
+    to-blue-600
+    font-semibold
+    text-white
+    transition-all
+    disabled:cursor-not-allowed
+    disabled:opacity-70
+  "
+>
+  {loading ? (
+    <span className="flex items-center justify-center gap-3">
+      <svg
+        className="h-5 w-5 animate-spin"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+          opacity="0.25"
+        />
+        <path
+          d="M22 12a10 10 0 00-10-10"
+          stroke="currentColor"
+          strokeWidth="4"
+        />
+      </svg>
+
+      Submitting...
+    </span>
+  ) : (
+    'Submit Registration →'
+  )}
+</button>
 
               </form>
             )}

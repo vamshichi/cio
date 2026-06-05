@@ -4,6 +4,11 @@
 import { useState } from 'react'
 
 export function SponsorForm() {
+  
+const [loading, setLoading] = useState(false)
+const [error, setError] = useState('')
+
+
   const [formData, setFormData] = useState({
     fullName: '',
     jobTitle: '',
@@ -46,47 +51,113 @@ export function SponsorForm() {
     }))
   }
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault()
+ 
+const isBusinessEmail = (email: string) => {
+  const personalDomains = [
+    'gmail.com',
+    'yahoo.com',
+    'hotmail.com',
+    'outlook.com',
+    'live.com',
+    'aol.com',
+    'icloud.com',
+    'proton.me',
+    'protonmail.com',
+    'rediffmail.com',
+  ]
 
-    try {
-      const response = await fetch('/api/sponsor', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
+  const domain = email.split('@')[1]?.toLowerCase()
 
-      const result = await response.json()
+  return domain && !personalDomains.includes(domain)
+}
 
-      if (result.success) {
-        alert(
-          'Sponsorship enquiry submitted successfully'
-        )
 
-        setFormData({
-          fullName: '',
-          jobTitle: '',
-          company: '',
-          email: '',
-          phone: '',
-          linkedin: '',
-          objectives: [],
-          sponsoredBefore: '',
-          shareDetails: false,
-          receiveUpdates: false,
-        })
-      } else {
-        alert(result.message)
-      }
-    } catch (error) {
-      console.error(error)
-      alert('Something went wrong')
-    }
+
+ 
+const handleSubmit = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
+  e.preventDefault()
+
+  setError('')
+
+  if (
+    !formData.fullName ||
+    !formData.jobTitle ||
+    !formData.company ||
+    !formData.email ||
+    !formData.phone
+  ) {
+    setError('Please fill all required fields')
+    return
   }
+
+  if (formData.objectives.length === 0) {
+    setError(
+      'Please select at least one sponsorship objective'
+    )
+    return
+  }
+
+  if (!formData.sponsoredBefore) {
+    setError(
+      'Please select sponsorship experience'
+    )
+    return
+  }
+
+  if (!isBusinessEmail(formData.email)) {
+    setError(
+      'Please use your business email address'
+    )
+    return
+  }
+
+  try {
+    setLoading(true)
+
+    const response = await fetch('/api/sponsor', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+
+    const result = await response.json()
+
+    if (result.success) {
+      alert(
+        'Sponsorship enquiry submitted successfully'
+      )
+
+      setFormData({
+        fullName: '',
+        jobTitle: '',
+        company: '',
+        email: '',
+        phone: '',
+        linkedin: '',
+        objectives: [],
+        sponsoredBefore: '',
+        shareDetails: false,
+        receiveUpdates: false,
+      })
+    } else {
+      setError(
+        result.message ||
+          'Submission failed'
+      )
+    }
+  } catch (error) {
+    console.error(error)
+    setError('Something went wrong')
+  } finally {
+    setLoading(false)
+  }
+}
+
+
 
   const objectives = [
     'Thought Leadership / Speaking Slots',
@@ -295,12 +366,63 @@ export function SponsorForm() {
         </div>
       </div>
 
-      <button
-        type="submit"
-        className="h-14 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-semibold text-white transition-all hover:opacity-90"
+   
+{error && (
+  <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
+    {error}
+  </div>
+)}
+
+
+
+      
+<button
+  type="submit"
+  disabled={loading}
+  className="
+    h-14
+    w-full
+    rounded-xl
+    bg-gradient-to-r
+    from-cyan-500
+    to-blue-600
+    font-semibold
+    text-white
+    transition-all
+    disabled:cursor-not-allowed
+    disabled:opacity-70
+  "
+>
+  {loading ? (
+    <span className="flex items-center justify-center gap-3">
+      <svg
+        className="h-5 w-5 animate-spin"
+        viewBox="0 0 24 24"
+        fill="none"
       >
-        Submit Sponsorship Enquiry
-      </button>
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+          opacity="0.25"
+        />
+        <path
+          d="M22 12a10 10 0 00-10-10"
+          stroke="currentColor"
+          strokeWidth="4"
+        />
+      </svg>
+
+      Submitting...
+    </span>
+  ) : (
+    'Submit Sponsorship Enquiry'
+  )}
+</button>
+
+
     </form>
   )
 }
