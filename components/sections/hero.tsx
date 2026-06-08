@@ -30,10 +30,10 @@ import { FloatingCards } from './FloatingCards'
 
 export function Hero() {
   const [showDelegateForm, setShowDelegateForm] =
-  useState(false)
+    useState(false)
 
-const [showSponsorForm, setShowSponsorForm] =
-  useState(false)
+  const [showSponsorForm, setShowSponsorForm] =
+    useState(false)
 
   const [mousePosition, setMousePosition] = useState({
     x: 0,
@@ -99,12 +99,12 @@ const [showSponsorForm, setShowSponsorForm] =
         <ParticlesBackground />
       </div>
       <div className="absolute inset-0 overflow-hidden">
-  <div className="absolute left-1/4 top-0 h-full w-px bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent" />
+        <div className="absolute left-1/4 top-0 h-full w-px bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent" />
 
-  <div className="absolute left-1/2 top-0 h-full w-px bg-gradient-to-b from-transparent via-cyan-500/10 to-transparent" />
+        <div className="absolute left-1/2 top-0 h-full w-px bg-gradient-to-b from-transparent via-cyan-500/10 to-transparent" />
 
-  <div className="absolute left-3/4 top-0 h-full w-px bg-gradient-to-b from-transparent via-blue-500/20 to-transparent" />
-</div>
+        <div className="absolute left-3/4 top-0 h-full w-px bg-gradient-to-b from-transparent via-blue-500/20 to-transparent" />
+      </div>
 
       {/* Main Content */}
       <div className="relative z-20 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 lg:px-10">
@@ -128,7 +128,7 @@ const [showSponsorForm, setShowSponsorForm] =
             <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-400" />
 
             <span className="text-sm font-medium tracking-wide text-cyan-300">
-              INDIA'S MOST PREMIER CIO LEADERSHIP SUMMIT 2026
+              India' Premier CIO Tech Leadership Conference Now in Bengaluru
             </span>
           </div>
         </motion.div>
@@ -149,16 +149,16 @@ const [showSponsorForm, setShowSponsorForm] =
           className="text-center"
         >
           <h1 className="mx-auto max-w-5xl text-4xl font-black uppercase leading-[0.9] text-white md:text-5xl lg:text-6xl xl:text-[68px]">
-  India's Most Premier
+            2nd Edition of
 
-  <span className="hero-glow mt-1 block bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent">
-    CIO Leadership
-  </span>
+            <span className="hero-glow mt-1 block bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent">
+              CIO Tech Leadership Conference & Awards
+            </span>
 
-  <span className="block">
-    Summit 2026
-  </span>
-</h1>
+            <span className="block">
+              Bengaluru 2026
+            </span>
+          </h1>
         </motion.div>
 
         {/* Subtitle */}
@@ -219,22 +219,22 @@ const [showSponsorForm, setShowSponsorForm] =
 
             <div className="flex items-center gap-2 text-slate-300">
               <FiUsers />
-              <span>200+ Executive Leaders</span>
+              <span>250+ Executive Leaders</span>
             </div>
 
           </div>
         </motion.div>
 
         {/* CTA Buttons */}
-       <motion.div
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ delay: 0.6 }}
-  className="mt-12 flex flex-wrap justify-center gap-4"
->
-  <Button
-  size="lg"
-  className="
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-12 flex flex-wrap justify-center gap-4"
+        >
+          <Button
+            size="lg"
+            className="
     group
     h-14
     rounded-xl
@@ -244,17 +244,17 @@ const [showSponsorForm, setShowSponsorForm] =
     px-10
     text-white
   "
-  onClick={() => setShowDelegateForm(true)}
->
-  Delegate Registration
+            onClick={() => setShowDelegateForm(true)}
+          >
+            Delegate Enquiry
 
-  <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
-</Button>
+            <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+          </Button>
 
-  <Button
-  variant="outline"
-  size="lg"
-  className="
+          <Button
+            variant="outline"
+            size="lg"
+            className="
     h-14
     rounded-xl
     border-cyan-500/30
@@ -262,17 +262,17 @@ const [showSponsorForm, setShowSponsorForm] =
     px-10
     text-white
   "
-  onClick={() => setShowSponsorForm(true)}
->
-  Sponsor Registration
-</Button>
-</motion.div>
+            onClick={() => setShowSponsorForm(true)}
+          >
+            Sponsor Enquiry
+          </Button>
+        </motion.div>
 
         {/* Stats Section */}
         <div className="mt-24 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 
           <AnimatedCounter
-            end={200}
+            end={250}
             suffix="+"
             label="CIOs & IT Leaders"
           />
@@ -290,9 +290,9 @@ const [showSponsorForm, setShowSponsorForm] =
           />
 
           <AnimatedCounter
-            end={1}
-            suffix=""
-            label="Day Of Insights"
+            end={100}
+            suffix="+"
+            label="Curated Meetings"
           />
 
         </div>
@@ -319,8 +319,27 @@ const [showSponsorForm, setShowSponsorForm] =
         </motion.div> */}
 
       </div>
-      <AIGlobe />
-<FloatingCards />
+           <AIGlobe />
+      <FloatingCards />
+
+      {/* Delegate Form Modal */}
+      <FormModal
+        open={showDelegateForm}
+        onClose={() => setShowDelegateForm(false)}
+        title="Delegate Registration"
+      >
+        <DelegateForm />
+      </FormModal>
+
+      {/* Sponsor Form Modal */}
+      <FormModal
+        open={showSponsorForm}
+        onClose={() => setShowSponsorForm(false)}
+        title="Sponsor Registration"
+      >
+        <SponsorForm />
+      </FormModal>
+
     </section>
   )
 }

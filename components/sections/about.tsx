@@ -145,9 +145,9 @@ export function About() {
         <motion.div {...fadeUp()} className="mb-24 text-center">
           <Eyebrow>About The Event</Eyebrow>
           <h2 className="mt-7 text-5xl font-black tracking-tight text-slate-100 md:text-6xl">
-            CIO Leadership Summit{' '}
+            CIO Tech Leadership Conference & Awards {' '}
             <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-500 bg-clip-text text-transparent">
-              2026
+              - Bengaluru 2026
             </span>
           </h2>
           <Divider />

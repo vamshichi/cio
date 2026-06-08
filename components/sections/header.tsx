@@ -61,7 +61,7 @@ const [showSponsorForm, setShowSponsorForm] = useState(false)
               width={220}
               height={60}
               priority
-              className="h-12 md:h-14 w-auto"
+              className="h-12 md:h-18 w-auto"
             />
           </motion.div>
         </Link>
@@ -98,15 +98,15 @@ const [showSponsorForm, setShowSponsorForm] = useState(false)
         <div className="hidden md:flex items-center gap-3">
           <Button
   variant="outline"
-  size="sm"
+  size="lg"
   className="font-semibold"
   onClick={() => setShowSponsorForm(true)}
 >
-  Sponsor Registration
+  Sponsor Enquiry
 </Button>
 
 <Button
-  size="sm"
+  size="lg"
   className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold"
   onClick={() => setShowDelegateForm(true)}
 >
@@ -166,7 +166,7 @@ const [showSponsorForm, setShowSponsorForm] = useState(false)
     setMobileMenuOpen(false)
   }}
 >
-  Sponsor Registration
+  Sponsor Enquiry
 </Button>
 
 <Button
