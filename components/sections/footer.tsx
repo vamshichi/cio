@@ -21,7 +21,7 @@ export function Footer() {
               alt="CIO Leadership Summit"
               width={220}
               height={60}
-              className="h-14 w-auto"
+              className="h-26 w-auto"
             />
 
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
