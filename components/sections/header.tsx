@@ -21,7 +21,19 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showDelegateForm, setShowDelegateForm] = useState(false)
-const [showSponsorForm, setShowSponsorForm] = useState(false)
+  const [showSponsorForm, setShowSponsorForm] = useState(false)
+
+  useEffect(() => {
+    const hash = window.location.hash
+
+    if (hash === '#delegateenquiry') {
+      setShowDelegateForm(true)
+    }
+
+    if (hash === '#sponsorenquiry') {
+      setShowSponsorForm(true)
+    }
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,11 +54,10 @@ const [showSponsorForm, setShowSponsorForm] = useState(false)
 
   return (
     <header
-      className={`sticky top-0 left-0 z-50 w-full transition-all duration-500 ${
-        isScrolled
+      className={`sticky top-0 left-0 z-50 w-full transition-all duration-500 ${isScrolled
           ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-slate-250'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
         {/* Logo */}
@@ -78,11 +89,10 @@ const [showSponsorForm, setShowSponsorForm] = useState(false)
                 className="group relative px-4 py-2"
               >
                 <div
-                  className={`flex items-center gap-2 text-sm font-medium transition-all ${
-                    isScrolled
+                  className={`flex items-center gap-2 text-sm font-medium transition-all ${isScrolled
                       ? 'text-slate-700 hover:text-cyan-600'
                       : 'text-slate-700 hover:text-cyan-600'
-                  }`}
+                    }`}
                 >
                   <Icon className="h-4 w-4" />
                   {item.label}
@@ -97,29 +107,34 @@ const [showSponsorForm, setShowSponsorForm] = useState(false)
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center gap-3">
           <Button
-  variant="outline"
-  size="lg"
-  className="font-semibold"
-  onClick={() => setShowSponsorForm(true)}
->
-  Sponsor Enquiry
-</Button>
+            variant="outline"
+            size="lg"
+            className="font-semibold"
+            onClick={() => {
+              window.history.pushState(null, '', '#sponsorenquiry')
+              setShowSponsorForm(true)
+            }}
+          >
+            Sponsor Enquiry
+          </Button>
 
-<Button
-  size="lg"
-  className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold"
-  onClick={() => setShowDelegateForm(true)}
->
-  Delegate Registration
-</Button>
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold"
+            onClick={() => {
+              window.history.pushState(null, '', '#delegateenquiry')
+              setShowDelegateForm(true)
+            }}
+          >
+            Delegate Registration
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className={`md:hidden rounded-lg p-2 transition ${
-            isScrolled ? 'text-slate-800' : 'text-white'
-          }`}
+          className={`md:hidden rounded-lg p-2 transition ${isScrolled ? 'text-slate-800' : 'text-white'
+            }`}
         >
           {mobileMenuOpen ? (
             <FiX className="h-6 w-6" />
@@ -158,47 +173,49 @@ const [showSponsorForm, setShowSponsorForm] = useState(false)
 
               {/* Mobile CTA Buttons */}
               <div className="mt-4 space-y-3 border-t border-slate-250 pt-4">
-               <Button
-  variant="outline"
-  className="w-full"
-  onClick={() => {
-    setShowSponsorForm(true)
-    setMobileMenuOpen(false)
-  }}
->
-  Sponsor Enquiry
-</Button>
+                <Button
+                  variant="outline"
+                  className="w-full"
+                 onClick={() => {
+  window.history.pushState(null, '', '#sponsorenquiry')
+  setShowSponsorForm(true)
+  setMobileMenuOpen(false)
+}}
+                >
+                  Sponsor Enquiry
+                </Button>
 
-<Button
-  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
-  onClick={() => {
-    setShowDelegateForm(true)
-    setMobileMenuOpen(false)
-  }}
->
-  Delegate Registration
-</Button>
+                <Button
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
+                  onClick={() => {
+  window.history.pushState(null, '', '#delegateenquiry')
+  setShowDelegateForm(true)
+  setMobileMenuOpen(false)
+}}
+                >
+                  Delegate Registration
+                </Button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
       <FormModal
-  open={showDelegateForm}
-  onClose={() => setShowDelegateForm(false)}
-  title="Delegate Registration"
->
-  <DelegateForm />
-</FormModal>
+        open={showDelegateForm}
+        onClose={() => setShowDelegateForm(false)}
+        title="Delegate Registration"
+      >
+        <DelegateForm />
+      </FormModal>
 
-<FormModal
-  open={showSponsorForm}
-  onClose={() => setShowSponsorForm(false)}
-  title="Sponsor Registration"
->
-  <SponsorForm />
-</FormModal>
+      <FormModal
+        open={showSponsorForm}
+        onClose={() => setShowSponsorForm(false)}
+        title="Sponsor Registration"
+      >
+        <SponsorForm />
+      </FormModal>
     </header>
   )
-  
+
 }

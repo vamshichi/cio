@@ -47,7 +47,14 @@ export function FormModal({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={() => {
+  window.history.pushState(
+    {},
+    '',
+    window.location.pathname
+  )
+  onClose()
+}}
             className="fixed inset-0 z-[9998] bg-black/70 backdrop-blur-sm"
           />
 
