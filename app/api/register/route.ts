@@ -28,7 +28,7 @@ export async function POST(req: Request) {
           <h3 style="margin-top:24px; color:#444;">Basic Information</h3>
           <table style="width:100%; border-collapse:collapse;">
             <tr>
-              <td style="padding:8px 12px; background:#f5f5f5; font-weight:bold; width:200px; border:1px solid #ddd;">Full Name</td>
+              <td style="padding:8px 12px; background:#f5f5f5; font-weight:bold; width:250px; border:1px solid #ddd;">Full Name</td>
               <td style="padding:8px 12px; border:1px solid #ddd;">${data.fullName}</td>
             </tr>
             <tr>
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
           <h3 style="margin-top:24px; color:#444;">Interest in the Event</h3>
           <table style="width:100%; border-collapse:collapse;">
             <tr>
-              <td style="padding:8px 12px; background:#f5f5f5; font-weight:bold; width:200px; border:1px solid #ddd;">Interested In</td>
+              <td style="padding:8px 12px; background:#f5f5f5; font-weight:bold; width:250px; border:1px solid #ddd;">Interested In</td>
               <td style="padding:8px 12px; border:1px solid #ddd;">
                 ${
                   data.interestedIn?.length
@@ -71,7 +71,7 @@ export async function POST(req: Request) {
           <h3 style="margin-top:24px; color:#444;">Consent</h3>
           <table style="width:100%; border-collapse:collapse;">
             <tr>
-              <td style="padding:8px 12px; background:#f5f5f5; font-weight:bold; width:200px; border:1px solid #ddd;">Receive Brochure & Updates</td>
+              <td style="padding:8px 12px; background:#f5f5f5; font-weight:bold; width:250px; border:1px solid #ddd;">Receive Brochure & Updates</td>
               <td style="padding:8px 12px; border:1px solid #ddd;">${data.brochureConsent ? '✅ Yes' : '❌ No'}</td>
             </tr>
             <tr>

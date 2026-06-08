@@ -223,7 +223,7 @@ const [errorMessage, setErrorMessage] = useState('')
 
         {/* Trust Badges */}
         <div className="mb-16 flex flex-wrap justify-center gap-4">
-          {['200+ CIOs', '20+ Speakers', '20+ Partners', 'Leadership Awards', 'Executive Networking'].map((item) => (
+          {['250+ CIOs', '20+ Speakers', '20+ Partners', 'Leadership Awards', 'Executive Networking'].map((item) => (
             <div key={item} className="rounded-full border border-cyan-500/20 bg-cyan-500/5 px-5 py-2 text-sm text-cyan-300 backdrop-blur-xl">
               {item}
             </div>

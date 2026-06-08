@@ -309,7 +309,7 @@ function NominationModal({ onClose }: { onClose: () => void }) {
             </div>
             <h3 className="text-2xl font-bold text-white">Nomination Submitted!</h3>
             <p className="text-slate-400 max-w-sm">
-              Thank you — the CIO Tech Leadership Conference team will review your nomination and be in touch before the deadline of <strong className="text-white">19 June 2026</strong>.
+              Thank you — the CIO Tech Leadership Conference team will review your nomination and be in touch before the deadline of <strong className="text-white">15 July 2026</strong>.
             </p>
             <button onClick={onClose} className="mt-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-3 font-semibold text-white transition-all hover:scale-105">
               Close
@@ -321,7 +321,7 @@ function NominationModal({ onClose }: { onClose: () => void }) {
             <div className="mb-6 flex items-start justify-between gap-4">
               <div>
                 <h2 className="text-xl font-bold text-white">CIO Tech Leadership Excellence Awards 2026</h2>
-                <p className="text-sm text-slate-400 mt-1">Nomination Deadline: <span className="text-cyan-400 font-medium">19 June 2026</span></p>
+                <p className="text-sm text-slate-400 mt-1">Nomination Deadline: <span className="text-cyan-400 font-medium">15 July 2026</span></p>
               </div>
               <button onClick={onClose} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white transition-colors" aria-label="Close modal">
                 ✕
@@ -448,31 +448,31 @@ function NominationModal({ onClose }: { onClose: () => void }) {
                 <FormField label="Summary of Achievement" error={errors.summaryOfAchievement}>
                   <textarea
                     className={`${inputClass} min-h-[100px] resize-y`}
-                    placeholder="Briefly describe the initiative, leadership, solution, or transformation being nominated. (Max 200 words)"
+                    placeholder="Briefly describe the initiative, leadership, solution, or transformation being nominated. (Max 250 words)"
                     value={form.summaryOfAchievement}
                     onChange={set('summaryOfAchievement')}
                   />
-                  <p className="text-xs text-slate-600 mt-1">{form.summaryOfAchievement.split(/\s+/).filter(Boolean).length} / 200 words</p>
+                  <p className="text-xs text-slate-600 mt-1">{form.summaryOfAchievement.split(/\s+/).filter(Boolean).length} / 250 words</p>
                 </FormField>
 
                 <FormField label="Innovation & Differentiation" error={errors.innovationDifferentiation}>
                   <textarea
                     className={`${inputClass} min-h-[100px] resize-y`}
-                    placeholder="What makes this initiative, leader, or solution stand out within India's or the global enterprise technology ecosystem? (Max 200 words)"
+                    placeholder="What makes this initiative, leader, or solution stand out within India's or the global enterprise technology ecosystem? (Max 250 words)"
                     value={form.innovationDifferentiation}
                     onChange={set('innovationDifferentiation')}
                   />
-                  <p className="text-xs text-slate-600 mt-1">{form.innovationDifferentiation.split(/\s+/).filter(Boolean).length} / 200 words</p>
+                  <p className="text-xs text-slate-600 mt-1">{form.innovationDifferentiation.split(/\s+/).filter(Boolean).length} / 250 words</p>
                 </FormField>
 
                 <FormField label="Measurable Business Impact" error={errors.measurableImpact}>
                   <textarea
                     className={`${inputClass} min-h-[120px] resize-y`}
-                    placeholder="Share measurable outcomes: revenue growth, operational efficiency, AI adoption impact, customer experience improvement, cost optimisation, cyber resilience, enterprise scalability, digital transformation outcomes. (Max 200 words)"
+                    placeholder="Share measurable outcomes: revenue growth, operational efficiency, AI adoption impact, customer experience improvement, cost optimisation, cyber resilience, enterprise scalability, digital transformation outcomes. (Max 250 words)"
                     value={form.measurableImpact}
                     onChange={set('measurableImpact')}
                   />
-                  <p className="text-xs text-slate-600 mt-1">{form.measurableImpact.split(/\s+/).filter(Boolean).length} / 200 words</p>
+                  <p className="text-xs text-slate-600 mt-1">{form.measurableImpact.split(/\s+/).filter(Boolean).length} / 250 words</p>
                 </FormField>
 
                 <label className={`flex items-start gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-all ${errors.consentComms ? 'border-red-500/60' : form.consentComms ? 'border-cyan-500/50 bg-cyan-500/10' : 'border-white/10 bg-white/[0.02]'}`}>
@@ -539,7 +539,7 @@ export function Awards() {
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-500">
           <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />Hosted alongside 2nd CIO Tech Leadership Conference & Awards Bangalore 2026</span>
-          <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />Nomination Deadline: <strong className="text-cyan-400">19 June 2026</strong></span>
+          <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />Nomination Deadline: <strong className="text-cyan-400">15 July 2026</strong></span>
         </div>
       </section>
 
@@ -602,7 +602,7 @@ export function Awards() {
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
             Recognition presented live on stage at the 2nd CIO Tech Leadership Conference & Awards Bangalore 2026, before an elite audience of enterprise technology decision-makers.
           </p>
-          <p className="mt-3 text-sm text-cyan-400 font-medium">Nomination Deadline: 19 June 2026</p>
+          <p className="mt-3 text-sm text-cyan-400 font-medium">Nomination Deadline: 15 July 2026</p>
           <button
             onClick={() => setShowModal(true)}
             className="mt-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-4 font-semibold text-white transition-all hover:scale-105 hover:shadow-[0_10px_30px_rgba(0,174,255,0.3)]"

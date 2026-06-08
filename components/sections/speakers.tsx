@@ -89,7 +89,7 @@ export function Speakers() {
 
         {/* Header */}
         <motion.div {...fadeUp()} className="mb-12 text-center sm:mb-16 lg:mb-20">
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[3px] text-indigo-600">
+          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-250 bg-indigo-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[3px] text-indigo-600">
             Industry Visionaries
           </span>
 

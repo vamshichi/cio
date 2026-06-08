@@ -9,7 +9,7 @@ import {
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white">
+    <footer className="border-t border-slate-250 bg-white">
       <div className="mx-auto max-w-7xl px-4 py-12">
 
         <div className="grid gap-10 md:grid-cols-3">
@@ -79,28 +79,28 @@ export function Footer() {
 
               <a
                 href="#"
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 transition hover:border-indigo-500 hover:text-indigo-600"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-250 transition hover:border-indigo-500 hover:text-indigo-600"
               >
                 <FiLinkedin size={18} />
               </a>
 
               <a
                 href="#"
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 transition hover:border-indigo-500 hover:text-indigo-600"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-250 transition hover:border-indigo-500 hover:text-indigo-600"
               >
                 <FiTwitter size={18} />
               </a>
 
               <a
                 href="#"
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 transition hover:border-indigo-500 hover:text-indigo-600"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-250 transition hover:border-indigo-500 hover:text-indigo-600"
               >
                 <FiInstagram size={18} />
               </a>
 
               <a
                 href="#"
-                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 transition hover:border-indigo-500 hover:text-indigo-600"
+                className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-250 transition hover:border-indigo-500 hover:text-indigo-600"
               >
                 <FiFacebook size={18} />
               </a>
@@ -111,7 +111,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-10 border-t border-slate-200 pt-6 text-center">
+        <div className="mt-10 border-t border-slate-250 pt-6 text-center">
           <p className="text-sm text-slate-500">
             © 2026 CIO Leadership Summit. All Rights Reserved.
           </p>

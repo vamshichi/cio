@@ -9,7 +9,7 @@ const tiers = [
   {
     label: 'Gold Partner',
     sublabel: 'Premier Sponsor',
-    pill: 'border-amber-200 bg-amber-50 text-amber-700',
+    pill: 'border-amber-250 bg-amber-50 text-amber-700',
     accent: 'from-amber-400 to-yellow-500',
     bar: 'bg-gradient-to-r from-amber-400 to-yellow-400',
     cardBorder: 'hover:border-amber-300',
@@ -22,12 +22,12 @@ const tiers = [
   {
     label: 'Digital Partner',
     sublabel: 'Strategic Sponsor',
-    pill: 'border-sky-200 bg-sky-50 text-sky-700',
+    pill: 'border-sky-250 bg-sky-50 text-sky-700',
     accent: 'from-sky-400 to-blue-500',
     bar: 'bg-gradient-to-r from-sky-400 to-blue-500',
     cardBorder: 'hover:border-sky-300',
     cardGlow: 'hover:shadow-sky-100/80',
-    logoWidth: 200,
+    logoWidth: 250,
     cardSize: 'h-24 w-full max-w-[280px] sm:h-28 sm:w-64',
     cols: 'flex justify-center',
     logos: ['/sponsors/digis.png'],
@@ -35,7 +35,7 @@ const tiers = [
   {
     label: 'Silver Partners',
     sublabel: 'Supporting Sponsor',
-    pill: 'border-slate-200 bg-slate-50 text-slate-600',
+    pill: 'border-slate-250 bg-slate-50 text-slate-600',
     accent: 'from-slate-400 to-slate-500',
     bar: 'bg-gradient-to-r from-slate-300 to-slate-400',
     cardBorder: 'hover:border-slate-300',
@@ -48,7 +48,7 @@ const tiers = [
   {
     label: 'Networking Partners',
     sublabel: 'Community Sponsor',
-    pill: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+    pill: 'border-emerald-250 bg-emerald-50 text-emerald-700',
     accent: 'from-emerald-400 to-teal-500',
     bar: 'bg-gradient-to-r from-emerald-400 to-teal-400',
     cardBorder: 'hover:border-emerald-300',
@@ -61,7 +61,7 @@ const tiers = [
   {
     label: 'Gift Partner',
     sublabel: 'Experience Sponsor',
-    pill: 'border-violet-200 bg-violet-50 text-violet-700',
+    pill: 'border-violet-250 bg-violet-50 text-violet-700',
     accent: 'from-violet-400 to-purple-500',
     bar: 'bg-gradient-to-r from-violet-400 to-purple-400',
     cardBorder: 'hover:border-violet-300',
@@ -106,7 +106,7 @@ export function Sponsors() {
 
         {/* ── Header ── */}
         <motion.div {...fadeUp()} className="mb-20 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[3px] text-indigo-600">
+          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-250 bg-indigo-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[3px] text-indigo-600">
             Strategic Partners
           </span>
 

@@ -96,7 +96,7 @@ export async function POST(req: Request) {
             <strong>CIO Tech Leadership Conference & Awards Bangalore 2026</strong>.
           </p>
 
-          <p style="color:#cc0000;"><strong>Nomination Deadline: 19 June 2026</strong></p>
+          <p style="color:#cc0000;"><strong>Nomination Deadline: 15 July 2026</strong></p>
 
           <br/>
 

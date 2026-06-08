@@ -47,7 +47,7 @@ export function Partners() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mb-20 text-center"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-5 py-2 text-xs font-semibold uppercase tracking-[3px] text-indigo-600">
+          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-250 bg-indigo-50 px-5 py-2 text-xs font-semibold uppercase tracking-[3px] text-indigo-600">
             Strategic Partners
           </span>
 
@@ -89,7 +89,7 @@ export function Partners() {
           group flex h-28 w-52 flex-shrink-0 items-center justify-center
           rounded-2xl border border-slate-100 bg-white px-8 py-5
           shadow-sm transition-all duration-300
-          hover:-translate-y-1 hover:border-indigo-200 hover:shadow-md
+          hover:-translate-y-1 hover:border-indigo-250 hover:shadow-md
         "
       >
         <Image

@@ -101,7 +101,7 @@ const fadeRight = (delay = 0) => ({
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[3px] text-indigo-600">
+    <span className="inline-flex items-center gap-2 rounded-full border border-indigo-250 bg-indigo-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[3px] text-indigo-600">
       {children}
     </span>
   )
@@ -177,13 +177,13 @@ export function About() {
                   <motion.div
                     key={item.title}
                     {...fadeLeft(i * 0.08)}
-                    className="group flex items-center gap-5 rounded-2xl border border-slate-100 bg-white px-6 py-5 shadow-sm transition-all duration-300 hover:-translate-x-1 hover:border-indigo-200 hover:shadow-md"
+                    className="group flex items-center gap-5 rounded-2xl border border-slate-100 bg-white px-6 py-5 shadow-sm transition-all duration-300 hover:-translate-x-1 hover:border-indigo-250 hover:shadow-md"
                   >
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-50 to-sky-50 border border-indigo-100 transition-all duration-300 group-hover:from-indigo-100 group-hover:to-sky-100">
                       <Icon className="text-lg text-indigo-600" />
                     </div>
                     <span className="font-semibold text-slate-800">{item.title}</span>
-                    <div className="ml-auto h-4 w-4 flex-shrink-0 rounded-full border-2 border-slate-200 transition-all duration-300 group-hover:border-indigo-400 group-hover:bg-indigo-50" />
+                    <div className="ml-auto h-4 w-4 flex-shrink-0 rounded-full border-2 border-slate-250 transition-all duration-300 group-hover:border-indigo-400 group-hover:bg-indigo-50" />
                   </motion.div>
                 )
               })}
@@ -201,7 +201,7 @@ export function About() {
                   <motion.div
                     key={item.title}
                     {...fadeUp(i * 0.08)}
-                    className="group rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-md"
+                    className="group rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-250 hover:shadow-md"
                   >
                     <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-50 to-sky-50 border border-indigo-100">
                       <Icon className="text-lg text-indigo-600" />
@@ -241,7 +241,7 @@ export function About() {
                 <motion.div
                   key={item.label}
                   {...fadeUp(i * 0.1)}
-                  className="group relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-indigo-200 hover:shadow-lg"
+                  className="group relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-indigo-250 hover:shadow-lg"
                 >
                   {/* Hover shimmer */}
                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/0 to-sky-50/0 transition-all duration-300 group-hover:from-indigo-50/80 group-hover:to-sky-50/80" />
@@ -285,8 +285,8 @@ export function About() {
         <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 md:mt-10 md:gap-4">
           {[
             { num: '20+', label: 'Speakers' },
-            { num: '200+', label: 'Delegates' },
-            { num: '1 Day', label: 'Intensive' },
+            { num: '250+', label: 'Delegates' },
+            { num: '100 +', label: 'Curated Business Meetings' },
           ].map((s) => (
             <div
               key={s.label}
@@ -319,7 +319,7 @@ export function About() {
               md:px-5
               shadow-sm
               transition-all duration-300
-              hover:border-indigo-200
+              hover:border-indigo-250
               hover:shadow-md
             "
           >

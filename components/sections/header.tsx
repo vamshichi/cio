@@ -44,7 +44,7 @@ const [showSponsorForm, setShowSponsorForm] = useState(false)
     <header
       className={`sticky top-0 left-0 z-50 w-full transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-slate-200'
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-slate-250'
           : 'bg-transparent'
       }`}
     >
@@ -137,7 +137,7 @@ const [showSponsorForm, setShowSponsorForm] = useState(false)
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden border-t border-slate-200 bg-white"
+            className="md:hidden border-t border-slate-250 bg-white"
           >
             <div className="space-y-2 px-4 py-5">
               {navItems.map((item) => {
@@ -157,7 +157,7 @@ const [showSponsorForm, setShowSponsorForm] = useState(false)
               })}
 
               {/* Mobile CTA Buttons */}
-              <div className="mt-4 space-y-3 border-t border-slate-200 pt-4">
+              <div className="mt-4 space-y-3 border-t border-slate-250 pt-4">
                <Button
   variant="outline"
   className="w-full"
