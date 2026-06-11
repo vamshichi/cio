@@ -58,6 +58,24 @@ const speakers = [
     company: 'Healthcare Global Enterprise',
     image: '/speakers/roshan.png',
   },
+  {
+    name: 'Srishti Gupta - IDAS',
+    title: 'Ministry of Defence',
+    company: 'International Speaker - Microsoft',
+    image: '/speakers/Srishti Gupta.jpg',
+  },
+  {
+    name: 'Praveen Kumar M.',
+    title: 'Country Security Manager & Head of Security',
+    company: 'Airbus Group',
+    image: '/speakers/Praveen Kumar Motupalli - Airbus.jpg',
+  },
+  {
+    name: 'Naveen Dachuri',
+    title: 'Cofounder & CTO',
+    company: 'Yulu Bikes',
+    image: '/speakers/Naveen Dachuri - Yulu.jpg',
+  }
 ]
 
 const fadeUp = (delay = 0) => ({

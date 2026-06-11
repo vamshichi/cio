@@ -4,15 +4,17 @@
 import { useState } from 'react'
 
 export function DelegateForm() {
-  const [loading, setLoading] = useState(false) 
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [formData, setFormData] = useState({
     fullName: '',
     jobTitle: '',
     company: '',
+    industry: '',
     email: '',
     phone: '',
     linkedin: '',
+    message: '', 
     interests: [] as string[],
     awardNomination: '',
     shareDetails: false,
@@ -42,110 +44,113 @@ export function DelegateForm() {
     }))
   }
 
-  
-const isBusinessEmail = (email: string) => {
-  const personalDomains = [
-    'gmail.com',
-    'yahoo.com',
-    'hotmail.com',
-    'outlook.com',
-    'live.com',
-    'aol.com',
-    'icloud.com',
-    'proton.me',
-    'protonmail.com',
-    'rediffmail.com',
-  ]
 
-  const domain = email.split('@')[1]?.toLowerCase()
+  const isBusinessEmail = (email: string) => {
+    const personalDomains = [
+      'gmail.com',
+      'yahoo.com',
+      'hotmail.com',
+      'outlook.com',
+      'live.com',
+      'aol.com',
+      'icloud.com',
+      'proton.me',
+      'protonmail.com',
+      'rediffmail.com',
+    ]
 
-  return domain && !personalDomains.includes(domain)
-}
+    const domain = email.split('@')[1]?.toLowerCase()
 
-
-  
-const handleSubmit = async (
-  e: React.FormEvent<HTMLFormElement>
-) => {
-  e.preventDefault()
-
-  setError('')
-
-  if (
-    !formData.fullName ||
-    !formData.jobTitle ||
-    !formData.company ||
-    !formData.email ||
-    !formData.phone
-  ) {
-    setError('Please fill all required fields')
-    return
+    return domain && !personalDomains.includes(domain)
   }
 
-  if (formData.interests.length === 0) {
-    setError(
-      'Please select at least one area of interest'
-    )
-    return
-  }
 
-  if (!formData.awardNomination) {
-    setError(
-      'Please select an award nomination option'
-    )
-    return
-  }
 
-  if (!isBusinessEmail(formData.email)) {
-    setError(
-      'Please use your business email address'
-    )
-    return
-  }
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault()
 
-  try {
-    setLoading(true)
+    setError('')
 
-    const response = await fetch('/api/delegate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-
-    const result = await response.json()
-
-    if (result.success) {
-      alert(
-        'Delegate registration submitted successfully'
-      )
-
-      setFormData({
-        fullName: '',
-        jobTitle: '',
-        company: '',
-        email: '',
-        phone: '',
-        linkedin: '',
-        interests: [],
-        awardNomination: '',
-        shareDetails: false,
-        receiveUpdates: false,
-      })
-    } else {
-      setError(
-        result.message ||
-          'Registration failed'
-      )
+    if (
+      !formData.fullName ||
+      !formData.jobTitle ||
+      !formData.company ||
+      !formData.industry ||
+      !formData.email ||
+      !formData.phone
+    ) {
+      setError('Please fill all required fields')
+      return
     }
-  } catch (error) {
-    console.error(error)
-    setError('Something went wrong')
-  } finally {
-    setLoading(false)
+
+    if (formData.interests.length === 0) {
+      setError(
+        'Please select at least one area of interest'
+      )
+      return
+    }
+
+    if (!formData.awardNomination) {
+      setError(
+        'Please select an award nomination option'
+      )
+      return
+    }
+
+    if (!isBusinessEmail(formData.email)) {
+      setError(
+        'Please use your business email address'
+      )
+      return
+    }
+
+    try {
+      setLoading(true)
+
+      const response = await fetch('/api/delegate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        alert(
+          'Delegate registration submitted successfully'
+        )
+
+        setFormData({
+          fullName: '',
+          jobTitle: '',
+          company: '',
+          industry: '',
+          email: '',
+          phone: '',
+          linkedin: '',
+          message: '',
+          interests: [],
+          awardNomination: '',
+          shareDetails: false,
+          receiveUpdates: false,
+        })
+      } else {
+        setError(
+          result.message ||
+          'Registration failed'
+        )
+      }
+    } catch (error) {
+      console.error(error)
+      setError('Something went wrong')
+    } finally {
+      setLoading(false)
+    }
   }
-}
 
 
   const interests = [
@@ -195,6 +200,63 @@ const handleSubmit = async (
             className="h-14 rounded-xl border border-white/10 bg-white/5 px-4 text-white"
           />
 
+          <select
+  name="industry"
+  value={formData.industry}
+  onChange={(e) =>
+    setFormData((prev) => ({
+      ...prev,
+      industry: e.target.value,
+    }))
+  }
+  required
+  className="h-14 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white"
+>
+  <option value="" className="bg-slate-900 text-white">
+    Select Industry
+  </option>
+
+  <option value="Banking & Financial Services" className="bg-slate-900 text-white">
+    Banking & Financial Services
+  </option>
+
+  <option value="Information Technology" className="bg-slate-900 text-white">
+    Information Technology
+  </option>
+
+  <option value="Manufacturing" className="bg-slate-900 text-white">
+    Manufacturing
+  </option>
+
+  <option value="Healthcare" className="bg-slate-900 text-white">
+    Healthcare
+  </option>
+
+  <option value="Telecommunications" className="bg-slate-900 text-white">
+    Telecommunications
+  </option>
+
+  <option value="Retail & E-commerce" className="bg-slate-900 text-white">
+    Retail & E-commerce
+  </option>
+
+  <option value="Education" className="bg-slate-900 text-white">
+    Education
+  </option>
+
+  <option value="Government" className="bg-slate-900 text-white">
+    Government
+  </option>
+
+  <option value="Energy & Utilities" className="bg-slate-900 text-white">
+    Energy & Utilities
+  </option>
+
+  <option value="Others" className="bg-slate-900 text-white">
+    Others
+  </option>
+</select>
+
           <input
             type="email"
             name="email"
@@ -223,6 +285,22 @@ const handleSubmit = async (
           />
         </div>
       </div>
+
+      <div className="md:col-span-2">
+  <textarea
+    name="message"
+    value={formData.message}
+    onChange={(e) =>
+      setFormData((prev) => ({
+        ...prev,
+        message: e.target.value,
+      }))
+    }
+    placeholder="Message / Comments"
+    rows={4}
+    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white"
+  />
+</div>
 
       <div>
         <h4 className="mb-5 text-xl font-semibold text-cyan-400">
@@ -336,29 +414,29 @@ const handleSubmit = async (
         </div>
       </div>
 
-      
-    
-{error && (
-  <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
-    {error}
-  </div>
-)}
 
 
-    
-{error && (
-  <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
-    {error}
-  </div>
-)}
+      {error && (
+        <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
+          {error}
+        </div>
+      )}
 
 
 
-      
-<button
-  type="submit"
-  disabled={loading}
-  className="
+      {error && (
+        <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
+          {error}
+        </div>
+      )}
+
+
+
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="
     h-14
     w-full
     rounded-xl
@@ -371,35 +449,35 @@ const handleSubmit = async (
     disabled:cursor-not-allowed
     disabled:opacity-70
   "
->
-  {loading ? (
-    <span className="flex items-center justify-center gap-3">
-      <svg
-        className="h-5 w-5 animate-spin"
-        viewBox="0 0 24 24"
-        fill="none"
       >
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
-          opacity="0.25"
-        />
-        <path
-          d="M22 12a10 10 0 00-10-10"
-          stroke="currentColor"
-          strokeWidth="4"
-        />
-      </svg>
+        {loading ? (
+          <span className="flex items-center justify-center gap-3">
+            <svg
+              className="h-5 w-5 animate-spin"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+                opacity="0.25"
+              />
+              <path
+                d="M22 12a10 10 0 00-10-10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+            </svg>
 
-      Submitting...
-    </span>
-  ) : (
-    'Submit Registration'
-  )}
-</button>
+            Submitting...
+          </span>
+        ) : (
+          'Submit Registration'
+        )}
+      </button>
 
 
     </form>
