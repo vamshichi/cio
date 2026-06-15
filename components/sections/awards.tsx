@@ -528,12 +528,12 @@ export function Awards() {
           <FaAward />
           CIO Tech Leadership Excellence Awards 2026
         </span>
-        <h1 className="mt-6 text-5xl font-black tracking-tight text-white">
+        <h2 className="mt-6 text-5xl font-black tracking-tight text-white">
           Honouring India's{' '}
           <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
             Digital Visionaries
           </span>
-        </h1>
+        </h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
           A premier recognition platform celebrating leaders, enterprises, and solution providers driving measurable transformation across AI, cloud, cybersecurity, data, and enterprise modernization across India.
         </p>

@@ -147,14 +147,17 @@ export function About() {
           <h2 className="mt-7 text-5xl font-black tracking-tight text-slate-100 md:text-6xl">
             CIO Tech Leadership Conference & Awards {' '}
             <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-500 bg-clip-text text-transparent">
-              - Bengaluru 2026
+              & Bengaluru 2026
             </span>
           </h2>
           <Divider />
-          <p className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-slate-500 md:text-xl">
-            India's most influential CIOs, CTOs, CISOs, CDOs and technology
-            leaders converge to explore AI, Digital Transformation,
-            Cybersecurity, Cloud Innovation and Enterprise Leadership.
+          <p>
+            India's most influential CIOs, CTOs, CISOs,
+            CDOs and technology leaders converge at
+            Bengaluru's premier Technology Leadership
+            Conference to explore Artificial Intelligence,
+            Digital Transformation, Cybersecurity,
+            Cloud Innovation and Enterprise Leadership.
           </p>
           <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-400">
             Designed exclusively for senior technology decision makers — a
@@ -258,59 +261,59 @@ export function About() {
         </motion.div>
 
         <motion.div {...fadeUp()} className="mt-20 md:mt-32">
-  <div className="overflow-hidden rounded-3xl md:rounded-[40px] border border-slate-100 bg-gradient-to-br from-slate-50 via-white to-indigo-50/60 shadow-xl">
+          <div className="overflow-hidden rounded-3xl md:rounded-[40px] border border-slate-100 bg-gradient-to-br from-slate-50 via-white to-indigo-50/60 shadow-xl">
 
-    {/* Top accent bar */}
-    <div className="h-1 w-full bg-gradient-to-r from-indigo-600 to-sky-500" />
+            {/* Top accent bar */}
+            <div className="h-1 w-full bg-gradient-to-r from-indigo-600 to-sky-500" />
 
-    <div className="grid gap-10 p-6 md:p-10 lg:grid-cols-2 lg:gap-14 lg:p-16">
+            <div className="grid gap-10 p-6 md:p-10 lg:grid-cols-2 lg:gap-14 lg:p-16">
 
-      {/* Left */}
-      <motion.div {...fadeLeft()}>
-        <Eyebrow>Why Attend</Eyebrow>
+              {/* Left */}
+              <motion.div {...fadeLeft()}>
+                <Eyebrow>Why Attend</Eyebrow>
 
-        <h3 className="mt-5 text-3xl font-black leading-tight text-slate-900 sm:text-4xl md:text-5xl">
-          Unlock Strategic{' '}
-          <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-500 bg-clip-text text-transparent">
-            Business Advantage
-          </span>
-        </h3>
+                <h3 className="mt-5 text-3xl font-black leading-tight text-slate-900 sm:text-4xl md:text-5xl">
+                  Unlock Strategic{' '}
+                  <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-500 bg-clip-text text-transparent">
+                    Business Advantage
+                  </span>
+                </h3>
 
-        <p className="mt-5 text-base leading-relaxed text-slate-500 md:text-lg">
-          Gain actionable insights, connect with industry leaders and discover
-          the strategies shaping the future of enterprise technology.
-        </p>
+                <p className="mt-5 text-base leading-relaxed text-slate-500 md:text-lg">
+                  Gain actionable insights, connect with industry leaders and discover
+                  the strategies shaping the future of enterprise technology.
+                </p>
 
-        {/* Stats */}
-        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 md:mt-10 md:gap-4">
-          {[
-            { num: '20+', label: 'Speakers' },
-            { num: '250+', label: 'Delegates' },
-            { num: '100 +', label: 'Curated Business Meetings' },
-          ].map((s) => (
-            <div
-              key={s.label}
-              className="rounded-2xl border border-indigo-100 bg-white p-4 text-center shadow-sm"
-            >
-              <p className="text-2xl font-black text-indigo-600">
-                {s.num}
-              </p>
+                {/* Stats */}
+                <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 md:mt-10 md:gap-4">
+                  {[
+                    { num: '20+', label: 'Speakers' },
+                    { num: '250+', label: 'Delegates' },
+                    { num: '100 +', label: 'Curated Business Meetings' },
+                  ].map((s) => (
+                    <div
+                      key={s.label}
+                      className="rounded-2xl border border-indigo-100 bg-white p-4 text-center shadow-sm"
+                    >
+                      <p className="text-2xl font-black text-indigo-600">
+                        {s.num}
+                      </p>
 
-              <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-slate-400 md:text-xs">
-                {s.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </motion.div>
+                      <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-slate-400 md:text-xs">
+                        {s.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
 
-      {/* Right */}
-      <motion.div {...fadeRight()} className="flex flex-col gap-3">
-        {benefits.map((benefit, i) => (
-          <motion.div
-            key={benefit}
-            {...fadeRight(i * 0.07)}
-            className="
+              {/* Right */}
+              <motion.div {...fadeRight()} className="flex flex-col gap-3">
+                {benefits.map((benefit, i) => (
+                  <motion.div
+                    key={benefit}
+                    {...fadeRight(i * 0.07)}
+                    className="
               flex items-start gap-3
               rounded-2xl
               border border-slate-100
@@ -322,21 +325,21 @@ export function About() {
               hover:border-indigo-250
               hover:shadow-md
             "
-          >
-            <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-sky-500">
-              <FiCheckCircle className="text-xs text-white" />
+                  >
+                    <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-sky-500">
+                      <FiCheckCircle className="text-xs text-white" />
+                    </div>
+
+                    <p className="text-sm leading-relaxed text-slate-700 md:text-[15px]">
+                      {benefit}
+                    </p>
+                  </motion.div>
+                ))}
+              </motion.div>
+
             </div>
-
-            <p className="text-sm leading-relaxed text-slate-700 md:text-[15px]">
-              {benefit}
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
-
-    </div>
-  </div>
-</motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

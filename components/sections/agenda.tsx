@@ -31,28 +31,28 @@ const agendaItems = [
   },
   {
     time: '09:15 AM',
-    title: 'Opening Keynote',
+    title: 'AI Leadership Keynote',
     description: 'The Modern CIO: Leading Cross-Industry Transformation in an AI-First World.',
     icon: FiMic,
     category: 'Keynote',
   },
   {
     time: '10:00 AM',
-    title: 'Leadership Panel 1',
+    title: 'Enterprise AI Transformation Panel',
     description: 'Scaling AI Across the Enterprise: From Pilots to Business Impact.',
     icon: FiUsers,
     category: 'Panel',
   },
   {
     time: '10:45 AM',
-    title: 'Leadership Panel 2',
+    title: 'Cloud, Data & FinOps Leadership Panel',
     description: 'Cloud, Data & FinOps: Building Intelligent Enterprises.',
     icon: FiCloud,
     category: 'Panel',
   },
   {
     time: '11:30 AM',
-    title: 'Networking Coffee Break',
+    title: 'Cybersecurity & Digital Resilience Panel',
     description: 'Meaningful peer-to-peer engagement across industries.',
     icon: FiCoffee,
     category: 'Networking',
@@ -150,16 +150,16 @@ export function Agenda() {
           </span>
 
           <h2 className="mt-6 text-4xl font-black uppercase leading-none text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            Agenda
+            CIO Tech Leadership Conference
             <span className="ml-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent sm:ml-4">
-              Overview
+              Agenda 2026
             </span>
           </h2>
 
           <div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 sm:w-32" />
 
           <p className="mx-auto mt-6 max-w-2xl text-base text-slate-400 sm:text-lg">
-            A power-packed day of insights, collaboration, networking and leadership.
+            Explore the official agenda for the CIO Tech Leadership Conference & Awards Bengaluru 2026 on 23 July 2026 at Four Seasons Bengaluru.
           </p>
         </motion.div>
 
@@ -196,7 +196,9 @@ export function Agenda() {
                     {/* Time label */}
                     <div className="flex w-[110px] flex-shrink-0 items-center">
                       <span className="text-base font-semibold tabular-nums text-cyan-300">
-                        {item.time}
+                        <time dateTime="08:00">
+  {item.time}
+</time>
                       </span>
                     </div>
 

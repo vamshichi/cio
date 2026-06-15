@@ -78,28 +78,28 @@ export function Footer() {
             <div className="flex gap-4">
 
               <a
-                href="#"
+                href="https://www.linkedin.com/company/cio-tech-conference-awards/"
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-250 transition hover:border-indigo-500 hover:text-indigo-600"
               >
                 <FiLinkedin size={18} />
               </a>
 
-              <a
+              {/* <a
                 href="#"
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-250 transition hover:border-indigo-500 hover:text-indigo-600"
               >
                 <FiTwitter size={18} />
-              </a>
+              </a> */}
 
               <a
-                href="#"
+                href="https://www.instagram.com/cio_tech_conference_awards/"
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-250 transition hover:border-indigo-500 hover:text-indigo-600"
               >
                 <FiInstagram size={18} />
               </a>
 
               <a
-                href="#"
+                href="https://www.facebook.com/CioTechConferenceAwards"
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-250 transition hover:border-indigo-500 hover:text-indigo-600"
               >
                 <FiFacebook size={18} />

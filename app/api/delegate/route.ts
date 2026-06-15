@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer'
 import { NextResponse } from 'next/server'
+import path from 'path'
 
 function badge(value: boolean) {
   return value
@@ -357,15 +358,75 @@ function getConfirmHtml(data: any, registrationDate: string) {
             </td>
           </tr>
 
+         
           <!-- Footer -->
-          <tr>
-            <td style="background-color:#0a0f1e;padding:24px 40px;">
-              <p style="margin:0;font-size:11px;color:#555;line-height:1.6;text-align:center;">
-                This is an automated confirmation email. Please do not reply directly to this message.<br/>
-                © 2026 ConfexMeet. All rights reserved.
-              </p>
-            </td>
-          </tr>
+<tr>
+  <td style="background-color:#0a0f1e;padding:24px 40px;text-align:center;">
+
+    <!-- Social Media Icons -->
+    
+  <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+  <tr>
+
+    <td style="padding:0 8px;">
+      <a href="https://www.facebook.com/CioTechConferenceAwards">
+        <img
+          src="cid:facebook-icon"
+          width="32"
+          height="32"
+          alt="Facebook"
+          style="display:block;border:0;"
+        />
+      </a>
+    </td>
+
+    <td style="padding:0 8px;">
+      <a href="https://www.linkedin.com/company/cio-tech-conference-awards/">
+        <img
+          src="cid:linkedin-icon"
+          width="32"
+          height="32"
+          alt="LinkedIn"
+          style="display:block;border:0;"
+        />
+      </a>
+    </td>
+
+    <td style="padding:0 8px;">
+      <a href="https://www.instagram.com/cio_tech_conference_awards/">
+        <img
+          src="cid:instagram-icon"
+          width="32"
+          height="32"
+          alt="Instagram"
+          style="display:block;border:0;"
+        />
+      </a>
+    </td>
+
+  </tr>
+</table>
+
+    <p style="margin:0;font-size:11px;color:#777;line-height:1.8;text-align:center;">
+      Follow us for event updates and announcements.<br/><br/>
+
+      <a href="https://www.facebook.com/CioTechConferenceAwards"
+         style="color:#c9a84c;text-decoration:none;">Facebook</a>
+      &nbsp;|&nbsp;
+      <a href="https://www.linkedin.com/company/cio-tech-conference-awards/"
+         style="color:#c9a84c;text-decoration:none;">LinkedIn</a>
+      &nbsp;|&nbsp;
+      <a href="https://www.instagram.com/cio_tech_conference_awards/"
+         style="color:#c9a84c;text-decoration:none;">Instagram</a>
+
+      <br/><br/>
+
+      This is an automated confirmation email. Please do not reply directly to this message.<br/>
+      © 2026 ConfexMeet. All rights reserved.
+    </p>
+
+  </td>
+</tr>
 
         </table>
       </td>
@@ -409,11 +470,44 @@ export async function POST(req: Request) {
 
     // Delegate Confirmation
     await transporter.sendMail({
-      from: `"CIO Leadership Summit" <${process.env.EMAIL_USER}>`,
-      to: data.email,
-      subject: 'Registration Confirmed – CIO Leadership Summit 2026',
-      html: getConfirmHtml(data, registrationDate),
-    })
+  from: `"CIO Leadership Summit" <${process.env.EMAIL_USER}>`,
+  to: data.email,
+  subject: 'Registration Confirmed – CIO Leadership Summit 2026',
+  html: getConfirmHtml(data, registrationDate),
+
+  attachments: [
+    {
+      filename: 'facebook.png',
+      path: path.join(
+        process.cwd(),
+        'public',
+        'email-icons',
+        'facebook.png'
+      ),
+      cid: 'facebook-icon',
+    },
+    {
+      filename: 'linkedin.png',
+      path: path.join(
+        process.cwd(),
+        'public',
+        'email-icons',
+        'linkedin.png'
+      ),
+      cid: 'linkedin-icon',
+    },
+    {
+      filename: 'instagram.png',
+      path: path.join(
+        process.cwd(),
+        'public',
+        'email-icons',
+        'instagram.png'
+      ),
+      cid: 'instagram-icon',
+    },
+  ],
+})
 
     return NextResponse.json({
       success: true,

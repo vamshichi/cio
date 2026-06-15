@@ -9,7 +9,7 @@ export default function PrivacyPage() {
         </Link>
 
         <article className="prose prose-invert max-w-none">
-          <h1 className="mb-8 text-4xl font-bold text-foreground">Privacy Policy</h1>
+          <h2 className="mb-8 text-4xl font-bold text-foreground">Privacy Policy</h2>
 
           <p className="mb-6 text-lg text-foreground/60">
             Last updated: June 2025

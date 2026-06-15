@@ -66,9 +66,10 @@ export function Hero() {
       <div className="absolute inset-0">
         <Image
           src="/heroimage.png"
-          alt="CIO Leadership Summit"
+          alt="CIO Tech Leadership Conference and Awards Bengaluru 2026 at Four Seasons Bengaluru"
           fill
           priority
+          sizes="100vw"
           className="object-cover object-center scale-105"
         />
 
@@ -175,11 +176,7 @@ export function Hero() {
           }}
           className="mx-auto mt-8 max-w-4xl text-center text-lg leading-relaxed text-slate-300 md:text-xl"
         >
-          Join India's leading CIOs, CTOs, CISOs,
-          CDOs and Technology Decision Makers
-          for an exclusive gathering focused on
-          AI, Digital Transformation, Cybersecurity,
-          Cloud Innovation and Enterprise Leadership.
+          Join India's leading CIOs, CTOs, CISOs, CDOs and Technology Decision Makers at Bengaluru's premier CIO Tech Leadership Conference focused on Artificial Intelligence, Digital Transformation, Cybersecurity, Cloud Innovation and Enterprise Leadership.
         </motion.p>
 
         {/* Event Strip */}
@@ -201,7 +198,9 @@ export function Hero() {
 
             <div className="flex items-center gap-2 text-slate-300">
               <FiCalendar />
-              <span>23 July 2026</span>
+              <time dateTime="2026-07-23">
+                23 July 2026
+              </time>
             </div>
 
             <div className="hidden md:block text-slate-600">
@@ -210,7 +209,9 @@ export function Hero() {
 
             <div className="flex items-center gap-2 text-slate-300">
               <FiMapPin />
-              <span>Four Seasons Bengaluru</span>
+              <address className="not-italic">
+                Four Seasons Bengaluru
+              </address>
             </div>
 
             <div className="hidden md:block text-slate-600">
@@ -233,6 +234,7 @@ export function Hero() {
           className="mt-12 flex flex-wrap justify-center gap-4"
         >
           <Button
+            aria-label="Register as Delegate for CIO Tech Leadership Conference Bengaluru 2026"
             size="lg"
             className="
     group
@@ -246,12 +248,13 @@ export function Hero() {
   "
             onClick={() => setShowDelegateForm(true)}
           >
-            Delegate Enquiry
+            Register as Delegate
 
             <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
           </Button>
 
           <Button
+            aria-label="Become Sponsor for CIO Tech Leadership Conference Bengaluru 2026"
             variant="outline"
             size="lg"
             className="
@@ -264,7 +267,7 @@ export function Hero() {
   "
             onClick={() => setShowSponsorForm(true)}
           >
-            Sponsor Enquiry
+            Become a Sponsor
           </Button>
         </motion.div>
 
@@ -319,7 +322,7 @@ export function Hero() {
         </motion.div> */}
 
       </div>
-           <AIGlobe />
+      <AIGlobe />
       <FloatingCards />
 
       {/* Delegate Form Modal */}
