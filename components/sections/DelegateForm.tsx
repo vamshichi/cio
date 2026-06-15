@@ -109,12 +109,17 @@ export function DelegateForm() {
     try {
       setLoading(true)
 
+      const payload = {
+    ...formData,
+    registeredAt: new Date().toISOString(),
+  }
+
       const response = await fetch('/api/delegate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+         body: JSON.stringify(payload),
       })
 
       const result = await response.json()

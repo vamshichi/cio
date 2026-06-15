@@ -450,15 +450,19 @@ export async function POST(req: Request) {
       },
     })
 
-    const registrationDate = new Date().toLocaleString('en-IN', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false,
-    })
+    const registrationDate = new Date(data.registeredAt).toLocaleString(
+  'en-IN',
+  {
+    timeZone: 'Asia/Kolkata',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }
+)
 
     // Admin Notification
     await transporter.sendMail({
