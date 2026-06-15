@@ -93,7 +93,7 @@ export function Speakers() {
     >
       {/* Dot-grid texture */}
       {/* <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,#e0e7ff_1px,transparent_1px)] [background-size:32px_32px] opacity-50" /> */}
-       {/* ── Background Effects ── */}
+      {/* ── Background Effects ── */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-[120px] sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px]" />
         <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-500/10 blur-[120px] sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px]" />
@@ -146,7 +146,7 @@ export function Speakers() {
                 <div className="relative h-40 w-full overflow-hidden bg-slate-800 sm:h-48 lg:h-52">
                   <Image
                     src={speaker.image}
-                    alt={speaker.name}
+                    alt={`${speaker.name} - ${speaker.title} at ${speaker.company} speaking at CIO Tech Leadership Conference & Awards Bengaluru 2026`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -163,9 +163,9 @@ export function Speakers() {
 
                 {/* Info */}
                 <div className="px-3 pb-4 pt-3 sm:px-4 sm:pb-5">
-                  <h4 className="text-xs font-bold leading-snug text-white sm:text-sm">
+                  <p className="text-xs font-bold leading-snug text-white sm:text-sm">
                     {speaker.name}
-                  </h4>
+                  </p>
                   <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-slate-400 sm:text-xs">
                     {speaker.title}
                   </p>

@@ -176,8 +176,24 @@ export function Hero() {
           }}
           className="mx-auto mt-8 max-w-4xl text-center text-lg leading-relaxed text-slate-300 md:text-xl"
         >
-          Join India's leading CIOs, CTOs, CISOs, CDOs and Technology Decision Makers at Bengaluru's premier CIO Tech Leadership Conference focused on Artificial Intelligence, Digital Transformation, Cybersecurity, Cloud Innovation and Enterprise Leadership.
+          Join India's leading CIOs, CTOs, CISOs and CDOs.
+
+Explore AI, Cybersecurity, Cloud Innovation and Digital Transformation.
+
+Connect with technology leaders driving enterprise growth.
         </motion.p>
+
+        <motion.p
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.4, duration: 1 }}
+  className="mx-auto mt-4 max-w-5xl text-center text-sm leading-relaxed text-slate-400 md:text-base"
+>
+  The CIO Tech Leadership Conference & Awards Bengaluru 2026 is India's premier
+  technology leadership conference, bringing together CIOs, CTOs, CISOs, CDOs
+  and enterprise technology leaders to explore Artificial Intelligence, Digital
+  Transformation, Cybersecurity, Cloud Innovation and business growth.
+</motion.p>
 
         {/* Event Strip */}
         <motion.div

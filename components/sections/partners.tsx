@@ -5,14 +5,38 @@ import { motion } from 'framer-motion'
 
 export function Partners() {
   const partners = [
-    '/partners/p1.png',
-    '/partners/p2.png',
-    '/partners/p3.png',
-    '/partners/p4.png',
-    '/partners/p5.png',
-    '/partners/p6.png',
-    '/partners/p7.png',
-    '/partners/p8.png',
+    {
+      name: 'p1',
+      logo: '/partners/p1.png',
+    },
+    {
+      name: 'p2',
+      logo: '/partners/p2.png',
+    },
+    {
+      name: 'p3',
+      logo: '/partners/p3.png',
+    },
+    {
+      name: 'p4',
+      logo: '/partners/p4.png',
+    },
+    {
+      name: 'p5',
+      logo: '/partners/p5.png',
+    },
+    {
+      name: 'p6',
+      logo: '/partners/p6.png',
+    },
+    {
+      name: 'p7',
+      logo: '/partners/p7.png',
+    },
+    {
+      name: 'p8',
+      logo: '/partners/p8.png',
+    }
   ]
 
   // Triple the array so the loop is seamless
@@ -25,14 +49,14 @@ export function Partners() {
     >
       {/* Subtle dot-grid texture */}
       {/* <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,#e0e7ff_1px,transparent_1px)] [background-size:32px_32px] opacity-60" /> */}
-      
-       {/* ── Background Effects ── */}
+
+      {/* ── Background Effects ── */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-0 top-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-[120px] sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px]" />
         <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-blue-500/10 blur-[120px] sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.015)_1px,transparent_1px)] bg-[size:60px_60px] sm:bg-[size:80px_80px]" />
       </div>
-      
+
       {/* Soft color washes */}
       {/* <div className="pointer-events-none absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-indigo-100/60 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-sky-100/60 blur-[120px]" /> */}
@@ -75,36 +99,35 @@ export function Partners() {
 
       {/* ── Marquee track (full-bleed, outside max-w container) ── */}
       <div className="relative w-full overflow-hidden">
-  <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-white to-transparent" />
-  <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-white to-transparent" />
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-white to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-white to-transparent" />
 
-  <div
-    className="flex w-max animate-marquee-right gap-6"
-    style={{ animationDuration: '30s' }}
-  >
-    {[...partners, ...partners, ...partners].map((logo, index) => (
-      <div
-        key={index}
-        className="
+        <div
+          className="flex w-max animate-marquee-right gap-6"
+          style={{ animationDuration: '30s' }}
+        >
+          {[...partners, ...partners, ...partners].map((partner, index) => (
+            <div
+              key={index}
+              className="
           group flex h-28 w-52 flex-shrink-0 items-center justify-center
           rounded-2xl border border-slate-100 bg-white px-8 py-5
           shadow-sm transition-all duration-300
           hover:-translate-y-1 hover:border-indigo-250 hover:shadow-md
         "
-      >
-        <Image
-          src={logo}
-          alt={`Partner ${(index % partners.length) + 1}`}
-          width={160}
-          height={64}
-          className="object-contain  duration-300 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105"
-        />
+            >
+              <Image
+                src={partner.logo}
+                alt={`${partner.name} - Strategic Partner of CIO Tech Leadership Conference & Awards Bengaluru 2026`}
+                width={160}
+                height={64}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
 
-     
+
     </section>
   )
 }
