@@ -216,8 +216,11 @@ const [errorMessage, setErrorMessage] = useState('')
           </h2>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300 md:text-xl">
-            Fill in your details to access the event brochure and join India's leading
-            CIOs, CTOs, CISOs, technology innovators, and digital transformation leaders.
+            Fill in your details to access the event brochure and Join India's leading CIOs, CTOs, CISOs and CDOs.
+
+Explore AI, Cybersecurity, Cloud Innovation and Digital Transformation.
+
+Connect with technology leaders driving enterprise growth.
           </p>
         </motion.div>
 

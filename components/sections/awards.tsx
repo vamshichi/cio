@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   FaAward,
   FaBrain,
@@ -393,8 +393,8 @@ function NominationModal({ onClose }: { onClose: () => void }) {
                 </FormField>
                 <FormField label="Industry Sector" error={errors.industrySector}>
                   <select className={inputClass} value={form.industrySector} onChange={set('industrySector')}>
-                    <option value="">Select a sector…</option>
-                    {industrySectors.map((s) => <option key={s} value={s}>{s}</option>)}
+                    <option value="" >Select a sector…</option>
+                    {industrySectors.map((s) => <option key={s} value={s} className="text-black">{s}</option>)}
                   </select>
                 </FormField>
                 {form.industrySector === 'Other' && (
@@ -512,6 +512,16 @@ function NominationModal({ onClose }: { onClose: () => void }) {
 export function Awards() {
   const [showModal, setShowModal] = useState(false)
 
+
+  useEffect(() => {
+  console.log('Current hash:', window.location.hash)
+
+  if (window.location.hash === '#awards-form') {
+    console.log('Opening modal')
+    setShowModal(true)
+  }
+}, [])
+
   return (
     <main id='awards' className="relative min-h-screen bg-slate-950 px-6 py-20 overflow-hidden">
 
@@ -604,7 +614,11 @@ export function Awards() {
           </p>
           <p className="mt-3 text-sm text-cyan-400 font-medium">Nomination Deadline: 15 July 2026</p>
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => {
+    window.location.hash = 'awards-form'
+    setShowModal(true)
+  }}
+             
             className="mt-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-4 font-semibold text-white transition-all hover:scale-105 hover:shadow-[0_10px_30px_rgba(0,174,255,0.3)]"
           >
             Submit Your Nomination →
