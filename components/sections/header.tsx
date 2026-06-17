@@ -24,16 +24,16 @@ export function Header() {
   const [showSponsorForm, setShowSponsorForm] = useState(false)
 
   useEffect(() => {
-    const hash = window.location.hash
+  const hash = window.location.hash
 
-    if (hash === '#delegateenquiry') {
-      setShowDelegateForm(true)
-    }
+  if (hash.startsWith('#delegateenquiry')) {
+    setShowDelegateForm(true)
+  }
 
-    if (hash === '#sponsorenquiry') {
-      setShowSponsorForm(true)
-    }
-  }, [])
+  if (hash.startsWith('#sponsorenquiry')) {
+    setShowSponsorForm(true)
+  }
+}, [])
 
   useEffect(() => {
     const handleScroll = () => {
