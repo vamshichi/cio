@@ -466,6 +466,16 @@ export async function POST(req: Request) {
         receiveUpdates:
           data.receiveUpdates || false,
 
+
+    utmSource:
+      data.utmSource || 'direct',
+
+    utmMedium:
+      data.utmMedium || null,
+
+    utmCampaign:
+      data.utmCampaign || null,
+
         registeredAt: data.registeredAt
           ? new Date(data.registeredAt)
           : new Date(),

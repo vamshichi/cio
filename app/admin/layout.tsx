@@ -36,6 +36,11 @@ const menuItems = [
     href: '/admin/nominations',
     icon: Award,
   },
+  {
+    name: 'Media',
+    href: '/admin/media',
+    icon: Award,
+  }
 ]
 
 export default function AdminLayout({

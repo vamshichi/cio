@@ -28,6 +28,15 @@ export async function POST(req: Request) {
 
     receiveUpdates:
       data.receiveUpdates || false,
+
+         utmSource:
+      data.utmSource || 'direct',
+
+    utmMedium:
+      data.utmMedium || null,
+
+    utmCampaign:
+      data.utmCampaign || null,
   },
 })
 
@@ -45,7 +54,7 @@ export async function POST(req: Request) {
 
     await transporter.sendMail({
       from: `"CIO Leadership Summit" <${process.env.EMAIL_USER}>`,
-      to: 'enquary@confexmeet.com, ramesh.confexmeet@gmail.com',
+      to: 'enquiry@confexmeet.com, ramesh.confexmeet@gmail.com',
       subject: `New Sponsorship Enquiry - ${data.company}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 800px;">

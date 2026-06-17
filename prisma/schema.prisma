@@ -23,6 +23,11 @@ model ContactRegistration {
   brochureConsent  Boolean
   contactConsent   Boolean
 
+    utmSource        String?
+  utmMedium        String?
+  utmCampaign      String?
+
+
   createdAt        DateTime @default(now())
 
   @@index([email])
@@ -53,6 +58,11 @@ model DelegateRegistration {
   registeredAt      DateTime?
   createdAt         DateTime @default(now())
 
+    utmSource        String?
+  utmMedium        String?
+  utmCampaign      String?
+
+
   @@index([email])
   @@index([company])
   @@index([createdAt])
@@ -78,6 +88,11 @@ model SponsorRegistration {
   receiveUpdates    Boolean @default(false)
 
   createdAt         DateTime @default(now())
+
+    utmSource        String?
+  utmMedium        String?
+  utmCampaign      String?
+
 
   @@index([email])
   @@index([company])
@@ -115,6 +130,11 @@ model AwardNomination {
   consentComms              Boolean
 
   createdAt                 DateTime @default(now())
+
+    utmSource        String?
+  utmMedium        String?
+  utmCampaign      String?
+
 
   @@index([nominatorEmail])
   @@index([awardCategory])
