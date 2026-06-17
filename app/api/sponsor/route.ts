@@ -1,10 +1,35 @@
 
 import nodemailer from 'nodemailer'
 import { NextResponse } from 'next/server'
+import { prisma } from '@/lib/prisma'
 
 export async function POST(req: Request) {
   try {
     const data = await req.json()
+
+    await prisma.sponsorRegistration.create({
+  data: {
+    fullName: data.fullName,
+    jobTitle: data.jobTitle,
+    company: data.company,
+
+    email: data.email,
+    phone: data.phone,
+
+    linkedin: data.linkedin || null,
+
+    objectives: data.objectives || [],
+
+    sponsoredBefore:
+      data.sponsoredBefore || '',
+
+    shareDetails:
+      data.shareDetails || false,
+
+    receiveUpdates:
+      data.receiveUpdates || false,
+  },
+})
 
     const transporter = nodemailer.createTransport({
       host: 'smtp.zoho.in',
@@ -214,3 +239,28 @@ export async function POST(req: Request) {
   }
 }
 
+export async function GET() {
+  try {
+    const sponsors =
+      await prisma.sponsorRegistration.findMany({
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+
+    return NextResponse.json({
+      success: true,
+      data: sponsors,
+    })
+  } catch (error) {
+    console.error(error)
+
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Failed to fetch sponsors',
+      },
+      { status: 500 }
+    )
+  }
+}

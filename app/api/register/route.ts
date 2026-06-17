@@ -1,9 +1,31 @@
 import nodemailer from 'nodemailer'
 import { NextResponse } from 'next/server'
+import { prisma } from '@/lib/prisma'
 
 export async function POST(req: Request) {
   try {
     const data = await req.json()
+
+    await prisma.contactRegistration.create({
+  data: {
+    fullName: data.fullName,
+    jobTitle: data.jobTitle,
+    company: data.company,
+
+    email: data.email,
+    phone: data.phone,
+
+    interestedIn: data.interestedIn || [],
+
+    briefNote: data.briefNote || null,
+
+    brochureConsent:
+      data.brochureConsent || false,
+
+    contactConsent:
+      data.contactConsent || false,
+  },
+})
 
     const transporter = nodemailer.createTransport({
       host: 'smtp.zoho.in',
@@ -130,6 +152,32 @@ export async function POST(req: Request) {
       {
         success: false,
         message: 'Failed to submit registration',
+      },
+      { status: 500 }
+    )
+  }
+}
+
+export async function GET() {
+  try {
+    const registrations =
+      await prisma.contactRegistration.findMany({
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+
+    return NextResponse.json({
+      success: true,
+      data: registrations,
+    })
+  } catch (error) {
+    console.error(error)
+
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Failed to fetch registrations',
       },
       { status: 500 }
     )

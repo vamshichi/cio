@@ -1,9 +1,44 @@
 import nodemailer from 'nodemailer'
 import { NextResponse } from 'next/server'
+import { prisma } from '@/lib/prisma'
 
 export async function POST(req: Request) {
   try {
     const data = await req.json()
+
+    await prisma.awardNomination.create({
+  data: {
+    nominatorName: data.nominatorName,
+    nominatorDesignation: data.nominatorDesignation,
+    nominatorOrganisation: data.nominatorOrganisation,
+    nominatorEmail: data.nominatorEmail,
+    nominatorPhone: data.nominatorPhone,
+
+    nomineeName: data.nomineeName,
+    nomineeDesignation: data.nomineeDesignation,
+    nomineeOrganisation: data.nomineeOrganisation,
+
+    industrySector: data.industrySector,
+    industrySectorOther:
+      data.industrySectorOther || null,
+
+    countryRegion: data.countryRegion,
+
+    awardCategory: data.awardCategory,
+
+    summaryOfAchievement:
+      data.summaryOfAchievement,
+
+    innovationDifferentiation:
+      data.innovationDifferentiation,
+
+    measurableImpact:
+      data.measurableImpact,
+
+    consentComms:
+      data.consentComms || false,
+  },
+})
 
     const transporter = nodemailer.createTransport({
       host: 'smtp.zoho.in',
@@ -120,6 +155,32 @@ export async function POST(req: Request) {
       {
         success: false,
         message: 'Failed to submit nomination',
+      },
+      { status: 500 }
+    )
+  }
+}
+
+export async function GET() {
+  try {
+    const nominations =
+      await prisma.awardNomination.findMany({
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+
+    return NextResponse.json({
+      success: true,
+      data: nominations,
+    })
+  } catch (error) {
+    console.error(error)
+
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Failed to fetch nominations',
       },
       { status: 500 }
     )

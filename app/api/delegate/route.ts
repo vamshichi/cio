@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer'
 import { NextResponse } from 'next/server'
 import path from 'path'
+import { prisma } from '@/lib/prisma'
 
 function badge(value: boolean) {
   return value
@@ -440,6 +441,38 @@ export async function POST(req: Request) {
   try {
     const data = await req.json()
 
+    // SAVE TO DATABASE
+    await prisma.delegateRegistration.create({
+      data: {
+        fullName: data.fullName,
+        jobTitle: data.jobTitle,
+        company: data.company,
+        industry: data.industry,
+
+        email: data.email,
+        phone: data.phone,
+
+        linkedin: data.linkedin || null,
+        message: data.message || null,
+
+        interests: data.interests || [],
+
+        awardNomination:
+          data.awardNomination,
+
+        shareDetails:
+          data.shareDetails || false,
+
+        receiveUpdates:
+          data.receiveUpdates || false,
+
+        registeredAt: data.registeredAt
+          ? new Date(data.registeredAt)
+          : new Date(),
+      },
+    })
+
+
     const transporter = nodemailer.createTransport({
       host: 'smtp.zoho.in',
       port: 465,
@@ -524,6 +557,33 @@ export async function POST(req: Request) {
       {
         success: false,
         message: 'Failed to submit registration',
+      },
+      { status: 500 }
+    )
+  }
+}
+
+
+export async function GET() {
+  try {
+    const delegates =
+      await prisma.delegateRegistration.findMany({
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+
+    return NextResponse.json({
+      success: true,
+      data: delegates,
+    })
+  } catch (error) {
+    console.error(error)
+
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Failed to fetch delegates',
       },
       { status: 500 }
     )

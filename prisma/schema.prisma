@@ -1,0 +1,122 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model ContactRegistration {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  fullName         String
+  jobTitle         String
+  company          String
+
+  email            String
+  phone            String
+
+  interestedIn     String[]
+  briefNote        String?
+
+  brochureConsent  Boolean
+  contactConsent   Boolean
+
+  createdAt        DateTime @default(now())
+
+  @@index([email])
+  @@index([createdAt])
+}
+
+model DelegateRegistration {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  fullName          String
+  jobTitle          String
+  company           String
+  industry          String
+
+  email             String
+  phone             String
+
+  linkedin          String?
+  message           String?
+
+  interests         String[]
+
+  awardNomination   String
+
+  shareDetails      Boolean @default(false)
+  receiveUpdates    Boolean @default(false)
+
+  registeredAt      DateTime?
+  createdAt         DateTime @default(now())
+
+  @@index([email])
+  @@index([company])
+  @@index([createdAt])
+}
+
+model SponsorRegistration {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  fullName          String
+  jobTitle          String
+  company           String
+
+  email             String
+  phone             String
+
+  linkedin          String?
+
+  objectives        String[]
+
+  sponsoredBefore   String
+
+  shareDetails      Boolean @default(false)
+  receiveUpdates    Boolean @default(false)
+
+  createdAt         DateTime @default(now())
+
+  @@index([email])
+  @@index([company])
+  @@index([createdAt])
+}
+
+model AwardNomination {
+  id                        String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  // Nominator
+  nominatorName             String
+  nominatorDesignation      String
+  nominatorOrganisation     String
+  nominatorEmail            String
+  nominatorPhone            String
+
+  // Nominee
+  nomineeName               String
+  nomineeDesignation        String
+  nomineeOrganisation       String
+
+  industrySector            String
+  industrySectorOther       String?
+
+  countryRegion             String
+
+  // Category
+  awardCategory             String
+
+  // Achievement
+  summaryOfAchievement      String
+  innovationDifferentiation String
+  measurableImpact          String
+
+  consentComms              Boolean
+
+  createdAt                 DateTime @default(now())
+
+  @@index([nominatorEmail])
+  @@index([awardCategory])
+  @@index([createdAt])
+}
