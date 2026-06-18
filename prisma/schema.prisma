@@ -23,7 +23,11 @@ model ContactRegistration {
   brochureConsent  Boolean
   contactConsent   Boolean
 
-    utmSource        String?
+  status            String   @default("NEW")
+  notes             String?
+
+
+  utmSource        String?
   utmMedium        String?
   utmCampaign      String?
 
@@ -55,10 +59,14 @@ model DelegateRegistration {
   shareDetails      Boolean @default(false)
   receiveUpdates    Boolean @default(false)
 
+  status            String   @default("NEW")
+  notes             String?
+
+
   registeredAt      DateTime?
   createdAt         DateTime @default(now())
 
-    utmSource        String?
+  utmSource        String?
   utmMedium        String?
   utmCampaign      String?
 
@@ -86,6 +94,10 @@ model SponsorRegistration {
 
   shareDetails      Boolean @default(false)
   receiveUpdates    Boolean @default(false)
+
+  status            String   @default("NEW")
+  notes             String?
+
 
   createdAt         DateTime @default(now())
 
@@ -129,9 +141,13 @@ model AwardNomination {
 
   consentComms              Boolean
 
+  status            String   @default("NEW")
+  notes             String?
+
+
   createdAt                 DateTime @default(now())
 
-    utmSource        String?
+  utmSource        String?
   utmMedium        String?
   utmCampaign      String?
 

@@ -601,3 +601,73 @@ export async function GET() {
     )
   }
 }
+
+export async function PATCH(req: Request) {
+  try {
+    const body = await req.json()
+
+    const { id, status, notes } = body
+
+    const delegate =
+      await prisma.delegateRegistration.update({
+        where: {
+          id,
+        },
+        data: {
+          ...(status && { status }),
+          ...(notes !== undefined && {
+            notes,
+          }),
+        },
+      })
+
+    return NextResponse.json({
+      success: true,
+      data: delegate,
+    })
+  } catch (error) {
+    console.error(error)
+
+    return NextResponse.json(
+      {
+        success: false,
+        message:
+          'Failed to update delegate',
+      },
+      {
+        status: 500,
+      }
+    )
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const { id } = await req.json()
+
+    await prisma.delegateRegistration.delete({
+      where: {
+        id,
+      },
+    })
+
+    return NextResponse.json({
+      success: true,
+      message:
+        'Delegate deleted successfully',
+    })
+  } catch (error) {
+    console.error(error)
+
+    return NextResponse.json(
+      {
+        success: false,
+        message:
+          'Failed to delete delegate',
+      },
+      {
+        status: 500,
+      }
+    )
+  }
+}
