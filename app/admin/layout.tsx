@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname  } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
 
 import {
@@ -11,6 +12,7 @@ import {
   Handshake,
   Mail,
   UserCog,
+  LogOut,
 } from 'lucide-react'
 
 const fetcher = (url: string) =>
@@ -22,6 +24,7 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const router = useRouter()
 
   const { data } = useSWR(
     '/api/admin/me',
@@ -29,6 +32,25 @@ export default function AdminLayout({
   )
 
   const user = data?.user
+
+  const handleLogout = async () => {
+  try {
+    await fetch('/api/admin/auth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        action: 'logout',
+      }),
+    })
+
+    router.push('/admin/login')
+    router.refresh()
+  } catch (error) {
+    console.error(error)
+  }
+}
 
   if (
     pathname === '/admin/login' ||
@@ -113,7 +135,7 @@ export default function AdminLayout({
   return (
     <div className="flex min-h-screen bg-slate-950">
       {/* Sidebar */}
-      <aside className="w-72 border-r border-white/10 bg-slate-900">
+      <aside className="relative flex w-72 flex-col border-r border-white/10 bg-slate-900">
         <div className="border-b border-white/10 p-6">
           <h1 className="text-2xl font-bold text-white">
             CIO Admin
@@ -140,6 +162,7 @@ export default function AdminLayout({
         </div>
 
         {/* Navigation */}
+        <div className="flex-1">
         <nav className="p-4">
           <ul className="space-y-2">
             {visibleMenus.map((item) => {
@@ -167,6 +190,16 @@ export default function AdminLayout({
             })}
           </ul>
         </nav>
+        </div>
+        <div className="border-t border-white/10 p-4">
+  <button
+    onClick={handleLogout}
+    className="flex w-full items-center gap-3 rounded-xl border border-red-500/20 px-4 py-3 text-red-400 transition hover:bg-red-500/10"
+  >
+    <LogOut size={18} />
+    Logout
+  </button>
+</div>
       </aside>
 
       {/* Content */}
