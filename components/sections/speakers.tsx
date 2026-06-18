@@ -75,6 +75,18 @@ const speakers = [
     title: 'Cofounder & CTO',
     company: 'Yulu Bikes',
     image: '/speakers/Naveen Dachuri - Yulu.jpg',
+  },
+  {
+    name: 'Anand Rathore',
+    title: 'President',
+    company: 'Artificial Intelligence Ways of Working Council -  AIWoW Council',
+    image: '/speakers/Anand Rathore.png',
+  },
+  {
+    name: 'Dr. Ram Kumar G, Ph.D, CISM, PMP',
+    title: 'Cyber Security & Risk Leader',
+    company: 'Global Automotive Company',
+    image: '/speakers/Dr. Ramkumar.png',
   }
 ]
 
