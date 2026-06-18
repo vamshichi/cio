@@ -11,7 +11,7 @@ export default async function MediaPage() {
     prisma.contactRegistration.findMany({
       where: {
         utmSource: {
-          not: null,
+          not: 'direct',
         },
       },
     }),
@@ -19,7 +19,7 @@ export default async function MediaPage() {
     prisma.delegateRegistration.findMany({
       where: {
         utmSource: {
-          not: null,
+          not: 'direct',
         },
       },
     }),
@@ -27,7 +27,7 @@ export default async function MediaPage() {
     prisma.sponsorRegistration.findMany({
       where: {
         utmSource: {
-          not: null,
+          not: 'direct',
         },
       },
     }),
@@ -35,7 +35,7 @@ export default async function MediaPage() {
     prisma.awardNomination.findMany({
       where: {
         utmSource: {
-          not: null,
+           not: 'direct',
         },
       },
     }),
