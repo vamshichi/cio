@@ -140,3 +140,22 @@ model AwardNomination {
   @@index([awardCategory])
   @@index([createdAt])
 }
+
+model AdminUser {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  username     String   @unique
+  passwordHash String
+
+  role         Role     @default(ADMIN)
+
+  permissions  String[]
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+}
