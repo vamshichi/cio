@@ -11,6 +11,7 @@ import { Contact } from '@/components/sections/contact'
 import { Footer } from '@/components/sections/footer'
 import { Sponsors } from '@/components/sections/sponsors'
 import { Gallery } from '@/components/sections/Gallery'
+import AssociationPartners from '@/components/sections/associationPartners'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <Agenda />
         <Speakers />
         <Partners />
+        <AssociationPartners />
         <Sponsors />
         <Awards />
         <Gallery />
