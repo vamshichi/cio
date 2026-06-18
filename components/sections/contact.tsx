@@ -138,7 +138,8 @@ const [errorMessage, setErrorMessage] = useState('')
   return true
 }
 
-  const handleSubmit = async (
+
+const handleSubmit = async (
   e: React.FormEvent
 ) => {
   e.preventDefault()
@@ -148,6 +149,63 @@ const [errorMessage, setErrorMessage] = useState('')
   try {
     setLoading(true)
 
+    // Read UTM from URL
+    let utmSource = ''
+    let utmMedium = ''
+    let utmCampaign = ''
+    let utmContent = ''
+
+    // Works for:
+    // https://www.ciotech.in/?utm_source=meta...
+    const searchParams = new URLSearchParams(
+      window.location.search
+    )
+
+    utmSource =
+      searchParams.get('utm_source') || ''
+
+    utmMedium =
+      searchParams.get('utm_medium') || ''
+
+    utmCampaign =
+      searchParams.get('utm_campaign') || ''
+
+    utmContent =
+      searchParams.get('utm_content') || ''
+
+    // Fallback for:
+    // https://www.ciotech.in/#contact?utm_source=meta...
+    if (!utmSource && window.location.hash.includes('?')) {
+      const queryString =
+        window.location.hash.split('?')[1]
+
+      const hashParams =
+        new URLSearchParams(queryString)
+
+      utmSource =
+        hashParams.get('utm_source') || ''
+
+      utmMedium =
+        hashParams.get('utm_medium') || ''
+
+      utmCampaign =
+        hashParams.get('utm_campaign') || ''
+
+      utmContent =
+        hashParams.get('utm_content') || ''
+    }
+
+    const payload = {
+      ...formData,
+
+      utmSource,
+      utmMedium,
+      utmCampaign,
+      utmContent,
+    }
+
+    console.log('CONTACT PAYLOAD', payload)
+
     const response = await fetch(
       '/api/register',
       {
@@ -156,7 +214,7 @@ const [errorMessage, setErrorMessage] = useState('')
           'Content-Type':
             'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       }
     )
 
@@ -180,6 +238,8 @@ const [errorMessage, setErrorMessage] = useState('')
     setLoading(false)
   }
 }
+
+
 
   return (
     <section

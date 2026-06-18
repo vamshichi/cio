@@ -1,13 +1,19 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export function SponsorForm() {
   
 const [loading, setLoading] = useState(false)
 const [error, setError] = useState('')
 
+const [utmData, setUtmData] = useState({
+  utmSource: '',
+  utmMedium: '',
+  utmCampaign: '',
+  utmContent: '',
+})
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -71,9 +77,25 @@ const isBusinessEmail = (email: string) => {
   return domain && !personalDomains.includes(domain)
 }
 
+useEffect(() => {
+  const hash = window.location.hash
 
+  if (!hash.includes('?')) return
+
+  const queryString = hash.split('?')[1]
+
+  const params = new URLSearchParams(queryString)
+
+  setUtmData({
+    utmSource: params.get('utm_source') || '',
+    utmMedium: params.get('utm_medium') || '',
+    utmCampaign: params.get('utm_campaign') || '',
+    utmContent: params.get('utm_content') || '',
+  })
+}, [])
 
  
+
 const handleSubmit = async (
   e: React.FormEvent<HTMLFormElement>
 ) => {
@@ -116,12 +138,51 @@ const handleSubmit = async (
   try {
     setLoading(true)
 
+    // Read UTM from URL hash
+    const hash = window.location.hash
+
+    let utmSource = ''
+    let utmMedium = ''
+    let utmCampaign = ''
+    let utmContent = ''
+
+    if (hash.includes('?')) {
+      const queryString = hash.split('?')[1]
+
+      const params = new URLSearchParams(
+        queryString
+      )
+
+      utmSource =
+        params.get('utm_source') || ''
+
+      utmMedium =
+        params.get('utm_medium') || ''
+
+      utmCampaign =
+        params.get('utm_campaign') || ''
+
+      utmContent =
+        params.get('utm_content') || ''
+    }
+
+    const payload = {
+      ...formData,
+
+      utmSource,
+      utmMedium,
+      utmCampaign,
+      utmContent,
+    }
+
+    console.log('SPONSOR PAYLOAD', payload)
+
     const response = await fetch('/api/sponsor', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(payload),
     })
 
     const result = await response.json()
@@ -156,6 +217,8 @@ const handleSubmit = async (
     setLoading(false)
   }
 }
+
+
 
 
 

@@ -274,22 +274,99 @@ function NominationModal({ onClose }: { onClose: () => void }) {
   function next() { if (validateStep(step)) setStep((s) => s + 1) }
   function back() { setStep((s) => s - 1) }
 
-  async function handleSubmit() {
-    if (!validateStep(4)) return
-    try {
-      const response = await fetch('/api/nominate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      const result = await response.json()
-      if (result.success) setSubmitted(true)
-      else alert(result.message)
-    } catch (error) {
-      console.error(error)
-      alert('Something went wrong. Please try again.')
+
+async function handleSubmit() {
+  if (!validateStep(4)) return
+
+  try {
+    let utmSource = ''
+    let utmMedium = ''
+    let utmCampaign = ''
+    let utmContent = ''
+
+    // Normal URL format
+    const searchParams = new URLSearchParams(
+      window.location.search
+    )
+
+    utmSource =
+      searchParams.get('utm_source') || ''
+
+    utmMedium =
+      searchParams.get('utm_medium') || ''
+
+    utmCampaign =
+      searchParams.get('utm_campaign') || ''
+
+    utmContent =
+      searchParams.get('utm_content') || ''
+
+    // Hash URL format
+    if (
+      !utmSource &&
+      window.location.hash.includes('?')
+    ) {
+      const queryString =
+        window.location.hash.split('?')[1]
+
+      const hashParams =
+        new URLSearchParams(queryString)
+
+      utmSource =
+        hashParams.get('utm_source') || ''
+
+      utmMedium =
+        hashParams.get('utm_medium') || ''
+
+      utmCampaign =
+        hashParams.get('utm_campaign') || ''
+
+      utmContent =
+        hashParams.get('utm_content') || ''
     }
+
+    const payload = {
+      ...form,
+
+      utmSource,
+      utmMedium,
+      utmCampaign,
+      utmContent,
+    }
+
+    console.log(
+      'AWARD NOMINATION PAYLOAD',
+      payload
+    )
+
+    const response = await fetch(
+      '/api/nominate',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type':
+            'application/json',
+        },
+        body: JSON.stringify(payload),
+      }
+    )
+
+    const result = await response.json()
+
+    if (result.success) {
+      setSubmitted(true)
+    } else {
+      alert(result.message)
+    }
+  } catch (error) {
+    console.error(error)
+    alert(
+      'Something went wrong. Please try again.'
+    )
   }
+}
+
+
 
   const stepLabels = ['Nominator', 'Nominee', 'Category', 'Impact']
 
