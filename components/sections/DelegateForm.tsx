@@ -1,7 +1,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export function DelegateForm() {
   const [loading, setLoading] = useState(false)
@@ -20,6 +20,13 @@ export function DelegateForm() {
     shareDetails: false,
     receiveUpdates: false,
   })
+
+  const [utmData, setUtmData] = useState({
+  utmSource: '',
+  utmMedium: '',
+  utmCampaign: '',
+  utmContent: '',
+})
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -64,7 +71,29 @@ export function DelegateForm() {
     return domain && !personalDomains.includes(domain)
   }
 
+useEffect(() => {
+  const hash = window.location.hash
 
+  if (!hash.includes('?')) return
+
+  const queryString = hash.split('?')[1]
+
+  const params = new URLSearchParams(queryString)
+
+  setUtmData({
+    utmSource: params.get('utm_source') || '',
+    utmMedium: params.get('utm_medium') || '',
+    utmCampaign: params.get('utm_campaign') || '',
+    utmContent: params.get('utm_content') || '',
+  })
+
+  console.log('UTM:', {
+    utmSource: params.get('utm_source'),
+    utmMedium: params.get('utm_medium'),
+    utmCampaign: params.get('utm_campaign'),
+    utmContent: params.get('utm_content'),
+  })
+}, [])
 
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
@@ -110,9 +139,17 @@ export function DelegateForm() {
       setLoading(true)
 
       const payload = {
-    ...formData,
-    registeredAt: new Date().toISOString(),
-  }
+  ...formData,
+
+  registeredAt: new Date().toISOString(),
+
+  utmSource: utmData.utmSource,
+  utmMedium: utmData.utmMedium,
+  utmCampaign: utmData.utmCampaign,
+  utmContent: utmData.utmContent,
+}
+
+console.log('PAYLOAD', payload)
 
       const response = await fetch('/api/delegate', {
         method: 'POST',
