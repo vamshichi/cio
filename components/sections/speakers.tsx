@@ -86,7 +86,7 @@ const speakers = [
     name: 'Dr. Ram Kumar G, Ph.D, CISM, PMP',
     title: 'Cyber Security & Risk Leader',
     company: 'Global Automotive Company',
-    image: '/speakers/Dr. Ramkumar.png',
+    image: '/speakers/Dr. Ramkumar.jpg',
   }
 ]
 
