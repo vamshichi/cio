@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   X,
@@ -41,6 +43,7 @@ export default function DataDrawer({
 
   const [status, setStatus] = useState('NEW')
   const [notes, setNotes] = useState('')
+  const router = useRouter()
 
   useEffect(() => {
     if (data) {
@@ -49,30 +52,47 @@ export default function DataDrawer({
     }
   }, [data])
 
-  const updateStatus = async (
-    newStatus: string
-  ) => {
-    try {
-      setStatus(newStatus)
+ const updateStatus = async (
+  newStatus: string
+) => {
+  try {
+    const response = await fetch(
+      '/api/delegate',
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type':
+            'application/json',
+        },
+        body: JSON.stringify({
+          id: data.id,
+          status: newStatus,
+        }),
+      }
+    )
 
-      await fetch(
-        '/api/admin/delegates',
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type':
-              'application/json',
-          },
-          body: JSON.stringify({
-            id: data.id,
-            status: newStatus,
-          }),
-        }
+    const result =
+      await response.json()
+
+    console.log(
+      'PATCH RESULT:',
+      result
+    )
+
+    if (!response.ok) {
+      throw new Error(
+        result.message ||
+          'Failed to update'
       )
-    } catch (error) {
-      console.error(error)
     }
+
+    setStatus(newStatus)
+
+    router.refresh()
+  } catch (error) {
+    console.error(error)
   }
+}
 
   const saveNotes = async () => {
     try {
