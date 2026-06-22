@@ -52,132 +52,229 @@ export async function POST(req: Request) {
 
     // Admin Email
 
-    await transporter.sendMail({
-      from: `"CIO Leadership Summit" <${process.env.EMAIL_USER}>`,
-      to: 'enquiry@confexmeet.com, ramesh.confexmeet@gmail.com',
-      subject: `New Sponsorship Enquiry - ${data.company}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 800px;">
-          <h2>New Sponsorship Enquiry</h2>
 
-          <table
-            style="
-              width:100%;
-              border-collapse:collapse;
-              border:1px solid #ddd;
-            "
-          >
-            <tr>
-              <td style="padding:10px;font-weight:bold;">
-                Full Name
-              </td>
-              <td style="padding:10px;">
-                ${data.fullName}
-              </td>
-            </tr>
+await transporter.sendMail({
+  from: `"CIO Leadership Summit" <${process.env.EMAIL_USER}>`,
+  to: 'enquiry@confexmeet.com, ramesh.confexmeet@gmail.com',
+  subject: `New Sponsorship Enquiry - ${data.company}`,
+  html: `
+<!DOCTYPE html>
+<html>
+<body style="margin:0;padding:0;background:#f0f2f5;font-family:'Segoe UI',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px;background:#f0f2f5;">
+    <tr>
+      <td align="center">
 
-            <tr>
-              <td style="padding:10px;font-weight:bold;">
-                Job Title
-              </td>
-              <td style="padding:10px;">
-                ${data.jobTitle}
-              </td>
-            </tr>
+        <table width="620" cellpadding="0" cellspacing="0"
+          style="max-width:620px;width:100%;background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
 
-            <tr>
-              <td style="padding:10px;font-weight:bold;">
-                Company
-              </td>
-              <td style="padding:10px;">
-                ${data.company}
-              </td>
-            </tr>
+          <!-- Header -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#0a0f1e 0%,#1a2a5e 100%);padding:28px 36px;">
+              <table width="100%">
+                <tr>
+                  <td>
+                    <p style="margin:0 0 6px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;">
+                      CIO Leadership Summit 2026
+                    </p>
+                    <h1 style="margin:0;font-size:22px;color:#fff;">
+                      🤝 New Sponsorship Enquiry
+                    </h1>
+                  </td>
 
-            <tr>
-              <td style="padding:10px;font-weight:bold;">
-                Work Email
-              </td>
-              <td style="padding:10px;">
-                ${data.email}
-              </td>
-            </tr>
+                  <td align="right">
+                    <div style="background:#c9a84c;color:#0a0f1e;font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;">
+                      SPONSOR LEAD
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
 
-            <tr>
-              <td style="padding:10px;font-weight:bold;">
-                Mobile Number
-              </td>
-              <td style="padding:10px;">
-                ${data.phone}
-              </td>
-            </tr>
+          <!-- Timestamp -->
+          <tr>
+            <td style="background:#f7f8fa;padding:10px 36px;border-bottom:1px solid #eaeaea;">
+              <p style="margin:0;font-size:12px;color:#888;">
+                📅 Submitted On:
+                <strong style="color:#1a1a2e;">
+                  ${new Date().toLocaleString('en-IN')}
+                </strong>
+              </p>
+            </td>
+          </tr>
 
-            <tr>
-              <td style="padding:10px;font-weight:bold;">
-                LinkedIn Profile
-              </td>
-              <td style="padding:10px;">
-                ${
-                  data.linkedin ||
-                  'Not Provided'
-                }
-              </td>
-            </tr>
+          <!-- Contact Details -->
+          <tr>
+            <td style="padding:32px 36px 24px;">
 
-            <tr>
-              <td style="padding:10px;font-weight:bold;">
-                Sponsorship Objectives
-              </td>
-              <td style="padding:10px;">
-                ${
-                  data.objectives?.length
-                    ? data.objectives.join(', ')
-                    : 'Not Selected'
-                }
-              </td>
-            </tr>
+              <p style="margin:0 0 12px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c9a84c;">
+                👤 Contact Details
+              </p>
 
-            <tr>
-              <td style="padding:10px;font-weight:bold;">
-                Sponsored B2B Events Before
-              </td>
-              <td style="padding:10px;">
-                ${
-                  data.sponsoredBefore ||
-                  'Not Selected'
-                }
-              </td>
-            </tr>
+              <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin-bottom:28px;">
+                <tr>
+                  <td style="padding:10px;background:#f7f8fa;border-bottom:1px solid #eaeaea;font-size:12px;color:#888;width:38%;">
+                    Full Name
+                  </td>
+                  <td style="padding:10px;background:#f7f8fa;border-bottom:1px solid #eaeaea;font-weight:700;color:#1a1a2e;">
+                    ${data.fullName}
+                  </td>
+                </tr>
 
-            <tr>
-              <td style="padding:10px;font-weight:bold;">
-                Share Details With Partners
-              </td>
-              <td style="padding:10px;">
-                ${
-                  data.shareDetails
-                    ? 'Yes'
-                    : 'No'
-                }
-              </td>
-            </tr>
+                <tr>
+                  <td style="padding:10px;background:#fff;border-bottom:1px solid #eaeaea;font-size:12px;color:#888;">
+                    Job Title
+                  </td>
+                  <td style="padding:10px;background:#fff;border-bottom:1px solid #eaeaea;">
+                    ${data.jobTitle}
+                  </td>
+                </tr>
 
-            <tr>
-              <td style="padding:10px;font-weight:bold;">
-                Receive Event Updates
-              </td>
-              <td style="padding:10px;">
-                ${
-                  data.receiveUpdates
-                    ? 'Yes'
-                    : 'No'
-                }
-              </td>
-            </tr>
-          </table>
-        </div>
-      `,
-    })
+                <tr>
+                  <td style="padding:10px;background:#f7f8fa;border-bottom:1px solid #eaeaea;font-size:12px;color:#888;">
+                    Company
+                  </td>
+                  <td style="padding:10px;background:#f7f8fa;border-bottom:1px solid #eaeaea;font-weight:700;">
+                    ${data.company}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:10px;background:#fff;border-bottom:1px solid #eaeaea;font-size:12px;color:#888;">
+                    Work Email
+                  </td>
+                  <td style="padding:10px;background:#fff;border-bottom:1px solid #eaeaea;">
+                    <a href="mailto:${data.email}" style="color:#1a2a5e;text-decoration:none;font-weight:600;">
+                      ${data.email}
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:10px;background:#f7f8fa;border-bottom:1px solid #eaeaea;font-size:12px;color:#888;">
+                    Mobile Number
+                  </td>
+                  <td style="padding:10px;background:#f7f8fa;border-bottom:1px solid #eaeaea;">
+                    ${data.phone}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:10px;background:#fff;border-bottom:1px solid #eaeaea;font-size:12px;color:#888;">
+                    LinkedIn Profile
+                  </td>
+                  <td style="padding:10px;background:#fff;border-bottom:1px solid #eaeaea;">
+                    ${data.linkedin || 'Not Provided'}
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Sponsorship Information -->
+              <p style="margin:0 0 12px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c9a84c;">
+                🎯 Sponsorship Information
+              </p>
+
+              <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin-bottom:28px;">
+                <tr>
+                  <td style="padding:10px;background:#f7f8fa;border-bottom:1px solid #eaeaea;font-size:12px;color:#888;width:38%;">
+                    Sponsorship Objectives
+                  </td>
+                  <td style="padding:10px;background:#f7f8fa;border-bottom:1px solid #eaeaea;">
+                    ${
+                      data.objectives?.length
+                        ? data.objectives.join(', ')
+                        : 'Not Selected'
+                    }
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:10px;background:#fff;border-bottom:1px solid #eaeaea;font-size:12px;color:#888;">
+                    Sponsored B2B Events Before
+                  </td>
+                  <td style="padding:10px;background:#fff;border-bottom:1px solid #eaeaea;">
+                    ${data.sponsoredBefore || 'Not Selected'}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:10px;background:#f7f8fa;border-bottom:1px solid #eaeaea;font-size:12px;color:#888;">
+                    Share Details With Partners
+                  </td>
+                  <td style="padding:10px;background:#f7f8fa;border-bottom:1px solid #eaeaea;">
+                    ${data.shareDetails ? '✅ Yes' : '❌ No'}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:10px;background:#fff;border-bottom:1px solid #eaeaea;font-size:12px;color:#888;">
+                    Receive Event Updates
+                  </td>
+                  <td style="padding:10px;background:#fff;border-bottom:1px solid #eaeaea;">
+                    ${data.receiveUpdates ? '✅ Yes' : '❌ No'}
+                  </td>
+                </tr>
+              </table>
+
+              <!-- WhatsApp Share -->
+              <p style="margin:0 0 12px;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#25D366;">
+                💬 WhatsApp Quick Share
+              </p>
+
+              <div style="background:#f0fdf4;border:1.5px solid #25D366;border-radius:6px;padding:18px 20px;">
+                <pre style="margin:0;font-family:monospace;font-size:13px;color:#1a1a2e;white-space:pre-wrap;line-height:1.7;">
+🤝 *New Sponsorship Enquiry*
+━━━━━━━━━━━━━━━━━━━
+👤 *Name:* ${data.fullName}
+💼 *Designation:* ${data.jobTitle}
+🏢 *Company:* ${data.company}
+📧 *Email:* ${data.email}
+📱 *Phone:* ${data.phone}
+🔗 *LinkedIn:* ${data.linkedin || 'Not Provided'}
+
+🎯 *Objectives:*
+${
+  data.objectives?.length
+    ? data.objectives.join(', ')
+    : 'Not Selected'
+}
+
+🏆 *Sponsored Before:*
+${data.sponsoredBefore || 'Not Selected'}
+
+🤝 *Share With Partners:*
+${data.shareDetails ? 'Yes' : 'No'}
+
+📨 *Receive Updates:*
+${data.receiveUpdates ? 'Yes' : 'No'}
+━━━━━━━━━━━━━━━━━━━
+📅 ${new Date().toLocaleString('en-IN')}
+                </pre>
+              </div>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#0a0f1e;padding:20px 36px;">
+              <p style="margin:0;font-size:11px;color:#888;">
+                Automated admin notification · CIO Leadership Summit 2026 · Sponsorship Enquiry System
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+`,
+})
+
 
     // Auto Reply Email
 
