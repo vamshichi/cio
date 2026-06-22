@@ -63,19 +63,10 @@ export default function ChiefGuest() {
             {/* Name */}
             <div>
               <h1 className="text-5xl font-black leading-[0.9] tracking-[-0.08em] text-white sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem]">
-                PRIYANK
+                PRIYANK KHARGE
               </h1>
 
-              <h1
-                className="text-5xl font-black leading-[0.9] tracking-[-0.08em] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem]"
-                style={{
-                  WebkitTextStroke: '2px rgba(34,211,238,0.8)',
-                  color: 'transparent',
-                }}
-              >
-                KHARGE
-              </h1>
-            </div>
+ </div>
 
             <div className="mt-8 h-px w-40 bg-gradient-to-r from-cyan-500 via-cyan-400 to-transparent" />
 
