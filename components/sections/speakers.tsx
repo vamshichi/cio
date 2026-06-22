@@ -80,7 +80,7 @@ const speakers = [
     name: 'Anand Rathore',
     title: 'President',
     company: 'Artificial Intelligence Ways of Working Council -  AIWoW Council',
-    image: '/speakers/Anand Rathore.png',
+    image: '/speakers/1x1 Anand Rathore.jpeg',
   },
   {
     name: 'Dr. Ram Kumar G, Ph.D, CISM, PMP',
