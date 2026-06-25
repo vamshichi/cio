@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { title } from 'process'
 
 const speakers = [
   {
@@ -87,6 +88,18 @@ const speakers = [
     title: 'Cyber Security & Risk Leader',
     company: 'Global Automotive Company',
     image: '/speakers/Dr. Ramkumar.jpg',
+  },
+  {
+    name:'Abhishek Ojha',
+    title:'Senior Vice President | Head – Enterprise Architecture | Chief Enterprise Architect',
+    company:'Ujjivan Small Finance Bank',
+    image:'/speakers/Abhishek.jpg',
+  },
+  {
+    name:'Mohd. Shadab',
+    title:'SSVP / CISO',
+    company:'JioStar',
+    image:'/speakers/Mohd. Shadab.jpg',
   }
 ]
 

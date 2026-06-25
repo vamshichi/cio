@@ -42,17 +42,17 @@ export default function ChiefGuest() {
             </div>
 
             <div className="relative z-10 mx-auto max-w-[1400px] px-6">
-                 {/* CHIEF GUEST BADGE */}
-  <div className="mb-16 flex justify-center">
-    <div className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-10 py-4 backdrop-blur-xl">
-      <span className="text-base font-bold uppercase tracking-[0.5em] text-cyan-300 md:text-lg">
-        Our Chief Guest
-      </span>
-    </div>
-  </div>
+                {/* CHIEF GUEST BADGE */}
+                <div className="mb-16 flex justify-center">
+                    <div className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-10 py-4 backdrop-blur-xl">
+                        <span className="text-base font-bold uppercase tracking-[0.5em] text-cyan-300 md:text-lg">
+                            Our Chief Guest
+                        </span>
+                    </div>
+                </div>
                 {/* HERO GRID */}
                 <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
-                   
+
                     {/* LEFT CONTENT */}
                     <motion.div
                         initial={{ opacity: 0, x: -40 }}
@@ -61,7 +61,7 @@ export default function ChiefGuest() {
                         transition={{ duration: 0.8 }}
                         className="order-2 lg:order-1"
                     >
-                        
+
                         <div>
 
                             <h1 className="mt-2 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
