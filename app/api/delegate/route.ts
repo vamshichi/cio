@@ -199,244 +199,128 @@ function getAdminHtml(data: any, registrationDate: string) {
 }
 
 function getConfirmHtml(data: any, registrationDate: string) {
-  const interests = data.interests?.length ? data.interests.join(', ') : 'Not Selected'
-  const message = data.message || 'No Message Provided'
+  const interests =
+    data.interests?.length > 0
+      ? data.interests.join(", ")
+      : "Not Selected";
 
-  return `<!DOCTYPE html>
-<html lang="en">
+  return `
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Registration Confirmation – CIO Leadership Summit 2026</title>
+<meta charset="UTF-8">
+<title>Registration Confirmed</title>
 </head>
-<body style="margin:0;padding:0;background-color:#0a0f1e;font-family:'Segoe UI',Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#0a0f1e;padding:40px 16px;">
-    <tr>
-      <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:4px;overflow:hidden;">
 
-          <!-- Header -->
-          <tr>
-  <td style="background:linear-gradient(135deg,#0a0f1e 0%,#1a2a5e 60%,#c9a84c 100%);padding:48px 40px 40px;">
-    
-    <p style="margin:0 0 12px;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;">
-      CIO Leadership Summit 2026
-    </p>
+<body style="margin:0;padding:0;background:#f5f7fa;font-family:Arial,sans-serif;">
 
-    <h1 style="margin:0 0 12px;font-size:28px;font-weight:700;color:#ffffff;line-height:1.2;letter-spacing:-0.3px;">
-      Your Registration<br/>Is Confirmed
-    </h1>
-
-    <!-- Event Details -->
-    <div style="
-      display:inline-block;
-      margin-top:8px;
-      padding:10px 18px;
-      border:1px solid rgba(255,255,255,0.2);
-      border-radius:30px;
-      background:rgba(255,255,255,0.08);
-      color:#ffffff;
-      font-size:13px;
-      font-weight:500;
-    ">
-      📅 23 July 2026 &nbsp;&nbsp;•&nbsp;&nbsp; 📍 Four Seasons Bengaluru
-    </div>
-
-    <div style="width:48px;height:2px;background-color:#c9a84c;margin:24px 0 0;"></div>
-
-  </td>
-</tr>
-
-          <!-- Body -->
-          <tr>
-            <td style="padding:40px 40px 32px;">
-              <p style="margin:0 0 20px;font-size:16px;color:#1a1a2e;line-height:1.6;">
-                Dear <strong>${data.fullName}</strong>,
-              </p>
-              <p style="margin:0 0 28px;font-size:15px;color:#444;line-height:1.75;">
-                Thank you for registering for the <strong style="color:#1a1a2e;">CIO Leadership Summit 2026</strong>.
-                We have received your submission and our team will be in touch shortly with participation
-                details, agenda highlights, and your next steps.
-              </p>
-
-              <div style="border-top:1px solid #eaeaea;margin:0 0 28px;"></div>
-
-              <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c9a84c;">
-                Registration Summary
-              </p>
-              <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
-                <tr>
-                  <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#888;width:40%;">Name</td>
-                  <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:14px;color:#1a1a2e;font-weight:600;">${data.fullName}</td>
-                </tr>
-                <tr>
-                  <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#888;">Company</td>
-                  <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:14px;color:#1a1a2e;">${data.company}</td>
-                </tr>
-                <tr>
-                  <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#888;">Designation</td>
-                  <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:14px;color:#1a1a2e;">${data.jobTitle}</td>
-                </tr>
-                <tr>
-                  <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#888;">Attending As</td>
-                  <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:14px;color:#1a1a2e;">${interests}</td>
-                </tr>
-                <tr>
-                  <td style="padding:10px 0;font-size:13px;color:#888;">Registered On</td>
-                  <td style="padding:10px 0;font-size:14px;color:#1a1a2e;">${registrationDate}</td>
-                </tr>
-                <tr>
-  <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#888;">
-    Message
-  </td>
-  <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:14px;color:#1a1a2e;">
-    ${message}
-  </td>
-</tr>
-              </table>
-
-              <div style="border-top:1px solid #eaeaea;margin:28px 0;"></div>
-
-              <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c9a84c;">
-                What Happens Next
-              </p>
-              <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="padding:0 0 16px;">
-                    <table cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="width:32px;vertical-align:top;padding-top:1px;">
-                          <div style="width:22px;height:22px;background-color:#1a2a5e;border-radius:50%;text-align:center;line-height:22px;font-size:11px;font-weight:700;color:#c9a84c;">1</div>
-                        </td>
-                        <td style="font-size:14px;color:#444;line-height:1.6;">
-                          Our team will review your registration and reach out within <strong style="color:#1a1a2e;">2 business days</strong>.
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="padding:0 0 16px;">
-                    <table cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="width:32px;vertical-align:top;padding-top:1px;">
-                          <div style="width:22px;height:22px;background-color:#1a2a5e;border-radius:50%;text-align:center;line-height:22px;font-size:11px;font-weight:700;color:#c9a84c;">2</div>
-                        </td>
-                        <td style="font-size:14px;color:#444;line-height:1.6;">
-                          You'll receive the full <strong style="color:#1a1a2e;">event agenda, venue details</strong>, and logistics closer to the date.
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <table cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td style="width:32px;vertical-align:top;padding-top:1px;">
-                          <div style="width:22px;height:22px;background-color:#1a2a5e;border-radius:50%;text-align:center;line-height:22px;font-size:11px;font-weight:700;color:#c9a84c;">3</div>
-                        </td>
-                        <td style="font-size:14px;color:#444;line-height:1.6;">
-                          Questions in the meantime? Write to us at
-                          <a href="mailto:enquiry@confexmeet.com" style="color:#1a2a5e;font-weight:600;text-decoration:none;">enquiry@confexmeet.com</a>.
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Sign-off -->
-          <tr>
-            <td style="background-color:#f7f5ef;padding:28px 40px;border-top:1px solid #eaeaea;">
-              <p style="margin:0 0 4px;font-size:13px;font-weight:700;color:#1a1a2e;">
-                We look forward to seeing you at the Summit.
-              </p>
-              <p style="margin:0;font-size:13px;color:#777;line-height:1.5;">
-                Warm regards,<br/>
-                <strong style="color:#1a1a2e;">CIO Leadership Summit Team</strong> · ConfexMeet
-              </p>
-            </td>
-          </tr>
-
-         
-          <!-- Footer -->
+<table width="100%" cellpadding="0" cellspacing="0">
 <tr>
-  <td style="background-color:#0a0f1e;padding:24px 40px;text-align:center;">
+<td align="center" style="padding:40px 20px;">
 
-    <!-- Social Media Icons -->
-    
-  <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
-  <tr>
+<table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;border:1px solid #e5e7eb;overflow:hidden;">
 
-    <td style="padding:0 8px;">
-      <a href="https://www.facebook.com/CioTechConferenceAwards">
-        <img
-          src="cid:facebook-icon"
-          width="32"
-          height="32"
-          alt="Facebook"
-          style="display:block;border:0;"
-        />
-      </a>
-    </td>
+<tr>
+<td style="background:#0f2d62;padding:35px;text-align:center;color:#fff;">
+<h1 style="margin:0;">CIO Leadership Summit 2026</h1>
+<p style="margin-top:10px;font-size:18px;">
+Registration Confirmed
+</p>
+</td>
+</tr>
 
-    <td style="padding:0 8px;">
-      <a href="https://www.linkedin.com/company/cio-tech-conference-awards/">
-        <img
-          src="cid:linkedin-icon"
-          width="32"
-          height="32"
-          alt="LinkedIn"
-          style="display:block;border:0;"
-        />
-      </a>
-    </td>
+<tr>
+<td style="padding:35px;">
 
-    <td style="padding:0 8px;">
-      <a href="https://www.instagram.com/cio_tech_conference_awards/">
-        <img
-          src="cid:instagram-icon"
-          width="32"
-          height="32"
-          alt="Instagram"
-          style="display:block;border:0;"
-        />
-      </a>
-    </td>
+<p>Dear <strong>${data.fullName}</strong>,</p>
 
-  </tr>
+<p>
+Thank you for registering for the
+<strong>CIO Leadership Summit 2026</strong>.
+</p>
+
+<p>Your registration has been received successfully.</p>
+
+<hr style="border:none;border-top:1px solid #eee;margin:30px 0;">
+
+<h3 style="margin-bottom:15px;">Registration Details</h3>
+
+<table width="100%" cellpadding="8">
+
+<tr>
+<td><strong>Name</strong></td>
+<td>${data.fullName}</td>
+</tr>
+
+<tr>
+<td><strong>Company</strong></td>
+<td>${data.company}</td>
+</tr>
+
+<tr>
+<td><strong>Designation</strong></td>
+<td>${data.jobTitle}</td>
+</tr>
+
+<tr>
+<td><strong>Attending As</strong></td>
+<td>${interests}</td>
+</tr>
+
+<tr>
+<td><strong>Registered On</strong></td>
+<td>${registrationDate}</td>
+</tr>
+
 </table>
 
-    <p style="margin:0;font-size:11px;color:#777;line-height:1.8;text-align:center;">
-      Follow us for event updates and announcements.<br/><br/>
+<hr style="border:none;border-top:1px solid #eee;margin:30px 0;">
 
-      <a href="https://www.facebook.com/CioTechConferenceAwards"
-         style="color:#c9a84c;text-decoration:none;">Facebook</a>
-      &nbsp;|&nbsp;
-      <a href="https://www.linkedin.com/company/cio-tech-conference-awards/"
-         style="color:#c9a84c;text-decoration:none;">LinkedIn</a>
-      &nbsp;|&nbsp;
-      <a href="https://www.instagram.com/cio_tech_conference_awards/"
-         style="color:#c9a84c;text-decoration:none;">Instagram</a>
+<h3>Next Steps</h3>
 
-      <br/><br/>
+<ul>
+<li>Our team will review your registration.</li>
+<li>You'll receive event updates shortly.</li>
+<li>Venue: Four Seasons Bengaluru</li>
+<li>Date: 23 July 2026</li>
+</ul>
 
-      This is an automated confirmation email. Please do not reply directly to this message.<br/>
-      © 2026 ConfexMeet. All rights reserved.
-    </p>
+<p>
+For any questions, email us at
+<a href="mailto:enquiry@confexmeet.com">
+enquiry@confexmeet.com
+</a>
+</p>
 
-  </td>
+</td>
 </tr>
 
-        </table>
-      </td>
-    </tr>
-  </table>
+<tr>
+<td style="background:#0f2d62;color:#fff;text-align:center;padding:20px;font-size:13px;">
+
+Regards,<br>
+
+<strong>CIO Leadership Summit Team</strong>
+
+<br><br>
+
+<a href="https://www.ciotech.in"
+style="color:#ffffff;">
+www.ciotech.in
+</a>
+
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
 </body>
-</html>`
+</html>
+`;
 }
 
 export async function POST(req: Request) {
@@ -537,45 +421,12 @@ console.log("SMTP Connected")
 
     // console.time("Delegate Email")
     // Delegate Confirmation
-    const delegateMail = ({
+   const delegateMail = {
   from: `"CIO Leadership Summit" <${process.env.EMAIL_USER}>`,
   to: data.email,
-  subject: 'Registration Confirmed – CIO Leadership Summit 2026',
+  subject: "Registration Confirmed – CIO Leadership Summit 2026",
   html: getConfirmHtml(data, registrationDate),
-
-  attachments: [
-    {
-      filename: 'facebook.png',
-      path: path.join(
-        process.cwd(),
-        'public',
-        'email-icons',
-        'facebook.png'
-      ),
-      cid: 'facebook-icon',
-    },
-    {
-      filename: 'linkedin.png',
-      path: path.join(
-        process.cwd(),
-        'public',
-        'email-icons',
-        'linkedin.png'
-      ),
-      cid: 'linkedin-icon',
-    },
-    {
-      filename: 'instagram.png',
-      path: path.join(
-        process.cwd(),
-        'public',
-        'email-icons',
-        'instagram.png'
-      ),
-      cid: 'instagram-icon',
-    },
-  ],
-})
+}
 
 console.log("Sending Emails...");
 
