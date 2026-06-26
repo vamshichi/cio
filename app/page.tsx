@@ -28,7 +28,7 @@ export default function Home() {
         <AssociationPartners />
         <Sponsors />
         <Awards />
-        <Gallery />
+        {/* <Gallery /> */}
         <Contact />
       </main>
       <Footer />
