@@ -485,15 +485,30 @@ export async function POST(req: Request) {
     })
 
 
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.zoho.in',
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    })
+   const transporter = nodemailer.createTransport({
+  host: "smtp.zoho.in",
+  port: 465,
+  secure: true,
+
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
+
+  tls: {
+    rejectUnauthorized: false,
+  },
+})
+
+console.log("Verifying SMTP...")
+
+await transporter.verify()
+
+console.log("SMTP Connected")
 
     const registrationDate = new Date(data.registeredAt).toLocaleString(
   'en-IN',
@@ -508,17 +523,21 @@ export async function POST(req: Request) {
     hour12: false,
   }
 )
-
+  
+// console.time("Admin Email")
     // Admin Notification
-    await transporter.sendMail({
+    const adminMail = ({
       from: `"CIO Summit – Delegate Alerts" <${process.env.EMAIL_USER}>`,
       to: 'enquiry@confexmeet.com, ramesh.confexmeet@gmail.com',
       subject: `🆕 New Delegate: ${data.fullName} – ${data.company}`,
       html: getAdminHtml(data, registrationDate),
     })
 
+    // console.timeEnd("Admin Email")
+
+    // console.time("Delegate Email")
     // Delegate Confirmation
-    await transporter.sendMail({
+    const delegateMail = ({
   from: `"CIO Leadership Summit" <${process.env.EMAIL_USER}>`,
   to: data.email,
   subject: 'Registration Confirmed – CIO Leadership Summit 2026',
@@ -558,6 +577,21 @@ export async function POST(req: Request) {
   ],
 })
 
+console.log("Sending Emails...");
+
+console.time("Emails");
+
+await Promise.all([
+  transporter.sendMail(adminMail),
+  transporter.sendMail(delegateMail),
+]);
+
+console.timeEnd("Emails");
+
+// console.timeEnd("Delegate Email")
+
+console.log("Sending Admin Email...")
+
     return NextResponse.json({
       success: true,
       message: 'Delegate registration submitted successfully',
@@ -565,6 +599,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error('Delegate Registration Error:', error)
 
+    console.log("Sending Delegate Email...")
     return NextResponse.json(
       {
         success: false,
