@@ -149,6 +149,57 @@ Connect with technology leaders driving enterprise growth.
   </button>
 
 </div>
+<div className="mt-10 border-t border-white/10 pt-8">
+  <p className="text-center text-sm text-slate-400">
+    Need assistance with registration or sponsorship?
+  </p>
+
+  <div className="mt-5 flex flex-col items-center justify-center gap-4 sm:flex-row">
+    <a
+      href="mailto:info@confexmeet.com"
+      className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-white transition hover:border-cyan-400 hover:bg-cyan-500/10"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5 text-cyan-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M3 8l9 6 9-6m-18 8h18V8l-9 6-9-6v8z"
+        />
+      </svg>
+
+      info@confexmeet.com
+    </a>
+
+    <a
+      href="tel:+917975429127"
+      className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-white transition hover:border-cyan-400 hover:bg-cyan-500/10"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5 text-cyan-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M3 5a2 2 0 012-2h3.28a2 2 0 011.94 1.515l.547 2.19a2 2 0 01-.502 1.93l-1.285 1.285a16 16 0 006.586 6.586l1.285-1.285a2 2 0 011.93-.502l2.19.547A2 2 0 0121 15.72V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+        />
+      </svg>
+
+      +91 7975 429 127
+    </a>
+  </div>
+</div>
   </div>
 
 </div>
