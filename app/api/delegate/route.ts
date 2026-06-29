@@ -281,7 +281,7 @@ Thank you for registering for the
 <ul>
 <li>Our team will review your registration.</li>
 <li>You'll receive event updates shortly.</li>
-<li>Venue: Four Seasons Bengaluru</li>
+<li>Venue: </li>
 <li>Date: 23 July 2026</li>
 </ul>
 
