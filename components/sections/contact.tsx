@@ -1,7 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { FormModal } from '@/components/common/FormModal'
+import { DelegateForm } from '@/components/sections/DelegateForm'
+import { SponsorForm } from '@/components/sections/SponsorForm'
 
 interface FormData {
   fullName: string
@@ -38,207 +41,22 @@ const interestOptions = [
 ]
 
 export function Contact() {
-  const [formData, setFormData] = useState<FormData>(initialForm)
-  const [errors, setErrors] = useState<Partial<Record<keyof FormData, boolean>>>({})
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-const [errorMessage, setErrorMessage] = useState('')
+ 
+const [showDelegateForm, setShowDelegateForm] = useState(false)
+const [showSponsorForm, setShowSponsorForm] = useState(false)
 
-  const inputClass =
-    'h-14 w-full rounded-xl border border-white/10 bg-white/5 px-4 text-white placeholder-slate-500 outline-none focus:border-cyan-500/50 transition-colors'
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-    setErrors((prev) => ({ ...prev, [name]: false }))
+useEffect(() => {
+  const hash = window.location.hash
+
+  if (hash === '#delegateenquiry') {
+    setShowDelegateForm(true)
   }
 
-  const handleCheckboxGroup = (value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      interestedIn: prev.interestedIn.includes(value)
-        ? prev.interestedIn.filter((i) => i !== value)
-        : [...prev.interestedIn, value],
-    }))
+  if (hash === '#sponsorenquiry') {
+    setShowSponsorForm(true)
   }
-
-  const handleConsent = (field: 'brochureConsent' | 'contactConsent') => {
-    setFormData((prev) => ({ ...prev, [field]: !prev[field] }))
-    setErrors((prev) => ({ ...prev, [field]: false }))
-  }
-
-  const isBusinessEmail = (email: string) => {
-  const personalDomains = [
-    'gmail.com',
-    'yahoo.com',
-    'hotmail.com',
-    'outlook.com',
-    'live.com',
-    'aol.com',
-    'icloud.com',
-    'proton.me',
-    'protonmail.com',
-    'rediffmail.com',
-  ]
-
-  const domain = email.split('@')[1]?.toLowerCase()
-
-  return domain && !personalDomains.includes(domain)
-}
-
-  const validate = () => {
-  const newErrors: Partial<
-    Record<keyof FormData, boolean>
-  > = {}
-
-  if (!formData.fullName.trim())
-    newErrors.fullName = true
-
-  if (!formData.jobTitle.trim())
-    newErrors.jobTitle = true
-
-  if (!formData.company.trim())
-    newErrors.company = true
-
-  if (!formData.email.trim())
-    newErrors.email = true
-
-  if (!formData.phone.trim())
-    newErrors.phone = true
-
-  if (!formData.brochureConsent)
-    newErrors.brochureConsent = true
-
-  setErrors(newErrors)
-
-  if (Object.keys(newErrors).length > 0) {
-    setErrorMessage(
-      'Please fill all mandatory fields.'
-    )
-    return false
-  }
-
-  if (!isBusinessEmail(formData.email)) {
-    setErrorMessage(
-      'Please use your business email address.'
-    )
-    return false
-  }
-
-  if (formData.interestedIn.length === 0) {
-    setErrorMessage(
-      'Please select at least one interest.'
-    )
-    return false
-  }
-
-  setErrorMessage('')
-  return true
-}
-
-
-const handleSubmit = async (
-  e: React.FormEvent
-) => {
-  e.preventDefault()
-
-  if (!validate()) return
-
-  try {
-    setLoading(true)
-
-    // Read UTM from URL
-    let utmSource = ''
-    let utmMedium = ''
-    let utmCampaign = ''
-    let utmContent = ''
-
-    // Works for:
-    // https://www.ciotech.in/?utm_source=meta...
-    const searchParams = new URLSearchParams(
-      window.location.search
-    )
-
-    utmSource =
-      searchParams.get('utm_source') || ''
-
-    utmMedium =
-      searchParams.get('utm_medium') || ''
-
-    utmCampaign =
-      searchParams.get('utm_campaign') || ''
-
-    utmContent =
-      searchParams.get('utm_content') || ''
-
-    // Fallback for:
-    // https://www.ciotech.in/#contact?utm_source=meta...
-    if (!utmSource && window.location.hash.includes('?')) {
-      const queryString =
-        window.location.hash.split('?')[1]
-
-      const hashParams =
-        new URLSearchParams(queryString)
-
-      utmSource =
-        hashParams.get('utm_source') || ''
-
-      utmMedium =
-        hashParams.get('utm_medium') || ''
-
-      utmCampaign =
-        hashParams.get('utm_campaign') || ''
-
-      utmContent =
-        hashParams.get('utm_content') || ''
-    }
-
-    const payload = {
-      ...formData,
-
-      utmSource,
-      utmMedium,
-      utmCampaign,
-      utmContent,
-    }
-
-    console.log('CONTACT PAYLOAD', payload)
-
-    const response = await fetch(
-      '/api/register',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type':
-            'application/json',
-        },
-        body: JSON.stringify(payload),
-      }
-    )
-
-    const result = await response.json()
-
-    if (result.success) {
-      setSubmitted(true)
-    } else {
-      setErrorMessage(
-        result.message ||
-          'Submission failed.'
-      )
-    }
-  } catch (error) {
-    console.error(error)
-
-    setErrorMessage(
-      'Something went wrong. Please try again.'
-    )
-  } finally {
-    setLoading(false)
-  }
-}
-
+}, [])
 
 
   return (
@@ -296,227 +114,68 @@ Connect with technology leaders driving enterprise growth.
         <div className="mx-auto max-w-3xl">
           <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-10 backdrop-blur-2xl">
 
-            {submitted ? (
-              <div className="flex flex-col items-center gap-4 py-16 text-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-500/15 border border-green-500/30">
-                  <svg className="h-10 w-10 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-white">Registration Submitted!</h3>
-                <p className="text-slate-400 max-w-sm">
-                  Thank you, <strong className="text-white">{formData.fullName}</strong>. The event brochure and further details will be sent to your email shortly.
-                </p>
-                <button
-                  onClick={() => { setSubmitted(false); setFormData(initialForm) }}
-                  className="mt-4 rounded-xl border border-white/10 bg-white/5 px-8 py-3 text-sm font-semibold text-slate-300 hover:text-white transition-all"
-                >
-                  Submit Another
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-10" noValidate>
+           <div className="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur-2xl">
 
-                {/* Basic Information */}
-                <div>
-                  <h4 className="mb-1 text-xl font-semibold text-cyan-400">Basic Information</h4>
-                  <p className="mb-6 text-sm text-slate-500">Fill in your details to access the event brochure.</p>
+  <div className="text-center">
+    <h3 className="text-4xl font-bold text-white">
+      Ready to Join CIO Tech 2026?
+    </h3>
 
-                  <div className="grid gap-5 md:grid-cols-2">
-                    <div className="flex flex-col gap-1">
-                      <input
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleChange}
-                        placeholder="Full Name *"
-                        className={`${inputClass} ${errors.fullName ? 'border-red-500/60' : ''}`}
-                      />
-                      {errors.fullName && <p className="text-xs text-red-400 px-1">Required</p>}
-                    </div>
+    <p className="mx-auto mt-5 max-w-2xl text-slate-300">
+      Register as a delegate to network with India's leading technology executives
+      or become a sponsor to showcase your brand to enterprise decision-makers.
+    </p>
 
-                    <div className="flex flex-col gap-1">
-                      <input
-                        name="jobTitle"
-                        value={formData.jobTitle}
-                        onChange={handleChange}
-                        placeholder="Job Title *"
-                        className={`${inputClass} ${errors.jobTitle ? 'border-red-500/60' : ''}`}
-                      />
-                      {errors.jobTitle && <p className="text-xs text-red-400 px-1">Required</p>}
-                    </div>
+    <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
 
-                    <div className="flex flex-col gap-1 md:col-span-2">
-                      <input
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        placeholder="Company / Organization Name *"
-                        className={`${inputClass} ${errors.company ? 'border-red-500/60' : ''}`}
-                      />
-                      {errors.company && <p className="text-xs text-red-400 px-1">Required</p>}
-                    </div>
+  <button
+    className="rounded-xl border border-cyan-500/30 bg-white/5 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-500/10"
+    onClick={() => {
+      window.history.pushState(null, '', '#sponsorenquiry')
+      setShowSponsorForm(true)
+    }}
+  >
+    Become a Sponsor
+  </button>
 
-                    <div className="flex flex-col gap-1">
-                      <input
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Work Email Address *"
-                        className={`${inputClass} ${errors.email ? 'border-red-500/60' : ''}`}
-                      />
-                      {errors.email && <p className="text-xs text-red-400 px-1">Required</p>}
-                    </div>
+  <button
+    className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/40"
+    onClick={() => {
+      window.history.pushState(null, '', '#delegateenquiry')
+      setShowDelegateForm(true)
+    }}
+  >
+    Register as Delegate
+  </button>
 
-                    <div className="flex flex-col gap-1">
-                      <input
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="Mobile Number (with country code) *"
-                        className={`${inputClass} ${errors.phone ? 'border-red-500/60' : ''}`}
-                      />
-                      {errors.phone && <p className="text-xs text-red-400 px-1">Required</p>}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Interest in Event */}
-                <div>
-                  <h4 className="mb-2 text-xl font-semibold text-cyan-400">Your Interest in the Event</h4>
-                  <p className="mb-5 text-sm text-slate-400">I am interested in: <span className="text-slate-600">(select all that apply)</span></p>
-
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {interestOptions.map((item) => (
-                      <label
-                        key={item}
-                        className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3.5 text-sm text-slate-300 transition-all ${
-                          formData.interestedIn.includes(item)
-                            ? 'border-cyan-500/50 bg-cyan-500/10 text-white'
-                            : 'border-white/10 bg-white/5 hover:border-white/20'
-                        }`}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={formData.interestedIn.includes(item)}
-                          onChange={() => handleCheckboxGroup(item)}
-                          className="mt-0.5 shrink-0 accent-cyan-500"
-                        />
-                        {item}
-                      </label>
-                    ))}
-                  </div>
-
-                  <div className="mt-5">
-                    <label className="mb-2 block text-sm text-slate-400">
-                      Please write a brief note about your interest
-                    </label>
-                    <textarea
-                      name="briefNote"
-                      value={formData.briefNote}
-                      onChange={handleChange}
-                      rows={4}
-                      placeholder="Tell us more about what you're looking to achieve or explore at the event…"
-                      className="w-full resize-y rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-500/50 transition-colors"
-                    />
-                  </div>
-                </div>
-
-                {/* Consent */}
-                <div>
-                  <h4 className="mb-5 text-xl font-semibold text-cyan-400">Consent & Communication</h4>
-
-                  <div className="space-y-3">
-                    <label className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3.5 text-sm transition-all ${
-                      errors.brochureConsent
-                        ? 'border-red-500/60 bg-red-500/5'
-                        : formData.brochureConsent
-                        ? 'border-cyan-500/50 bg-cyan-500/10 text-white'
-                        : 'border-white/10 bg-white/5 text-slate-300 hover:border-white/20'
-                    }`}>
-                      <input
-                        type="checkbox"
-                        checked={formData.brochureConsent}
-                        onChange={() => handleConsent('brochureConsent')}
-                        className="mt-0.5 shrink-0 accent-cyan-500"
-                      />
-                      I agree to receive the brochure and event updates *
-                    </label>
-                    {errors.brochureConsent && <p className="text-xs text-red-400 px-1">This consent is required to receive the brochure.</p>}
-
-                    <label className={`flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3.5 text-sm transition-all ${
-                      formData.contactConsent
-                        ? 'border-cyan-500/50 bg-cyan-500/10 text-white'
-                        : 'border-white/10 bg-white/5 text-slate-300 hover:border-white/20'
-                    }`}>
-                      <input
-                        type="checkbox"
-                        checked={formData.contactConsent}
-                        onChange={() => handleConsent('contactConsent')}
-                        className="mt-0.5 shrink-0 accent-cyan-500"
-                      />
-                      I agree to be contacted for relevant opportunities
-                    </label>
-                  </div>
-                </div>
-
-                {errorMessage && (
-  <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
-    {errorMessage}
+</div>
   </div>
-)}
 
-                <button
-  type="submit"
-  disabled={loading}
-  className="
-    h-14
-    w-full
-    rounded-xl
-    bg-gradient-to-r
-    from-cyan-500
-    to-blue-600
-    font-semibold
-    text-white
-    transition-all
-    disabled:cursor-not-allowed
-    disabled:opacity-70
-  "
->
-  {loading ? (
-    <span className="flex items-center justify-center gap-3">
-      <svg
-        className="h-5 w-5 animate-spin"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
-          opacity="0.25"
-        />
-        <path
-          d="M22 12a10 10 0 00-10-10"
-          stroke="currentColor"
-          strokeWidth="4"
-        />
-      </svg>
-
-      Submitting...
-    </span>
-  ) : (
-    'Submit Registration →'
-  )}
-</button>
-
-              </form>
-            )}
+</div>
           </div>
         </div>
       </div>
+<FormModal
+  open={showDelegateForm}
+  onClose={() => {
+    window.history.pushState({}, '', window.location.pathname)
+    setShowDelegateForm(false)
+  }}
+  title="Delegate Registration"
+>
+  <DelegateForm />
+</FormModal>
+
+<FormModal
+  open={showSponsorForm}
+  onClose={() => {
+    window.history.pushState({}, '', window.location.pathname)
+    setShowSponsorForm(false)
+  }}
+  title="Sponsor Enquiry"
+>
+  <SponsorForm />
+</FormModal>
     </section>
   )
 }
