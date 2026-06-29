@@ -107,7 +107,7 @@ export function Sponsors() {
         {/* ── Header ── */}
         <motion.div {...fadeUp()} className="mb-20 text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-indigo-250 bg-indigo-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[3px] text-indigo-600">
-            Strategic Partners
+           Our Previous Strategic Partners
           </span>
 
           <h2 className="mt-6 text-3xl font-black tracking-tight text-white/80 sm:text-4xl md:text-5xl lg:text-6xl">
