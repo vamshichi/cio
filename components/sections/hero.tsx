@@ -218,17 +218,17 @@ Connect with technology leaders driving enterprise growth.
                 23 July 2026
               </time>
             </div>
-{/* 
+
             <div className="hidden md:block text-slate-600">
               •
-            </div> */}
+            </div>
 
-            {/* <div className="flex items-center gap-2 text-slate-300">
+            <div className="flex items-center gap-2 text-slate-300">
               <FiMapPin />
               <address className="not-italic">
-                
+                Radisson Blu Hotel, Atria Bengaluru
               </address>
-            </div> */}
+            </div>
 
             <div className="hidden md:block text-slate-600">
               •

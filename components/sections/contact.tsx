@@ -154,10 +154,10 @@ Connect with technology leaders driving enterprise growth.
     Need assistance with registration or sponsorship?
   </p>
 
-  <div className="mt-5 flex flex-col items-center justify-center gap-4 sm:flex-row">
+  <div className="mt-5  items-center justify-center gap-4 sm:flex-row">
     <a
       href="mailto:info@confexmeet.com"
-      className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-white transition hover:border-cyan-400 hover:bg-cyan-500/10"
+      className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-white transition hover:border-cyan-400 hover:bg-cyan-500/10 mb-2"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +179,7 @@ Connect with technology leaders driving enterprise growth.
 
     <a
       href="tel:+917975429127"
-      className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-white transition hover:border-cyan-400 hover:bg-cyan-500/10"
+      className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-white transition hover:border-cyan-400 hover:bg-cyan-500/10 mb-2"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -198,6 +198,35 @@ Connect with technology leaders driving enterprise growth.
 
       +91 7975 429 127
     </a>
+   <a
+  href="https://www.google.com/maps/place/Radisson+Blu+Hotel,+Atria+Bengaluru/@12.980235,77.586061,17z/data=!3m1!4b1!4m9!3m8!1s0x3bae166d3d785ec7:0xe216f7625f066e10!5m2!4m1!1i2!8m2!3d12.980235!4d77.586061!16s%2Fg%2F1tls18p_?entry=ttu"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-white transition hover:border-cyan-400 hover:bg-cyan-500/10"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-5 w-5 text-cyan-400"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+    />
+  </svg>
+
+  <span>Radisson Blu Hotel, Atria Bengaluru</span>
+</a>
   </div>
 </div>
   </div>
