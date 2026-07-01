@@ -1,6 +1,7 @@
 "use client";
 
-import Footer from "@/components/vendor-delegate/footer";
+import { Header } from "@/components/sections/header";
+import {Footer} from "@/components/sections/footer";
 import RegistrationForm from "@/components/vendor-delegate/RegistrationForm";
 import {
   ArrowRight,
@@ -11,9 +12,11 @@ import {
   BriefcaseBusiness,
 } from "lucide-react";
 
+
 export default function VendorDelegatePage() {
   return (
-    <main className="bg-[#020817] text-white">
+    <main className="bg-[#020817] text-black">
+        <Header />
       {/* ================= HERO ================= */}
       <section className="relative overflow-hidden">
         {/* Background */}
@@ -171,10 +174,11 @@ export default function VendorDelegatePage() {
         <div>
             <RegistrationForm />
         </div>
-        <div>
+        {/* <div>
             <Footer />
-        </div>
+        </div> */}
       </section>
+      <Footer />
     </main>
   );
 }

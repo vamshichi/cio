@@ -24,16 +24,16 @@ export function Header() {
   const [showSponsorForm, setShowSponsorForm] = useState(false)
 
   useEffect(() => {
-  const hash = window.location.hash
+    const hash = window.location.hash
 
-  if (hash.startsWith('#delegateenquiry')) {
-    setShowDelegateForm(true)
-  }
+    if (hash.startsWith('#delegateenquiry')) {
+      setShowDelegateForm(true)
+    }
 
-  if (hash.startsWith('#sponsorenquiry')) {
-    setShowSponsorForm(true)
-  }
-}, [])
+    if (hash.startsWith('#sponsorenquiry')) {
+      setShowSponsorForm(true)
+    }
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,11 +54,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 left-0 z-50 w-full transition-all duration-500 ${isScrolled
-          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-slate-250'
-          : 'bg-transparent'
-        }`}
-    >
+      className="sticky top-0 left-0 z-50 w-full transition-all duration-500 bg-white/95 backdrop-blur-xl shadow-lg border-b border-slate-250"   >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
         {/* Logo */}
         <Link href="#home" className="flex items-center">
@@ -90,8 +86,8 @@ export function Header() {
               >
                 <div
                   className={`flex items-center gap-2 text-sm font-medium transition-all ${isScrolled
-                      ? 'text-slate-700 hover:text-cyan-600'
-                      : 'text-slate-700 hover:text-cyan-600'
+                    ? 'text-slate-700 hover:text-cyan-600'
+                    : 'text-slate-700 hover:text-cyan-600'
                     }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -109,7 +105,7 @@ export function Header() {
           <Button
             variant="outline"
             size="lg"
-            className="font-semibold"
+            className="font-semibold text-black"
             onClick={() => {
               window.history.pushState(null, '', '#sponsorenquiry')
               setShowSponsorForm(true)
@@ -176,11 +172,11 @@ export function Header() {
                 <Button
                   variant="outline"
                   className="w-full"
-                 onClick={() => {
-  window.history.pushState(null, '', '#sponsorenquiry')
-  setShowSponsorForm(true)
-  setMobileMenuOpen(false)
-}}
+                  onClick={() => {
+                    window.history.pushState(null, '', '#sponsorenquiry')
+                    setShowSponsorForm(true)
+                    setMobileMenuOpen(false)
+                  }}
                 >
                   Sponsor Enquiry
                 </Button>
@@ -188,10 +184,10 @@ export function Header() {
                 <Button
                   className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
                   onClick={() => {
-  window.history.pushState(null, '', '#delegateenquiry')
-  setShowDelegateForm(true)
-  setMobileMenuOpen(false)
-}}
+                    window.history.pushState(null, '', '#delegateenquiry')
+                    setShowDelegateForm(true)
+                    setMobileMenuOpen(false)
+                  }}
                 >
                   Delegate Registration
                 </Button>

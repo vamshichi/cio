@@ -11,12 +11,12 @@ const speakers = [
     company: 'Randstad',
     image: '/speakers/anand.png',
   },
-  {
-    name: 'Venkat Krishnan V',
-    title: 'CIO & CTO',
-    company: 'Karnataka Bank',
-    image: '/speakers/venkat.png',
-  },
+  // {
+  //   name: 'Venkat Krishnan V',
+  //   title: 'CIO & CTO',
+  //   company: 'Karnataka Bank',
+  //   image: '/speakers/venkat.png',
+  // },
   {
     name: 'Mythili Kandula',
     title: 'CTO',

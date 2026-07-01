@@ -140,7 +140,7 @@ export default function RegistrationForm() {
 
             {/* Company */}
 
-            <div>
+            {/* <div>
               <h3 className="text-xl font-semibold text-white mb-6">
                 Company Information
               </h3>
@@ -204,11 +204,11 @@ export default function RegistrationForm() {
                 </div>
 
               </div>
-            </div>
+            </div> */}
 
             {/* Interests */}
 
-            <div>
+            {/* <div>
 
               <h3 className="text-xl font-semibold text-white mb-6">
                 Areas of Interest
@@ -233,7 +233,7 @@ export default function RegistrationForm() {
 
               </div>
 
-            </div>
+            </div> */}
 
             {/* Objectives */}
 
