@@ -24,9 +24,10 @@ export default function Home() {
         <About />
         <Agenda />
         <Speakers />
-        <Partners />
         <AssociationPartners />
-        <Sponsors />
+        <Partners />
+        
+        {/* <Sponsors /> */}
         <Awards />
         {/* <Gallery /> */}
         <Contact />
