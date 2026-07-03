@@ -1,22 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import PaymentSuccessModal from "@/components/vendor-delegate/PaymentSuccessModal";
 
-const interests = [
-  "AI & Generative AI",
-  "Cyber Security",
-  "Cloud Computing",
-  "Data & Analytics",
-  "Digital Transformation",
-  "Enterprise Software",
-  "IoT",
-  "Automation",
-  "Networking",
-  "Managed Services",
-];
+
 
 export default function RegistrationForm() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const toggleInterest = (item: string) => {
     if (selectedInterests.includes(item)) {
@@ -27,6 +18,26 @@ export default function RegistrationForm() {
       setSelectedInterests([...selectedInterests, item]);
     }
   };
+
+  const [formData, setFormData] = useState({
+  fullName: "",
+  jobTitle: "",
+  company: "",
+  email: "",
+  phone: "",
+  linkedin: "",
+  objectives: "",
+  meeting: "",
+  requirements: "",
+});
+
+  const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  // Later we'll call the API here
+
+  setShowSuccessModal(true);
+};
 
   return (
     <section
@@ -52,7 +63,7 @@ export default function RegistrationForm() {
             </p>
           </div>
 
-          <form className="space-y-10">
+          <form onSubmit={handleSubmit} className="space-y-10">
 
             {/* Personal Information */}
 
@@ -69,10 +80,17 @@ export default function RegistrationForm() {
                   </label>
 
                   <input
-                    type="text"
-                    placeholder="John Smith"
-                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-                  />
+  type="text"
+  value={formData.fullName}
+  onChange={(e) =>
+    setFormData({
+      ...formData,
+      fullName: e.target.value,
+    })
+  }
+  placeholder="John Smith"
+  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+/>
                 </div>
 
                 <div>
@@ -81,10 +99,17 @@ export default function RegistrationForm() {
                   </label>
 
                   <input
-                    type="text"
-                    placeholder="Vice President"
-                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-                  />
+  type="text"
+  value={formData.jobTitle}
+  onChange={(e) =>
+    setFormData({
+      ...formData,
+      jobTitle: e.target.value,
+    })
+  }
+  placeholder="Vice President"
+  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+/>
                 </div>
 
                 <div>
@@ -93,10 +118,17 @@ export default function RegistrationForm() {
                   </label>
 
                   <input
-                    type="text"
-                    placeholder="ABC Technologies"
-                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-                  />
+  type="text"
+  value={formData.company}
+  onChange={(e) =>
+    setFormData({
+      ...formData,
+      company: e.target.value,
+    })
+  }
+  placeholder="ABC Technologies"
+  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+/>
                 </div>
 
                 <div>
@@ -105,10 +137,17 @@ export default function RegistrationForm() {
                   </label>
 
                   <input
-                    type="email"
-                    placeholder="name@company.com"
-                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-                  />
+  type="email"
+  value={formData.email}
+  onChange={(e) =>
+    setFormData({
+      ...formData,
+      email: e.target.value,
+    })
+  }
+  placeholder="name@company.com"
+  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+/>
                 </div>
 
                 <div>
@@ -117,10 +156,17 @@ export default function RegistrationForm() {
                   </label>
 
                   <input
-                    type="tel"
-                    placeholder="+91 9876543210"
-                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-                  />
+  type="tel"
+  value={formData.phone}
+  onChange={(e) =>
+    setFormData({
+      ...formData,
+      phone: e.target.value,
+    })
+  }
+  placeholder="+91 9876543210"
+  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+/>
                 </div>
 
                 <div>
@@ -129,10 +175,17 @@ export default function RegistrationForm() {
                   </label>
 
                   <input
-                    type="url"
-                    placeholder="https://linkedin.com/in/username"
-                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-                  />
+  type="url"
+  value={formData.linkedin}
+  onChange={(e) =>
+    setFormData({
+      ...formData,
+      linkedin: e.target.value,
+    })
+  }
+  placeholder="https://linkedin.com/in/username"
+  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+/>
                 </div>
 
               </div>
@@ -244,10 +297,17 @@ export default function RegistrationForm() {
               </label>
 
               <textarea
-                rows={5}
-                placeholder="Tell us what you want to achieve by attending the summit..."
-                className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-4 text-white outline-none focus:border-cyan-500"
-              />
+  rows={5}
+  value={formData.objectives}
+  onChange={(e) =>
+    setFormData({
+      ...formData,
+      objectives: e.target.value,
+    })
+  }
+  placeholder="Tell us what you want to achieve..."
+  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-4 text-white outline-none focus:border-cyan-500"
+/>
 
             </div>
 
@@ -262,12 +322,32 @@ export default function RegistrationForm() {
               <div className="flex gap-8">
 
                 <label className="flex items-center gap-2 text-slate-300">
-                  <input type="radio" name="meeting" />
+                  <input
+  type="radio"
+  name="meeting"
+  checked={formData.meeting === "Yes"}
+  onChange={() =>
+    setFormData({
+      ...formData,
+      meeting: "Yes",
+    })
+  }
+/>
                   Yes
                 </label>
 
                 <label className="flex items-center gap-2 text-slate-300">
-                  <input type="radio" name="meeting" />
+                  <input
+  type="radio"
+  name="meeting"
+  checked={formData.meeting === "No"}
+  onChange={() =>
+    setFormData({
+      ...formData,
+      meeting: "No",
+    })
+  }
+/>
                   No
                 </label>
 
@@ -284,10 +364,17 @@ export default function RegistrationForm() {
               </label>
 
               <textarea
-                rows={4}
-                placeholder="Any specific requirements..."
-                className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-4 text-white"
-              />
+  rows={4}
+  value={formData.requirements}
+  onChange={(e) =>
+    setFormData({
+      ...formData,
+      requirements: e.target.value,
+    })
+  }
+  placeholder="Any specific requirements..."
+  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-4 text-white"
+/>
 
             </div>
 
@@ -333,8 +420,14 @@ export default function RegistrationForm() {
             </button>
 
           </form>
+          <PaymentSuccessModal
+  open={showSuccessModal}
+  onClose={() => setShowSuccessModal(false)}
+  formData={formData}
+/>
         </div>
       </div>
+      
     </section>
   );
 }

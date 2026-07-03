@@ -20,12 +20,7 @@ export default function VendorDelegatePage() {
       {/* ================= HERO ================= */}
       <section className="relative overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0">
-          <div className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full bg-cyan-500/20 blur-[150px]" />
-          <div className="absolute right-0 bottom-0 h-[450px] w-[450px] rounded-full bg-blue-700/20 blur-[150px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,.04),transparent_60%)]" />
-        </div>
-
+       
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             {/* Left */}
@@ -34,7 +29,7 @@ export default function VendorDelegatePage() {
                 Vendor Delegate Registration
               </span>
 
-              <h1 className="mt-8 text-5xl font-black leading-tight lg:text-7xl">
+              <h1 className="mt-8 text-5xl font-black  text-white leading-tight lg:text-7xl">
                 Connect With
                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                   India's Top CIOs
@@ -50,7 +45,7 @@ export default function VendorDelegatePage() {
               </p>
 
               {/* Event Info */}
-              <div className="mt-10 grid gap-5 sm:grid-cols-3">
+              <div className="mt-10 grid gap-5 sm:grid-cols-3 text-white">
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
                   <CalendarDays className="mb-3 h-8 w-8 text-cyan-400" />
                   <p className="text-sm text-slate-400">Date</p>
@@ -96,7 +91,7 @@ export default function VendorDelegatePage() {
             </div>
 
             {/* Right Card */}
-            <div className="relative">
+            <div className="relative text-white">
               <div className="rounded-3xl border border-cyan-400/20 bg-white/5 p-8 backdrop-blur-xl">
                 <div className="mb-8">
                   <h2 className="text-3xl font-bold">

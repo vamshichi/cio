@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import {
   Mail,
   Phone,
@@ -13,11 +14,7 @@ import {
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#020817] text-white">
-      {/* Background Glow */}
-      {/* <div className="absolute inset-0">
-        <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
-        <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-blue-600/10 blur-[120px]" />
-      </div> */}
+      
 
       <div className="relative mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 lg:grid-cols-4">
