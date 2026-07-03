@@ -7,7 +7,7 @@ import PaymentSuccessModal from "@/components/vendor-delegate/PaymentSuccessModa
 
 export default function RegistrationForm() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
-const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const toggleInterest = (item: string) => {
     if (selectedInterests.includes(item)) {
@@ -20,21 +20,30 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
   };
 
   const [formData, setFormData] = useState({
-  fullName: "",
-  jobTitle: "",
-  company: "",
-  email: "",
-  phone: "",
-  linkedin: "",
-  objectives: "",
-  meeting: "",
-  requirements: "",
-});
+    fullName: "",
+    jobTitle: "",
+    company: "",
+    email: "",
+    phone: "",
+    linkedin: "",
+    objectives: "",
+    meeting: "",
+    requirements: "",
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
 
-  // Later we'll call the API here
+  if (
+    !formData.fullName.trim() ||
+    !formData.jobTitle.trim() ||
+    !formData.company.trim() ||
+    !formData.email.trim() ||
+    !formData.phone.trim()
+  ) {
+    alert("Please fill all required fields marked with *.");
+    return;
+  }
 
   setShowSuccessModal(true);
 };
@@ -80,17 +89,18 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
                   </label>
 
                   <input
-  type="text"
-  value={formData.fullName}
-  onChange={(e) =>
-    setFormData({
-      ...formData,
-      fullName: e.target.value,
-    })
-  }
-  placeholder="John Smith"
-  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-/>
+                    type="text"
+                    value={formData.fullName}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        fullName: e.target.value,
+                      })
+                    }
+                    placeholder="John Smith"
+                    required
+                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+                  />
                 </div>
 
                 <div>
@@ -99,17 +109,18 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
                   </label>
 
                   <input
-  type="text"
-  value={formData.jobTitle}
-  onChange={(e) =>
-    setFormData({
-      ...formData,
-      jobTitle: e.target.value,
-    })
-  }
-  placeholder="Vice President"
-  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-/>
+                    type="text"
+                    value={formData.jobTitle}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        jobTitle: e.target.value,
+                      })
+                    }
+                    placeholder="Vice President"
+                    required
+                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+                  />
                 </div>
 
                 <div>
@@ -118,17 +129,18 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
                   </label>
 
                   <input
-  type="text"
-  value={formData.company}
-  onChange={(e) =>
-    setFormData({
-      ...formData,
-      company: e.target.value,
-    })
-  }
-  placeholder="ABC Technologies"
-  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-/>
+                    type="text"
+                    value={formData.company}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        company: e.target.value,
+                      })
+                    }
+                    placeholder="ABC Technologies"
+                    required
+                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+                  />
                 </div>
 
                 <div>
@@ -137,17 +149,18 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
                   </label>
 
                   <input
-  type="email"
-  value={formData.email}
-  onChange={(e) =>
-    setFormData({
-      ...formData,
-      email: e.target.value,
-    })
-  }
-  placeholder="name@company.com"
-  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-/>
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        email: e.target.value,
+                      })
+                    }
+                    placeholder="name@company.com"
+                    required
+                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+                  />
                 </div>
 
                 <div>
@@ -156,17 +169,18 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
                   </label>
 
                   <input
-  type="tel"
-  value={formData.phone}
-  onChange={(e) =>
-    setFormData({
-      ...formData,
-      phone: e.target.value,
-    })
-  }
-  placeholder="+91 9876543210"
-  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-/>
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        phone: e.target.value,
+                      })
+                    }
+                    placeholder="+91 9876543210"
+                    required
+                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+                  />
                 </div>
 
                 <div>
@@ -175,120 +189,22 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
                   </label>
 
                   <input
-  type="url"
-  value={formData.linkedin}
-  onChange={(e) =>
-    setFormData({
-      ...formData,
-      linkedin: e.target.value,
-    })
-  }
-  placeholder="https://linkedin.com/in/username"
-  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
-/>
+                    type="url"
+                    value={formData.linkedin}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        linkedin: e.target.value,
+                      })
+                    }
+                    placeholder="https://linkedin.com/in/username"
+                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white outline-none focus:border-cyan-500"
+                  />
                 </div>
 
               </div>
             </div>
 
-            {/* Company */}
-
-            {/* <div>
-              <h3 className="text-xl font-semibold text-white mb-6">
-                Company Information
-              </h3>
-
-              <div className="grid md:grid-cols-2 gap-6">
-
-                <div>
-                  <label className="block text-sm mb-2 text-slate-300">
-                    Industry
-                  </label>
-
-                  <select className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white">
-
-                    <option>Technology</option>
-                    <option>Cyber Security</option>
-                    <option>Cloud</option>
-                    <option>Healthcare</option>
-                    <option>Finance</option>
-                    <option>Retail</option>
-                    <option>Manufacturing</option>
-
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm mb-2 text-slate-300">
-                    Company Size
-                  </label>
-
-                  <select className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white">
-
-                    <option>1-50</option>
-                    <option>51-200</option>
-                    <option>201-500</option>
-                    <option>500-1000</option>
-                    <option>1000+</option>
-
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm mb-2 text-slate-300">
-                    Country
-                  </label>
-
-                  <input
-                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white"
-                    placeholder="India"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm mb-2 text-slate-300">
-                    City
-                  </label>
-
-                  <input
-                    className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-white"
-                    placeholder="Bengaluru"
-                  />
-                </div>
-
-              </div>
-            </div> */}
-
-            {/* Interests */}
-
-            {/* <div>
-
-              <h3 className="text-xl font-semibold text-white mb-6">
-                Areas of Interest
-              </h3>
-
-              <div className="flex flex-wrap gap-3">
-
-                {interests.map((item) => (
-                  <button
-                    type="button"
-                    key={item}
-                    onClick={() => toggleInterest(item)}
-                    className={`rounded-full px-5 py-2 border transition ${
-                      selectedInterests.includes(item)
-                        ? "bg-cyan-500 border-cyan-500 text-slate-900 font-semibold"
-                        : "border-slate-700 text-slate-300 hover:border-cyan-500"
-                    }`}
-                  >
-                    {item}
-                  </button>
-                ))}
-
-              </div>
-
-            </div> */}
-
-            {/* Objectives */}
 
             <div>
 
@@ -297,17 +213,17 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
               </label>
 
               <textarea
-  rows={5}
-  value={formData.objectives}
-  onChange={(e) =>
-    setFormData({
-      ...formData,
-      objectives: e.target.value,
-    })
-  }
-  placeholder="Tell us what you want to achieve..."
-  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-4 text-white outline-none focus:border-cyan-500"
-/>
+                rows={5}
+                value={formData.objectives}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    objectives: e.target.value,
+                  })
+                }
+                placeholder="Tell us what you want to achieve..."
+                className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-4 text-white outline-none focus:border-cyan-500"
+              />
 
             </div>
 
@@ -323,31 +239,31 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
 
                 <label className="flex items-center gap-2 text-slate-300">
                   <input
-  type="radio"
-  name="meeting"
-  checked={formData.meeting === "Yes"}
-  onChange={() =>
-    setFormData({
-      ...formData,
-      meeting: "Yes",
-    })
-  }
-/>
+                    type="radio"
+                    name="meeting"
+                    checked={formData.meeting === "Yes"}
+                    onChange={() =>
+                      setFormData({
+                        ...formData,
+                        meeting: "Yes",
+                      })
+                    }
+                  />
                   Yes
                 </label>
 
                 <label className="flex items-center gap-2 text-slate-300">
                   <input
-  type="radio"
-  name="meeting"
-  checked={formData.meeting === "No"}
-  onChange={() =>
-    setFormData({
-      ...formData,
-      meeting: "No",
-    })
-  }
-/>
+                    type="radio"
+                    name="meeting"
+                    checked={formData.meeting === "No"}
+                    onChange={() =>
+                      setFormData({
+                        ...formData,
+                        meeting: "No",
+                      })
+                    }
+                  />
                   No
                 </label>
 
@@ -364,17 +280,17 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
               </label>
 
               <textarea
-  rows={4}
-  value={formData.requirements}
-  onChange={(e) =>
-    setFormData({
-      ...formData,
-      requirements: e.target.value,
-    })
-  }
-  placeholder="Any specific requirements..."
-  className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-4 text-white"
-/>
+                rows={4}
+                value={formData.requirements}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    requirements: e.target.value,
+                  })
+                }
+                placeholder="Any specific requirements..."
+                className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-4 text-white"
+              />
 
             </div>
 
@@ -386,6 +302,7 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
 
                 <input
                   type="checkbox"
+                  required
                   className="mt-1"
                 />
 
@@ -399,6 +316,7 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
 
                 <input
                   type="checkbox"
+                  required
                   className="mt-1"
                 />
 
@@ -421,13 +339,13 @@ const [showSuccessModal, setShowSuccessModal] = useState(false);
 
           </form>
           <PaymentSuccessModal
-  open={showSuccessModal}
-  onClose={() => setShowSuccessModal(false)}
-  formData={formData}
-/>
+            open={showSuccessModal}
+            onClose={() => setShowSuccessModal(false)}
+            formData={formData}
+          />
         </div>
       </div>
-      
+
     </section>
   );
 }
