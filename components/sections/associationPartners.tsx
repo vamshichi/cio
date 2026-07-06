@@ -100,93 +100,18 @@ export default function PartnersSection() {
 
         </div>
 
-        {/* ASSOCIATION */}
+              {/* GOLD PARTNER */}
 
         <div className="mb-20">
-
-          <div className="mb-8 flex items-center justify-center gap-3">
-
-            <Users className="text-cyan-400" size={28} />
-
-            <h3 className="text-3xl font-bold text-cyan-300">
-              Association Partners
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <Star className="text-yellow-400" size={28} />
+            <h3 className="text-3xl font-bold text-yellow-400">
+              Gold Partner
             </h3>
-
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2">
-
-            {associationPartners.map((partner) => (
-
-              <div
-                key={partner.name}
-                className="group flex h-52 items-center justify-center rounded-3xl border border-cyan-400/20 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_45px_rgba(0,212,255,.25)]"
-              >
-
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  width={250}
-                  height={120}
-                  className="max-h-28 w-auto object-contain transition duration-500 group-hover:scale-105"
-                />
-
-              </div>
-
-            ))}
-
-          </div>
-
-        </div>
-
-        {/* NETWORKING + GOLD */}
-
-        <div className="grid gap-10 lg:grid-cols-2">
-
-          {/* Networking */}
-
-          <div>
-
-            <div className="mb-6 flex items-center justify-center gap-3">
-
-              <Globe className="text-cyan-400" size={28} />
-
-              <h3 className="text-3xl font-bold text-cyan-300">
-                Networking Partner
-              </h3>
-
-            </div>
-
-            <div className="group flex h-52 items-center justify-center rounded-3xl border border-cyan-400/20 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_45px_rgba(0,212,255,.25)]">
-
-              <Image
-                src={networkingPartner.logo}
-                alt={networkingPartner.name}
-                width={260}
-                height={120}
-                className="object-contain transition duration-500 group-hover:scale-105"
-              />
-
-            </div>
-
-          </div>
-
-          {/* Gold */}
-
-          <div>
-
-            <div className="mb-6 flex items-center justify-center gap-3">
-
-              <Star className="text-yellow-400" size={28} />
-
-              <h3 className="text-3xl font-bold text-yellow-400">
-                Gold Partner
-              </h3>
-
-            </div>
-
+          <div className="mx-auto max-w-4xl">
             <div className="group flex h-52 items-center justify-center rounded-3xl border border-yellow-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400 hover:shadow-[0_0_50px_rgba(255,196,0,.25)]">
-
               <Image
                 src={goldPartner.logo}
                 alt={goldPartner.name}
@@ -194,13 +119,60 @@ export default function PartnersSection() {
                 height={120}
                 className="object-contain transition duration-500 group-hover:scale-105"
               />
-
             </div>
-
           </div>
-
         </div>
 
+        {/* NETWORKING PARTNER */}
+
+        <div className="mb-20">
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <Globe className="text-cyan-400" size={28} />
+            <h3 className="text-3xl font-bold text-cyan-300">
+              Networking Partner
+            </h3>
+          </div>
+
+          <div className="mx-auto max-w-4xl">
+            <div className="group flex h-52 items-center justify-center rounded-3xl border border-cyan-400/20 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_45px_rgba(0,212,255,.25)]">
+              <Image
+                src={networkingPartner.logo}
+                alt={networkingPartner.name}
+                width={260}
+                height={120}
+                className="object-contain transition duration-500 group-hover:scale-105"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* ASSOCIATION PARTNERS */}
+
+        <div>
+          <div className="mb-8 flex items-center justify-center gap-3">
+            <Users className="text-cyan-400" size={28} />
+            <h3 className="text-3xl font-bold text-cyan-300">
+              Association Partners
+            </h3>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            {associationPartners.map((partner) => (
+              <div
+                key={partner.name}
+                className="group flex h-52 items-center justify-center rounded-3xl border border-cyan-400/20 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_45px_rgba(0,212,255,.25)]"
+              >
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={250}
+                  height={120}
+                  className="max-h-28 w-auto object-contain transition duration-500 group-hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

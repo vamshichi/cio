@@ -174,7 +174,7 @@ Connect with technology leaders driving enterprise growth.
         />
       </svg>
 
-      info@confexmeet.com
+      enquiry@confexmeet.com
     </a>
 
     <a
