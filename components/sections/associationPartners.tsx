@@ -28,6 +28,11 @@ const goldPartner = {
   logo: "/sponsors/np3.png",
 };
 
+const bronzePartner = {
+  name: "Your Bronze Partner",
+  logo: "/sponsors/wx-one.jpeg", // Update with your logo
+};
+
 export default function PartnersSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#04162d] via-[#071b35] to-[#0b2347] py-24">
@@ -122,6 +127,29 @@ export default function PartnersSection() {
             </div>
           </div>
         </div>
+
+        {/* BRONZE PARTNER */}
+
+<div className="mb-20">
+  <div className="mb-6 flex items-center justify-center gap-3">
+    <Award className="text-amber-600" size={28} />
+    <h3 className="text-3xl font-bold text-amber-500">
+      Bronze Partner
+    </h3>
+  </div>
+
+  <div className="mx-auto max-w-4xl">
+    <div className="group flex h-52 items-center justify-center rounded-3xl border border-amber-600/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-amber-500 hover:shadow-[0_0_50px_rgba(180,83,9,.25)]">
+      <Image
+        src={bronzePartner.logo}
+        alt={bronzePartner.name}
+        width={260}
+        height={120}
+        className="object-contain transition duration-500 group-hover:scale-105"
+      />
+    </div>
+  </div>
+</div>
 
         {/* NETWORKING PARTNER */}
 
