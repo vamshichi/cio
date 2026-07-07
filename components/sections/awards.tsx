@@ -232,6 +232,7 @@ function NominationModal({ onClose }: { onClose: () => void }) {
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, boolean>>>({})
   const [submitted, setSubmitted] = useState(false)
   const [step, setStep] = useState(1)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const inputClass =
     'w-full rounded-xl bg-white/5 border border-white/10 px-4 py-2.5 text-sm text-white placeholder-slate-600 outline-none focus:border-cyan-500/50 transition-colors'
@@ -275,96 +276,64 @@ function NominationModal({ onClose }: { onClose: () => void }) {
   function back() { setStep((s) => s - 1) }
 
 
-async function handleSubmit() {
-  if (!validateStep(4)) return
+  async function handleSubmit() {
+    if (!validateStep(4)) return
 
-  try {
-    let utmSource = ''
-    let utmMedium = ''
-    let utmCampaign = ''
-    let utmContent = ''
+    setIsSubmitting(true)
 
-    // Normal URL format
-    const searchParams = new URLSearchParams(
-      window.location.search
-    )
+    try {
+      let utmSource = ''
+      let utmMedium = ''
+      let utmCampaign = ''
+      let utmContent = ''
 
-    utmSource =
-      searchParams.get('utm_source') || ''
+      const searchParams = new URLSearchParams(window.location.search)
 
-    utmMedium =
-      searchParams.get('utm_medium') || ''
+      utmSource = searchParams.get('utm_source') || ''
+      utmMedium = searchParams.get('utm_medium') || ''
+      utmCampaign = searchParams.get('utm_campaign') || ''
+      utmContent = searchParams.get('utm_content') || ''
 
-    utmCampaign =
-      searchParams.get('utm_campaign') || ''
+      if (!utmSource && window.location.hash.includes('?')) {
+        const queryString = window.location.hash.split('?')[1]
+        const hashParams = new URLSearchParams(queryString)
 
-    utmContent =
-      searchParams.get('utm_content') || ''
+        utmSource = hashParams.get('utm_source') || ''
+        utmMedium = hashParams.get('utm_medium') || ''
+        utmCampaign = hashParams.get('utm_campaign') || ''
+        utmContent = hashParams.get('utm_content') || ''
+      }
 
-    // Hash URL format
-    if (
-      !utmSource &&
-      window.location.hash.includes('?')
-    ) {
-      const queryString =
-        window.location.hash.split('?')[1]
+      const payload = {
+        ...form,
+        utmSource,
+        utmMedium,
+        utmCampaign,
+        utmContent,
+      }
 
-      const hashParams =
-        new URLSearchParams(queryString)
-
-      utmSource =
-        hashParams.get('utm_source') || ''
-
-      utmMedium =
-        hashParams.get('utm_medium') || ''
-
-      utmCampaign =
-        hashParams.get('utm_campaign') || ''
-
-      utmContent =
-        hashParams.get('utm_content') || ''
-    }
-
-    const payload = {
-      ...form,
-
-      utmSource,
-      utmMedium,
-      utmCampaign,
-      utmContent,
-    }
-
-    console.log(
-      'AWARD NOMINATION PAYLOAD',
-      payload
-    )
-
-    const response = await fetch(
-      '/api/nominate',
-      {
+      const response = await fetch('/api/nominate', {
         method: 'POST',
         headers: {
-          'Content-Type':
-            'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitted(true)
+      } else {
+        alert(result.message)
       }
-    )
-
-    const result = await response.json()
-
-    if (result.success) {
-      setSubmitted(true)
-    } else {
-      alert(result.message)
+    } catch (error) {
+      console.error(error)
+      alert('Something went wrong. Please try again.')
+    } finally {
+      setIsSubmitting(false)
     }
-  } catch (error) {
-    console.error(error)
-    alert(
-      'Something went wrong. Please try again.'
-    )
   }
-}
 
 
 
@@ -572,8 +541,41 @@ async function handleSubmit() {
                   Next →
                 </button>
               ) : (
-                <button onClick={handleSubmit} className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-2.5 text-sm font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-[0_6px_20px_rgba(0,174,255,0.25)]">
-                  Submit Nomination
+                <button
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className={`flex items-center justify-center gap-2 rounded-xl px-8 py-2.5 text-sm font-semibold text-white transition-all ${isSubmitting
+                      ? 'cursor-not-allowed bg-slate-600'
+                      : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:scale-[1.02] hover:shadow-[0_6px_20px_rgba(0,174,255,0.25)]'
+                    }`}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <svg
+                        className="h-5 w-5 animate-spin"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                        />
+                      </svg>
+                      Submitting...
+                    </>
+                  ) : (
+                    'Submit Nomination'
+                  )}
                 </button>
               )}
             </div>
@@ -591,13 +593,13 @@ export function Awards() {
 
 
   useEffect(() => {
-  console.log('Current hash:', window.location.hash)
+    console.log('Current hash:', window.location.hash)
 
-  if (window.location.hash === '#awards-form') {
-    console.log('Opening modal')
-    setShowModal(true)
-  }
-}, [])
+    if (window.location.hash === '#awards-form') {
+      console.log('Opening modal')
+      setShowModal(true)
+    }
+  }, [])
 
   return (
     <main id='awards' className="relative min-h-screen bg-slate-950 px-6 py-20 overflow-hidden">
@@ -692,10 +694,10 @@ export function Awards() {
           <p className="mt-3 text-sm text-cyan-400 font-medium">Nomination Deadline: 15 July 2026</p>
           <button
             onClick={() => {
-    window.location.hash = 'awards-form'
-    setShowModal(true)
-  }}
-             
+              window.location.hash = 'awards-form'
+              setShowModal(true)
+            }}
+
             className="mt-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-4 font-semibold text-white transition-all hover:scale-105 hover:shadow-[0_10px_30px_rgba(0,174,255,0.3)]"
           >
             Submit Your Nomination →
