@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { Award, Users, Globe, Star } from "lucide-react";
 import PartnerRegistrationModal from "./PartnerRegistrationModal";
@@ -39,6 +40,28 @@ const bronzePartner = {
 
 export default function PartnersSection() {
   const [openModal, setOpenModal] = useState(false);
+
+const router = useRouter();
+const pathname = usePathname();
+
+useEffect(() => {
+  const checkHash = () => {
+    if (window.location.hash === "#centricsoftware-registration") {
+      setOpenModal(true);
+    } else {
+      setOpenModal(false);
+    }
+  };
+
+  checkHash();
+
+  window.addEventListener("hashchange", checkHash);
+
+  return () => {
+    window.removeEventListener("hashchange", checkHash);
+  };
+}, []);
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#04162d] via-[#071b35] to-[#0b2347] py-24">
 
@@ -105,7 +128,15 @@ export default function PartnersSection() {
 </p>
 
 <button
-  onClick={() => setOpenModal(true)}
+  onClick={() => {
+  window.history.pushState(
+    {},
+    "",
+    `${window.location.pathname}#centricsoftware-registration`
+  );
+
+  setOpenModal(true);
+}}
   className="mt-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-3 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,212,255,.35)]"
 >
   Register Now
@@ -216,7 +247,10 @@ export default function PartnersSection() {
       </div>
       <PartnerRegistrationModal
   open={openModal}
-  onClose={() => setOpenModal(false)}
+  onClose={() => {
+    window.history.pushState({}, "", window.location.pathname);
+    setOpenModal(false);
+  }}
 />
     </section>
   );
