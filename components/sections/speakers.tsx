@@ -100,6 +100,18 @@ const speakers = [
     title:'SSVP / CISO',
     company:'JioStar',
     image:'/speakers/Mohd. Shadab.jpg',
+  },
+  {
+    name:'Pankaj K',
+    title:'Chief Product & AI Officer',
+    company:'Eye-Q Vision Pvt Ltd',
+    image:'/speakers/Pankaj K.jpg',
+  },
+  {
+    name:'Prasad Dhumal',
+    title:'VP – IT',
+    company:'DHL Express India',
+    image:'/speakers/Prasad Dhumal.jpeg',
   }
 ]
 

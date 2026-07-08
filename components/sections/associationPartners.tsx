@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { Award, Users, Globe, Star } from "lucide-react";
+import PartnerRegistrationModal from "./PartnerRegistrationModal";
 
 const presentingPartner = {
   name: "Centric Software",
@@ -20,7 +24,7 @@ const associationPartners = [
 
 const networkingPartner = {
   name: "Arctic Turns",
-  logo: "/sponsors/Mid-Logo.jpg",
+  logo: "/sponsors/arctic_turns_logo.jpg",
 };
 
 const goldPartner = {
@@ -34,6 +38,7 @@ const bronzePartner = {
 };
 
 export default function PartnersSection() {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#04162d] via-[#071b35] to-[#0b2347] py-24">
 
@@ -96,8 +101,15 @@ export default function PartnersSection() {
               <div className="mt-8 h-px w-40 bg-yellow-400/30" />
 
               <p className="mt-6 text-2xl font-semibold text-white">
-                {presentingPartner.subtitle}
-              </p>
+  {presentingPartner.subtitle}
+</p>
+
+<button
+  onClick={() => setOpenModal(true)}
+  className="mt-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-3 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,212,255,.35)]"
+>
+  Register Now
+</button>
 
             </div>
 
@@ -105,7 +117,7 @@ export default function PartnersSection() {
 
         </div>
 
-              {/* GOLD PARTNER */}
+        {/* GOLD PARTNER */}
 
         <div className="mb-20">
           <div className="mb-6 flex items-center justify-center gap-3">
@@ -130,26 +142,26 @@ export default function PartnersSection() {
 
         {/* BRONZE PARTNER */}
 
-<div className="mb-20">
-  <div className="mb-6 flex items-center justify-center gap-3">
-    <Award className="text-amber-600" size={28} />
-    <h3 className="text-3xl font-bold text-amber-500">
-      Bronze Partner
-    </h3>
-  </div>
+        <div className="mb-20">
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <Award className="text-amber-600" size={28} />
+            <h3 className="text-3xl font-bold text-amber-500">
+              Bronze Partner
+            </h3>
+          </div>
 
-  <div className="mx-auto max-w-4xl">
-    <div className="group flex h-52 items-center justify-center rounded-3xl border border-amber-600/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-amber-500 hover:shadow-[0_0_50px_rgba(180,83,9,.25)]">
-      <Image
-        src={bronzePartner.logo}
-        alt={bronzePartner.name}
-        width={260}
-        height={120}
-        className="object-contain transition duration-500 group-hover:scale-105"
-      />
-    </div>
-  </div>
-</div>
+          <div className="mx-auto max-w-4xl">
+            <div className="group flex h-52 items-center justify-center rounded-3xl border border-amber-600/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-amber-500 hover:shadow-[0_0_50px_rgba(180,83,9,.25)]">
+              <Image
+                src={bronzePartner.logo}
+                alt={bronzePartner.name}
+                width={260}
+                height={120}
+                className="object-contain transition duration-500 group-hover:scale-105"
+              />
+            </div>
+          </div>
+        </div>
 
         {/* NETWORKING PARTNER */}
 
@@ -202,6 +214,10 @@ export default function PartnersSection() {
           </div>
         </div>
       </div>
+      <PartnerRegistrationModal
+  open={openModal}
+  onClose={() => setOpenModal(false)}
+/>
     </section>
   );
 }
