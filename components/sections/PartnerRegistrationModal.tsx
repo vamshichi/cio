@@ -79,7 +79,7 @@ export default function PartnerRegistrationModal({
                 <span className="font-semibold text-white">
                   Presenting Partner
                 </span>{" "}
-                for Velocity 360°. Complete the form below and our partnership
+                for Velocity 360°. Complete the form below and our
                 team will contact you shortly.
               </p>
 
