@@ -3,7 +3,7 @@
 import { Header } from '@/components/sections/header'
 import { Hero } from '@/components/sections/hero'
 import { About } from '@/components/sections/about'
-import { Agenda } from '@/components/sections/agenda'
+import { Agenda } from '@/components/sections/mainAgenda'
 import { Speakers } from '@/components/sections/speakers'
 import { Partners } from '@/components/sections/partners'
 import { Awards } from '@/components/sections/awards'
