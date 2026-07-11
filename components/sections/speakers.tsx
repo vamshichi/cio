@@ -65,12 +65,12 @@ const speakers = [
     company: 'International Speaker - Microsoft',
     image: '/speakers/Srishti Gupta.jpg',
   },
-  {
-    name: 'Praveen Kumar M.',
-    title: 'Country Security Manager & Head of Security',
-    company: 'Airbus Group',
-    image: '/speakers/Praveen Kumar Motupalli - Airbus.jpg',
-  },
+  // {
+  //   name: 'Praveen Kumar M.',
+  //   title: 'Country Security Manager & Head of Security',
+  //   company: 'Airbus Group',
+  //   image: '/speakers/Praveen Kumar Motupalli - Airbus.jpg',
+  // },
   {
     name: 'Naveen Dachuri',
     title: 'Cofounder & CTO',
@@ -112,6 +112,12 @@ const speakers = [
     title:'VP – IT',
     company:'DHL Express India',
     image:'/speakers/Prasad Dhumal.jpeg',
+  },
+  {
+    name:'Arnab Sarkar',
+    title:'Director',
+    company:'Western Fintrade',
+    image:'/speakers/Arnab Sarkar.png',
   }
 ]
 

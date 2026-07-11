@@ -38,6 +38,19 @@ const bronzePartner = {
   logo: "/sponsors/wx-one.jpeg", // Update with your logo
 };
 
+const technologyPartners = [
+  {
+    title: "Official Tech Training Partner",
+    name: "CloudThat",
+    logo: "/partners/cloudthat.png", // add this logo
+  },
+  {
+    title: "Digital Transformation Partner",
+    name: "NeoSOFT",
+    logo: "/partners/neosoft.png", // add this logo
+  },
+];
+
 export default function PartnersSection() {
   const [openModal, setOpenModal] = useState(false);
 
@@ -170,6 +183,40 @@ useEffect(() => {
             </div>
           </div>
         </div>
+
+        {/* TECHNOLOGY PARTNERS */}
+
+<div className="mb-20">
+  <div className="mb-8 flex items-center justify-center gap-3">
+    <Globe className="text-cyan-400" size={28} />
+    <h3 className="text-3xl font-bold text-cyan-300">
+      Technology Partners
+    </h3>
+  </div>
+
+  <div className="grid gap-8 md:grid-cols-2">
+    {technologyPartners.map((partner) => (
+      <div
+        key={partner.name}
+        className="group rounded-3xl border border-cyan-400/20 bg-white/5 p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_45px_rgba(0,212,255,.25)]"
+      >
+        <p className="mb-6 text-center text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
+          {partner.title}
+        </p>
+
+        <div className="flex h-28 items-center justify-center">
+          <Image
+            src={partner.logo}
+            alt={partner.name}
+            width={220}
+            height={90}
+            className="max-h-20 w-auto object-contain transition duration-500 group-hover:scale-105"
+          />
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
         {/* BRONZE PARTNER */}
 
