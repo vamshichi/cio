@@ -42,7 +42,7 @@ const technologyPartners = [
   {
     title: "Official Tech Training Partner",
     name: "CloudThat",
-    logo: "/partners/cloudthat.png", // add this logo
+    logo: "/partners/cloudthat.jpeg", // add this logo
   },
   {
     title: "Digital Transformation Partner",
