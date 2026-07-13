@@ -52,13 +52,13 @@ export async function POST(req: NextRequest) {
     await transporter.sendMail({
       from: `"Velocity 360°" <${process.env.EMAIL_USER}>`,
       to: "enquiry@confexmeet.com,ramesh.confexmeet@gmail.com",
-      subject: "New Velocity 360° Presenting Partner Registration",
+      subject: "New Velocity 360° Registration",
 
       html: `
       <div style="font-family:Arial,sans-serif;padding:30px;background:#f8fafc;">
 
       <h2 style="color:#0ea5e9;margin-bottom:25px;">
-      New Presenting Partner Registration
+      New Registration
       </h2>
 
       <table
@@ -206,10 +206,7 @@ font-size:16px;
 line-height:1.8;
 color:#475569;
 ">
-Thank you for registering your interest in becoming the
-<strong>Presenting Partner</strong>
-for the
-<strong>Velocity 360° Executive Roundtable.</strong>
+Thank you for registering 
 </p>
 
 <p
@@ -353,7 +350,7 @@ Organized by <strong>ConfexMeet</strong>
     });
 
   } catch (error) {
-    console.error("Partner Registration Error:", error);
+    console.error("Registration Error:", error);
 
     return NextResponse.json(
       {

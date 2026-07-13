@@ -140,20 +140,20 @@ export default function PartnerRegistrationModal({
                 Executive Roundtable
               </p>
 
-              <div className="mt-6 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-6 py-2">
+              {/* <div className="mt-6 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-6 py-2">
                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300 md:text-sm">
                   Presenting Partner Registration
                 </span>
-              </div>
+              </div> */}
 
-              <p className="mt-6 max-w-2xl text-center text-sm leading-7 text-white/70 md:text-base">
-                Thank you for your interest in becoming the exclusive{" "}
+              {/* <p className="mt-6 max-w-2xl text-center text-sm leading-7 text-white/70 md:text-base">
+                Thank you for your interest 
                 <span className="font-semibold text-white">
                   Presenting Partner
                 </span>{" "}
-                for Velocity 360°. Complete the form below and our
-                partnerships team will contact you shortly.
-              </p>
+                 our
+                   team will contact you shortly.
+              </p> */}
 
             </div>
           </div>
