@@ -51,6 +51,11 @@ const technologyPartners = [
   },
 ];
 
+const silverPartner = {
+  name: "Your Silver Partner",
+  logo: "/sponsors/Grey logo tagline.png", // Update with your logo
+};
+
 export default function PartnersSection() {
   const [openModal, setOpenModal] = useState(false);
 
@@ -180,6 +185,31 @@ useEffect(() => {
                 height={120}
                 className="object-contain transition duration-500 group-hover:scale-105"
               />
+            </div>
+          </div>
+        </div>
+
+        {/* silver partner */}
+
+        <div className="mb-20">
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <Star className="text-slate-400" size={28} />
+            <h3 className="text-3xl font-bold text-slate-400">
+              Silver Partner
+            </h3>
+          </div>
+
+          <div className="mx-auto max-w-4xl">
+            <div className="group flex h-52 items-center justify-center rounded-3xl border border-slate-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-slate-400 hover:shadow-[0_0_50px_rgba(192,192,192,.25)]">
+            <div className="flex h-28 items-center justify-center bg-white p-4 rounded-lg">
+              <Image
+                src={silverPartner.logo}
+                alt={silverPartner.name}
+                width={260}
+                height={120}
+                className="object-contain transition duration-500 group-hover:scale-105"
+              />
+              </div>
             </div>
           </div>
         </div>
