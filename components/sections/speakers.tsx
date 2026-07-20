@@ -59,12 +59,12 @@ const speakers = [
     company: 'Healthcare Global Enterprise',
     image: '/speakers/roshan.png',
   },
-  {
-    name: 'Srishti Gupta - IDAS',
-    title: 'Ministry of Defence',
-    company: 'International Speaker - Microsoft',
-    image: '/speakers/Srishti Gupta.jpg',
-  },
+  // {
+  //   name: 'Srishti Gupta - IDAS',
+  //   title: 'Ministry of Defence',
+  //   company: 'International Speaker - Microsoft',
+  //   image: '/speakers/Srishti Gupta.jpg',
+  // },
   // {
   //   name: 'Praveen Kumar M.',
   //   title: 'Country Security Manager & Head of Security',
@@ -89,12 +89,12 @@ const speakers = [
     company: 'Global Automotive Company',
     image: '/speakers/Dr. Ramkumar.jpg',
   },
-  {
-    name:'Abhishek Ojha',
-    title:'Senior Vice President | Head – Enterprise Architecture | Chief Enterprise Architect',
-    company:'Ujjivan Small Finance Bank',
-    image:'/speakers/Abhishek.jpg',
-  },
+  // {
+  //   name:'Abhishek Ojha',
+  //   title:'Senior Vice President | Head – Enterprise Architecture | Chief Enterprise Architect',
+  //   company:'Ujjivan Small Finance Bank',
+  //   image:'/speakers/Abhishek.jpg',
+  // },
   {
     name:'Mohd. Shadab',
     title:'SSVP / CISO',
