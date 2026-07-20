@@ -118,6 +118,12 @@ const speakers = [
     title:'Director',
     company:'Western Fintrade',
     image:'/speakers/Arnab Sarkar.png',
+  },
+  {
+    name:'Ashwin Chandrasekar',
+    title:'CIO',
+    company:'Table Space',
+    image:'/speakers/Ashwin C.png',
   }
 ]
 
