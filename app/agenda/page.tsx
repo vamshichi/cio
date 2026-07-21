@@ -1,11 +1,15 @@
 "use client";
 
-import PdfViewer from "@/components/sections/PdfViewer";
+import { useEffect } from "react";
 
 export default function AgendaPage() {
+  useEffect(() => {
+    window.location.href = "/pdf/agenda.pdf";
+  }, []);
+
   return (
-    <main className="min-h-screen bg-gray-100 py-8">
-      <PdfViewer />
-    </main>
+    <div className="flex h-screen items-center justify-center">
+      <p className="text-lg">Opening agenda...</p>
+    </div>
   );
 }
