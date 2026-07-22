@@ -182,7 +182,7 @@ useEffect(() => {
   <div className="mb-6 flex items-center justify-center gap-3">
     <Star className="text-yellow-400" size={28} />
     <h3 className="text-3xl font-bold text-yellow-400">
-      Gold Partner
+      Gold Partners
     </h3>
   </div>
 
