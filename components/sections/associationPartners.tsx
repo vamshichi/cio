@@ -40,6 +40,10 @@ const goldPartner = [
   {
   name: "TechDwarfs",
   logo: "/partners/Asset2.png",
+  },
+  {
+    name: "snowflake",
+  logo: "/partners/snowflake.jpeg",
   }
 ];
 
@@ -201,7 +205,7 @@ useEffect(() => {
     </div>
 
     {/* Remaining Partners */}
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
       {goldPartner.slice(1).map((partner) => (
         <div
           key={partner.name}
