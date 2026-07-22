@@ -28,10 +28,20 @@ const networkingPartner = {
   logo: "/sponsors/arctic_turns_logo.jpg",
 };
 
-const goldPartner = {
+const goldPartner = [
+  {
   name: "Centric Software",
   logo: "/sponsors/np3.png",
-};
+  },
+  {
+  name: "AgentOven",
+  logo: "/partners/Asset.png",
+  },
+  {
+  name: "TechDwarfs",
+  logo: "/partners/Asset2.png",
+  }
+];
 
 const bronzePartner = {
   name: "Your Bronze Partner",
@@ -169,26 +179,46 @@ useEffect(() => {
         {/* GOLD PARTNER */}
 
         <div className="mb-20">
-          <div className="mb-6 flex items-center justify-center gap-3">
-            <Star className="text-yellow-400" size={28} />
-            <h3 className="text-3xl font-bold text-yellow-400">
-              Gold Partner
-            </h3>
-          </div>
+  <div className="mb-6 flex items-center justify-center gap-3">
+    <Star className="text-yellow-400" size={28} />
+    <h3 className="text-3xl font-bold text-yellow-400">
+      Gold Partner
+    </h3>
+  </div>
 
-          <div className="mx-auto max-w-4xl">
-            <div className="group flex h-52 items-center justify-center rounded-3xl border border-yellow-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400 hover:shadow-[0_0_50px_rgba(255,196,0,.25)]">
-              <Image
-                src={goldPartner.logo}
-                alt={goldPartner.name}
-                width={260}
-                height={120}
-                className="object-contain transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
+  <div className="mx-auto max-w-5xl">
+    {/* First Partner */}
+    <div className="mb-8 flex justify-center">
+      <div className="group flex h-52 w-full max-w-3xl items-center justify-center rounded-3xl border border-yellow-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400 hover:shadow-[0_0_50px_rgba(255,196,0,.25)]">
+        <Image
+          src={goldPartner[0].logo}
+          alt={goldPartner[0].name}
+          width={260}
+          height={120}
+          className="object-contain transition duration-500 group-hover:scale-105"
+        />
+      </div>
+    </div>
+
+    {/* Remaining Partners */}
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {goldPartner.slice(1).map((partner) => (
+        <div
+          key={partner.name}
+          className="group flex h-44 items-center justify-center rounded-3xl border border-yellow-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400 hover:shadow-[0_0_50px_rgba(255,196,0,.25)]"
+        >
+  <Image
+    src={partner.logo}
+    alt={partner.name}
+    fill
+    className="object-contain p-6"
+  />
+
         </div>
-
+      ))}
+    </div>
+  </div>
+</div>
         {/* silver partner */}
 
         <div className="mb-20">
