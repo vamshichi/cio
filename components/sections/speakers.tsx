@@ -124,6 +124,12 @@ const speakers = [
     title:'CIO',
     company:'Table Space',
     image:'/speakers/Ashwin C.png',
+  },
+  {
+    name:'Shuvobroto Bhattacharyya',
+    title:'Chief Manager – SCM',
+    company:'Reliance Retail',
+    image:'/speakers/Shuvobroto.jpeg',
   }
 ]
 
