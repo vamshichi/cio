@@ -13,6 +13,7 @@ import { Footer } from '@/components/sections/footer'
 import { Gallery } from '@/components/sections/Gallery'
 import AssociationPartners from '@/components/sections/associationPartners'
 import ChiefGuestSection from '@/components/sections/ChiefGuestSection'
+import AgendaSection from "@/components/sections/AgendaSection"
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
         <Hero />
         <ChiefGuestSection />
         <About />
-        {/* <Agenda /> */}
+        <AgendaSection />
         <Speakers />
         <AssociationPartners />
         <Partners />
