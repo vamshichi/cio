@@ -145,7 +145,7 @@ const agenda = [
 
 export default function AgendaSection() {
   return (
-    <section className="bg-slate-50 py-24">
+    <section id="agenda" className="bg-slate-50 py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-16 text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
