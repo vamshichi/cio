@@ -31,28 +31,28 @@ const agendaItems = [
   },
   {
     time: '09:15 AM',
-    title: 'AI Leadership Keynote',
+    title: 'Opening Keynote',
     description: 'The Modern CIO: Leading Cross-Industry Transformation in an AI-First World.',
-    icon: FiMic,
+    icon: FiUsers,
     category: 'Keynote',
   },
   {
     time: '10:00 AM',
-    title: 'Enterprise AI Transformation Panel',
+    title: 'Leadership Panel 1',
     description: 'Scaling AI Across the Enterprise: From Pilots to Business Impact.',
     icon: FiUsers,
     category: 'Panel',
   },
   {
     time: '10:45 AM',
-    title: 'Cloud, Data & FinOps Leadership Panel',
-    description: 'Cloud, Data & FinOps: Building Intelligent Enterprises.',
+    title: 'Leadership Panel 2',
+    description: 'Cloud, Data & FinOps: Building Intelligent Enterprises Across Industries.',
     icon: FiCloud,
     category: 'Panel',
   },
   {
     time: '11:30 AM',
-    title: 'Cybersecurity & Digital Resilience Panel',
+    title: 'Networking Coffee Break',
     description: 'Meaningful peer-to-peer engagement across industries.',
     icon: FiCoffee,
     category: 'Networking',
@@ -60,7 +60,7 @@ const agendaItems = [
   {
     time: '12:15 PM',
     title: 'Executive Fireside Chat',
-    description: 'Legacy to Digital Core: Transformation Strategies That Work.',
+    description: 'Legacy to Digital Core: Transformation Strategies That Work Across Industries.',
     icon: FiMessageCircle,
     category: 'Fireside',
   },
@@ -74,43 +74,43 @@ const agendaItems = [
   {
     time: '02:15 PM',
     title: 'Strategic Networking Lunch',
-    description: 'Cross-industry roundtables for deeper collaboration.',
+    description: 'Cross-industry roundtables for deeper collaboration and partnerships.',
     icon: FiCoffee,
     category: 'Networking',
   },
   {
     time: '03:00 PM',
     title: 'Spotlight Keynote',
-    description: 'Winning Customers Across Industries with AI & Data.',
+    description: 'The Experience Economy: Winning Customers Across Industries with AI & Data.',
     icon: FiTarget,
     category: 'Keynote',
   },
   {
     time: '03:45 PM',
     title: 'Cross-Industry Panel',
-    description: 'Smart Operations & Digital Supply Chains.',
+    description: 'Smart Operations & Digital Supply Chains: Lessons Across Industries.',
     icon: FiShare2,
     category: 'Panel',
   },
   {
     time: '04:30 PM',
     title: 'Keynote Address',
-    description: 'Modernisation Without Limits: Building Scalable Digital Enterprises.',
+    description: 'Modernisation Without Limits: Building Scalable Digital Enterprises Across Industries.',
     icon: FiBarChart2,
     category: 'Keynote',
   },
   {
     time: '05:15 PM',
-    title: 'Leadership Excellence Panel',
-    description: 'Cybersecurity & Resilience Across Industries.',
+    title: 'Cross-Industry Leadership Panel',
+    description: 'Cybersecurity & Resilience: Securing the Digital Enterprise Across Industries.',
     icon: FiShield,
     category: 'Panel',
   },
   {
     time: '06:00 PM',
     title: 'Networking High Tea & Closing',
-    description: 'Where conversations become business opportunities.',
-    icon: FiAward,
+    description: 'Where cross-industry conversations turn into real business opportunities.',
+    icon: FiCoffee,
     category: 'Networking',
   },
 ]
@@ -145,21 +145,15 @@ export function Agenda() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center sm:mb-16 lg:mb-20"
         >
-          <span className="inline-block rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-1.5 text-xs uppercase tracking-[3px] text-cyan-300 sm:px-5 sm:py-2 sm:text-sm">
-            Agenda Overview
-          </span>
-
-          <h2 className="mt-6 text-4xl font-black uppercase leading-none text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            CIO Tech Leadership Conference
-            <span className="ml-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent sm:ml-4">
-              Agenda 2026
-            </span>
+          <h2 className="text-left text-4xl font-medium uppercase leading-none tracking-tight sm:text-5xl md:text-6xl">
+            <span className="text-cyan-400">AGENDA</span>{' '}
+            <span className="text-white">OVERVIEW</span>
           </h2>
 
-          <div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 sm:w-32" />
+          <div className="mt-6 h-1 w-16 bg-cyan-400" />
 
-          <p className="mx-auto mt-6 max-w-2xl text-base text-slate-400 sm:text-lg">
-            Explore the official agenda for the CIO Tech Leadership Conference & Awards Delhi 2026 on 23 July 2026 at Radisson Blu Hotel, Atria Delhi.
+          <p className="mt-5 max-w-3xl text-left text-base text-slate-200 sm:text-lg">
+            A power-packed day of insights, collaboration and leadership.
           </p>
         </motion.div>
 
@@ -184,39 +178,30 @@ export function Agenda() {
                   className="group relative"
                 >
                   {/* ── Desktop layout (md+) ── */}
-                  <div className="hidden md:flex md:items-stretch md:gap-5">
+                  <div className="hidden md:grid md:grid-cols-[74px_112px_minmax(0,1fr)] md:items-center md:gap-0">
 
-                    {/* Icon bubble on the spine */}
-                    <div className="relative z-10 flex-shrink-0">
-                      <div className="flex h-[58px] w-[58px] items-center justify-center rounded-full border border-cyan-500/30 bg-slate-900 transition-all duration-300 group-hover:border-cyan-400 group-hover:bg-cyan-500/10">
-                        <Icon className="text-xl text-cyan-400" />
+                    {/* Icon bubble */}
+                    <div className="relative z-10 flex justify-center">
+                      <div className="flex h-[58px] w-[58px] items-center justify-center rounded-full border border-cyan-400/60 bg-slate-950 transition-all duration-300 group-hover:border-cyan-300 group-hover:bg-cyan-400/10">
+                        <Icon className="text-xl text-cyan-300" />
                       </div>
                     </div>
 
-                    {/* Time label */}
-                    <div className="flex w-[110px] flex-shrink-0 items-center">
-                      <span className="text-base font-semibold tabular-nums text-cyan-300">
-                        <time dateTime="08:00">
-  {item.time}
-</time>
+                    {/* Time */}
+                    <div className="border-r border-white/20 py-5 pl-2">
+                      <span className="text-base font-medium tabular-nums text-cyan-400">
+                        {item.time}
                       </span>
                     </div>
 
-                    {/* Card */}
-                    <div className="flex flex-1 items-center rounded-2xl border border-white/8 bg-white/[0.04] px-6 py-5 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/25 hover:bg-white/[0.07]">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-3">
-                          <h3 className="text-lg font-bold text-white xl:text-xl">
-                            {item.title}
-                          </h3>
-                          <span className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium tracking-wide ${catClass}`}>
-                            {item.category}
-                          </span>
-                        </div>
-                        <p className="mt-1.5 text-sm leading-relaxed text-slate-400 lg:text-base">
-                          {item.description}
-                        </p>
-                      </div>
+                    {/* Content */}
+                    <div className="border-b border-white/15 px-7 py-4 transition-all duration-300 group-hover:border-cyan-400/20">
+                      <h3 className="text-lg font-semibold text-white xl:text-xl">
+                        {item.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-slate-300 lg:text-[15px]">
+                        {item.description}
+                      </p>
                     </div>
 
                   </div>
@@ -236,12 +221,9 @@ export function Agenda() {
 
                     {/* Mobile card */}
                     <div className="mb-1 flex-1 rounded-2xl border border-white/8 bg-white/[0.04] px-4 py-4 backdrop-blur-xl">
-                      <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <div className="mb-2">
                         <span className="text-sm font-semibold tabular-nums text-cyan-300">
                           {item.time}
-                        </span>
-                        <span className={`inline-block rounded-full border px-2 py-0.5 text-[10px] font-medium tracking-wide ${catClass}`}>
-                          {item.category}
                         </span>
                       </div>
                       <h3 className="text-base font-bold leading-snug text-white">
@@ -257,6 +239,16 @@ export function Agenda() {
               )
             })}
           </div>
+        </div>
+
+        {/* ── Closing quote ── */}
+        <div className="mt-10 max-w-sm rounded-2xl border border-cyan-400/70 bg-[#001522]/80 px-7 py-5 shadow-[0_0_30px_rgba(34,211,238,0.06)]">
+          <div className="mb-1 text-4xl leading-none text-cyan-400">“</div>
+          <p className="text-sm leading-7 text-slate-200 sm:text-base">
+            Connect. Collaborate. Create Impact.
+            <br />
+            Across Industries. Beyond Boundaries.
+          </p>
         </div>
 
         {/* ── Bottom gradient fade ── */}

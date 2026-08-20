@@ -47,7 +47,7 @@ export function Header() {
 
   const navItems = [
     { label: 'About', href: '#about', icon: FiInfo },
-    // { label: 'Agenda', href: '#agenda', icon: FiCalendar },
+    { label: 'Agenda', href: '#agenda', icon: FiCalendar },
     // { label: 'Speakers', href: '#speakers', icon: FiUsers },
     { label: 'Awards', href: '#awards', icon: FiAward },
   ]
