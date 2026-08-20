@@ -66,7 +66,7 @@ export function Hero() {
       <div className="absolute inset-0">
         <Image
           src="/heroimage.png"
-          alt="CIO Tech Leadership Conference and Awards Bengaluru 2026 at "
+          alt="CIO Tech Leadership Conference and Awards Delhi 2026 at "
           fill
           priority
           sizes="100vw"
@@ -129,7 +129,7 @@ export function Hero() {
             <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-400" />
 
             <span className="text-sm font-medium tracking-wide text-cyan-300">
-              India' Premier CIO Tech Leadership Conference Now in Bengaluru
+              India' Premier CIO Tech Leadership Conference Now in Delhi
             </span>
           </div>
         </motion.div>
@@ -157,7 +157,7 @@ export function Hero() {
             </span>
 
             <span className="block">
-              Bengaluru 2026
+              Delhi 2026
             </span>
           </h1>
         </motion.div>
@@ -189,7 +189,7 @@ Connect with technology leaders driving enterprise growth.
   transition={{ delay: 0.4, duration: 1 }}
   className="mx-auto mt-4 max-w-5xl text-center text-sm leading-relaxed text-slate-400 md:text-base"
 >
-  The CIO Tech Leadership Conference & Awards Bengaluru 2026 is India's premier
+  The CIO Tech Leadership Conference & Awards Delhi 2026 is India's premier
   technology leadership conference, bringing together CIOs, CTOs, CISOs, CDOs
   and enterprise technology leaders to explore Artificial Intelligence, Digital
   Transformation, Cybersecurity, Cloud Innovation and business growth.
@@ -226,7 +226,7 @@ Connect with technology leaders driving enterprise growth.
             <div className="flex items-center gap-2 text-slate-300">
               <FiMapPin />
               <address className="not-italic">
-                Radisson Blu Hotel, Atria Bengaluru
+                Radisson Blu Hotel, Atria Delhi
               </address>
             </div>
 
@@ -250,7 +250,7 @@ Connect with technology leaders driving enterprise growth.
           className="mt-12 flex flex-wrap justify-center gap-4"
         >
           <Button
-            aria-label="Register as Delegate for CIO Tech Leadership Conference Bengaluru 2026"
+            aria-label="Register as Delegate for CIO Tech Leadership Conference Delhi 2026"
             size="lg"
             className="
     group
@@ -270,7 +270,7 @@ Connect with technology leaders driving enterprise growth.
           </Button>
 
           <Button
-            aria-label="Become Sponsor for CIO Tech Leadership Conference Bengaluru 2026"
+            aria-label="Become Sponsor for CIO Tech Leadership Conference Delhi 2026"
             variant="outline"
             size="lg"
             className="

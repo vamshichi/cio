@@ -118,7 +118,7 @@ export function Partners() {
             >
               <Image
                 src={partner.logo}
-                alt={`${partner.name} - Strategic Partner of CIO Tech Leadership Conference & Awards Bengaluru 2026`}
+                alt={`${partner.name} - Strategic Partner of CIO Tech Leadership Conference & Awards Delhi 2026`}
                 width={160}
                 height={64}
               />

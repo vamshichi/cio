@@ -198,7 +198,7 @@ Connect with technology leaders driving enterprise growth.
 
       +91 7975 429 127
     </a>
-   <a
+   {/* <a
   href="https://www.google.com/maps/place/Radisson+Blu+Hotel,+Atria+Bengaluru/@12.980235,77.586061,17z/data=!3m1!4b1!4m9!3m8!1s0x3bae166d3d785ec7:0xe216f7625f066e10!5m2!4m1!1i2!8m2!3d12.980235!4d77.586061!16s%2Fg%2F1tls18p_?entry=ttu"
   target="_blank"
   rel="noopener noreferrer"
@@ -226,7 +226,7 @@ Connect with technology leaders driving enterprise growth.
   </svg>
 
   <span>Radisson Blu Hotel, Atria Bengaluru</span>
-</a>
+</a> */}
   </div>
 </div>
   </div>

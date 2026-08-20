@@ -201,7 +201,7 @@ export function Speakers() {
                 <div className="relative h-40 w-full overflow-hidden bg-slate-800 sm:h-48 lg:h-52">
                   <Image
                     src={speaker.image}
-                    alt={`${speaker.name} - ${speaker.title} at ${speaker.company} speaking at CIO Tech Leadership Conference & Awards Bengaluru 2026`}
+                    alt={`${speaker.name} - ${speaker.title} at ${speaker.company} speaking at CIO Tech Leadership Conference & Awards Delhi 2026`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />

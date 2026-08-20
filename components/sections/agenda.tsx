@@ -159,7 +159,7 @@ export function Agenda() {
           <div className="mx-auto mt-5 h-1 w-24 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 sm:w-32" />
 
           <p className="mx-auto mt-6 max-w-2xl text-base text-slate-400 sm:text-lg">
-            Explore the official agenda for the CIO Tech Leadership Conference & Awards Bengaluru 2026 on 23 July 2026 at Radisson Blu Hotel, Atria Bengaluru.
+            Explore the official agenda for the CIO Tech Leadership Conference & Awards Delhi 2026 on 23 July 2026 at Radisson Blu Hotel, Atria Delhi.
           </p>
         </motion.div>
 

@@ -147,14 +147,14 @@ export function About() {
           <h2 className="mt-7 text-5xl font-black tracking-tight text-slate-100 md:text-6xl">
             CIO Tech Leadership Conference & Awards {' '}
             <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-500 bg-clip-text text-transparent">
-              & Bengaluru 2026
+              & Delhi 2026
             </span>
           </h2>
           <Divider />
           <p>
             India's most influential CIOs, CTOs, CISOs,
             CDOs and technology leaders converge at
-            Bengaluru's premier Technology Leadership
+            Delhi's premier Technology Leadership
             Conference to explore Artificial Intelligence,
             Digital Transformation, Cybersecurity,
             Cloud Innovation and Enterprise Leadership.
@@ -219,14 +219,14 @@ export function About() {
 
         </div>
 
-        {/* ── Why Bengaluru ── */}
+        {/* ── Why Delhi ── */}
         <motion.div {...fadeUp()} className="mt-32 ">
           <div className="text-center">
             <Eyebrow>Location</Eyebrow>
             <h3 className="mt-6 text-4xl font-black text-slate-100 md:text-5xl">
               Why{' '}
               <span className="bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">
-                Bengaluru
+                Delhi
               </span>
             </h3>
             <Divider />

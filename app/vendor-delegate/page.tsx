@@ -58,7 +58,7 @@ export default function VendorDelegatePage() {
                   <MapPin className="mb-3 h-8 w-8 text-cyan-400" />
                   <p className="text-sm text-slate-400">Venue</p>
                   <h3 className="mt-1 font-semibold">
-                    Radisson Blu Hotel, Atria Bengaluru
+                    Delhi, India
                   </h3>
                 </div>
 
