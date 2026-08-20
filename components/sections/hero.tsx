@@ -150,7 +150,7 @@ export function Hero() {
           className="text-center"
         >
           <h1 className="mx-auto max-w-5xl text-4xl font-black uppercase leading-[0.9] text-white md:text-5xl lg:text-6xl xl:text-[68px]">
-            2nd Edition of
+            3rd Edition of
 
             <span className="hero-glow mt-1 block bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent">
               CIO Tech Leadership Conference & Awards
@@ -214,8 +214,8 @@ Connect with technology leaders driving enterprise growth.
 
             <div className="flex items-center gap-2 text-slate-300">
               <FiCalendar />
-              <time dateTime="2026-07-23">
-                23 July 2026
+              <time dateTime="2026-10-15">
+                15th October 2026
               </time>
             </div>
 

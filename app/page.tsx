@@ -21,11 +21,11 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <ChiefGuestSection />
+        {/* <ChiefGuestSection /> */}
         <About />
         <AgendaSection />
-        <Speakers />
-        <AssociationPartners />
+        {/* <Speakers /> */}
+        {/* <AssociationPartners /> */}
         <Partners />
         
         {/* <Sponsors /> */}

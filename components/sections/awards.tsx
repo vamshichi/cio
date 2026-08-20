@@ -627,7 +627,7 @@ export function Awards() {
           A premier recognition platform celebrating leaders, enterprises, and solution providers driving measurable transformation across AI, cloud, cybersecurity, data, and enterprise modernization across India.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-500">
-          <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />Hosted alongside 2nd CIO Tech Leadership Conference & Awards Bangalore 2026</span>
+          <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />Hosted alongside 3rd CIO Tech Leadership Conference & Awards Bangalore 2026</span>
           <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />Nomination Deadline: <strong className="text-cyan-400">15 July 2026</strong></span>
         </div>
       </section>
@@ -689,7 +689,7 @@ export function Awards() {
             Nominate a Leader Engineering<br />India's Digital Future
           </h3>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
-            Recognition presented live on stage at the 2nd CIO Tech Leadership Conference & Awards Bangalore 2026, before an elite audience of enterprise technology decision-makers.
+            Recognition presented live on stage at the 3rd CIO Tech Leadership Conference & Awards Bangalore 2026, before an elite audience of enterprise technology decision-makers.
           </p>
           <p className="mt-3 text-sm text-cyan-400 font-medium">Nomination Deadline: 15 July 2026</p>
           <button
