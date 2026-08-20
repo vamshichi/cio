@@ -3,7 +3,7 @@
 import { Header } from '@/components/sections/header'
 import { Hero } from '@/components/sections/hero'
 import { About } from '@/components/sections/about'
-import { Agenda } from '@/components/sections/mainAgenda'
+// import { Agenda } from '@/components/sections/mainAgenda'
 import { Speakers } from '@/components/sections/speakers'
 import { Partners } from '@/components/sections/partners'
 import { Awards } from '@/components/sections/awards'
@@ -13,7 +13,7 @@ import { Footer } from '@/components/sections/footer'
 import { Gallery } from '@/components/sections/Gallery'
 import AssociationPartners from '@/components/sections/associationPartners'
 import ChiefGuestSection from '@/components/sections/ChiefGuestSection'
-import AgendaSection from "@/components/sections/AgendaSection"
+import { Agenda }from "@/components/sections/AgendaSection"
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ export default function Home() {
         <Hero />
         {/* <ChiefGuestSection /> */}
         <About />
-        <AgendaSection />
+        <Agenda />
         {/* <Speakers /> */}
         {/* <AssociationPartners /> */}
         <Partners />
