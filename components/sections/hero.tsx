@@ -226,7 +226,7 @@ Connect with technology leaders driving enterprise growth.
             <div className="flex items-center gap-2 text-slate-300">
               <FiMapPin />
               <address className="not-italic">
-                Radisson Blu Hotel, Atria Delhi
+                 Delhi
               </address>
             </div>
 

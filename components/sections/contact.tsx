@@ -225,7 +225,7 @@ Connect with technology leaders driving enterprise growth.
     />
   </svg>
 
-  <span>Radisson Blu Hotel, Atria Bengaluru</span>
+  <span>Delhi</span>
 </a> */}
   </div>
 </div>
