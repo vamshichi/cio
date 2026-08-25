@@ -137,7 +137,7 @@ export async function POST(req: Request) {
 
           <p>
             Our awards committee will review all submissions and shortlisted nominees will be notified ahead of the
-            <strong>CIO Tech Leadership Conference & Awards Bangalore 2026</strong>.
+            <strong>CIO Tech Leadership Conference & Awards Delhi 2026</strong>.
           </p>
 
           <p style="color:#cc0000;"><strong>Nomination Deadline: 15 July 2026</strong></p>

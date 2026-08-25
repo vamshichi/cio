@@ -282,7 +282,7 @@ Thank you for registering for the
 <li>Our team will review your registration.</li>
 <li>You'll receive event updates shortly.</li>
 <li>Venue: </li>
-<li>Date: 23 July 2026</li>
+<li>Date: 23 September  2026</li>
 </ul>
 
 <p>

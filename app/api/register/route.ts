@@ -54,7 +54,7 @@ export async function POST(req: Request) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 680px; color: #222;">
           <h2 style="color:#0066cc;">New Event Registration</h2>
-          <p>A new registration has been submitted for the <strong>CIO Tech Leadership Conference & Awards Bangalore 2026</strong>.</p>
+          <p>A new registration has been submitted for the <strong>CIO Tech Leadership Conference & Awards Delhi 2026</strong>.</p>
 
           <h3 style="margin-top:24px; color:#444;">Basic Information</h3>
           <table style="width:100%; border-collapse:collapse;">
@@ -118,7 +118,7 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `"CIO Tech Leadership Conference" <${process.env.EMAIL_USER}>`,
       to: data.email,
-      subject: 'Registration Received – CIO Tech Leadership Conference & Awards Bangalore 2026',
+      subject: 'Registration Received – CIO Tech Leadership Conference & Awards Delhi 2026',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; color: #222;">
           <h2 style="color:#0066cc;">Thank You for Registering!</h2>
@@ -127,7 +127,7 @@ export async function POST(req: Request) {
 
           <p>
             We have successfully received your registration for the
-            <strong>CIO Tech Leadership Conference & Awards Bangalore 2026</strong>.
+            <strong>CIO Tech Leadership Conference & Awards Delhi 2026</strong>.
           </p>
 
           <p>

@@ -50,7 +50,7 @@ export default function VendorDelegatePage() {
                   <CalendarDays className="mb-3 h-8 w-8 text-cyan-400" />
                   <p className="text-sm text-slate-400">Date</p>
                   <h3 className="mt-1 font-semibold">
-                    23 July 2026
+                    23 September  2026
                   </h3>
                 </div>
 

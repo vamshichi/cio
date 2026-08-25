@@ -57,7 +57,7 @@ const highlights = [
   },
 ]
 
-const bangaloreReasons = [
+const DelhiReasons = [
   { label: "India's Leading Technology Hub", icon: FiZap },
   { label: 'Home To Global Capability Centers', icon: FiGlobe },
   { label: 'Largest Startup Ecosystem', icon: FiTrendingUp },
@@ -238,7 +238,7 @@ export function About() {
           </div>
 
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-            {bangaloreReasons.map((item, i) => {
+            {DelhiReasons.map((item, i) => {
               const Icon = item.icon
               return (
                 <motion.div
