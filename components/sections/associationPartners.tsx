@@ -1,98 +1,35 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
-import { Award, Users, Globe, Star } from "lucide-react";
+import { Award } from "lucide-react";
 import PartnerRegistrationModal from "./PartnerRegistrationModal";
 
-const presentingPartner = {
-  name: "Centric Software",
-  logo: "/sponsors/np3.png",
-  subtitle: "Presents Velocity 360° Roundtable",
-};
-
-const associationPartners = [
-  {
-    name: "MAIT",
-    logo: "/associatpartners/MAIT.jpg",
-  },
-  {
-    name: "AIWoW Council",
-    logo: "/associatpartners/AIWOW COUNCIL.jpg",
-  },
-];
-
-const networkingPartner = {
-  name: "Arctic Turns",
-  logo: "/sponsors/arctic_turns_logo.jpg",
-};
-
-const goldPartner = [
-  {
-  name: "Centric Software",
-  logo: "/sponsors/np3.png",
-  },
-  {
-  name: "AgentOven",
-  logo: "/partners/Asset.png",
-  },
-  {
-  name: "TechDwarfs",
-  logo: "/partners/Asset2.png",
-  },
-  {
-    name: "snowflake",
-  logo: "/partners/snowflake.jpeg",
-  }
-];
-
-const bronzePartner = {
-  name: "Your Bronze Partner",
-  logo: "/sponsors/wx-one.jpeg", // Update with your logo
-};
-
-const technologyPartners = [
-  {
-    title: "Official Tech Training Partner",
-    name: "CloudThat",
-    logo: "/partners/cloudthat.jpeg", // add this logo
-  },
-  {
-    title: "Digital Transformation Partner",
-    name: "NeoSOFT",
-    logo: "/partners/neosoft.png", // add this logo
-  },
-];
-
-const silverPartner = {
-  name: "Your Silver Partner",
-  logo: "/sponsors/Grey logo tagline.png", // Update with your logo
+const strategicPartner = {
+  name: "Your Strategic Partner",
+  logo: "/sponsors/Precision HD-Logo.png",
 };
 
 export default function PartnersSection() {
   const [openModal, setOpenModal] = useState(false);
 
-const router = useRouter();
-const pathname = usePathname();
+  useEffect(() => {
+    const checkHash = () => {
+      if (window.location.hash === "#centricsoftware-registration") {
+        setOpenModal(true);
+      } else {
+        setOpenModal(false);
+      }
+    };
 
-useEffect(() => {
-  const checkHash = () => {
-    if (window.location.hash === "#centricsoftware-registration") {
-      setOpenModal(true);
-    } else {
-      setOpenModal(false);
-    }
-  };
+    checkHash();
 
-  checkHash();
+    window.addEventListener("hashchange", checkHash);
 
-  window.addEventListener("hashchange", checkHash);
-
-  return () => {
-    window.removeEventListener("hashchange", checkHash);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("hashchange", checkHash);
+    };
+  }, []);
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#04162d] via-[#071b35] to-[#0b2347] py-24">
@@ -104,7 +41,6 @@ useEffect(() => {
       <div className="container relative z-10 mx-auto px-4">
 
         {/* Heading */}
-
         <div className="mb-20 text-center">
 
           <span className="inline-flex items-center rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-cyan-300">
@@ -114,7 +50,7 @@ useEffect(() => {
           <h2 className="mt-6 text-5xl font-bold text-white">
             Our{" "}
             <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Partners
+              Partner
             </span>
           </h2>
 
@@ -125,244 +61,66 @@ useEffect(() => {
             meaningful conversations, innovation, executive networking and
             technology leadership.
           </p>
+
         </div>
 
-        {/* PRESENTING PARTNER */}
-
+        {/* STRATEGIC PARTNER */}
         <div className="mb-20">
 
+          {/* Title */}
           <div className="mb-6 flex items-center justify-center gap-3">
 
-            <Award className="text-yellow-400" size={28} />
+            <Award
+              className="text-cyan-400"
+              size={28}
+            />
 
-            <h3 className="text-3xl font-bold text-yellow-400">
-              Presenting Partner
-            </h3>
-
-          </div>
-
-          <div className="group rounded-3xl border border-yellow-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400 hover:shadow-[0_0_60px_rgba(255,196,0,.25)]">
-
-            <div className="flex flex-col items-center justify-center p-12">
-
-              <Image
-                src={presentingPartner.logo}
-                alt={presentingPartner.name}
-                width={380}
-                height={130}
-                className="object-contain transition duration-500 group-hover:scale-105"
-              />
-
-              <div className="mt-8 h-px w-40 bg-yellow-400/30" />
-
-              <p className="mt-6 text-2xl font-semibold text-white">
-  {presentingPartner.subtitle}
-</p>
-
-<button
-  onClick={() => {
-  window.history.pushState(
-    {},
-    "",
-    `${window.location.pathname}#centricsoftware-registration`
-  );
-
-  setOpenModal(true);
-}}
-  className="mt-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-3 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(0,212,255,.35)]"
->
-  Register Now
-</button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* GOLD PARTNER */}
-
-        <div className="mb-20">
-  <div className="mb-6 flex items-center justify-center gap-3">
-    <Star className="text-yellow-400" size={28} />
-    <h3 className="text-3xl font-bold text-yellow-400">
-      Gold Partners
-    </h3>
-  </div>
-
-  <div className="mx-auto max-w-5xl">
-    {/* First Partner */}
-    <div className="mb-8 flex justify-center">
-      <div className="group flex h-52 w-full max-w-3xl items-center justify-center rounded-3xl border border-yellow-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400 hover:shadow-[0_0_50px_rgba(255,196,0,.25)]">
-        <Image
-          src={goldPartner[0].logo}
-          alt={goldPartner[0].name}
-          width={260}
-          height={120}
-          className="object-contain transition duration-500 group-hover:scale-105"
-        />
-      </div>
-    </div>
-
-    {/* Remaining Partners */}
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-      {goldPartner.slice(1).map((partner) => (
-        <div
-          key={partner.name}
-          className="group flex h-44 items-center justify-center rounded-3xl border border-yellow-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-yellow-400 hover:shadow-[0_0_50px_rgba(255,196,0,.25)]"
-        >
-  <Image
-    src={partner.logo}
-    alt={partner.name}
-    fill
-    className="object-contain p-6"
-  />
-
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
-        {/* silver partner */}
-
-        <div className="mb-20">
-          <div className="mb-6 flex items-center justify-center gap-3">
-            <Star className="text-slate-400" size={28} />
-            <h3 className="text-3xl font-bold text-slate-400">
-              Silver Partner
-            </h3>
-          </div>
-
-          <div className="mx-auto max-w-4xl">
-            <div className="group flex h-52 items-center justify-center rounded-3xl border border-slate-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-slate-400 hover:shadow-[0_0_50px_rgba(192,192,192,.25)]">
-            <div className="flex h-28 items-center justify-center bg-white p-4 rounded-lg">
-              <Image
-                src={silverPartner.logo}
-                alt={silverPartner.name}
-                width={260}
-                height={120}
-                className="object-contain transition duration-500 group-hover:scale-105"
-              />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* TECHNOLOGY PARTNERS */}
-
-<div className="mb-20">
-  <div className="mb-8 flex items-center justify-center gap-3">
-    <Globe className="text-cyan-400" size={28} />
-    <h3 className="text-3xl font-bold text-cyan-300">
-      Technology Partners
-    </h3>
-  </div>
-
-  <div className="grid gap-8 md:grid-cols-2">
-    {technologyPartners.map((partner) => (
-      <div
-        key={partner.name}
-        className="group rounded-3xl border border-cyan-400/20 bg-white/5 p-8 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_45px_rgba(0,212,255,.25)]"
-      >
-        <p className="mb-6 text-center text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
-          {partner.title}
-        </p>
-
-        <div className="flex h-28 items-center justify-center">
-          <Image
-            src={partner.logo}
-            alt={partner.name}
-            width={220}
-            height={90}
-            className="max-h-20 w-auto object-contain transition duration-500 group-hover:scale-105"
-          />
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
-
-        {/* BRONZE PARTNER */}
-
-        <div className="mb-20">
-          <div className="mb-6 flex items-center justify-center gap-3">
-            <Award className="text-amber-600" size={28} />
-            <h3 className="text-3xl font-bold text-amber-500">
-              Bronze Partner
-            </h3>
-          </div>
-
-          <div className="mx-auto max-w-4xl">
-            <div className="group flex h-52 items-center justify-center rounded-3xl border border-amber-600/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-amber-500 hover:shadow-[0_0_50px_rgba(180,83,9,.25)]">
-              <Image
-                src={bronzePartner.logo}
-                alt={bronzePartner.name}
-                width={260}
-                height={120}
-                className="object-contain transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* NETWORKING PARTNER */}
-
-        <div className="mb-20">
-          <div className="mb-6 flex items-center justify-center gap-3">
-            <Globe className="text-cyan-400" size={28} />
             <h3 className="text-3xl font-bold text-cyan-300">
-              Networking Partner
+              Strategic Partner
             </h3>
+
           </div>
 
-          <div className="mx-auto max-w-4xl">
-            <div className="group flex h-52 items-center justify-center rounded-3xl border border-cyan-400/20 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_45px_rgba(0,212,255,.25)]">
-              <Image
-                src={networkingPartner.logo}
-                alt={networkingPartner.name}
-                width={260}
-                height={120}
-                className="object-contain transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-        </div>
+          {/* Partner Card */}
+          <div className="mx-auto max-w-5xl">
 
-        {/* ASSOCIATION PARTNERS */}
+            <div className="group rounded-3xl border border-cyan-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_60px_rgba(0,212,255,.25)]">
 
-        <div>
-          <div className="mb-8 flex items-center justify-center gap-3">
-            <Users className="text-cyan-400" size={28} />
-            <h3 className="text-3xl font-bold text-cyan-300">
-              Association Partners
-            </h3>
-          </div>
+              <div className="flex min-h-[280px] flex-col items-center justify-center p-12">
 
-          <div className="grid gap-8 md:grid-cols-2">
-            {associationPartners.map((partner) => (
-              <div
-                key={partner.name}
-                className="group flex h-52 items-center justify-center rounded-3xl border border-cyan-400/20 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_45px_rgba(0,212,255,.25)]"
-              >
                 <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  width={250}
-                  height={120}
-                  className="max-h-28 w-auto object-contain transition duration-500 group-hover:scale-105"
+                  src={strategicPartner.logo}
+                  alt={strategicPartner.name}
+                  width={380}
+                  height={160}
+                  className="max-h-40 w-auto object-contain transition duration-500 group-hover:scale-105"
                 />
+
+                {/* <div className="mt-8 h-px w-40 bg-cyan-400/30" /> */}
+
+                {/* <p className="mt-6 text-2xl font-semibold text-white">
+                  Strategic Partner
+                </p> */}
+
               </div>
-            ))}
+
+            </div>
+
           </div>
+
         </div>
+
       </div>
+
+      {/* Registration Modal */}
       <PartnerRegistrationModal
-  open={openModal}
-  onClose={() => {
-    window.history.pushState({}, "", window.location.pathname);
-    setOpenModal(false);
-  }}
-/>
+        open={openModal}
+        onClose={() => {
+          window.history.pushState({}, "", window.location.pathname);
+          setOpenModal(false);
+        }}
+      />
+
     </section>
   );
 }

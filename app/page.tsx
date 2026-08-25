@@ -25,7 +25,7 @@ export default function Home() {
         <About />
         <Agenda />
         {/* <Speakers /> */}
-        {/* <AssociationPartners /> */}
+        <AssociationPartners />
         <Partners />
         
         {/* <Sponsors /> */}
