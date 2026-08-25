@@ -10,7 +10,7 @@ import { Awards } from '@/components/sections/awards'
 import { Contact } from '@/components/sections/contact'
 import { Footer } from '@/components/sections/footer'
 // import { Sponsors } from '@/components/sections/sponsors'
-import { Gallery } from '@/components/sections/Gallery'
+import Gallery  from '@/components/sections/Gallery'
 import AssociationPartners from '@/components/sections/associationPartners'
 import ChiefGuestSection from '@/components/sections/ChiefGuestSection'
 import { Agenda }from "@/components/sections/AgendaSection"
