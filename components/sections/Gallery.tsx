@@ -67,7 +67,7 @@ const secondEditionImages: GalleryImage[] = [
     ratio: "wide",
   },
   {
-    src: "/gallery/second/s2.jpg",
+    src: "/gallery/second/s5.jpg",
     title: "The next perspective",
     location: "Keynote theatre",
     ratio: "tall",
@@ -94,7 +94,7 @@ const editionCopy = {
   },
   second: {
     label: "2nd Edition",
-    date: "Mumbai · 2026",
+    date: "Bangalore · 2026",
     eyebrow: "The next chapter",
   },
 }
