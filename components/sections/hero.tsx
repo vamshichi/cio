@@ -214,8 +214,8 @@ Connect with technology leaders driving enterprise growth.
 
             <div className="flex items-center gap-2 text-slate-300">
               <FiCalendar />
-              <time dateTime="2026-10-15">
-                15th October 2026
+              <time dateTime="2026-11-12">
+                12th November 2026
               </time>
             </div>
 
