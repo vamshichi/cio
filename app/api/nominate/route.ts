@@ -140,7 +140,7 @@ export async function POST(req: Request) {
             <strong>CIO Tech Leadership Conference & Awards Delhi 2026</strong>.
           </p>
 
-          <p style="color:#cc0000;"><strong>Nomination Deadline: 15 september 2026</strong></p>
+          <p style="color:#cc0000;"><strong>Nomination Deadline: 15 October 2026</strong></p>
 
           <br/>
 

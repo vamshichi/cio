@@ -355,7 +355,7 @@ function NominationModal({ onClose }: { onClose: () => void }) {
             </div>
             <h3 className="text-2xl font-bold text-white">Nomination Submitted!</h3>
             <p className="text-slate-400 max-w-sm">
-              Thank you — the CIO Tech Leadership Conference team will review your nomination and be in touch before the deadline of <strong className="text-white">15 september 2026</strong>.
+              Thank you — the CIO Tech Leadership Conference team will review your nomination and be in touch before the deadline of <strong className="text-white">15 October 2026</strong>.
             </p>
             <button onClick={onClose} className="mt-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-3 font-semibold text-white transition-all hover:scale-105">
               Close
@@ -367,7 +367,7 @@ function NominationModal({ onClose }: { onClose: () => void }) {
             <div className="mb-6 flex items-start justify-between gap-4">
               <div>
                 <h2 className="text-xl font-bold text-white">CIO Tech Leadership Excellence Awards 2026</h2>
-                <p className="text-sm text-slate-400 mt-1">Nomination Deadline: <span className="text-cyan-400 font-medium">15 september 2026</span></p>
+                <p className="text-sm text-slate-400 mt-1">Nomination Deadline: <span className="text-cyan-400 font-medium">15 October 2026</span></p>
               </div>
               <button onClick={onClose} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white transition-colors" aria-label="Close modal">
                 ✕
@@ -628,7 +628,7 @@ export function Awards() {
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-500">
           <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />Hosted alongside 3rd CIO Tech Leadership Conference & Awards Delhi 2026</span>
-          <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />Nomination Deadline: <strong className="text-cyan-400">15 September 2026</strong></span>
+          <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />Nomination Deadline: <strong className="text-cyan-400">15 October 2026</strong></span>
         </div>
       </section>
 
@@ -691,7 +691,7 @@ export function Awards() {
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
             Recognition presented live on stage at the 3rd CIO Tech Leadership Conference & Awards Delhi 2026, before an elite audience of enterprise technology decision-makers.
           </p>
-          <p className="mt-3 text-sm text-cyan-400 font-medium">Nomination Deadline: 15 september 2026</p>
+          <p className="mt-3 text-sm text-cyan-400 font-medium">Nomination Deadline: 15 October 2026</p>
           <button
             onClick={() => {
               window.location.hash = 'awards-form'
