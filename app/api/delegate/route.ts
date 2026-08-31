@@ -209,7 +209,7 @@ function getConfirmHtml(data: any, registrationDate: string) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Registration Confirmed</title>
+<title>Your registration has been received successfully</title>
 </head>
 
 <body style="margin:0;padding:0;background:#f5f7fa;font-family:Arial,sans-serif;">
@@ -222,10 +222,9 @@ function getConfirmHtml(data: any, registrationDate: string) {
 
 <tr>
 <td style="background:#0f2d62;padding:35px;text-align:center;color:#fff;">
-<h1 style="margin:0;">CIO Leadership Summit 2026</h1>
-<p style="margin-top:10px;font-size:18px;">
-Registration Confirmed
-</p>
+<h1 style="margin:0;">3rd Edition of
+CIO Tech Leadership Conference & Awards
+Delhi 2026</h1>
 </td>
 </tr>
 
@@ -236,7 +235,9 @@ Registration Confirmed
 
 <p>
 Thank you for registering for the
-<strong>CIO Leadership Summit 2026</strong>.
+<strong>3rd Edition of
+CIO Tech Leadership Conference & Awards
+Delhi 2026</strong>.
 </p>
 
 <p>Your registration has been received successfully.</p>
@@ -282,14 +283,15 @@ Thank you for registering for the
 <li>Our team will review your registration.</li>
 <li>You'll receive event updates shortly.</li>
 <li>Venue: </li>
-<li>Date: 23 september 2026</li>
+<li>Date: 12th November 2026</li>
 </ul>
 
 <p>
-For any questions, email us at
+For any questions, contact us at
 <a href="mailto:enquiry@confexmeet.com">
 enquiry@confexmeet.com
 </a>
+<p> +91 7975 429 127 </p>
 </p>
 
 </td>
@@ -424,7 +426,7 @@ console.log("SMTP Connected")
    const delegateMail = {
   from: `"CIO Leadership Summit" <${process.env.EMAIL_USER}>`,
   to: data.email,
-  subject: "Registration Confirmed – CIO Leadership Summit 2026",
+  subject: "Registration Received – CIO Leadership Summit 2026",
   html: getConfirmHtml(data, registrationDate),
 }
 
