@@ -282,7 +282,7 @@ Delhi 2026</strong>.
 <ul>
 <li>Our team will review your registration.</li>
 <li>You'll receive event updates shortly.</li>
-<li>Venue: </li>
+<li>Venue: Delhi</li>
 <li>Date: 12th November 2026</li>
 </ul>
 
