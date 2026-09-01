@@ -5,6 +5,7 @@ import './globals.css'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import GoogleAdsTag from '@/components/GoogleAdsTag'
 import WhatsappEnquiry from '@/components/sections/WhatsappEnquiry'
+import MicrosoftClarity from '@/components/MicrosoftClarity'
 
 const _geist = Geist({ subsets: ['latin'] })
 const _geistMono = Geist_Mono({ subsets: ['latin'] })
@@ -60,6 +61,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-background text-foreground">
         <GoogleAnalytics />
         <GoogleAdsTag />
+        <MicrosoftClarity />
 
         {children}
 
