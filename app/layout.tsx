@@ -2,17 +2,36 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import GoogleAnalytics from '@/components/GoogleAnalytics';
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 import GoogleAdsTag from '@/components/GoogleAdsTag'
-import WhatsappEnquiry from '@/components/sections/WhatsappEnquiry';
+import WhatsappEnquiry from '@/components/sections/WhatsappEnquiry'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const _geist = Geist({ subsets: ['latin'] })
+const _geistMono = Geist_Mono({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ciotech.in'),
+
+  alternates: {
+    canonical: '/',
+  },
+
   title: 'CIO Tech Leadership Conference & Awards',
-  description: 'Join industry leaders for insights on technology innovation, digital transformation, and executive leadership. Register for our annual conference.',
+  
+  description:
+    'Join industry leaders for insights on technology innovation, digital transformation, and executive leadership at the CIO Tech Leadership Conference & Awards.',
+
   generator: 'vamshi',
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+
   icons: {
     icon: [
       {
@@ -25,7 +44,6 @@ export const metadata: Metadata = {
       },
       {
         url: '/logo.png',
-        type: 'image/svg+xml',
       },
     ],
     apple: '/logo.png',
@@ -42,8 +60,11 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-background text-foreground">
         <GoogleAnalytics />
         <GoogleAdsTag />
+
         {children}
-         <WhatsappEnquiry />
+
+        <WhatsappEnquiry />
+
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
