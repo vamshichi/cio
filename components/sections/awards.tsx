@@ -545,8 +545,8 @@ function NominationModal({ onClose }: { onClose: () => void }) {
                   onClick={handleSubmit}
                   disabled={isSubmitting}
                   className={`flex items-center justify-center gap-2 rounded-xl px-8 py-2.5 text-sm font-semibold text-white transition-all ${isSubmitting
-                      ? 'cursor-not-allowed bg-slate-600'
-                      : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:scale-[1.02] hover:shadow-[0_6px_20px_rgba(0,174,255,0.25)]'
+                    ? 'cursor-not-allowed bg-slate-600'
+                    : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:scale-[1.02] hover:shadow-[0_6px_20px_rgba(0,174,255,0.25)]'
                     }`}
                 >
                   {isSubmitting ? (
@@ -681,27 +681,43 @@ export function Awards() {
       {/* CTA */}
       <div className="relative overflow-hidden rounded-3xl border border-cyan-500/20 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-transparent p-12 text-center">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,174,255,0.15),transparent_70%)]" />
+
         <div className="relative">
           <span className="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-300">
             Nominations Open · Limited Awards · High Prestige
           </span>
+
           <h3 className="mt-6 text-4xl font-black text-white">
             Nominate a Leader Engineering<br />India's Digital Future
           </h3>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
-            Recognition presented live on stage at the 3rd CIO Tech Leadership Conference & Awards Delhi 2026, before an elite audience of enterprise technology decision-makers.
-          </p>
-          <p className="mt-3 text-sm text-cyan-400 font-medium">Nomination Deadline: 15 October 2026</p>
-          <button
-            onClick={() => {
-              window.location.hash = 'awards-form'
-              setShowModal(true)
-            }}
 
-            className="mt-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-4 font-semibold text-white transition-all hover:scale-105 hover:shadow-[0_10px_30px_rgba(0,174,255,0.3)]"
-          >
-            Submit Your Nomination →
-          </button>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
+            Recognition presented live on stage at the 3rd CIO Tech Leadership
+            Conference & Awards Delhi 2026, before an elite audience of enterprise
+            technology decision-makers.
+          </p>
+
+          <p className="mt-3 text-sm text-cyan-400 font-medium">
+            Nomination Deadline: 15 October 2026
+          </p>
+
+         <div className="mt-4 flex flex-col items-center gap-4">
+  {/* Nomination Fee */}
+  <div className="inline-flex items-center rounded-full border border-yellow-400/30 bg-yellow-400/10 px-10 py-2 text-sm font-semibold text-yellow-300">
+    Award Nomination Fee: ₹999
+  </div>
+
+  {/* Submit Button */}
+  <button
+    onClick={() => {
+      window.location.hash = 'awards-form'
+      setShowModal(true)
+    }}
+    className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-10 py-4 font-semibold text-white transition-all hover:scale-105 hover:shadow-[0_10px_30px_rgba(0,174,255,0.3)]"
+  >
+    Submit Your Nomination →
+  </button>
+</div>
         </div>
       </div>
 
