@@ -703,9 +703,11 @@ export function Awards() {
 
          <div className="mt-4 flex flex-col items-center gap-4">
   {/* Nomination Fee */}
-  <div className="inline-flex items-center rounded-full border border-yellow-400/30 bg-yellow-400/10 px-10 py-2 text-sm font-semibold text-yellow-300">
-    Award Nomination Fee: ₹999
-  </div>
+ <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/30 bg-yellow-400/10 px-6 py-2 text-sm font-semibold text-yellow-300">
+  <span>Early Bird Registration Fee:</span>
+  <span className="text-gray-400 line-through">₹4,999</span>
+  <span className="text-yellow-300">₹999</span>
+</div>
 
   {/* Submit Button */}
   <button

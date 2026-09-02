@@ -11,8 +11,8 @@ const pillars = [
     },
     {
         number: '02',
-        title: 'Building Brand Bengaluru',
-        desc: 'Spearheaded initiatives that position Bengaluru as a global innovation hub and the first Indian city with a dedicated global city brand.',
+        title: 'Building Brand Delhi',
+        desc: 'Spearheaded initiatives that position Delhi as a global innovation hub and the first Indian city with a dedicated global city brand.',
     },
     {
         number: '03',

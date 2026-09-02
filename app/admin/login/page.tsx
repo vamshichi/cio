@@ -113,7 +113,7 @@ backgroundSize: '48px 48px',
       </div>
 
       <p className="text-cyan-400 text-xs font-semibold tracking-widest uppercase">
-        IoT Security World Summit
+        
       </p>
 
       <h1 className="text-2xl font-bold text-white mt-1">
