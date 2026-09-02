@@ -64,9 +64,9 @@ export default function ChiefGuest() {
 
                         <div>
 
-                            <h1 className="mt-2 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+                            <h2 className="mt-2 text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
                                 <span className="text-cyan-400">Shri</span> Priyank Kharge
-                            </h1>
+                            </h2>
                         </div>
 
                         <div className="mt-8 h-px w-40 bg-gradient-to-r from-cyan-500 via-cyan-400 to-transparent" />

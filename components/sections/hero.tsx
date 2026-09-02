@@ -152,9 +152,7 @@ export function Hero() {
           <h1 className="mx-auto max-w-5xl text-4xl font-black uppercase leading-[0.9] text-white md:text-5xl lg:text-6xl xl:text-[68px]">
             3rd Edition of
 
-            <span className="hero-glow mt-1 block bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent">
-              CIO Tech Leadership Conference & Awards
-            </span>
+            <span className="hero-glow mt-1 block bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent">CIO Tech Leadership Conference &amp; Awards</span>
 
             <span className="block">
               Delhi 2026

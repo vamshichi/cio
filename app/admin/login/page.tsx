@@ -116,9 +116,9 @@ backgroundSize: '48px 48px',
         
       </p>
 
-      <h1 className="text-2xl font-bold text-white mt-1">
+      <h2 className="text-2xl font-bold text-white mt-1">
         Admin Panel
-      </h1>
+      </h2>
 
       <p className="text-slate-500 text-sm mt-1">
         Abu Dhabi 2026 · Confex Meet

@@ -11,9 +11,9 @@ export default async function ContactsPage() {
 
   return (
     <div>
-      <h1 className="mb-6 text-3xl font-bold text-white">
+      <h2 className="mb-6 text-3xl font-bold text-white">
         Contact Registrations
-      </h1>
+      </h2>
 
       <div className="overflow-hidden rounded-xl border border-white/10">
         <table className="w-full">

@@ -14,9 +14,9 @@ export default function UnauthorizedPage() {
           />
         </div>
 
-        <h1 className="mt-6 text-4xl font-bold text-white">
+        <h2 className="mt-6 text-4xl font-bold text-white">
           403
-        </h1>
+        </h2>
 
         <h2 className="mt-2 text-2xl font-semibold text-white">
           Access Denied

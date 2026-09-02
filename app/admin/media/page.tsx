@@ -111,9 +111,9 @@ export default async function MediaPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-white">
+        <h2 className="text-3xl font-bold text-white">
           Media Leads
-        </h1>
+        </h2>
 
         <p className="mt-2 text-slate-400">
           Leads generated from social media,

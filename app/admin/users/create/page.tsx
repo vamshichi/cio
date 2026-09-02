@@ -73,9 +73,9 @@ export default function CreateUserPage() {
   return (
     <div className="mx-auto max-w-3xl">
       <div className="rounded-2xl border border-white/10 bg-slate-900 p-8">
-        <h1 className="text-3xl font-bold text-white">
+        <h2 className="text-3xl font-bold text-white">
           Create Admin User
-        </h1>
+        </h2>
 
         <p className="mt-2 text-slate-400">
           Create a new admin account and assign

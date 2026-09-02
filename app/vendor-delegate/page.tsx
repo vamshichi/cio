@@ -29,12 +29,12 @@ export default function VendorDelegatePage() {
                 Vendor Delegate Registration
               </span>
 
-              <h1 className="mt-8 text-5xl font-black  text-white leading-tight lg:text-7xl">
+              <h2 className="mt-8 text-5xl font-black  text-white leading-tight lg:text-7xl">
                 Connect With
                 <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                   India's Top CIOs
                 </span>
-              </h1>
+              </h2>
 
               <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
                 Join CIO Tech Leadership Summit 2026 as a Vendor Delegate and

@@ -168,11 +168,11 @@ export default function GallerySection() {
               {copy.eyebrow} · visual archive
             </p>
 
-            <h1 className="text-balance font-sans text-5xl font-semibold leading-[0.95] tracking-[-0.06em] sm:text-7xl lg:text-8xl">
+            <h2 className="text-balance font-sans text-5xl font-semibold leading-[0.95] tracking-[-0.06em] sm:text-7xl lg:text-8xl">
               Moments that
               <br />
               <span className="text-primary">stay with you.</span>
-            </h1>
+            </h2>
 
             <p className="mt-8 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
               A visual record of the people, ideas, and electric in-between

@@ -132,9 +132,9 @@ export default function PartnerRegistrationModal({
 
               <div className="my-5 h-px w-20 bg-cyan-400/40" />
 
-              <h1 className="text-3xl font-bold text-white md:text-5xl">
+              <h2 className="text-3xl font-bold text-white md:text-5xl">
                 VELOCITY <span className="text-cyan-400">360°</span>
-              </h1>
+              </h2>
 
               <p className="mt-2 text-center text-base text-cyan-300 md:text-xl">
                 Executive Roundtable

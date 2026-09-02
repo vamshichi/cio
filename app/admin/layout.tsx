@@ -137,9 +137,9 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside className="relative flex w-72 flex-col border-r border-white/10 bg-slate-900">
         <div className="border-b border-white/10 p-6">
-          <h1 className="text-2xl font-bold text-white">
+          <h2 className="text-2xl font-bold text-white">
             CIO Admin
-          </h1>
+          </h2>
 
           <p className="mt-1 text-sm text-slate-400">
             Conference Dashboard
