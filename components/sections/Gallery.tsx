@@ -22,37 +22,37 @@ type GalleryImage = {
 
 const firstEditionImages: GalleryImage[] = [
   {
-    src: "/gallery/g1.jpg",
+    src: "/gallery/g1.webp",
     title: "The room comes alive",
     location: "Main stage",
     ratio: "wide",
   },
   {
-    src: "/gallery/g2.jpg",
+    src: "/gallery/g2.webp",
     title: "Ideas in the spotlight",
     location: "Keynote theatre",
     ratio: "tall",
   },
   {
-    src: "/gallery/g3.jpg",
+    src: "/gallery/g3.webp",
     title: "Between sessions",
     location: "The commons",
     ratio: "tall",
   },
   {
-    src: "/gallery/g4.jpg",
+    src: "/gallery/g4.webp",
     title: "Every detail matters",
     location: "Arrival desk",
     ratio: "tall",
   },
   {
-    src: "/gallery/g5.jpg",
+    src: "/gallery/g5.webp",
     title: "A different kind of signal",
     location: "Light installation",
     ratio: "wide",
   },
   {
-    src: "/gallery/g6.jpg",
+    src: "/gallery/g6.webp",
     title: "Until the very last frame",
     location: "Closing night",
     ratio: "wide",
@@ -61,25 +61,25 @@ const firstEditionImages: GalleryImage[] = [
 
 const secondEditionImages: GalleryImage[] = [
   {
-    src: "/gallery/second/s3.jpg",
+    src: "/gallery/second/s3.webp",
     title: "A new beginning",
     location: "Main stage",
     ratio: "wide",
   },
   {
-    src: "/gallery/second/s5.jpg",
+    src: "/gallery/second/s5.webp",
     title: "The next perspective",
     location: "Keynote theatre",
     ratio: "tall",
   },
   {
-    src: "/gallery/second/s1.jpg",
+    src: "/gallery/second/s1.webp",
     title: "New connections",
     location: "The commons",
     ratio: "tall",
   },
   {
-    src: "/gallery/second/s4.jpg",
+    src: "/gallery/second/s4.webp",
     title: "Made for the moment",
     location: "Arrival desk",
     ratio: "tall",
