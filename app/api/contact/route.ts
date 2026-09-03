@@ -20,6 +20,15 @@ export async function POST(request: NextRequest) {
       email,
       type,
       note,
+
+      // ==========================================
+      // UTM PARAMETERS
+      // ==========================================
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_term,
+      utm_content,
     } = body
 
     // ==========================================
@@ -42,6 +51,16 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
+
+    // ==========================================
+    // UTM VALUES
+    // ==========================================
+
+    const utmSource = utm_source || "Direct / Organic"
+    const utmMedium = utm_medium || "-"
+    const utmCampaign = utm_campaign || "-"
+    const utmTerm = utm_term || "-"
+    const utmContent = utm_content || "-"
 
     // ==========================================
     // GET ENVIRONMENT VARIABLES
@@ -105,9 +124,7 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail({
       from: `"ConfexMeet Website" <${emailUser}>`,
 
-      to: [
-        "enquiry@confexmeet.com",
-      ],
+      to: ["enquiry@confexmeet.com"],
 
       replyTo: email,
 
@@ -115,7 +132,6 @@ export async function POST(request: NextRequest) {
 
       // ========================================
       // PLAIN TEXT VERSION
-      // EASY FOR ADMIN TO COPY
       // ========================================
 
       text: `
@@ -131,6 +147,18 @@ Interested As: ${type}
 
 Message / Note:
 ${note || "No note provided"}
+
+
+======================
+UTM / CAMPAIGN DETAILS
+======================
+
+UTM Source: ${utmSource}
+UTM Medium: ${utmMedium}
+UTM Campaign: ${utmCampaign}
+UTM Term: ${utmTerm}
+UTM Content: ${utmContent}
+
 
 ======================
 Submitted through ConfexMeet website
@@ -479,6 +507,165 @@ Submitted through ConfexMeet website
 
 
       <!-- ================================= -->
+      <!-- UTM TRACKING -->
+      <!-- ================================= -->
+
+      <div
+        style="
+          margin-top:25px;
+          background:#eef6ff;
+          border:1px solid #cfe3ff;
+          border-radius:10px;
+          padding:22px;
+        "
+      >
+
+        <h3
+          style="
+            margin:0 0 15px;
+            color:#07111f;
+            font-size:17px;
+          "
+        >
+          📊 UTM / Campaign Tracking
+        </h3>
+
+        <table
+          width="100%"
+          cellpadding="0"
+          cellspacing="0"
+          style="
+            width:100%;
+            border-collapse:collapse;
+          "
+        >
+
+          <tr>
+            <td
+              style="
+                padding:8px 0;
+                color:#6b7280;
+                font-size:14px;
+                width:150px;
+              "
+            >
+              UTM Source
+            </td>
+
+            <td
+              style="
+                padding:8px 0;
+                color:#111827;
+                font-weight:600;
+                font-size:14px;
+              "
+            >
+              ${escapeHtml(utmSource)}
+            </td>
+          </tr>
+
+
+          <tr>
+            <td
+              style="
+                padding:8px 0;
+                color:#6b7280;
+                font-size:14px;
+              "
+            >
+              UTM Medium
+            </td>
+
+            <td
+              style="
+                padding:8px 0;
+                color:#111827;
+                font-weight:600;
+                font-size:14px;
+              "
+            >
+              ${escapeHtml(utmMedium)}
+            </td>
+          </tr>
+
+
+          <tr>
+            <td
+              style="
+                padding:8px 0;
+                color:#6b7280;
+                font-size:14px;
+              "
+            >
+              UTM Campaign
+            </td>
+
+            <td
+              style="
+                padding:8px 0;
+                color:#111827;
+                font-weight:600;
+                font-size:14px;
+              "
+            >
+              ${escapeHtml(utmCampaign)}
+            </td>
+          </tr>
+
+
+          <tr>
+            <td
+              style="
+                padding:8px 0;
+                color:#6b7280;
+                font-size:14px;
+              "
+            >
+              UTM Term
+            </td>
+
+            <td
+              style="
+                padding:8px 0;
+                color:#111827;
+                font-weight:600;
+                font-size:14px;
+              "
+            >
+              ${escapeHtml(utmTerm)}
+            </td>
+          </tr>
+
+
+          <tr>
+            <td
+              style="
+                padding:8px 0;
+                color:#6b7280;
+                font-size:14px;
+              "
+            >
+              UTM Content
+            </td>
+
+            <td
+              style="
+                padding:8px 0;
+                color:#111827;
+                font-weight:600;
+                font-size:14px;
+              "
+            >
+              ${escapeHtml(utmContent)}
+            </td>
+          </tr>
+
+        </table>
+
+      </div>
+
+
+      <!-- ================================= -->
       <!-- QUICK COPY SECTION -->
       <!-- ================================= -->
 
@@ -537,6 +724,27 @@ Submitted through ConfexMeet website
           <strong>Message / Note:</strong>
           ${escapeHtml(note || "No note provided")}
 
+          <br><br>
+
+          <strong>UTM Source:</strong>
+          ${escapeHtml(utmSource)}
+          <br>
+
+          <strong>UTM Medium:</strong>
+          ${escapeHtml(utmMedium)}
+          <br>
+
+          <strong>UTM Campaign:</strong>
+          ${escapeHtml(utmCampaign)}
+          <br>
+
+          <strong>UTM Term:</strong>
+          ${escapeHtml(utmTerm)}
+          <br>
+
+          <strong>UTM Content:</strong>
+          ${escapeHtml(utmContent)}
+
         </div>
 
       </div>
@@ -564,11 +772,9 @@ Submitted through ConfexMeet website
             line-height:1.5;
           "
         >
-          <strong>Tip:</strong>
-          You can copy the details from the
-          "Quick Copy Details" section above.
-          The email also includes a plain-text version
-          for easy copying.
+          <strong>Campaign Tracking:</strong>
+          The UTM values above show which marketing
+          source, medium and campaign generated this enquiry.
         </p>
 
       </div>
@@ -611,7 +817,6 @@ Submitted through ConfexMeet website
     })
 
     console.log("✅ Enquiry email sent successfully")
-
 
     // ==========================================
     // CONFIRMATION EMAIL TO USER
