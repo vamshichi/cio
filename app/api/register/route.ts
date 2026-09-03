@@ -49,7 +49,7 @@ export async function POST(req: Request) {
     // ── Notification email to organizers ──────────────────────────────────────
     await transporter.sendMail({
       from: `"CIO Tech Leadership Conference" <${process.env.EMAIL_USER}>`,
-      to: ['enquiry@confexmeet.com', 'ramesh.confexmeet@gmail.com'],
+      to: ['enquiry@confexmeet.com'],
       subject: `New Registration – ${data.fullName} (${data.company})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 680px; color: #222;">

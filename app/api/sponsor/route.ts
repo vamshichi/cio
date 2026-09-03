@@ -55,7 +55,7 @@ export async function POST(req: Request) {
 
 await transporter.sendMail({
   from: `"CIO Leadership Summit" <${process.env.EMAIL_USER}>`,
-  to: 'enquiry@confexmeet.com, ramesh.confexmeet@gmail.com',
+  to: 'enquiry@confexmeet.com',
   subject: `New Sponsorship Enquiry - ${data.company}`,
   html: `
 <!DOCTYPE html>

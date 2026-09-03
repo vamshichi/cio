@@ -414,7 +414,7 @@ console.log("SMTP Connected")
     // Admin Notification
     const adminMail = ({
       from: `"CIO Summit – Delegate Alerts" <${process.env.EMAIL_USER}>`,
-      to: 'enquiry@confexmeet.com, ramesh.confexmeet@gmail.com',
+      to: 'enquiry@confexmeet.com',
       subject: `🆕 New Delegate: ${data.fullName} – ${data.company}`,
       html: getAdminHtml(data, registrationDate),
     })
