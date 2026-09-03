@@ -75,6 +75,41 @@ export default function PartnersSection() {
 
         </div>
 
+        {/* STRATEGIC TECHNOLOGY PARTNERS */}
+        <div>
+          {/* Title */}
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <Award
+              className="text-cyan-400"
+              size={28}
+            />
+
+            <h3 className="text-3xl font-bold text-cyan-300">
+              Strategic Technology Partners
+            </h3>
+          </div>
+
+          {/* Partner Cards */}
+          <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-6">
+            {StrategicTechnologyPartners.map((partner, index) => (
+              <div
+                key={index}
+                className="group w-full max-w-[293px] rounded-3xl border border-cyan-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_60px_rgba(0,212,255,.25)]"
+              >
+                <div className="flex min-h-[250px] items-center justify-center p-12">
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    width={380}
+                    height={160}
+                    className="max-h-40 w-auto object-contain transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* STRATEGIC PARTNER */}
         <div className="mb-20">
 
@@ -120,40 +155,7 @@ export default function PartnersSection() {
           </div>
 
         </div>
-        {/* STRATEGIC TECHNOLOGY PARTNERS */}
-        <div>
-          {/* Title */}
-          <div className="mb-6 flex items-center justify-center gap-3"> 
-            <Award
-              className="text-cyan-400"
-              size={28}
-            />
 
-            <h3 className="text-3xl font-bold text-cyan-300">
-              Strategic Technology Partners
-            </h3>
-          </div>
-
-          {/* Partner Cards */}
-          <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-6">
-  {StrategicTechnologyPartners.map((partner, index) => (
-    <div
-      key={index}
-      className="group w-full max-w-[293px] rounded-3xl border border-cyan-400/30 bg-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_60px_rgba(0,212,255,.25)]"
-    >
-      <div className="flex min-h-[250px] items-center justify-center p-12">
-        <Image
-          src={partner.logo}
-          alt={partner.name}
-          width={380}
-          height={160}
-          className="max-h-40 w-auto object-contain transition duration-500 group-hover:scale-105"
-        />
-      </div>
-    </div>
-  ))}
-</div>
-        </div>
 
       </div>
 
