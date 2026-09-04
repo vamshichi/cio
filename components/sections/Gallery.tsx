@@ -146,7 +146,9 @@ export default function GallerySection() {
   }, [activeIndex, images.length])
 
   return (
-    <main className="min-h-screen overflow-hidden bg-background text-foreground">
+    <main
+    id="past-events"
+     className="min-h-screen overflow-hidden bg-background text-foreground">
       <section className="mx-auto max-w-7xl px-5 pb-20 pt-8 sm:px-8 sm:pt-12 lg:px-12 lg:pb-28">
         <header className="flex items-center justify-between border-b border-border pb-6">
           <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.28em] text-primary">
