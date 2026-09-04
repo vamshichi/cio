@@ -12,106 +12,121 @@ import {
   FiShare2,
   FiBarChart2,
   FiShield,
+  FiAward,
 } from 'react-icons/fi'
 
 const agendaItems = [
   {
-    time: '08:00 AM',
-    title: 'Registration & Networking Breakfast',
+    time: '09:00 – 09:10 AM',
+    title: 'Registration, Welcome & Opening Remarks',
     description:
-      'An exclusive networking experience with industry peers.',
+      'WELCOME TO THE INTELLIGENT ENTERPRISE ERA — Setting the tone for a day of cross-industry innovation and leadership. Connecting India\'s leading CIOs, CTOs, CISOs, CDOs and technology leaders. Exploring the leadership priorities shaping the intelligent enterprise.',
     icon: FiCoffee,
   },
   {
-    time: '09:00 AM',
-    title: 'Opening Remarks',
+    time: '09:10 – 09:30 AM',
+    title: 'Government Opening Keynote',
     description:
-      'Setting the tone for cross-industry innovation and leadership.',
-    icon: FiMic,
-  },
-  {
-    time: '09:15 AM',
-    title: 'Opening Keynote',
-    description:
-      'The Modern CIO: Leading Cross-Industry Transformation in an AI-First World.',
+      'INDIA\'S DIGITAL DECADE: Powering a Trusted, Intelligent & Globally Competitive Economy — Accelerating India\'s AI, digital infrastructure and innovation ambitions. Building trust, security and resilience into the nation\'s digital future. Strengthening government–industry collaboration for technology leadership.',
     icon: FiMonitor,
   },
   {
-    time: '10:00 AM',
+    time: '09:30 – 09:50 AM',
+    title: 'Keynote',
+    description:
+      'FROM AI HYPE TO ENTERPRISE IMPACT: The CIO\'s Race to Scale What Works — Moving successful AI pilots into enterprise-wide deployment. Identifying use cases that deliver measurable business value. Building the data, talent and governance needed for AI at scale.',
+    icon: FiMic,
+  },
+  {
+    time: '09:50 – 10:50 AM',
     title: 'Leadership Panel 1',
     description:
-      'Scaling AI Across the Enterprise: From Pilots to Business Impact.',
+      'THE GREAT AI SCALE-UP: From Experiments to the Intelligent Enterprise — How are CIOs turning AI investments into measurable business outcomes? What is stopping enterprises from scaling AI beyond isolated pilots? How should leaders balance innovation, governance, talent and ROI?',
     icon: FiUsers,
   },
   {
-    time: '10:45 AM',
-    title: 'Leadership Panel 2',
+    time: '10:50 – 11:20 AM',
+    title: 'Coffee Networking Break',
     description:
-      'Cloud, Data & FinOps: Building Intelligent Enterprises Across Industries.',
-    icon: FiCloud,
-  },
-  {
-    time: '11:30 AM',
-    title: 'Networking Coffee Break',
-    description:
-      'Meaningful peer-to-peer engagement across industries.',
+      'THE CIO POWER CONNECT: Coffee, Conversations & Cross-Industry Connections',
     icon: FiCoffee,
   },
   {
-    time: '12:15 PM',
-    title: 'Executive Fireside Chat',
+    time: '11:20 AM – 12:20 PM',
+    title: 'Leadership Panel 2 – Strategic Discussion Aligned with TELUS Digital',
     description:
-      'Legacy to Digital Core: Transformation Strategies That Work Across Industries.',
-    icon: FiMessageCircle,
-  },
-  {
-    time: '01:15 PM',
-    title: 'Mega Panel',
-    description:
-      'Reinventing Customer Experience: AI, Data & Digital Across Industries.',
+      'HUMAN + AI: Reimagining Customer Experience for the Intelligent Enterprise — How can AI create personalized experiences without compromising human connection? Where should enterprises deploy AI agents to transform customer journeys? How can organizations scale intelligent experiences while protecting trust, privacy and quality?',
     icon: FiUsers,
   },
   {
-    time: '02:15 PM',
-    title: 'Strategic Networking Lunch',
+    time: '12:20 – 12:40 PM',
+    title: 'Keynote',
     description:
-      'Cross-industry roundtables for deeper collaboration and partnerships.',
-    icon: FiCoffee,
-  },
-  {
-    time: '03:00 PM',
-    title: 'Spotlight Keynote',
-    description:
-      'The Experience Economy: Winning Customers Across Industries with AI & Data.',
-    icon: FiTarget,
-  },
-  {
-    time: '03:45 PM',
-    title: 'Cross-Industry Panel',
-    description:
-      'Smart Operations & Digital Supply Chains: Lessons Across Industries.',
-    icon: FiShare2,
-  },
-  {
-    time: '04:30 PM',
-    title: 'Keynote Address',
-    description:
-      'Modernisation Without Limits: Building Scalable Digital Enterprises Across Industries.',
-    icon: FiBarChart2,
-  },
-  {
-    time: '05:15 PM',
-    title: 'Cross-Industry Leadership Panel',
-    description:
-      'Cybersecurity & Resilience: Securing the Digital Enterprise Across Industries.',
+      'CYBER RESILIENCE REDEFINED: Defending the Enterprise in the Age of AI — Managing AI-powered threats across an expanding attack surface. Strengthening identity, data and cloud security. Turning cyber resilience into a business and boardroom priority.',
     icon: FiShield,
   },
   {
-    time: '06:00 PM',
-    title: 'Networking High Tea & Closing',
+    time: '12:40 – 01:20 PM',
+    title: 'Executive Fireside Chat – In Association with Ingram Micro',
     description:
-      'Where cross-industry conversations turn into real business opportunities.',
+      'SIMPLIFY. SCALE. ACCELERATE: Turning Technology Complexity into Business Velocity — How can CIOs simplify increasingly complex technology ecosystems? What role do strategic technology partnerships play in accelerating AI, cloud and cybersecurity adoption? How can enterprises move faster from technology investment to measurable business outcomes?',
+    icon: FiMessageCircle,
+  },
+  {
+    time: '01:20 – 02:20 PM',
+    title: 'Networking Lunch',
+    description:
+      'STRATEGIC CIO NETWORKING LUNCH',
     icon: FiCoffee,
+  },
+  {
+    time: '02:20 – 03:20 PM',
+    title: 'Leadership Panel 3',
+    description:
+      'TRUST UNDER PRESSURE: Securing the Always-On, AI-Powered Enterprise — How can enterprises innovate faster without increasing cyber and operational risk? What does resilience look like across AI, cloud, data and connected ecosystems? How should CIOs and CISOs build digital trust into every layer of the enterprise?',
+    icon: FiUsers,
+  },
+  {
+    time: '03:20 – 03:40 PM',
+    title: 'Keynote',
+    description:
+      'MODERNIZE OR MARGINALIZE: Rebuilding the Enterprise for the Next Digital Decade — Breaking free from legacy technology and technical debt. Modernizing applications, infrastructure and operating models. Creating an agile foundation ready for cloud, AI and automation.',
+    icon: FiTarget,
+  },
+  {
+    time: '03:40 – 04:00 PM',
+    title: 'Keynote',
+    description:
+      'DATA TO DECISIONS: Building the Intelligence Engine of the Modern Enterprise — Breaking data silos to unlock real-time enterprise intelligence. Building trusted, governed and AI-ready data foundations. Turning data investments into faster and smarter decisions.',
+    icon: FiBarChart2,
+  },
+  {
+    time: '04:00 – 04:30 PM',
+    title: 'Coffee Networking Break',
+    description:
+      'Coffee, Conversations & Cross-Industry Connections',
+    icon: FiCoffee,
+  },
+  {
+    time: '04:30 – 04:50 PM',
+    title: 'Keynote',
+    description:
+      'THE AUTONOMOUS ENTERPRISE: When AI Agents Become the New Digital Workforce — How will AI agents transform enterprise workflows and productivity? What new governance and security challenges will autonomous systems create? How should CIOs prepare their technology architecture for an agentic future?',
+    icon: FiMonitor,
+  },
+  {
+    time: '04:50 – 05:20 PM',
+    title: 'Awards & Recognition',
+    description:
+      'CIO TECH LEADERSHIP AWARDS & RECOGNITION 2026',
+    icon: FiAward,
+  },
+  {
+    time: '05:20 PM',
+    title: 'Closing Remarks and Continued Networking',
+    description:
+      'Closing remarks and continued networking with India\'s leading technology leaders.',
+    icon: FiUsers,
   },
 ]
 

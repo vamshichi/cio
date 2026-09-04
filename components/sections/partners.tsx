@@ -44,7 +44,7 @@ export function Partners() {
 
   return (
     <section
-      id="partners"
+     
       className="relative overflow-hidden bg-slate-950  py-28"
     >
       {/* Subtle dot-grid texture */}

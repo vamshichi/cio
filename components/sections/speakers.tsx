@@ -5,60 +5,73 @@ import { motion } from 'framer-motion'
 import { title } from 'process'
 
 const speakers = [
-  {
-    name: 'Anand Vaitheeswaran',
-    title: 'Chief Information Officer - APAC',
-    company: 'Randstad',
-    image: '/speakers/anand.png',
+   {
+    name: 'Kapil Uniyal',
+    title: 'Head of Google Cloud Services  Digital Solutions, Vice President - APACA',
+    company: 'TELUS Digital',
+    image: '/speakers/Kapil Uniyal.jpeg',
   },
+  {
+    name: 'Sunil Golani',
+    title: 'Director, Cloud Sales',
+    company: 'Ingram Micro India',
+    image: '/speakers/Sunil Golani.png',
+  },
+  
+  // {
+  //   name: 'Anand Vaitheeswaran',
+  //   title: 'Chief Information Officer - APAC',
+  //   company: 'Randstad',
+  //   image: '/speakers/anand.png',
+  // },
   // {
   //   name: 'Venkat Krishnan V',
   //   title: 'CIO & CTO',
   //   company: 'Karnataka Bank',
   //   image: '/speakers/venkat.png',
   // },
-  {
-    name: 'Mythili Kandula',
-    title: 'CTO',
-    company: 'Happiest Health',
-    image: '/speakers/mythili.png',
-  },
-  {
-    name: 'Devi Singh',
-    title: 'Director – Deputy Head of IT Infrastructure',
-    company: 'BNP Paribas',
-    image: '/speakers/devi.png',
-  },
-  {
-    name: 'Yogesh Bhalla',
-    title: 'CTO',
-    company: 'DSP Mutual Funds',
-    image: '/speakers/yogesh.png',
-  },
-  {
-    name: 'Shashank Shankar',
-    title: 'Director of Applied AI | CTO',
-    company: 'Barclays',
-    image: '/speakers/shashank.png',
-  },
-  {
-    name: 'Anup Mishra',
-    title: 'AGM – Supply Chain Planning & Analytics',
-    company: 'METRO Cash & Carry India',
-    image: '/speakers/anup.png',
-  },
-  {
-    name: 'Garvit Saxena',
-    title: 'Executive Director, IT Service Delivery APAC',
-    company: 'Colliers',
-    image: '/speakers/garvit.png',
-  },
-  {
-    name: 'Roshan A',
-    title: 'Senior General Manager – IT',
-    company: 'Healthcare Global Enterprise',
-    image: '/speakers/roshan.png',
-  },
+  // {
+  //   name: 'Mythili Kandula',
+  //   title: 'CTO',
+  //   company: 'Happiest Health',
+  //   image: '/speakers/mythili.png',
+  // },
+  // {
+  //   name: 'Devi Singh',
+  //   title: 'Director – Deputy Head of IT Infrastructure',
+  //   company: 'BNP Paribas',
+  //   image: '/speakers/devi.png',
+  // },
+  // {
+  //   name: 'Yogesh Bhalla',
+  //   title: 'CTO',
+  //   company: 'DSP Mutual Funds',
+  //   image: '/speakers/yogesh.png',
+  // },
+  // {
+  //   name: 'Shashank Shankar',
+  //   title: 'Director of Applied AI | CTO',
+  //   company: 'Barclays',
+  //   image: '/speakers/shashank.png',
+  // },
+  // {
+  //   name: 'Anup Mishra',
+  //   title: 'AGM – Supply Chain Planning & Analytics',
+  //   company: 'METRO Cash & Carry India',
+  //   image: '/speakers/anup.png',
+  // },
+  // {
+  //   name: 'Garvit Saxena',
+  //   title: 'Executive Director, IT Service Delivery APAC',
+  //   company: 'Colliers',
+  //   image: '/speakers/garvit.png',
+  // },
+  // {
+  //   name: 'Roshan A',
+  //   title: 'Senior General Manager – IT',
+  //   company: 'Healthcare Global Enterprise',
+  //   image: '/speakers/roshan.png',
+  // },
   // {
   //   name: 'Srishti Gupta - IDAS',
   //   title: 'Ministry of Defence',
@@ -71,66 +84,66 @@ const speakers = [
   //   company: 'Airbus Group',
   //   image: '/speakers/Praveen Kumar Motupalli - Airbus.jpg',
   // },
-  {
-    name: 'Naveen Dachuri',
-    title: 'Cofounder & CTO',
-    company: 'Yulu Bikes',
-    image: '/speakers/Naveen Dachuri - Yulu.jpg',
-  },
-  {
-    name: 'Anand Rathore',
-    title: 'President',
-    company: 'Artificial Intelligence Ways of Working Council -  AIWoW Council',
-    image: '/speakers/1x1 Anand Rathore.jpeg',
-  },
-  {
-    name: 'Dr. Ram Kumar G, Ph.D, CISM, PMP',
-    title: 'Cyber Security & Risk Leader',
-    company: 'Global Automotive Company',
-    image: '/speakers/Dr. Ramkumar.jpg',
-  },
+  // {
+  //   name: 'Naveen Dachuri',
+  //   title: 'Cofounder & CTO',
+  //   company: 'Yulu Bikes',
+  //   image: '/speakers/Naveen Dachuri - Yulu.jpg',
+  // },
+  // {
+  //   name: 'Anand Rathore',
+  //   title: 'President',
+  //   company: 'Artificial Intelligence Ways of Working Council -  AIWoW Council',
+  //   image: '/speakers/1x1 Anand Rathore.jpeg',
+  // },
+  // {
+  //   name: 'Dr. Ram Kumar G, Ph.D, CISM, PMP',
+  //   title: 'Cyber Security & Risk Leader',
+  //   company: 'Global Automotive Company',
+  //   image: '/speakers/Dr. Ramkumar.jpg',
+  // },
   // {
   //   name:'Abhishek Ojha',
   //   title:'Senior Vice President | Head – Enterprise Architecture | Chief Enterprise Architect',
   //   company:'Ujjivan Small Finance Bank',
   //   image:'/speakers/Abhishek.jpg',
   // },
-  {
-    name:'Mohd. Shadab',
-    title:'SSVP / CISO',
-    company:'JioStar',
-    image:'/speakers/Mohd. Shadab.jpg',
-  },
-  {
-    name:'Pankaj K',
-    title:'Chief Product & AI Officer',
-    company:'Eye-Q Vision Pvt Ltd',
-    image:'/speakers/Pankaj K.jpg',
-  },
-  {
-    name:'Prasad Dhumal',
-    title:'VP – IT',
-    company:'DHL Express India',
-    image:'/speakers/Prasad Dhumal.jpeg',
-  },
-  {
-    name:'Arnab Sarkar',
-    title:'Director',
-    company:'Western Fintrade',
-    image:'/speakers/Arnab Sarkar.png',
-  },
-  {
-    name:'Ashwin Chandrasekar',
-    title:'CIO',
-    company:'Table Space',
-    image:'/speakers/Ashwin C.png',
-  },
-  {
-    name:'Shuvobroto Bhattacharyya',
-    title:'Chief Manager – SCM',
-    company:'Reliance Retail',
-    image:'/speakers/Shuvobroto.jpeg',
-  }
+  // {
+  //   name:'Mohd. Shadab',
+  //   title:'SSVP / CISO',
+  //   company:'JioStar',
+  //   image:'/speakers/Mohd. Shadab.jpg',
+  // },
+  // {
+  //   name:'Pankaj K',
+  //   title:'Chief Product & AI Officer',
+  //   company:'Eye-Q Vision Pvt Ltd',
+  //   image:'/speakers/Pankaj K.jpg',
+  // },
+  // {
+  //   name:'Prasad Dhumal',
+  //   title:'VP – IT',
+  //   company:'DHL Express India',
+  //   image:'/speakers/Prasad Dhumal.jpeg',
+  // },
+  // {
+  //   name:'Arnab Sarkar',
+  //   title:'Director',
+  //   company:'Western Fintrade',
+  //   image:'/speakers/Arnab Sarkar.png',
+  // },
+  // {
+  //   name:'Ashwin Chandrasekar',
+  //   title:'CIO',
+  //   company:'Table Space',
+  //   image:'/speakers/Ashwin C.png',
+  // },
+  // {
+  //   name:'Shuvobroto Bhattacharyya',
+  //   title:'Chief Manager – SCM',
+  //   company:'Reliance Retail',
+  //   image:'/speakers/Shuvobroto.jpeg',
+  // }
 ]
 
 const fadeUp = (delay = 0) => ({
