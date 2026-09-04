@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 import path from 'path'
 import { prisma } from '@/lib/prisma'
 import {
-  addDelegateToGoogleSheet,
+  addRegistrationToGoogleSheet,
 } from '@/lib/googleSheets'
 
 function badge(value: boolean) {
@@ -376,8 +376,9 @@ export async function POST(req: Request) {
 
     try {
   const sheetResult =
-    await addDelegateToGoogleSheet(
-      delegate
+    await addRegistrationToGoogleSheet(
+      delegate,
+      'delegate'
     )
 
   console.log(

@@ -2,12 +2,16 @@
 import nodemailer from 'nodemailer'
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import {
+  addRegistrationToGoogleSheet,
+} from '@/lib/googleSheets'
 
 export async function POST(req: Request) {
   try {
     const data = await req.json()
 
-    await prisma.sponsorRegistration.create({
+    const sponsor =
+      await prisma.sponsorRegistration.create({
   data: {
     fullName: data.fullName,
     jobTitle: data.jobTitle,
@@ -39,6 +43,24 @@ export async function POST(req: Request) {
       data.utmCampaign || null,
   },
 })
+
+try {
+  const result =
+    await addRegistrationToGoogleSheet(
+      sponsor,
+      'sponsor'
+    )
+
+  console.log(
+    '✅ Sponsor added to Google Sheets:',
+    result
+  )
+} catch (error) {
+  console.error(
+    '❌ Sponsor Google Sheet Error:',
+    error
+  )
+}
 
     const transporter = nodemailer.createTransport({
       host: 'smtp.zoho.in',

@@ -1,5 +1,6 @@
-export async function addDelegateToGoogleSheet(
-  data: any
+export async function addRegistrationToGoogleSheet(
+  data: any,
+  type: 'delegate' | 'sponsor'
 ) {
   const scriptUrl =
     process.env.GOOGLE_SCRIPT_URL
@@ -10,7 +11,9 @@ export async function addDelegateToGoogleSheet(
     )
   }
 
-  const payload = {
+  const payload: any = {
+    type,
+
     id: data.id || '',
 
     fullName: data.fullName || '',
@@ -26,13 +29,6 @@ export async function addDelegateToGoogleSheet(
     phone: data.phone || '',
 
     linkedin: data.linkedin || '',
-
-    interests: Array.isArray(data.interests)
-      ? data.interests.join(', ')
-      : '',
-
-    awardNomination:
-      data.awardNomination || '',
 
     shareDetails:
       data.shareDetails || false,
@@ -63,6 +59,39 @@ export async function addDelegateToGoogleSheet(
             }
           ),
   }
+
+
+  // ==========================================
+  // DELEGATE DATA
+  // ==========================================
+
+  if (type === 'delegate') {
+
+    payload.interests =
+      Array.isArray(data.interests)
+        ? data.interests.join(', ')
+        : ''
+
+    payload.awardNomination =
+      data.awardNomination || ''
+  }
+
+
+  // ==========================================
+  // SPONSOR DATA
+  // ==========================================
+
+  if (type === 'sponsor') {
+
+    payload.objectives =
+      Array.isArray(data.objectives)
+        ? data.objectives.join(', ')
+        : ''
+
+    payload.sponsoredBefore =
+      data.sponsoredBefore || ''
+  }
+
 
   const response = await fetch(
     scriptUrl,
