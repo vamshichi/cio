@@ -15,6 +15,7 @@ interface Delegate {
     email: string
     phone: string
     awardNomination: string
+    message?: string
     status?: string
     notes?: string
     createdAt: string
@@ -215,6 +216,10 @@ export default function DelegatesTable({
                             </th>
 
                             <th className="p-4 text-left text-white">
+                                Notes
+                            </th>
+
+                            <th className="p-4 text-left text-white">
                                 Actions
                             </th>
                         </tr>
@@ -286,6 +291,10 @@ export default function DelegatesTable({
                                         {new Date(
                                             delegate.createdAt
                                         ).toLocaleDateString()}
+                                    </td>
+
+                                    <td className="p-4 text-slate-300">
+                                        {delegate.message || '-'}
                                     </td>
 
                                     <td className="p-4">

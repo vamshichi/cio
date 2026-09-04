@@ -4,6 +4,9 @@ import nodemailer from 'nodemailer'
 import { NextResponse } from 'next/server'
 import path from 'path'
 import { prisma } from '@/lib/prisma'
+import {
+  addDelegateToGoogleSheet,
+} from '@/lib/googleSheets'
 
 function badge(value: boolean) {
   return value
@@ -330,7 +333,8 @@ export async function POST(req: Request) {
     const data = await req.json()
 
     // SAVE TO DATABASE
-    await prisma.delegateRegistration.create({
+    const delegate =
+  await prisma.delegateRegistration.create({
       data: {
         fullName: data.fullName,
         jobTitle: data.jobTitle,
@@ -369,6 +373,23 @@ export async function POST(req: Request) {
           : new Date(),
       },
     })
+
+    try {
+  const sheetResult =
+    await addDelegateToGoogleSheet(
+      delegate
+    )
+
+  console.log(
+    '✅ Google Sheet:',
+    sheetResult
+  )
+} catch (error) {
+  console.error(
+    '❌ Google Sheet Error:',
+    error
+  )
+}
 
 
    const transporter = nodemailer.createTransport({
