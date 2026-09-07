@@ -29,7 +29,7 @@ export default function Home() {
         {/* <ChiefGuestSection /> */}
         <About />
         <Agenda />
-        {/* <Speakers /> */}
+        <Speakers />
         <AssociationPartners />
         <Partners />
         

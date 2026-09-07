@@ -9,7 +9,7 @@ const speakers = [
     name: 'Kapil Uniyal',
     title: 'Head of Google Cloud Services  Digital Solutions, Vice President - APACA',
     company: 'TELUS Digital',
-    image: '/speakers/Kapil Uniyal.jpeg',
+    image: '/speakers/Kapil Uniyal.png',
   },
   {
     name: 'Sunil Golani',
