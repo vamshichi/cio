@@ -125,7 +125,7 @@ const agendaItems = [
     time: '05:20 PM',
     title: 'Closing Remarks and Continued Networking',
     description:
-      'Closing Remarks and Continued Networking',
+      'Closing remarks and continued networking with India\'s leading technology leaders.',
     icon: FiUsers,
   },
 ]
@@ -388,11 +388,11 @@ export function Agenda() {
           fill="none"
         >
           {/* Ground */}
-          <path
+          {/* <path
             d="M0 290H1200"
             stroke="#087ea9"
             strokeWidth="1"
-          />
+          /> */}
 
           {/* Bridge */}
           {/* <path
@@ -405,9 +405,9 @@ export function Agenda() {
             d="M650 220V290"
             stroke="#0782b2"
             strokeWidth="1"
-          />
+          /> */}
 
-          <path
+          {/* <path
             d="M610 245L650 220L690 245"
             stroke="#0782b2"
             strokeWidth="1"
