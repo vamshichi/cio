@@ -125,7 +125,7 @@ const agendaItems = [
     time: '05:20 PM',
     title: 'Closing Remarks and Continued Networking',
     description:
-      'Closing remarks and continued networking with India\'s leading technology leaders.',
+      'Closing Remarks and Continued Networking',
     icon: FiUsers,
   },
 ]
@@ -395,13 +395,13 @@ export function Agenda() {
           />
 
           {/* Bridge */}
-          <path
+          {/* <path
             d="M480 290L650 220L790 290"
             stroke="#0782b2"
             strokeWidth="1.2"
-          />
+          /> */}
 
-          <path
+          {/* <path
             d="M650 220V290"
             stroke="#0782b2"
             strokeWidth="1"
@@ -411,10 +411,10 @@ export function Agenda() {
             d="M610 245L650 220L690 245"
             stroke="#0782b2"
             strokeWidth="1"
-          />
+          /> */}
 
           {/* Buildings */}
-          <path
+          {/* <path
             d="M850 290V165H880V290
                M890 290V125H925V290
                M940 290V80H970V290
@@ -425,10 +425,10 @@ export function Agenda() {
                M1175 290V110H1200V290"
             stroke="#0784b4"
             strokeWidth="1.2"
-          />
+          /> */}
 
           {/* Tall tower */}
-          <path
+          {/* <path
             d="M1080 290V60
                L1097 25
                L1115 60
@@ -437,10 +437,10 @@ export function Agenda() {
                M1105 290V105"
             stroke="#0784b4"
             strokeWidth="1.2"
-          />
+          /> */}
 
           {/* Dome building */}
-          <path
+          {/* <path
             d="
               M700 290
               V235
@@ -460,10 +460,10 @@ export function Agenda() {
             "
             stroke="#0784b4"
             strokeWidth="1.3"
-          />
+          /> */}
 
           {/* Dome side structures */}
-          <path
+          {/* <path
             d="
               M675 290V245
               C680 235 687 230 694 230
@@ -476,10 +476,10 @@ export function Agenda() {
             "
             stroke="#0784b4"
             strokeWidth="1"
-          />
+          /> */}
 
           {/* Trees */}
-          <path
+          {/* <path
             d="
               M250 290
               C255 275 265 275 270 290
@@ -495,7 +495,7 @@ export function Agenda() {
             "
             stroke="#0784b4"
             strokeWidth="1"
-          />
+          /> */}
         </svg>
 
         {/* Bottom fade */}
