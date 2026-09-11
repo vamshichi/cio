@@ -376,7 +376,7 @@ export function Hero() {
 
             <InfoPill
               icon={<FiMapPin size={14} />}
-              label="Le Meridien"
+              label="Delhi NCR"
               subLabel="New Delhi"
             />
           </motion.div>
@@ -402,7 +402,7 @@ export function Hero() {
               sm:leading-7
             "
           >
-            250 CIOs and technology heads convene in Delhi to shape the
+            250+ CIOs and technology heads convene in Delhi to shape the
             next era of enterprise AI, cybersecurity, cloud infrastructure,
             and digital transformation — and to celebrate the leaders
             shaping India&apos;s technology future.
