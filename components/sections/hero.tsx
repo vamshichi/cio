@@ -582,12 +582,12 @@ export function Hero() {
 
             <Divider />
 
-            <Stat
+            {/* <Stat
               number="40+"
               label="Industry Sectors"
             />
 
-            <Divider />
+            <Divider /> */}
 
             <Stat
               number="20+"

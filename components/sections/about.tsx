@@ -1707,7 +1707,7 @@ function Mission() {
           {[
             ['20+', 'SPEAKERS'],
             ['200+', 'DELEGATES'],
-            ['100+', 'BUSINESS MEETINGS'],
+            ['40+', 'BUSINESS MEETINGS'],
           ].map(([number, label], index) => (
             <div
               key={label}
