@@ -136,28 +136,28 @@ const floatingSystems = [
   },
 ]
 
-const stats = [
-  {
-    number: '250+',
-    title: 'TECH LEADERS',
-    caption: 'NETWORK SCALE',
-  },
-  {
-    number: '40+',
-    title: 'INDUSTRY SPEAKERS',
-    caption: 'DIVERSE PERSPECTIVES',
-  },
-  {
-    number: '30+',
-    title: 'INNOVATIVE SESSIONS',
-    caption: 'ACTIONABLE INSIGHTS',
-  },
-  {
-    number: '01',
-    title: 'POWERFUL PLATFORM',
-    caption: 'A STRONGER INDIA',
-  },
-]
+// const stats = [
+//   {
+//     number: '200+',
+//     title: 'TECH LEADERS',
+//     caption: 'NETWORK SCALE',
+//   },
+//   {
+//     number: '20+',
+//     title: 'INDUSTRY SPEAKERS',
+//     caption: 'DIVERSE PERSPECTIVES',
+//   },
+//   {
+//     number: '30+',
+//     title: 'INNOVATIVE SESSIONS',
+//     caption: 'ACTIONABLE INSIGHTS',
+//   },
+//   {
+//     number: '01',
+//     title: 'POWERFUL PLATFORM',
+//     caption: 'A STRONGER INDIA',
+//   },
+// ]
 
 /* =========================================================
    ANIMATION
@@ -933,99 +933,99 @@ function TechnologyCore() {
    STATISTICS
 ========================================================= */
 
-function Statistics() {
-  return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      variants={stagger}
-      viewport={{
-        once: true,
-        amount: 0.3,
-      }}
-      className="
-        grid
-        border-y
-        sm:grid-cols-2
-        lg:grid-cols-4
-      "
-      style={{
-        borderColor: COLORS.line,
-      }}
-    >
-      {stats.map((stat, index) => (
-        <motion.div
-          key={stat.title}
-          variants={reveal}
-          whileHover={{
-            y: -3,
-          }}
-          className={`
-            relative
-            px-5
-            py-7
-            sm:px-7
-            lg:px-6
-            ${
-              index !== 0
-                ? 'border-t sm:border-l sm:border-t-0'
-                : ''
-            }
-            ${
-              index === 2
-                ? 'lg:border-t-0'
-                : ''
-            }
-          `}
-          style={{
-            borderColor: COLORS.line,
-          }}
-        >
-          <p
-            className="
-              text-[38px]
-              font-semibold
-              leading-none
-              tracking-[-0.055em]
-            "
-            style={{
-              color: COLORS.ink,
-            }}
-          >
-            {stat.number}
-          </p>
+// function Statistics() {
+//   return (
+//     <motion.div
+//       initial="hidden"
+//       whileInView="visible"
+//       variants={stagger}
+//       viewport={{
+//         once: true,
+//         amount: 0.3,
+//       }}
+//       className="
+//         grid
+//         border-y
+//         sm:grid-cols-2
+//         lg:grid-cols-4
+//       "
+//       style={{
+//         borderColor: COLORS.line,
+//       }}
+//     >
+//       {stats.map((stat, index) => (
+//         <motion.div
+//           key={stat.title}
+//           variants={reveal}
+//           whileHover={{
+//             y: -3,
+//           }}
+//           className={`
+//             relative
+//             px-5
+//             py-7
+//             sm:px-7
+//             lg:px-6
+//             ${
+//               index !== 0
+//                 ? 'border-t sm:border-l sm:border-t-0'
+//                 : ''
+//             }
+//             ${
+//               index === 2
+//                 ? 'lg:border-t-0'
+//                 : ''
+//             }
+//           `}
+//           style={{
+//             borderColor: COLORS.line,
+//           }}
+//         >
+//           <p
+//             className="
+//               text-[38px]
+//               font-semibold
+//               leading-none
+//               tracking-[-0.055em]
+//             "
+//             style={{
+//               color: COLORS.ink,
+//             }}
+//           >
+//             {stat.number}
+//           </p>
 
-          <p
-            className={`${mono.className} mt-3 text-[8px] font-semibold uppercase tracking-[0.18em]`}
-            style={{
-              color: COLORS.navy,
-            }}
-          >
-            {stat.title}
-          </p>
+//           <p
+//             className={`${mono.className} mt-3 text-[8px] font-semibold uppercase tracking-[0.18em]`}
+//             style={{
+//               color: COLORS.navy,
+//             }}
+//           >
+//             {stat.title}
+//           </p>
 
-          <div className="mt-4 flex items-center gap-2">
-            <span
-              className="h-px w-7"
-              style={{
-                background: COLORS.teal,
-              }}
-            />
+//           <div className="mt-4 flex items-center gap-2">
+//             <span
+//               className="h-px w-7"
+//               style={{
+//                 background: COLORS.teal,
+//               }}
+//             />
 
-            <span
-              className={`${mono.className} text-[6px] uppercase tracking-[0.15em]`}
-              style={{
-                color: COLORS.soft,
-              }}
-            >
-              {stat.caption}
-            </span>
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
-  )
-}
+//             <span
+//               className={`${mono.className} text-[6px] uppercase tracking-[0.15em]`}
+//               style={{
+//                 color: COLORS.soft,
+//               }}
+//             >
+//               {stat.caption}
+//             </span>
+//           </div>
+//         </motion.div>
+//       ))}
+//     </motion.div>
+//   )
+// }
 
 /* =========================================================
    FOCUS AREAS
@@ -1706,7 +1706,7 @@ function Mission() {
         >
           {[
             ['20+', 'SPEAKERS'],
-            ['250+', 'DELEGATES'],
+            ['200+', 'DELEGATES'],
             ['100+', 'BUSINESS MEETINGS'],
           ].map(([number, label], index) => (
             <div
@@ -1998,10 +1998,10 @@ export function About() {
         {/* ===================================================
             STATS
         =================================================== */}
-
+{/* 
         <div className="mt-8 lg:mt-2">
           <Statistics />
-        </div>
+        </div> */}
 
         {/* ===================================================
             FOCUS AREAS
@@ -2015,7 +2015,7 @@ export function About() {
             INDIA ECOSYSTEM
         =================================================== */}
 
-        <IndiaEcosystem />
+        {/* <IndiaEcosystem /> */}
 
         {/* ===================================================
             MISSION

@@ -148,11 +148,6 @@ export function Hero() {
         "
       />
 
-      {/* ============================================================
-          TOP NAVIGATION
-      ============================================================ */}
-
-     
 
       {/* ============================================================
           MAIN CONTENT
@@ -402,7 +397,7 @@ export function Hero() {
               sm:leading-7
             "
           >
-            250+ CIOs and technology heads convene in Delhi to shape the
+            200+ CIOs and technology heads convene in Delhi to shape the
             next era of enterprise AI, cybersecurity, cloud infrastructure,
             and digital transformation — and to celebrate the leaders
             shaping India&apos;s technology future.
@@ -581,7 +576,7 @@ export function Hero() {
             "
           >
             <Stat
-              number="250+"
+              number="200+"
               label="Technology Leaders"
             />
 
@@ -595,7 +590,7 @@ export function Hero() {
             <Divider />
 
             <Stat
-              number="30+"
+              number="20+"
               label="Speakers & Experts"
             />
 
