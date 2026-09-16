@@ -49,20 +49,27 @@ const mono = IBM_Plex_Mono({
 })
 
 /* =========================================================
-   DESIGN SYSTEM
+   PREMIUM NAVY DESIGN SYSTEM
 ========================================================= */
 
 const COLORS = {
+  navy: '#061A2E',
+  navy2: '#0A2742',
+  navy3: '#0E3558',
+
+  blue: '#155A91',
+  accent: '#1687B8',
+  cyan: '#36B8D4',
+
+  white: '#FFFFFF',
+  paper: '#F7FAFC',
+  softPaper: '#EEF4F8',
+
   ink: '#071A2B',
-  navy: '#0A3157',
-  teal: '#00A7A7',
-  cyan: '#18CFE0',
-  blue: '#2388C8',
-  muted: '#61778A',
-  soft: '#8CA0AF',
-  line: '#DCE9EF',
-  paper: '#FFFFFF',
-  background: '#F8FCFD',
+  muted: '#617386',
+  soft: '#91A2B1',
+
+  line: '#D9E4EB',
 }
 
 /* =========================================================
@@ -73,30 +80,40 @@ const focusAreas = [
   {
     title: 'AI-Led Enterprise',
     subtitle: 'Transformation',
+    description:
+      'Exploring how artificial intelligence is reshaping enterprise strategy, operations and decision-making.',
     code: 'AI-01',
     icon: FiCpu,
   },
   {
     title: 'Cloud, Data',
     subtitle: '& FinOps',
+    description:
+      'Building scalable, intelligent and financially responsible digital infrastructure.',
     code: 'CL-02',
     icon: FiCloud,
   },
   {
     title: 'Cybersecurity',
     subtitle: '& Resilience',
+    description:
+      'Strengthening digital trust, enterprise security and organisational resilience.',
     code: 'CY-03',
     icon: FiShield,
   },
   {
     title: 'Customer Experience',
     subtitle: '& Innovation',
+    description:
+      'Connecting technology innovation with meaningful customer and business outcomes.',
     code: 'CX-04',
     icon: FiZap,
   },
   {
     title: 'CIO Leadership',
     subtitle: '& Alignment',
+    description:
+      'Creating stronger connections between technology leadership and business strategy.',
     code: 'LD-05',
     icon: FiTarget,
   },
@@ -107,57 +124,34 @@ const floatingSystems = [
     title: 'AI & Intelligence',
     subtitle: 'Transforming possibilities',
     icon: FiCpu,
-    position: 'left-[7%] top-[18%]',
+    position: 'left-[3%] top-[18%]',
   },
   {
     title: 'Cybersecurity',
     subtitle: 'Building digital trust',
     icon: FiShield,
-    position: 'right-[2%] top-[20%]',
+    position: 'right-[3%] top-[20%]',
   },
   {
     title: 'Cloud & Data',
     subtitle: 'Scalable for tomorrow',
     icon: FiCloud,
-    position: 'left-[6%] bottom-[13%]',
+    position: 'left-[3%] bottom-[16%]',
   },
   {
     title: 'Digital Transformation',
     subtitle: "Driving what's next",
     icon: FiTrendingUp,
-    position: 'right-[1%] bottom-[13%]',
-  },
-  {
-    title: 'Leadership',
-    subtitle: 'Network. Collaborate. Grow.',
-    icon: FiUsers,
-    position:
-      'left-1/2 bottom-[1%] -translate-x-1/2',
+    position: 'right-[2%] bottom-[16%]',
   },
 ]
 
-// const stats = [
-//   {
-//     number: '200+',
-//     title: 'TECH LEADERS',
-//     caption: 'NETWORK SCALE',
-//   },
-//   {
-//     number: '20+',
-//     title: 'INDUSTRY SPEAKERS',
-//     caption: 'DIVERSE PERSPECTIVES',
-//   },
-//   {
-//     number: '30+',
-//     title: 'INNOVATIVE SESSIONS',
-//     caption: 'ACTIONABLE INSIGHTS',
-//   },
-//   {
-//     number: '01',
-//     title: 'POWERFUL PLATFORM',
-//     caption: 'A STRONGER INDIA',
-//   },
-// ]
+const leadershipPoints = [
+  'Senior technology leadership conversations',
+  'Enterprise technology perspectives',
+  'Peer-to-peer knowledge exchange',
+  'Strategic business connections',
+]
 
 /* =========================================================
    ANIMATION
@@ -166,14 +160,14 @@ const floatingSystems = [
 const reveal: Variants = {
   hidden: {
     opacity: 0,
-    y: 25,
+    y: 24,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
-      ease: 'easeInOut',
+      duration: 0.7,
+      ease: 'easeOut',
     },
   },
 }
@@ -188,50 +182,59 @@ const stagger: Variants = {
 }
 
 /* =========================================================
-   LABEL
+   EYEBROW
 ========================================================= */
 
-function Eyebrow() {
+function Eyebrow({
+  label = 'About CIO Tech',
+  number = '01 / 04',
+  dark = false,
+}: {
+  label?: string
+  number?: string
+  dark?: boolean
+}) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-3">
       <span
-        className="h-2 w-2 rounded-full"
+        className="h-1.5 w-1.5 rounded-full"
         style={{
-          background: COLORS.teal,
-          boxShadow: `0 0 18px ${COLORS.teal}`,
+          background: dark ? COLORS.cyan : COLORS.accent,
         }}
       />
 
       <span
-        className={`${mono.className} text-[9px] font-medium uppercase tracking-[0.25em]`}
+        className={`${mono.className} text-[9px] font-semibold uppercase tracking-[0.24em]`}
         style={{
-          color: COLORS.navy,
+          color: dark ? '#FFFFFF' : COLORS.navy,
         }}
       >
-        About CIO Tech
+        {label}
       </span>
 
       <span
-        className="h-px w-10"
+        className="h-px w-8"
         style={{
-          background: `${COLORS.navy}35`,
+          background: dark
+            ? 'rgba(255,255,255,0.2)'
+            : `${COLORS.navy}22`,
         }}
       />
 
       <span
-        className={`${mono.className} text-[9px] uppercase tracking-[0.2em]`}
+        className={`${mono.className} text-[8px] uppercase tracking-[0.2em]`}
         style={{
-          color: COLORS.teal,
+          color: dark ? COLORS.cyan : COLORS.accent,
         }}
       >
-        01 / 04
+        {number}
       </span>
     </div>
   )
 }
 
 /* =========================================================
-   SYSTEM CARD
+   SMALL SYSTEM CARD
 ========================================================= */
 
 function SystemCard({
@@ -247,9 +250,9 @@ function SystemCard({
 }) {
   return (
     <motion.div
-      className={`absolute z-30 ${position}`}
+      className={`absolute z-30 hidden lg:block ${position}`}
       animate={{
-        y: [0, -7, 0],
+        y: [0, -5, 0],
       }}
       transition={{
         duration: 5,
@@ -257,49 +260,40 @@ function SystemCard({
         ease: 'easeInOut',
       }}
       whileHover={{
-        scale: 1.04,
-        y: -5,
+        y: -8,
+        scale: 1.02,
       }}
     >
       <div
         className="
           flex
-          min-w-[170px]
+          min-w-[190px]
           items-center
           gap-3
-          rounded-xl
+          rounded-lg
           border
-          bg-white/85
+          bg-white
           px-3
           py-3
-          shadow-[0_20px_60px_rgba(5,54,82,0.10)]
-          backdrop-blur-xl
+          shadow-[0_18px_50px_rgba(6,26,46,0.12)]
         "
         style={{
-          borderColor: `${COLORS.teal}25`,
+          borderColor: COLORS.line,
         }}
       >
         <div
-          className="
-            flex
-            h-10
-            w-10
-            flex-shrink-0
-            items-center
-            justify-center
-            rounded-xl
-          "
+          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md"
           style={{
-            background: `${COLORS.teal}0D`,
-            color: COLORS.teal,
+            background: '#EDF6FA',
+            color: COLORS.accent,
           }}
         >
-          <Icon size={17} />
+          <Icon size={16} />
         </div>
 
-        <div className="min-w-0">
+        <div>
           <p
-            className="text-[11px] font-semibold"
+            className="text-[10px] font-semibold"
             style={{
               color: COLORS.ink,
             }}
@@ -308,9 +302,9 @@ function SystemCard({
           </p>
 
           <p
-            className={`${mono.className} mt-1 whitespace-nowrap text-[6px] uppercase tracking-[0.12em]`}
+            className={`${mono.className} mt-1 text-[6px] uppercase tracking-[0.12em]`}
             style={{
-              color: COLORS.muted,
+              color: COLORS.soft,
             }}
           >
             {subtitle}
@@ -318,9 +312,9 @@ function SystemCard({
         </div>
 
         <FiArrowUpRight
-          size={14}
-          className="ml-auto flex-shrink-0"
-          color={COLORS.teal}
+          className="ml-auto"
+          size={13}
+          color={COLORS.accent}
         />
       </div>
     </motion.div>
@@ -356,17 +350,17 @@ function Orbit({
       style={{
         width: size,
         height: size,
-        borderColor: `${COLORS.teal}18`,
+        borderColor: 'rgba(86,184,212,0.18)',
         transform:
           `translate(-50%, -50%) rotateX(${tilt}deg)`,
         transformStyle: 'preserve-3d',
       }}
     >
       <span
-        className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+        className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{
-          background: COLORS.teal,
-          boxShadow: `0 0 18px ${COLORS.teal}`,
+          background: COLORS.cyan,
+          boxShadow: `0 0 14px ${COLORS.cyan}`,
         }}
       />
     </motion.div>
@@ -384,7 +378,7 @@ function TechnologyCore() {
   const mouseY = useMotionValue(0)
 
   const rotateX = useSpring(
-    useTransform(mouseY, [-1, 1], [8, -8]),
+    useTransform(mouseY, [-1, 1], [5, -5]),
     {
       stiffness: 120,
       damping: 25,
@@ -392,21 +386,12 @@ function TechnologyCore() {
   )
 
   const rotateY = useSpring(
-    useTransform(mouseX, [-1, 1], [-8, 8]),
+    useTransform(mouseX, [-1, 1], [-5, 5]),
     {
       stiffness: 120,
       damping: 25,
     }
   )
-
-  /*
-   * Mouse interaction
-   */
-
-  if (typeof window !== 'undefined') {
-    // intentionally empty;
-    // interaction is handled by the container below
-  }
 
   const handleMouseMove = (
     event: React.MouseEvent<HTMLDivElement>
@@ -417,14 +402,10 @@ function TechnologyCore() {
       event.currentTarget.getBoundingClientRect()
 
     const x =
-      ((event.clientX - rect.left) / rect.width) *
-        2 -
-      1
+      ((event.clientX - rect.left) / rect.width) * 2 - 1
 
     const y =
-      ((event.clientY - rect.top) / rect.height) *
-        2 -
-      1
+      ((event.clientY - rect.top) / rect.height) * 2 - 1
 
     mouseX.set(x)
     mouseY.set(y)
@@ -439,73 +420,57 @@ function TechnologyCore() {
     <div
       className="
         relative
-        h-[500px]
+        h-[420px]
         w-full
+        overflow-hidden
+        sm:h-[480px]
         [perspective:1400px]
       "
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* =====================================================
-          ATMOSPHERIC GLOW
-      ===================================================== */}
+      {/* Atmospheric glow */}
 
-      <motion.div
-        animate={
-          reduceMotion
-            ? undefined
-            : {
-                scale: [1, 1.08, 1],
-                opacity: [0.18, 0.35, 0.18],
-              }
-        }
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
+      <div
         className="
           absolute
           left-1/2
           top-1/2
-          h-[330px]
-          w-[330px]
+          h-[300px]
+          w-[300px]
           -translate-x-1/2
           -translate-y-1/2
           rounded-full
           blur-[100px]
         "
         style={{
-          background: `${COLORS.cyan}20`,
+          background:
+            'radial-gradient(circle, rgba(54,184,212,0.18), transparent 68%)',
         }}
       />
 
-      {/* =====================================================
-          OUTER ORBITS
-      ===================================================== */}
+      {/* Orbits */}
 
       <Orbit
-        size={420}
+        size={380}
         duration={32}
-        tilt={67}
+        tilt={66}
       />
 
       <Orbit
-        size={350}
-        duration={24}
+        size={310}
+        duration={25}
         reverse
         tilt={70}
       />
 
       <Orbit
-        size={285}
-        duration={19}
+        size={245}
+        duration={18}
         tilt={62}
       />
 
-      {/* =====================================================
-          CENTER GRID
-      ===================================================== */}
+      {/* Main sphere */}
 
       <motion.div
         style={{
@@ -517,45 +482,33 @@ function TechnologyCore() {
           absolute
           left-1/2
           top-1/2
-          h-[245px]
-          w-[245px]
+          h-[220px]
+          w-[220px]
           -translate-x-1/2
           -translate-y-1/2
+          sm:h-[245px]
+          sm:w-[245px]
         "
       >
-        {/* outer sphere */}
+        {/* Outer rings */}
 
         <div
-          className="
-            absolute
-            inset-[-18px]
-            rounded-full
-            border
-          "
+          className="absolute inset-[-16px] rounded-full border"
           style={{
-            borderColor: `${COLORS.teal}22`,
-            transform: 'translateZ(-40px)',
+            borderColor:
+              'rgba(54,184,212,0.18)',
           }}
         />
 
-        {/* second sphere */}
-
         <div
-          className="
-            absolute
-            inset-[-8px]
-            rounded-full
-            border
-          "
+          className="absolute inset-[-7px] rounded-full border"
           style={{
-            borderColor: `${COLORS.cyan}35`,
-            transform: 'translateZ(-20px)',
+            borderColor:
+              'rgba(22,135,184,0.28)',
           }}
         />
 
-        {/* =================================================
-            MAIN CORE
-        ================================================= */}
+        {/* Core */}
 
         <motion.div
           animate={
@@ -563,9 +516,9 @@ function TechnologyCore() {
               ? undefined
               : {
                   boxShadow: [
-                    `0 20px 80px ${COLORS.teal}10`,
-                    `0 25px 100px ${COLORS.cyan}28`,
-                    `0 20px 80px ${COLORS.teal}10`,
+                    '0 20px 60px rgba(0,0,0,0.18)',
+                    '0 25px 90px rgba(54,184,212,0.18)',
+                    '0 20px 60px rgba(0,0,0,0.18)',
                   ],
                 }
           }
@@ -580,67 +533,64 @@ function TechnologyCore() {
             overflow-hidden
             rounded-full
             border
-            bg-white
+            bg-[#F8FBFD]
           "
           style={{
-            borderColor: `${COLORS.teal}35`,
-            transform: 'translateZ(30px)',
+            borderColor:
+              'rgba(54,184,212,0.38)',
+            transform: 'translateZ(25px)',
           }}
         >
-          {/* technical grid */}
+          {/* Grid */}
 
           <div
-            className="absolute inset-0 opacity-50"
+            className="absolute inset-0 opacity-60"
             style={{
               backgroundImage: `
-                linear-gradient(${COLORS.navy}0C 1px, transparent 1px),
-                linear-gradient(90deg, ${COLORS.navy}0C 1px, transparent 1px)
+                linear-gradient(rgba(6,26,46,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6,26,46,0.07) 1px, transparent 1px)
               `,
-              backgroundSize: '24px 24px',
+              backgroundSize: '23px 23px',
             }}
           />
 
-          {/* radial globe atmosphere */}
+          {/* Globe atmosphere */}
 
           <div
             className="absolute inset-0"
             style={{
               background: `
                 radial-gradient(
-                  circle at 35% 28%,
-                  ${COLORS.cyan}35,
+                  circle at 32% 25%,
+                  rgba(54,184,212,0.28),
                   transparent 28%
                 ),
                 radial-gradient(
-                  circle at 70% 65%,
-                  ${COLORS.teal}16,
-                  transparent 45%
-                ),
-                radial-gradient(
-                  circle at center,
-                  ${COLORS.blue}08,
-                  transparent 65%
+                  circle at 72% 68%,
+                  rgba(21,90,145,0.12),
+                  transparent 48%
                 )
               `,
             }}
           />
 
-          {/* globe latitude lines */}
+          {/* Latitude */}
 
           <div
             className="
               absolute
               left-1/2
               top-1/2
-              h-[160px]
-              w-[230px]
+              h-[150px]
+              w-[225px]
               -translate-x-1/2
               -translate-y-1/2
               rounded-[50%]
               border
             "
             style={{
-              borderColor: `${COLORS.cyan}28`,
+              borderColor:
+                'rgba(54,184,212,0.24)',
               transform:
                 'translate(-50%, -50%) rotateX(68deg)',
             }}
@@ -651,42 +601,42 @@ function TechnologyCore() {
               absolute
               left-1/2
               top-1/2
-              h-[100px]
-              w-[230px]
+              h-[90px]
+              w-[225px]
               -translate-x-1/2
               -translate-y-1/2
               rounded-[50%]
               border
             "
             style={{
-              borderColor: `${COLORS.teal}22`,
+              borderColor:
+                'rgba(22,135,184,0.18)',
               transform:
                 'translate(-50%, -50%) rotateX(68deg)',
             }}
           />
 
-          {/* longitude */}
+          {/* Longitude */}
 
           <div
             className="
               absolute
               left-1/2
               top-1/2
-              h-[230px]
-              w-[100px]
+              h-[225px]
+              w-[90px]
               -translate-x-1/2
               -translate-y-1/2
               rounded-[50%]
               border
             "
             style={{
-              borderColor: `${COLORS.cyan}20`,
+              borderColor:
+                'rgba(54,184,212,0.18)',
             }}
           />
 
-          {/* =================================================
-              CENTER
-          ================================================= */}
+          {/* Center */}
 
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
@@ -694,7 +644,7 @@ function TechnologyCore() {
                 reduceMotion
                   ? undefined
                   : {
-                      scale: [1, 1.04, 1],
+                      scale: [1, 1.035, 1],
                     }
               }
               transition={{
@@ -705,18 +655,19 @@ function TechnologyCore() {
               className="
                 relative
                 flex
-                h-[108px]
-                w-[108px]
+                h-[100px]
+                w-[100px]
                 items-center
                 justify-center
                 rounded-full
                 border
-                bg-white/90
-                shadow-[0_20px_70px_rgba(0,167,167,0.16)]
+                bg-white/95
+                shadow-[0_20px_60px_rgba(6,26,46,0.14)]
                 backdrop-blur-xl
               "
               style={{
-                borderColor: `${COLORS.teal}45`,
+                borderColor:
+                  'rgba(22,135,184,0.30)',
               }}
             >
               <div className="text-center">
@@ -732,11 +683,12 @@ function TechnologyCore() {
                     rounded-full
                   "
                   style={{
-                    background: `${COLORS.teal}12`,
-                    color: COLORS.teal,
+                    background:
+                      'rgba(22,135,184,0.09)',
+                    color: COLORS.accent,
                   }}
                 >
-                  <FiCpu size={16} />
+                  <FiCpu size={15} />
                 </div>
 
                 <p
@@ -749,9 +701,14 @@ function TechnologyCore() {
                 </p>
 
                 <p
-                  className="mt-1 text-[13px] font-bold tracking-tight"
+                  className="
+                    mt-1
+                    text-[13px]
+                    font-bold
+                    tracking-[-0.02em]
+                  "
                   style={{
-                    color: COLORS.ink,
+                    color: COLORS.navy,
                   }}
                 >
                   CIO TECH
@@ -760,7 +717,7 @@ function TechnologyCore() {
                 <p
                   className={`${mono.className} mt-1 text-[6px] uppercase tracking-[0.2em]`}
                   style={{
-                    color: COLORS.teal,
+                    color: COLORS.accent,
                   }}
                 >
                   DELHI
@@ -778,22 +735,25 @@ function TechnologyCore() {
                   rounded-full
                 "
                 style={{
-                  background: COLORS.teal,
-                  boxShadow: `0 0 18px ${COLORS.teal}`,
+                  background: COLORS.cyan,
+                  boxShadow:
+                    `0 0 15px ${COLORS.cyan}`,
                 }}
               />
             </motion.div>
           </div>
 
-          {/* particles */}
+          {/* Particles */}
 
-          {Array.from({ length: 18 }).map(
+          {Array.from({ length: 16 }).map(
             (_, index) => {
               const angle =
-                (index / 18) * Math.PI * 2
+                (index / 16) *
+                Math.PI *
+                2
 
               const radius =
-                80 + (index % 3) * 12
+                75 + (index % 3) * 11
 
               const x =
                 Math.cos(angle) * radius
@@ -816,24 +776,31 @@ function TechnologyCore() {
                     marginLeft: x,
                     marginTop: y,
                     background:
-                      index % 4 === 0
-                        ? COLORS.teal
+                      index % 3 === 0
+                        ? COLORS.accent
                         : COLORS.cyan,
-                    boxShadow:
-                      `0 0 10px ${COLORS.cyan}`,
                   }}
                   animate={
                     reduceMotion
                       ? undefined
                       : {
-                          opacity: [0.2, 1, 0.2],
-                          scale: [0.7, 1.3, 0.7],
+                          opacity: [
+                            0.15,
+                            0.9,
+                            0.15,
+                          ],
+                          scale: [
+                            0.7,
+                            1.2,
+                            0.7,
+                          ],
                         }
                   }
                   transition={{
                     duration:
                       2.5 + (index % 4),
-                    delay: index * 0.12,
+                    delay:
+                      index * 0.12,
                     repeat: Infinity,
                     ease: 'easeInOut',
                   }}
@@ -844,9 +811,7 @@ function TechnologyCore() {
         </motion.div>
       </motion.div>
 
-      {/* =====================================================
-          FLOATING TECHNOLOGY CARDS
-      ===================================================== */}
+      {/* Floating cards */}
 
       {floatingSystems.map((system) => (
         <SystemCard
@@ -855,21 +820,22 @@ function TechnologyCore() {
         />
       ))}
 
-      {/* =====================================================
-          SIDE CONNECTOR LINES
-      ===================================================== */}
+      {/* Connector lines */}
 
       <div
         className="
           pointer-events-none
           absolute
-          left-[20%]
-          top-[38%]
+          left-[17%]
+          top-[42%]
+          hidden
           h-px
-          w-[18%]
+          w-[20%]
+          lg:block
         "
         style={{
-          background: `linear-gradient(90deg, transparent, ${COLORS.teal}35)`,
+          background:
+            'linear-gradient(90deg, transparent, rgba(54,184,212,0.35))',
         }}
       />
 
@@ -877,24 +843,25 @@ function TechnologyCore() {
         className="
           pointer-events-none
           absolute
-          right-[20%]
-          top-[38%]
+          right-[17%]
+          top-[42%]
+          hidden
           h-px
-          w-[18%]
+          w-[20%]
+          lg:block
         "
         style={{
-          background: `linear-gradient(90deg, ${COLORS.teal}35, transparent)`,
+          background:
+            'linear-gradient(90deg, rgba(54,184,212,0.35), transparent)',
         }}
       />
 
-      {/* =====================================================
-          SYSTEM LABEL
-      ===================================================== */}
+      {/* Bottom label */}
 
       <div
         className="
           absolute
-          bottom-[-12px]
+          bottom-1
           left-1/2
           flex
           -translate-x-1/2
@@ -903,129 +870,33 @@ function TechnologyCore() {
         "
       >
         <span
-          className="h-px w-10"
+          className="h-px w-8"
           style={{
-            background: `${COLORS.navy}20`,
+            background:
+              'rgba(255,255,255,0.18)',
           }}
         />
 
         <span
           className={`${mono.className} whitespace-nowrap text-[7px] uppercase tracking-[0.22em]`}
           style={{
-            color: COLORS.muted,
+            color: 'rgba(255,255,255,0.48)',
           }}
         >
           PEOPLE × IDEAS × TECHNOLOGY
         </span>
 
         <span
-          className="h-px w-10"
+          className="h-px w-8"
           style={{
-            background: `${COLORS.navy}20`,
+            background:
+              'rgba(255,255,255,0.18)',
           }}
         />
       </div>
     </div>
   )
 }
-
-/* =========================================================
-   STATISTICS
-========================================================= */
-
-// function Statistics() {
-//   return (
-//     <motion.div
-//       initial="hidden"
-//       whileInView="visible"
-//       variants={stagger}
-//       viewport={{
-//         once: true,
-//         amount: 0.3,
-//       }}
-//       className="
-//         grid
-//         border-y
-//         sm:grid-cols-2
-//         lg:grid-cols-4
-//       "
-//       style={{
-//         borderColor: COLORS.line,
-//       }}
-//     >
-//       {stats.map((stat, index) => (
-//         <motion.div
-//           key={stat.title}
-//           variants={reveal}
-//           whileHover={{
-//             y: -3,
-//           }}
-//           className={`
-//             relative
-//             px-5
-//             py-7
-//             sm:px-7
-//             lg:px-6
-//             ${
-//               index !== 0
-//                 ? 'border-t sm:border-l sm:border-t-0'
-//                 : ''
-//             }
-//             ${
-//               index === 2
-//                 ? 'lg:border-t-0'
-//                 : ''
-//             }
-//           `}
-//           style={{
-//             borderColor: COLORS.line,
-//           }}
-//         >
-//           <p
-//             className="
-//               text-[38px]
-//               font-semibold
-//               leading-none
-//               tracking-[-0.055em]
-//             "
-//             style={{
-//               color: COLORS.ink,
-//             }}
-//           >
-//             {stat.number}
-//           </p>
-
-//           <p
-//             className={`${mono.className} mt-3 text-[8px] font-semibold uppercase tracking-[0.18em]`}
-//             style={{
-//               color: COLORS.navy,
-//             }}
-//           >
-//             {stat.title}
-//           </p>
-
-//           <div className="mt-4 flex items-center gap-2">
-//             <span
-//               className="h-px w-7"
-//               style={{
-//                 background: COLORS.teal,
-//               }}
-//             />
-
-//             <span
-//               className={`${mono.className} text-[6px] uppercase tracking-[0.15em]`}
-//               style={{
-//                 color: COLORS.soft,
-//               }}
-//             >
-//               {stat.caption}
-//             </span>
-//           </div>
-//         </motion.div>
-//       ))}
-//     </motion.div>
-//   )
-// }
 
 /* =========================================================
    FOCUS AREAS
@@ -1033,481 +904,263 @@ function TechnologyCore() {
 
 function FocusAreas() {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      variants={stagger}
-      viewport={{
-        once: true,
-        amount: 0.2,
-      }}
-    >
-      <div className="mb-7 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span
-            className="h-1.5 w-1.5 rounded-full"
-            style={{
-              background: COLORS.teal,
-              boxShadow: `0 0 12px ${COLORS.teal}`,
-            }}
-          />
-
-          <span
-            className={`${mono.className} text-[9px] font-medium uppercase tracking-[0.24em]`}
-            style={{
-              color: COLORS.navy,
-            }}
-          >
-            Focus Areas
-          </span>
-        </div>
-
-        <span
-          className={`${mono.className} hidden text-[8px] uppercase tracking-[0.18em] sm:block`}
-          style={{
-            color: COLORS.soft,
-          }}
-        >
-          05 SYSTEMS / ENTERPRISE
-        </span>
-      </div>
-
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        {focusAreas.map((item) => {
-          const Icon = item.icon
-
-          return (
-            <motion.div
-              key={item.code}
-              variants={reveal}
-              whileHover={{
-                y: -6,
-                scale: 1.01,
-              }}
-              className="
-                group
-                relative
-                min-h-[205px]
-                overflow-hidden
-                rounded-xl
-                border
-                bg-white/80
-                p-5
-                shadow-[0_12px_40px_rgba(7,46,68,0.045)]
-                backdrop-blur-sm
-              "
-              style={{
-                borderColor: COLORS.line,
-              }}
-            >
-              {/* hover glow */}
-
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  -right-10
-                  -top-10
-                  h-24
-                  w-24
-                  rounded-full
-                  blur-2xl
-                  opacity-0
-                  transition-opacity
-                  duration-500
-                  group-hover:opacity-100
-                "
-                style={{
-                  background: `${COLORS.cyan}22`,
-                }}
-              />
-
-              <div
-                className="
-                  flex
-                  h-11
-                  w-11
-                  items-center
-                  justify-center
-                  rounded-xl
-                "
-                style={{
-                  background: `${COLORS.teal}0B`,
-                  color: COLORS.teal,
-                }}
-              >
-                <Icon size={19} />
-              </div>
-
-              <div className="mt-8">
-                <p
-                  className="text-[13px] font-semibold leading-[1.25]"
-                  style={{
-                    color: COLORS.ink,
-                  }}
-                >
-                  {item.title}
-                </p>
-
-                <p
-                  className="text-[13px] font-semibold leading-[1.25]"
-                  style={{
-                    color: COLORS.teal,
-                  }}
-                >
-                  {item.subtitle}
-                </p>
-              </div>
-
-              <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
-                <span
-                  className={`${mono.className} text-[7px] uppercase tracking-[0.18em]`}
-                  style={{
-                    color: COLORS.soft,
-                  }}
-                >
-                  {item.code}
-                </span>
-
-                <FiArrowUpRight
-                  size={15}
-                  className="
-                    transition-transform
-                    duration-300
-                    group-hover:-translate-y-1
-                    group-hover:translate-x-1
-                  "
-                  color={COLORS.navy}
-                />
-              </div>
-            </motion.div>
-          )
-        })}
-      </div>
-    </motion.div>
-  )
-}
-
-/* =========================================================
-   INDIA ECOSYSTEM
-========================================================= */
-
-function IndiaEcosystem() {
-  const points = [
-    {
-      label: 'AI',
-      x: '20%',
-      y: '25%',
-    },
-    {
-      label: 'CLOUD',
-      x: '72%',
-      y: '22%',
-    },
-    {
-      label: 'DATA',
-      x: '77%',
-      y: '70%',
-    },
-    {
-      label: 'CYBER',
-      x: '19%',
-      y: '73%',
-    },
-  ]
-
-  return (
-    <div
-      className="
-        relative
-        mt-16
-        min-h-[380px]
-        overflow-hidden
-        rounded-2xl
-        border
-        bg-white
-      "
+    <section
+      className={`${sans.className} relative overflow-hidden py-24 sm:py-28 lg:py-32`}
       style={{
-        borderColor: COLORS.line,
+        background: COLORS.navy,
       }}
     >
-      {/* grid */}
-
-      <div
-        className="absolute inset-0 opacity-50"
-        style={{
-          backgroundImage: `
-            linear-gradient(${COLORS.navy}08 1px, transparent 1px),
-            linear-gradient(90deg, ${COLORS.navy}08 1px, transparent 1px)
-          `,
-          backgroundSize: '48px 48px',
-        }}
-      />
-
-      {/* glow */}
+      {/* Background decoration */}
 
       <div
         className="
+          pointer-events-none
           absolute
-          left-1/2
-          top-1/2
-          h-[260px]
-          w-[260px]
-          -translate-x-1/2
-          -translate-y-1/2
+          right-[-180px]
+          top-[-180px]
+          h-[500px]
+          w-[500px]
           rounded-full
-          blur-[80px]
+          border
         "
         style={{
-          background: `${COLORS.cyan}10`,
+          borderColor:
+            'rgba(255,255,255,0.05)',
         }}
       />
 
-      {/* header */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-[-250px]
+          left-[-200px]
+          h-[550px]
+          w-[550px]
+          rounded-full
+          border
+        "
+        style={{
+          borderColor:
+            'rgba(54,184,212,0.06)',
+        }}
+      />
 
-      <div className="absolute left-6 top-6 z-10">
-        <p
-          className={`${mono.className} text-[8px] uppercase tracking-[0.22em]`}
-          style={{
-            color: COLORS.teal,
-          }}
-        >
-          India / Technology Ecosystem
-        </p>
-
-        <p
-          className="mt-2 text-xl font-semibold tracking-tight"
-          style={{
-            color: COLORS.ink,
-          }}
-        >
-          Delhi
-        </p>
-      </div>
-
-      {/* coordinates */}
-
-      <div className="absolute right-6 top-6 text-right">
-        <p
-          className={`${mono.className} text-[7px] uppercase tracking-[0.15em]`}
-          style={{
-            color: COLORS.soft,
-          }}
-        >
-          28.6139° N
-        </p>
-
-        <p
-          className={`${mono.className} mt-1 text-[7px] uppercase tracking-[0.15em]`}
-          style={{
-            color: COLORS.soft,
-          }}
-        >
-          77.2090° E
-        </p>
-      </div>
-
-      {/* center network */}
-
-      <div className="absolute left-1/2 top-1/2 h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2">
-        {[220, 170, 120].map(
-          (size, index) => (
-            <motion.div
-              key={size}
-              animate={{
-                scale: [1, 1.03, 1],
-                opacity: [
-                  0.35,
-                  0.6,
-                  0.35,
-                ],
-              }}
-              transition={{
-                duration: 4 + index,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border"
-              style={{
-                width: size,
-                height: size,
-                borderColor:
-                  index === 1
-                    ? `${COLORS.teal}28`
-                    : `${COLORS.navy}12`,
-              }}
-            />
-          )
-        )}
-
-        {/* center */}
-
+      <div className="relative mx-auto max-w-[1380px] px-5 sm:px-8 lg:px-12">
         <motion.div
-          animate={{
-            scale: [1, 1.04, 1],
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.2,
           }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="
-            absolute
-            left-1/2
-            top-1/2
-            flex
-            h-[86px]
-            w-[86px]
-            -translate-x-1/2
-            -translate-y-1/2
-            items-center
-            justify-center
-            rounded-full
-            border
-            bg-white/90
-            shadow-[0_15px_50px_rgba(0,167,167,0.12)]
-            backdrop-blur
-          "
-          style={{
-            borderColor: `${COLORS.teal}35`,
-          }}
+          variants={stagger}
         >
-          <div className="text-center">
-            <span
-              className="
-                mx-auto
-                mb-2
-                block
-                h-2
-                w-2
-                rounded-full
-              "
-              style={{
-                background: COLORS.teal,
-                boxShadow: `0 0 14px ${COLORS.teal}`,
-              }}
+          {/* <motion.div variants={reveal}>
+            <Eyebrow
+              label="Strategic Focus"
+              number="02 / 04"
+              dark
             />
+          </motion.div> */}
 
-            <p
-              className={`${mono.className} text-[7px] uppercase tracking-[0.18em]`}
-              style={{
-                color: COLORS.teal,
-              }}
-            >
-              NEW DELHI
-            </p>
-
-            <p
-              className={`${mono.className} mt-1 text-[6px] uppercase tracking-[0.16em]`}
-              style={{
-                color: COLORS.soft,
-              }}
-            >
-              GLOBAL TECH HUB
-            </p>
-          </div>
-        </motion.div>
-
-        {/* connection lines */}
-
-        <svg
-          className="absolute inset-0 h-full w-full"
-          viewBox="0 0 220 220"
-        >
-          <line
-            x1="110"
-            y1="110"
-            x2="35"
-            y2="50"
-            stroke={COLORS.teal}
-            strokeOpacity="0.18"
-          />
-
-          <line
-            x1="110"
-            y1="110"
-            x2="185"
-            y2="45"
-            stroke={COLORS.navy}
-            strokeOpacity="0.16"
-          />
-
-          <line
-            x1="110"
-            y1="110"
-            x2="180"
-            y2="175"
-            stroke={COLORS.teal}
-            strokeOpacity="0.18"
-          />
-
-          <line
-            x1="110"
-            y1="110"
-            x2="40"
-            y2="175"
-            stroke={COLORS.navy}
-            strokeOpacity="0.16"
-          />
-        </svg>
-      </div>
-
-      {/* network points */}
-
-      {points.map((point, index) => (
-        <motion.div
-          key={point.label}
-          animate={{
-            y: [0, -6, 0],
-          }}
-          transition={{
-            duration: 4 + index,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute"
-          style={{
-            left: point.x,
-            top: point.y,
-          }}
-        >
-          <div
+          <motion.div
+            variants={reveal}
             className="
-              flex
-              items-center
-              gap-2
-              rounded-lg
+              mt-8
+              grid
+              gap-10
+              lg:grid-cols-[0.85fr_1.15fr]
+              lg:items-end
+            "
+          >
+            <div>
+              <h2
+                className="
+                  max-w-xl
+                  text-[40px]
+                  font-semibold
+                  leading-[0.98]
+                  tracking-[-0.045em]
+                  text-white
+                  sm:text-[52px]
+                  lg:text-[64px]
+                "
+              >
+                Conversations
+                <br />
+                <span
+                  style={{
+                    color: '#7DD3E7',
+                  }}
+                >
+                  that shape
+                </span>{' '}
+                what&apos;s next.
+              </h2>
+            </div>
+
+            <div className="max-w-lg lg:ml-auto">
+              <p
+                className="text-[15px] leading-7 sm:text-[16px]"
+                style={{
+                  color:
+                    'rgba(255,255,255,0.62)',
+                }}
+              >
+                CIO Tech brings together senior
+                technology leaders around the
+                priorities shaping modern
+                enterprises — from AI and cloud
+                to cybersecurity, innovation and
+                leadership.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Focus grid */}
+
+          <motion.div
+            variants={reveal}
+            className="
+              mt-16
+              grid
+              gap-px
+              overflow-hidden
+              rounded-2xl
               border
-              bg-white/90
-              px-3
-              py-2
-              shadow-[0_12px_30px_rgba(7,46,68,0.06)]
-              backdrop-blur
+              sm:grid-cols-2
+              lg:grid-cols-5
             "
             style={{
-              borderColor: COLORS.line,
+              background:
+                'rgba(255,255,255,0.10)',
+              borderColor:
+                'rgba(255,255,255,0.10)',
             }}
           >
-            <span
-              className="h-1.5 w-1.5 rounded-full"
-              style={{
-                background: COLORS.teal,
-                boxShadow: `0 0 10px ${COLORS.teal}`,
-              }}
-            />
+            {focusAreas.map(
+              (
+                area,
+                index
+              ) => {
+                const Icon =
+                  area.icon
 
-            <span
-              className={`${mono.className} text-[7px] font-medium tracking-[0.15em]`}
-              style={{
-                color: COLORS.navy,
-              }}
-            >
-              {point.label}
-            </span>
-          </div>
+                return (
+                  <motion.div
+                    key={area.code}
+                    whileHover={{
+                      backgroundColor:
+                        'rgba(255,255,255,0.075)',
+                    }}
+                    className="
+                      group
+                      relative
+                      min-h-[270px]
+                      bg-[#09243C]
+                      p-6
+                      transition-colors
+                      duration-300
+                      sm:p-7
+                    "
+                  >
+                    <div className="flex items-start justify-between">
+                      <div
+                        className="
+                          flex
+                          h-10
+                          w-10
+                          items-center
+                          justify-center
+                          rounded-lg
+                          border
+                        "
+                        style={{
+                          borderColor:
+                            'rgba(125,211,231,0.18)',
+                          color:
+                            '#7DD3E7',
+                        }}
+                      >
+                        <Icon
+                          size={17}
+                        />
+                      </div>
+
+                      <span
+                        className={`${mono.className} text-[7px] tracking-[0.16em]`}
+                        style={{
+                          color:
+                            'rgba(255,255,255,0.35)',
+                        }}
+                      >
+                        {area.code}
+                      </span>
+                    </div>
+
+                    <div className="mt-20">
+                      <p
+                        className="
+                          text-[17px]
+                          font-semibold
+                          leading-tight
+                          text-white
+                        "
+                      >
+                        {area.title}
+                      </p>
+
+                      <p
+                        className="
+                          mt-1
+                          text-[17px]
+                          font-semibold
+                          leading-tight
+                        "
+                        style={{
+                          color:
+                            '#7DD3E7',
+                        }}
+                      >
+                        {area.subtitle}
+                      </p>
+
+                      <p
+                        className="mt-4 text-[11px] leading-5"
+                        style={{
+                          color:
+                            'rgba(255,255,255,0.48)',
+                        }}
+                      >
+                        {area.description}
+                      </p>
+                    </div>
+
+                    <FiArrowUpRight
+                      className="
+                        absolute
+                        bottom-6
+                        right-6
+                        transition-transform
+                        duration-300
+                        group-hover:translate-x-1
+                        group-hover:-translate-y-1
+                      "
+                      size={16}
+                      style={{
+                        color:
+                          'rgba(125,211,231,0.65)',
+                      }}
+                    />
+                  </motion.div>
+                )
+              }
+            )}
+          </motion.div>
         </motion.div>
-      ))}
-    </div>
+      </div>
+    </section>
   )
 }
 
@@ -1517,573 +1170,961 @@ function IndiaEcosystem() {
 
 function Mission() {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      variants={stagger}
-      viewport={{
-        once: true,
-        amount: 0.25,
-      }}
-      className="
-        relative
-        mt-16
-        overflow-hidden
-        rounded-2xl
-        border
-        bg-white
-        shadow-[0_25px_80px_rgba(7,46,68,0.06)]
-      "
-      style={{
-        borderColor: COLORS.line,
-      }}
+    <section
+      className={`${sans.className} relative overflow-hidden bg-white py-24 sm:py-28 lg:py-36`}
     >
-      {/* decorative rings */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -right-32
-          -top-32
-          h-[430px]
-          w-[430px]
-          rounded-full
-          border
-        "
-        style={{
-          borderColor: `${COLORS.teal}10`,
-          transform:
-            'perspective(800px) rotateX(65deg)',
-        }}
-      />
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -right-20
-          -top-20
-          h-[300px]
-          w-[300px]
-          rounded-full
-          border
-        "
-        style={{
-          borderColor: `${COLORS.navy}08`,
-          transform:
-            'perspective(800px) rotateX(65deg)',
-        }}
-      />
-
-      <div className="relative z-10 p-7 sm:p-10 lg:p-14">
-        <div className="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div>
-            <motion.div variants={reveal}>
-              <span
-                className={`${mono.className} inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[7px] uppercase tracking-[0.2em]`}
-                style={{
-                  color: COLORS.teal,
-                  borderColor: `${COLORS.teal}25`,
-                  background: `${COLORS.teal}06`,
-                }}
-              >
-                <span
-                  className="h-1.5 w-1.5 rounded-full"
-                  style={{
-                    background: COLORS.teal,
-                  }}
-                />
-
-                The CIO Tech Mission
-              </span>
-            </motion.div>
-
-            <motion.h3
-              variants={reveal}
-              className="
-                mt-6
-                max-w-3xl
-                text-3xl
-                font-semibold
-                leading-[1.02]
-                tracking-[-0.045em]
-                sm:text-5xl
-              "
-              style={{
-                color: COLORS.ink,
-              }}
-            >
-              Turn insight into
-              <br />
-
-              <span
-                style={{
-                  color: COLORS.teal,
-                }}
-              >
-                business advantage.
-              </span>
-            </motion.h3>
-
-            <motion.p
-              variants={reveal}
-              className="
-                mt-6
-                max-w-2xl
-                text-sm
-                leading-7
-              "
-              style={{
-                color: COLORS.muted,
-              }}
-            >
-              CIO Tech Delhi brings together
-              technology leaders, innovators and
-              decision-makers to explore the ideas,
-              technologies and strategies shaping
-              the intelligent enterprise.
-            </motion.p>
-          </div>
-
-          <motion.div
-            variants={reveal}
-            className="
-              flex
-              h-24
-              w-24
-              items-center
-              justify-center
-              rounded-full
-              border
-              lg:h-28
-              lg:w-28
-            "
-            style={{
-              borderColor: COLORS.teal,
-            }}
-          >
-            <div className="text-center">
-              <FiGlobe
-                className="mx-auto mb-2"
-                size={18}
-                color={COLORS.teal}
-              />
-
-              <p
-                className={`${mono.className} text-[7px] uppercase tracking-[0.18em]`}
-                style={{
-                  color: COLORS.navy,
-                }}
-              >
-                DELHI
-              </p>
-
-              <p
-                className={`${mono.className} mt-1 text-[7px] uppercase tracking-[0.18em]`}
-                style={{
-                  color: COLORS.soft,
-                }}
-              >
-                2026
-              </p>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* mission metrics */}
-
-        <div
-          className="
-            mt-12
-            grid
-            border-y
-            sm:grid-cols-3
-          "
-          style={{
-            borderColor: COLORS.line,
+      <div className="mx-auto max-w-[1380px] px-5 sm:px-8 lg:px-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.2,
           }}
+          variants={stagger}
         >
-          {[
-            ['20+', 'SPEAKERS'],
-            ['200+', 'DELEGATES'],
-            ['40+', 'BUSINESS MEETINGS'],
-          ].map(([number, label], index) => (
-            <div
-              key={label}
-              className={`
-                px-5
-                py-7
-                sm:px-7
-                ${
-                  index !== 0
-                    ? 'border-t sm:border-l sm:border-t-0'
-                    : ''
-                }
-              `}
-              style={{
-                borderColor: COLORS.line,
-              }}
-            >
+          {/* <motion.div variants={reveal}>
+            <Eyebrow
+              label="The CIO Tech Mission"
+              number="03 / 04"
+            />
+          </motion.div> */}
+
+          <div className="mt-12 grid gap-14 lg:grid-cols-[1fr_0.8fr] lg:gap-20">
+            <motion.div variants={reveal}>
               <p
+                className={`${mono.className} text-[9px] font-semibold uppercase tracking-[0.22em]`}
+                style={{
+                  color: COLORS.accent,
+                }}
+              >
+                Technology × Leadership
+              </p>
+
+              <h2
                 className="
-                  text-3xl
+                  mt-5
+                  max-w-3xl
+                  text-[42px]
                   font-semibold
-                  tracking-[-0.04em]
+                  leading-[0.98]
+                  tracking-[-0.05em]
+                  sm:text-[56px]
+                  lg:text-[72px]
                 "
                 style={{
                   color: COLORS.navy,
                 }}
               >
-                {number}
-              </p>
+                Turn insight
+                <br />
+                into{' '}
+                <span
+                  style={{
+                    color: COLORS.accent,
+                  }}
+                >
+                  business
+                </span>{' '}
+                advantage.
+              </h2>
 
               <p
-                className={`${mono.className} mt-2 text-[7px] font-semibold uppercase tracking-[0.2em]`}
+                className="
+                  mt-8
+                  max-w-2xl
+                  text-[16px]
+                  leading-7
+                "
                 style={{
-                  color: COLORS.teal,
+                  color: COLORS.muted,
                 }}
               >
-                {label}
+                CIO Tech Delhi brings together
+                technology leaders, innovators and
+                decision-makers to explore the ideas,
+                technologies and strategies shaping
+                the intelligent enterprise.
               </p>
-            </div>
-          ))}
-        </div>
+            </motion.div>
 
-        {/* bottom statement */}
+            {/* Leadership card */}
 
-        <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <span
+            <motion.div
+              variants={reveal}
               className="
-                flex
-                h-7
-                w-7
-                items-center
-                justify-center
-                rounded-full
+                relative
+                overflow-hidden
+                rounded-2xl
+                bg-[#F4F8FA]
+                p-7
+                sm:p-9
               "
-              style={{
-                background: `${COLORS.teal}0D`,
-                color: COLORS.teal,
-              }}
             >
-              <FiCheck size={13} />
-            </span>
+              <div
+                className="
+                  absolute
+                  right-[-70px]
+                  top-[-70px]
+                  h-[190px]
+                  w-[190px]
+                  rounded-full
+                  border
+                "
+                style={{
+                  borderColor:
+                    'rgba(21,90,145,0.08)',
+                }}
+              />
 
-            <span
-              className="text-[12px]"
-              style={{
-                color: COLORS.muted,
-              }}
-            >
-              Designed for senior technology
-              decision-makers.
-            </span>
+              <div
+                className="
+                  absolute
+                  right-[-30px]
+                  top-[-30px]
+                  h-[110px]
+                  w-[110px]
+                  rounded-full
+                  border
+                "
+                style={{
+                  borderColor:
+                    'rgba(22,135,184,0.10)',
+                }}
+              />
+
+              <div className="relative">
+                <div
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-xl
+                  "
+                  style={{
+                    background:
+                      COLORS.navy,
+                    color: '#FFFFFF',
+                  }}
+                >
+                  <FiUsers size={19} />
+                </div>
+
+                <h3
+                  className="
+                    mt-8
+                    text-[24px]
+                    font-semibold
+                    tracking-[-0.03em]
+                  "
+                  style={{
+                    color: COLORS.navy,
+                  }}
+                >
+                  A platform for
+                  <br />
+                  technology leaders.
+                </h3>
+
+                <div className="mt-7 space-y-4">
+                  {leadershipPoints.map(
+                    (point) => (
+                      <div
+                        key={point}
+                        className="
+                          flex
+                          items-center
+                          gap-3
+                        "
+                      >
+                        <span
+                          className="
+                            flex
+                            h-5
+                            w-5
+                            flex-shrink-0
+                            items-center
+                            justify-center
+                            rounded-full
+                          "
+                          style={{
+                            background:
+                              'rgba(22,135,184,0.10)',
+                            color:
+                              COLORS.accent,
+                          }}
+                        >
+                          <FiCheck
+                            size={11}
+                          />
+                        </span>
+
+                        <span
+                          className="text-[12px]"
+                          style={{
+                            color:
+                              COLORS.muted,
+                          }}
+                        >
+                          {point}
+                        </span>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+            </motion.div>
           </div>
 
-          <span
-            className={`${mono.className} text-[7px] uppercase tracking-[0.2em]`}
+          {/* Metrics */}
+
+          <motion.div
+            variants={reveal}
+            className="
+              mt-20
+              grid
+              border-y
+              sm:grid-cols-3
+            "
             style={{
-              color: COLORS.soft,
+              borderColor:
+                COLORS.line,
             }}
           >
-            INTELLIGENT ENTERPRISE ERA
-          </span>
-        </div>
+            {[
+              {
+                number: '20+',
+                label: 'SPEAKERS',
+                caption:
+                  'Industry perspectives',
+              },
+              {
+                number: '200+',
+                label: 'DELEGATES',
+                caption:
+                  'Technology leaders',
+              },
+              {
+                number: '40+',
+                label: 'BUSINESS MEETINGS',
+                caption:
+                  'Strategic connections',
+              },
+            ].map(
+              (stat, index) => (
+                <div
+                  key={stat.label}
+                  className={`
+                    relative
+                    py-8
+                    sm:px-8
+                    sm:py-10
+                    ${
+                      index !== 0
+                        ? 'border-t sm:border-l sm:border-t-0'
+                        : ''
+                    }
+                  `}
+                  style={{
+                    borderColor:
+                      COLORS.line,
+                  }}
+                >
+                  <p
+                    className="
+                      text-[48px]
+                      font-semibold
+                      leading-none
+                      tracking-[-0.06em]
+                    "
+                    style={{
+                      color:
+                        COLORS.navy,
+                    }}
+                  >
+                    {stat.number}
+                  </p>
+
+                  <div className="mt-4 flex items-center gap-3">
+                    <span
+                      className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.18em]`}
+                      style={{
+                        color:
+                          COLORS.accent,
+                      }}
+                    >
+                      {stat.label}
+                    </span>
+
+                    <span
+                      className="h-px w-8"
+                      style={{
+                        background:
+                          COLORS.line,
+                      }}
+                    />
+
+                    <span
+                      className="text-[9px]"
+                      style={{
+                        color:
+                          COLORS.soft,
+                      }}
+                    >
+                      {stat.caption}
+                    </span>
+                  </div>
+                </div>
+              )
+            )}
+          </motion.div>
+        </motion.div>
       </div>
-    </motion.div>
+    </section>
   )
 }
 
 /* =========================================================
-   MAIN ABOUT
+   TECHNOLOGY SECTION
 ========================================================= */
 
-export function About() {
+function TechnologySection() {
   return (
     <section
-      id="about"
-      className={`${sans.className} relative overflow-hidden bg-[#F8FCFD] py-24 sm:py-28 lg:py-36`}
+      className={`${sans.className} relative overflow-hidden py-24 sm:py-28 lg:py-32`}
+      style={{
+        background: COLORS.navy,
+      }}
     >
-      {/* =====================================================
-          BACKGROUND SYSTEM
-      ===================================================== */}
+      {/* Fine grid */}
 
-      <div className="pointer-events-none absolute inset-0">
-        {/* grid */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          opacity-[0.035]
+        "
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)
+          `,
+          backgroundSize:
+            '80px 80px',
+        }}
+      />
 
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage: `
-              linear-gradient(${COLORS.navy} 1px, transparent 1px),
-              linear-gradient(90deg, ${COLORS.navy} 1px, transparent 1px)
-            `,
-            backgroundSize: '72px 72px',
-            maskImage:
-              'linear-gradient(to bottom, black, transparent 70%)',
-            WebkitMaskImage:
-              'linear-gradient(to bottom, black, transparent 70%)',
-          }}
-        />
-
-        {/* top cyan atmosphere */}
-
-        <div
-          className="
-            absolute
-            -right-[250px]
-            -top-[180px]
-            h-[700px]
-            w-[700px]
-            rounded-full
-            blur-[150px]
-          "
-          style={{
-            background: `${COLORS.cyan}0B`,
-          }}
-        />
-
-        {/* left atmosphere */}
-
-        <div
-          className="
-            absolute
-            -left-[250px]
-            top-[30%]
-            h-[600px]
-            w-[600px]
-            rounded-full
-            blur-[150px]
-          "
-          style={{
-            background: `${COLORS.teal}07`,
-          }}
-        />
-
-        {/* technical diagonal */}
-
-        <div
-          className="
-            absolute
-            right-0
-            top-[18%]
-            h-px
-            w-[35%]
-          "
-          style={{
-            background: `linear-gradient(90deg, transparent, ${COLORS.teal}18)`,
-          }}
-        />
-      </div>
-
-      {/* =====================================================
-          CONTENT
-      ===================================================== */}
-
-      <div className="relative z-10 mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-10">
-
-        {/* ===================================================
-            HEADER
-        =================================================== */}
-
+      <div className="relative mx-auto max-w-[1380px] px-5 sm:px-8 lg:px-12">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          variants={stagger}
           viewport={{
             once: true,
-            amount: 0.25,
+            amount: 0.15,
           }}
+          variants={stagger}
         >
-          <motion.div variants={reveal}>
-            <Eyebrow />
-          </motion.div>
-
-          <motion.div
-            variants={reveal}
-            className="mt-8"
-          >
-            <span
-              className={`${mono.className} text-[8px] uppercase tracking-[0.28em]`}
-              style={{
-                color: COLORS.muted,
-              }}
-            >
-              The Technology Leadership Platform
-            </span>
-          </motion.div>
-
-          <motion.h2
-            variants={reveal}
-            className="
-              relative
-              mt-6
-              max-w-[800px]
-              text-[46px]
-              font-semibold
-              leading-[0.96]
-              tracking-[-0.06em]
-              sm:text-[64px]
-              md:text-[74px]
-              lg:text-[84px]
-            "
-            style={{
-              color: COLORS.ink,
-            }}
-          >
-            Where technology
-            <br />
-
-            <span
-              style={{
-                color: COLORS.teal,
-              }}
-            >
-              meets leadership.
-            </span>
-          </motion.h2>
+          {/* <motion.div variants={reveal}>
+            <Eyebrow
+              label="Technology Core"
+              number="04 / 04"
+              dark
+            />
+          </motion.div> */}
 
           <motion.div
             variants={reveal}
             className="
               mt-8
-              flex
-              max-w-[700px]
-              gap-5
+              grid
+              gap-8
+              lg:grid-cols-[0.65fr_1.35fr]
+              lg:items-start
             "
           >
-            <div
-              className="
-                mt-2
-                h-px
-                w-14
-                flex-shrink-0
-              "
-              style={{
-                background: COLORS.teal,
-              }}
-            />
+            <div>
+              <h2
+                className="
+                  max-w-lg
+                  text-[42px]
+                  font-semibold
+                  leading-[0.98]
+                  tracking-[-0.045em]
+                  text-white
+                  sm:text-[52px]
+                  lg:text-[62px]
+                "
+              >
+                Where ideas
+                <br />
+                become{' '}
+                <span
+                  style={{
+                    color:
+                      '#7DD3E7',
+                  }}
+                >
+                  action.
+                </span>
+              </h2>
 
-            <p
-              className="
-                max-w-[620px]
-                text-[14px]
-                leading-7
-                sm:text-[15px]
-                sm:leading-8
-              "
-              style={{
-                color: COLORS.muted,
-              }}
-            >
-              CIO Tech Delhi is a curated platform
-              where senior technology and business
-              leaders come together to exchange
-              perspectives, challenge ideas and shape
-              what comes next in enterprise technology.
-            </p>
+              <p
+                className="mt-7 max-w-md text-[15px] leading-7"
+                style={{
+                  color:
+                    'rgba(255,255,255,0.55)',
+                }}
+              >
+                The technology core represents
+                the interconnected ecosystem of
+                people, ideas and technologies
+                driving the next generation of
+                enterprise leadership.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-2">
+                {[
+                  'AI',
+                  'CLOUD',
+                  'DATA',
+                  'SECURITY',
+                  'LEADERSHIP',
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className={`${mono.className} rounded-full border px-3 py-2 text-[7px] uppercase tracking-[0.14em]`}
+                    style={{
+                      borderColor:
+                        'rgba(255,255,255,0.12)',
+                      color:
+                        'rgba(255,255,255,0.55)',
+                    }}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <TechnologyCore />
+            </div>
           </motion.div>
         </motion.div>
+      </div>
+    </section>
+  )
+}
 
-        {/* ===================================================
-            TECHNOLOGY CORE
-        =================================================== */}
+/* =========================================================
+   FINAL CTA
+========================================================= */
 
-        <div className="relative mt-12 sm:mt-16 lg:mt-10">
-          <TechnologyCore />
-        </div>
+function FinalCTA() {
+  return (
+    <section
+      className={`${sans.className} bg-white py-24 sm:py-28 lg:py-32`}
+    >
+      <div className="mx-auto max-w-[1380px] px-5 sm:px-8 lg:px-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.25,
+          }}
+          variants={reveal}
+          className="
+            relative
+            overflow-hidden
+            rounded-2xl
+            bg-[#F2F7FA]
+            px-7
+            py-12
+            sm:px-12
+            sm:py-16
+            lg:px-16
+            lg:py-20
+          "
+        >
+          {/* Decorative circles */}
 
-        {/* ===================================================
-            STATS
-        =================================================== */}
-{/* 
-        <div className="mt-8 lg:mt-2">
-          <Statistics />
-        </div> */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              right-[-100px]
+              top-[-100px]
+              h-[300px]
+              w-[300px]
+              rounded-full
+              border
+            "
+            style={{
+              borderColor:
+                'rgba(21,90,145,0.08)',
+            }}
+          />
 
-        {/* ===================================================
-            FOCUS AREAS
-        =================================================== */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              bottom-[-120px]
+              right-[80px]
+              h-[240px]
+              w-[240px]
+              rounded-full
+              border
+            "
+            style={{
+              borderColor:
+                'rgba(22,135,184,0.07)',
+            }}
+          />
 
-        <div className="mt-20 lg:mt-28">
-          <FocusAreas />
-        </div>
+          <div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <p
+                className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em]`}
+                style={{
+                  color:
+                    COLORS.accent,
+                }}
+              >
+                CIO TECH / DELHI
+              </p>
 
-        {/* ===================================================
-            INDIA ECOSYSTEM
-        =================================================== */}
+              <h2
+                className="
+                  mt-5
+                  max-w-3xl
+                  text-[38px]
+                  font-semibold
+                  leading-[1]
+                  tracking-[-0.045em]
+                  sm:text-[52px]
+                  lg:text-[62px]
+                "
+                style={{
+                  color:
+                    COLORS.navy,
+                }}
+              >
+                Connect with the
+                <br />
+                people shaping
+                <br />
+                <span
+                  style={{
+                    color:
+                      COLORS.accent,
+                  }}
+                >
+                  what comes next.
+                </span>
+              </h2>
 
-        {/* <IndiaEcosystem /> */}
+              <p
+                className="mt-6 max-w-xl text-[14px] leading-6"
+                style={{
+                  color:
+                    COLORS.muted,
+                }}
+              >
+                A focused platform for technology
+                leaders to connect, exchange ideas
+                and explore the future of enterprise
+                technology.
+              </p>
+            </div>
 
-        {/* ===================================================
-            MISSION
-        =================================================== */}
-
-        <Mission />
-
-        {/* ===================================================
-            FOOTER SYSTEM LINE
-        =================================================== */}
-
-        <div className="mt-10 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span
-              className="h-px w-8"
+            <a
+              href="#delegateenquiry"
+              className="
+                group
+                inline-flex
+                items-center
+                gap-4
+                self-start
+                rounded-full
+                px-6
+                py-4
+                text-[11px]
+                font-semibold
+                uppercase
+                tracking-[0.12em]
+                transition-all
+                duration-300
+                hover:-translate-y-1
+              "
               style={{
-                background: COLORS.navy,
-              }}
-            />
-
-            <span
-              className={`${mono.className} text-[7px] uppercase tracking-[0.2em]`}
-              style={{
-                color: COLORS.soft,
+                background:
+                  COLORS.navy,
+                color: '#FFFFFF',
+                boxShadow:
+                  '0 16px 40px rgba(6,26,46,0.16)',
               }}
             >
-              CIO TECH / DELHI / 2026
-            </span>
+              Attend as Delegate
+
+              <span
+                className="
+                  flex
+                  h-7
+                  w-7
+                  items-center
+                  justify-center
+                  rounded-full
+                "
+                style={{
+                  background:
+                    'rgba(255,255,255,0.12)',
+                }}
+              >
+                <FiArrowUpRight
+                  size={14}
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-0.5
+                    group-hover:-translate-y-0.5
+                  "
+                />
+              </span>
+            </a>
           </div>
+        </motion.div>
 
-          <div className="hidden items-center gap-3 sm:flex">
-            <span
-              className="h-1.5 w-1.5 rounded-full"
-              style={{
-                background: COLORS.teal,
-                boxShadow: `0 0 12px ${COLORS.teal}`,
-              }}
-            />
+        {/* Footer label */}
 
-            <span
-              className={`${mono.className} text-[7px] uppercase tracking-[0.2em]`}
-              style={{
-                color: COLORS.soft,
-              }}
-            >
-              Intelligent Enterprise Era
-            </span>
-          </div>
+        <div
+          className="
+            mt-8
+            flex
+            flex-col
+            justify-between
+            gap-3
+            border-t
+            pt-5
+            sm:flex-row
+            sm:items-center
+          "
+          style={{
+            borderColor:
+              COLORS.line,
+          }}
+        >
+          <span
+            className={`${mono.className} text-[7px] uppercase tracking-[0.18em]`}
+            style={{
+              color:
+                COLORS.muted,
+            }}
+          >
+            CIO TECH / DELHI / 2026
+          </span>
 
-          <div className="flex items-center gap-3">
-            <span
-              className={`${mono.className} text-[7px] uppercase tracking-[0.2em]`}
-              style={{
-                color: COLORS.soft,
-              }}
-            >
-              END / ABOUT
-            </span>
+          <span
+            className={`${mono.className} text-[7px] uppercase tracking-[0.18em]`}
+            style={{
+              color:
+                COLORS.soft,
+            }}
+          >
+            Intelligent Enterprise Era
+          </span>
 
-            <span
-              className="h-px w-8"
-              style={{
-                background: COLORS.navy,
-              }}
-            />
-          </div>
+          <span
+            className={`${mono.className} text-[7px] uppercase tracking-[0.18em]`}
+            style={{
+              color:
+                COLORS.muted,
+            }}
+          >
+            END / ABOUT
+          </span>
         </div>
       </div>
     </section>
+  )
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+export default function About() {
+  return (
+    <main
+      id="about"
+      className={sans.className}
+    >
+      {/* =====================================================
+          HERO
+      ===================================================== */}
+
+      <section className="relative overflow-hidden bg-white">
+        {/* subtle background */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            right-[-180px]
+            top-[-220px]
+            h-[550px]
+            w-[550px]
+            rounded-full
+            border
+          "
+          style={{
+            borderColor:
+              'rgba(21,90,145,0.055)',
+          }}
+        />
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            right-[-100px]
+            top-[-140px]
+            h-[360px]
+            w-[360px]
+            rounded-full
+            border
+          "
+          style={{
+            borderColor:
+              'rgba(22,135,184,0.055)',
+          }}
+        />
+
+        <div className="relative mx-auto max-w-[1380px] px-5 pb-20 pt-20 sm:px-8 sm:pb-24 sm:pt-24 lg:px-12 lg:pb-28 lg:pt-28">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+          >
+            {/* <motion.div variants={reveal}>
+              <Eyebrow />
+            </motion.div> */}
+
+            <div
+              className="
+                mt-10
+                grid
+                gap-12
+                lg:grid-cols-[1fr_0.72fr]
+                lg:items-end
+              "
+            >
+              <motion.div variants={reveal}>
+                <p
+                  className={`${mono.className} text-[9px] font-semibold uppercase tracking-[0.22em]`}
+                  style={{
+                    color:
+                      COLORS.accent,
+                  }}
+                >
+                  The Technology Leadership Platform
+                </p>
+
+                <h1
+                  className="
+                    mt-5
+                    max-w-5xl
+                    text-[48px]
+                    font-semibold
+                    leading-[0.95]
+                    tracking-[-0.055em]
+                    sm:text-[64px]
+                    lg:text-[86px]
+                  "
+                  style={{
+                    color:
+                      COLORS.navy,
+                  }}
+                >
+                  Where technology
+                  <br />
+                  meets{' '}
+                  <span
+                    style={{
+                      color:
+                        COLORS.accent,
+                    }}
+                  >
+                    leadership.
+                  </span>
+                </h1>
+              </motion.div>
+
+              <motion.div
+                variants={reveal}
+                className="lg:pb-2"
+              >
+                <p
+                  className="
+                    max-w-lg
+                    text-[15px]
+                    leading-7
+                    sm:text-[16px]
+                  "
+                  style={{
+                    color:
+                      COLORS.muted,
+                  }}
+                >
+                  CIO Tech Delhi is a curated
+                  platform where senior technology
+                  and business leaders come together
+                  to exchange perspectives, challenge
+                  ideas and shape what comes next in
+                  enterprise technology.
+                </p>
+
+                {/* <div className="mt-7 flex items-center gap-3">
+                  <span
+                    className="
+                      flex
+                      h-9
+                      w-9
+                      items-center
+                      justify-center
+                      rounded-full
+                    "
+                    style={{
+                      background:
+                        COLORS.navy,
+                      color: '#FFFFFF',
+                    }}
+                  >
+                    <FiArrowUpRight
+                      size={15}
+                    />
+                  </span>
+
+                  <span
+                    className={`${mono.className} text-[8px] uppercase tracking-[0.18em]`}
+                    style={{
+                      color:
+                        COLORS.navy,
+                    }}
+                  >
+                    Explore the ecosystem
+                  </span>
+                </div> */}
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Hero divider */}
+
+        <div
+          className="mx-auto max-w-[1380px] border-t"
+          style={{
+            borderColor:
+              COLORS.line,
+          }}
+        />
+
+        {/* <div className="mx-auto max-w-[1380px] px-5 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-2 sm:grid-cols-4">
+            {[
+              {
+                number: '20+',
+                label: 'Industry Speakers',
+              },
+              {
+                number: '200+',
+                label: 'Technology Leaders',
+              },
+              {
+                number: '40+',
+                label: 'Business Meetings',
+              },
+              {
+                number: '01',
+                label: 'Leadership Platform',
+              },
+            ].map((item, index) => (
+              <div
+                key={item.label}
+                className={`
+                  py-6
+                  sm:py-8
+                  sm:px-5
+                  lg:px-7
+                  ${
+                    index !== 0
+                      ? 'border-l'
+                      : ''
+                  }
+                `}
+                style={{
+                  borderColor:
+                    COLORS.line,
+                }}
+              >
+                <p
+                  className="
+                    text-[25px]
+                    font-semibold
+                    tracking-[-0.04em]
+                    sm:text-[32px]
+                  "
+                  style={{
+                    color:
+                      COLORS.navy,
+                  }}
+                >
+                  {item.number}
+                </p>
+
+                <p
+                  className={`${mono.className} mt-2 text-[7px] uppercase tracking-[0.16em] sm:text-[8px]`}
+                  style={{
+                    color:
+                      COLORS.soft,
+                  }}
+                >
+                  {item.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div> */}
+      </section>
+
+      {/* =====================================================
+          TECHNOLOGY CORE
+      ===================================================== */}
+
+      <TechnologySection />
+
+      {/* =====================================================
+          FOCUS AREAS
+      ===================================================== */}
+
+      <FocusAreas />
+
+      {/* =====================================================
+          MISSION
+      ===================================================== */}
+
+      <Mission />
+
+      {/* =====================================================
+          FINAL CTA
+      ===================================================== */}
+
+      <FinalCTA />
+    </main>
   )
 }
