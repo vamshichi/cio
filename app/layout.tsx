@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: 'CIO Tech Leadership Conference & Awards Delhi 2026',
   
   description:
-    'Join 250+ CIOs, CTOs, CISOs & technology leaders at CIO Tech Leadership Conference & Awards Delhi 2026. Explore AI, cybersecurity, cloud & digital transformation',
+    'Join 200+ CIOs, CTOs, CISOs & technology leaders at CIO Tech Leadership Conference & Awards Delhi 2026. Explore AI, cybersecurity, cloud & digital transformation',
 
   generator: 'vamshi',
 

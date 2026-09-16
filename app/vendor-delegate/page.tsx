@@ -66,7 +66,7 @@ export default function VendorDelegatePage() {
                   <Users className="mb-3 h-8 w-8 text-cyan-400" />
                   <p className="text-sm text-slate-400">Attendees</p>
                   <h3 className="mt-1 font-semibold">
-                    250+ Tech Leaders
+                    200+ Tech Leaders
                   </h3>
                 </div>
               </div>
@@ -146,7 +146,7 @@ export default function VendorDelegatePage() {
                 <div className="mt-10 grid grid-cols-2 gap-5">
                   <div className="rounded-2xl bg-cyan-500/10 p-6 text-center">
                     <h3 className="text-4xl font-black text-cyan-400">
-                      250+
+                      200+
                     </h3>
                     <p className="mt-2 text-sm text-slate-300">
                       Decision Makers
@@ -155,7 +155,7 @@ export default function VendorDelegatePage() {
 
                   <div className="rounded-2xl bg-cyan-500/10 p-6 text-center">
                     <h3 className="text-4xl font-black text-cyan-400">
-                      100+
+                      40+
                     </h3>
                     <p className="mt-2 text-sm text-slate-300">
                       One-to-One Meetings
