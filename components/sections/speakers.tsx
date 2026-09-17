@@ -253,22 +253,8 @@ function MoreSpeakersCard() {
       <div className="relative flex min-h-full flex-col overflow-hidden rounded-[24px] border border-dashed border-blue-400/25 bg-[#041021]/80 p-6 backdrop-blur-xl transition-all duration-500 group-hover:border-cyan-400/50 sm:p-8">
         <CornerBrackets />
 
-        {/* Top micro labels */}
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="font-mono text-[9px] uppercase tracking-[3px] text-blue-400">
-              The conversation
-            </p>
-
-            <p className="mt-2 text-[9px] uppercase tracking-[2px] text-slate-600">
-              Continues
-            </p>
-          </div>
-
-          <span className="font-mono text-[9px] tracking-[3px] text-slate-600">
-            03
-          </span>
-        </div>
+       
+      
 
         {/* Center */}
         <div className="flex flex-1 flex-col items-center justify-center py-16 text-center">
@@ -325,7 +311,7 @@ export function Speakers() {
   return (
     <section
       id="speakers"
-      className="relative overflow-hidden bg-[#F5F8FC] py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden bg-[#F5F8FC] py-5 sm:py-10 lg:py-10"
     >
       {/* =========================================================
           LIGHT TECHNICAL BACKGROUND
@@ -357,21 +343,9 @@ export function Speakers() {
           {...fadeUp()}
           className="border-b border-[#D9E3E8] pb-10"
         >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#176B9C]" />
+          
 
-              <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.24em] text-[#176B9C] sm:text-[9px]">
-                Thought Leaders / CIO Tech 2026
-              </span>
-            </div>
-
-            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-[#91A1AD] sm:text-[9px]">
-              Speakers / 03
-            </span>
-          </div>
-
-          <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end lg:gap-16">
+          <div className="mt-2 grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end lg:gap-16">
             <div>
               <p className="font-mono text-[8px] font-semibold uppercase tracking-[0.25em] text-[#176B9C]">
                 The people shaping what&apos;s next
@@ -575,33 +549,6 @@ export function Speakers() {
                 </span>
               </div>
             </div>
-          </div>
-        </motion.div>
-
-        {/* =========================================================
-            BOTTOM STATEMENT
-        ========================================================= */}
-        <motion.div
-          {...fadeUp(0.35)}
-          className="mt-12 flex flex-col gap-4 border-t border-[#D9E3E8] pt-7 sm:flex-row sm:items-center sm:justify-between"
-        >
-          <div className="flex items-center gap-4">
-            <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.2em] text-[#176B9C]">
-              CIO TECH 2026
-            </span>
-
-            <span className="h-px w-8 bg-[#D9E3E8]" />
-
-            <span className="font-mono text-[7px] uppercase tracking-[0.18em] text-[#91A1AD]">
-              Voices that shape decisions
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#55C7DC]" />
-            <span className="font-mono text-[7px] uppercase tracking-[0.18em] text-[#91A1AD]">
-              Leadership · Innovation · Impact
-            </span>
           </div>
         </motion.div>
       </div>

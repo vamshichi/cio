@@ -82,9 +82,7 @@ export function Contact() {
               </span>
             </div>
 
-            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-white/30 sm:text-[9px]">
-              Contact / 04
-            </span>
+       
           </div>
         </motion.div>
 

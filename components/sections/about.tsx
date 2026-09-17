@@ -2508,7 +2508,92 @@ function AboutEvent() {
 
 function IndustryLandscape() {
   return (
-    <section className={`${sans.className} relative overflow-hidden bg-[#061522]`}>
+    <section
+      className={`${sans.className} relative isolate overflow-hidden bg-[#061522]`}
+    >
+      {/* =========================================================
+          BACKGROUND IMAGE
+      ========================================================== */}
+
+      <div className="pointer-events-none absolute inset-0">
+        {/* Main visual */}
+        <motion.div
+          initial={{ opacity: 0, scale: 1.06, x: 30 }}
+          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 1.4,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="absolute right-[-8%] top-0 h-full w-[78%]"
+        >
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('/images/industry-landscape.png')",
+            }}
+          />
+
+          {/* Fade image into left side */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `
+                linear-gradient(
+                  90deg,
+                  #061522 0%,
+                  rgba(6,21,34,0.94) 8%,
+                  rgba(6,21,34,0.72) 22%,
+                  rgba(6,21,34,0.25) 45%,
+                  rgba(6,21,34,0.05) 75%,
+                  rgba(6,21,34,0) 100%
+                )
+              `,
+            }}
+          />
+
+          {/* Top fade */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, #061522 0%, rgba(6,21,34,0.05) 28%, rgba(6,21,34,0.12) 100%)",
+            }}
+          />
+
+          {/* Bottom fade */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-40"
+            style={{
+              background:
+                "linear-gradient(180deg, transparent, #061522)",
+            }}
+          />
+        </motion.div>
+
+        {/* Atmospheric blue glow */}
+        <div
+          className="absolute right-[15%] top-[18%] h-[420px] w-[420px] rounded-full blur-[140px]"
+          style={{
+            background: "rgba(55, 190, 225, 0.10)",
+          }}
+        />
+
+        {/* Dark left protection layer */}
+        <div
+          className="absolute inset-y-0 left-0 w-[65%]"
+          style={{
+            background:
+              "linear-gradient(90deg, #061522 0%, rgba(6,21,34,0.98) 45%, rgba(6,21,34,0.75) 75%, transparent 100%)",
+          }}
+        />
+      </div>
+
+      {/* =========================================================
+          TECH GRID
+      ========================================================== */}
+
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.035]"
         style={{
@@ -2516,9 +2601,27 @@ function IndustryLandscape() {
             linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
             linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)
           `,
-          backgroundSize: '84px 84px',
+          backgroundSize: "84px 84px",
         }}
       />
+
+      {/* Fine radial glow */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(
+              circle at 72% 42%,
+              rgba(85,199,220,0.08),
+              transparent 32%
+            )
+          `,
+        }}
+      />
+
+      {/* =========================================================
+          CONTENT
+      ========================================================== */}
 
       <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <motion.div
@@ -2527,11 +2630,21 @@ function IndustryLandscape() {
           viewport={{ once: true, amount: 0.12 }}
           variants={stagger}
         >
+          {/* =====================================================
+              HEADER
+          ====================================================== */}
+
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16">
+            {/* LEFT */}
             <motion.div variants={reveal}>
               <div className="flex items-center gap-3">
-                <span className="h-[6px] w-[6px] rounded-full bg-[#55C7DC] shadow-[0_0_10px_rgba(85,199,220,0.8)]" />
-                <span className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-white/70`}>
+                <span className="relative h-[6px] w-[6px] rounded-full bg-[#55C7DC] shadow-[0_0_12px_rgba(85,199,220,0.9)]">
+                  <span className="absolute inset-[-4px] animate-ping rounded-full bg-[#55C7DC]/20" />
+                </span>
+
+                <span
+                  className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-white/70`}
+                >
                   Industry ecosystem
                 </span>
               </div>
@@ -2539,121 +2652,338 @@ function IndustryLandscape() {
               <h2 className="mt-6 max-w-xl text-[46px] font-semibold leading-[0.93] tracking-[-0.065em] text-white sm:text-[60px] lg:text-[70px]">
                 One room.
                 <br />
-                <span className="text-[#7DD3E7]">Many industries.</span>
+                <span className="text-[#7DD3E7]">
+                  Many industries.
+                </span>
               </h2>
             </motion.div>
 
-            <motion.div variants={reveal}>
-              <p className="max-w-2xl text-[14px] leading-6 text-white/50 sm:text-[15px] sm:leading-7">
-                The conversation extends across the sectors where technology
-                is creating new operating models, customer experiences and
-                competitive advantage.
-              </p>
+            {/* RIGHT COPY */}
+            <motion.div
+              variants={reveal}
+              className="relative z-10 lg:pb-2"
+            >
+              <div className="max-w-2xl">
+                <div className="mb-4 h-px w-10 bg-[#55C7DC]/50" />
+
+                <p className="max-w-2xl text-[14px] leading-6 text-white/60 sm:text-[15px] sm:leading-7">
+                  The conversation extends across the sectors where
+                  technology is creating new operating models,
+                  customer experiences and competitive advantage.
+                </p>
+              </div>
             </motion.div>
           </div>
 
-          <motion.div variants={reveal} className="mt-12">
+          {/* =====================================================
+              INDUSTRY CARDS
+          ====================================================== */}
+
+          <motion.div
+            variants={reveal}
+            className="relative z-10 mt-12"
+          >
             <div className="flex flex-wrap gap-2.5">
               {industries.map((industry, index) => (
                 <motion.span
                   key={industry}
-                  whileHover={{ y: -2, borderColor: 'rgba(85,199,220,0.55)' }}
-                  transition={{ duration: 0.2 }}
-                  className={`${mono.className} group border border-white/10 bg-white/[0.035] px-4 py-3 text-[8px] uppercase tracking-[0.1em] text-white/60 backdrop-blur-sm transition-colors hover:bg-[#55C7DC]/[0.06] hover:text-[#7DD3E7] sm:text-[9px]`}
+                  initial={{
+                    opacity: 0,
+                    y: 10,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                    amount: 0.2,
+                  }}
+                  transition={{
+                    delay: index * 0.025,
+                    duration: 0.45,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  whileHover={{
+                    y: -3,
+                    borderColor: "rgba(85,199,220,0.6)",
+                    backgroundColor: "rgba(85,199,220,0.07)",
+                  }}
+                  className={`
+                    ${mono.className}
+                    group
+                    relative
+                    overflow-hidden
+                    border
+                    border-white/[0.12]
+                    bg-[#071b2a]/80
+                    px-4
+                    py-3
+                    text-[8px]
+                    uppercase
+                    tracking-[0.1em]
+                    text-white/65
+                    backdrop-blur-md
+                    transition-all
+                    duration-300
+                    hover:text-[#7DD3E7]
+                    sm:text-[9px]
+                  `}
                 >
-                  <span className="mr-2 text-[#55C7DC]/60">
-                    {String(index + 1).padStart(2, '0')}
+                  {/* Hover light */}
+                  <span className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#55C7DC] to-transparent transition-transform duration-300 group-hover:scale-x-100" />
+
+                  <span className="mr-2 text-[#55C7DC]/70">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
+
                   {industry}
                 </motion.span>
               ))}
             </div>
           </motion.div>
 
-          <motion.div variants={reveal} className="mt-12 border-t border-white/10 pt-5">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <span className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-white/35`}>
-                Cross-industry leadership exchange
-              </span>
-              <span className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-[#55C7DC]`}>
-                18 sectors represented
-              </span>
-            </div>
+          {/* =====================================================
+              VISUAL STATEMENT
+          ====================================================== */}
+
+          <motion.div
+            variants={reveal}
+            className="relative mt-1"
+          >
+            {/* Thin line */}
+            {/* <div className="border-t border-white/10 pt-5">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <span
+                  className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-white/35`}
+                >
+                  Cross-industry leadership exchange
+                </span>
+
+                <div className="flex items-center gap-3">
+                  <span className="h-px w-8 bg-[#55C7DC]/40" />
+
+                  <span
+                    className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-[#55C7DC]`}
+                  >
+                    18 sectors represented
+                  </span>
+                </div>
+              </div>
+            </div> */}
           </motion.div>
         </motion.div>
       </div>
+
+      {/* =========================================================
+          DECORATIVE FOREGROUND ELEMENTS
+      ========================================================== */}
+
+      {/* Right edge glow */}
+      <div
+        className="pointer-events-none absolute right-0 top-1/2 h-[380px] w-[2px] -translate-y-1/2 opacity-50"
+        style={{
+          background:
+            "linear-gradient(transparent, #55C7DC, transparent)",
+          filter: "blur(1px)",
+        }}
+      />
+
+      {/* Bottom ambient glow */}
+      <div
+        className="pointer-events-none absolute bottom-[-180px] left-1/2 h-[280px] w-[700px] -translate-x-1/2 rounded-full blur-[120px]"
+        style={{
+          background: "rgba(40,150,190,0.07)",
+        }}
+      />
     </section>
-  )
+  );
 }
 
 function AboutBenefits() {
   return (
-    <section className={`${sans.className} relative overflow-hidden bg-[#F8FAFC]`}>
-      <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+    <section
+      className={`${sans.className} relative overflow-hidden bg-[#F8FAFC]`}
+    >
+      {/* =========================================================
+          BACKGROUND DECORATION
+      ========================================================== */}
+
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.45]"
+        style={{
+          backgroundImage: `
+            linear-gradient(#DCE7EC 1px, transparent 1px),
+            linear-gradient(90deg, #DCE7EC 1px, transparent 1px)
+          `,
+          backgroundSize: "84px 84px",
+          maskImage:
+            "linear-gradient(to bottom, black, transparent 85%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black, transparent 85%)",
+        }}
+      />
+
+      {/* Large atmospheric circle */}
+
+      <div className="pointer-events-none absolute -right-[280px] top-[-220px] h-[650px] w-[650px] rounded-full border border-[#176B9C]/[0.06]" />
+
+      <div className="pointer-events-none absolute -right-[180px] top-[-120px] h-[450px] w-[450px] rounded-full border border-[#55C7DC]/[0.08]" />
+
+      {/* Cyan glow */}
+
+      <div className="pointer-events-none absolute right-[10%] top-[18%] h-[280px] w-[280px] rounded-full bg-[#55C7DC]/[0.06] blur-[110px]" />
+
+      {/* =========================================================
+          MAIN CONTAINER
+      ========================================================== */}
+
+      <div className="relative mx-auto max-w-[1380px] px-5 py-14 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.12 }}
+          viewport={{
+            once: true,
+            amount: 0.12,
+          }}
           variants={stagger}
         >
-          <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end lg:gap-14">
-            <motion.div variants={reveal}>
-              <p className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#176B9C]`}>
-                Why leaders attend
-              </p>
+          {/* =====================================================
+              TOP SECTION
+          ====================================================== */}
 
-              <h2 className="mt-4 max-w-xl text-[46px] font-semibold leading-[0.94] tracking-[-0.065em] text-[#08243B] sm:text-[58px] lg:text-[68px]">
-                Conversations
-                <br />
-                that move
-                <br />
-                <span className="text-[#176B9C]">business forward.</span>
-              </h2>
-            </motion.div>
+          <div className="flex justify-center">
+  <motion.div
+    variants={reveal}
+    className="flex flex-col items-center text-center"
+  >
+    {/* Label */}
+    <div className="flex items-center justify-center gap-3">
+      <span className="h-[6px] w-[6px] rounded-full bg-[#176B9C] shadow-[0_0_10px_rgba(23,107,156,0.35)]" />
 
-            <motion.div variants={reveal} className="lg:pb-1">
-              <p className="max-w-2xl text-[14px] leading-6 text-[#607484] sm:text-[15px] sm:leading-7">
-                From boardroom priorities to emerging technology, the
-                experience is designed around the questions senior leaders
-                are actually solving today.
-              </p>
-            </motion.div>
-          </div>
+      <p
+        className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#176B9C]`}
+      >
+        Why leaders attend
+      </p>
+    </div>
+
+    {/* Heading */}
+    <h2 className="mt-5 max-w-[800px] text-[46px] font-semibold leading-[0.92] tracking-[-0.07em] text-[#08243B] sm:text-[58px] lg:text-[70px]">
+      Conversations that move
+      <br />
+      <span className="text-[#176B9C]">
+        business forward.
+      </span>
+    </h2>
+
+    {/* Description */}
+    <div className="mt-7 flex flex-col items-center gap-3">
+      <div className="h-px w-10 bg-[#55C7DC]" />
+
+      <p className="max-w-[600px] text-[14px] leading-6 text-[#607484] sm:text-[15px] sm:leading-7">
+        From boardroom priorities to emerging technology,
+        the experience is designed around the questions
+        senior leaders are actually solving today.
+      </p>
+    </div>
+  </motion.div>
+</div>
+
+          {/* =====================================================
+              BENEFIT INTRO BAR
+          ====================================================== */}
 
           <motion.div
             variants={reveal}
-            className="mt-12 grid border-l border-t border-[#D9E3E8] sm:grid-cols-2 lg:grid-cols-4"
+            className="mt-14 flex items-center justify-between border-y border-[#D9E3E8] py-4"
           >
-            {aboutBenefits.map((benefit) => {
+            <span
+              className={`${mono.className} text-[7px] uppercase tracking-[0.22em] text-[#78909E]`}
+            >
+              What the room gives you
+            </span>
+
+            <span
+              className={`${mono.className} hidden text-[7px] uppercase tracking-[0.22em] text-[#176B9C] sm:block`}
+            >
+              04 leadership outcomes
+            </span>
+          </motion.div>
+
+          {/* =====================================================
+              BENEFIT CARDS
+          ====================================================== */}
+
+          <motion.div
+            variants={reveal}
+            className="mt-0 grid border-l border-[#D9E3E8] sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {aboutBenefits.map((benefit, index) => {
               const Icon = benefit.icon
 
               return (
                 <motion.div
                   key={benefit.number}
-                  whileHover={{ backgroundColor: '#FFFFFF' }}
-                  className="group min-h-[250px] border-b border-r border-[#D9E3E8] bg-[#F8FAFC] p-6 transition-colors sm:p-7"
+                  initial={{
+                    opacity: 0,
+                    y: 20,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                    amount: 0.15,
+                  }}
+                  transition={{
+                    delay: index * 0.08,
+                    duration: 0.6,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  whileHover={{
+                    y: -5,
+                  }}
+                  className="group relative min-h-[235px] overflow-hidden border-b border-r border-[#D9E3E8] bg-[#F8FAFC] p-6 transition-all duration-300 hover:bg-white hover:shadow-[0_20px_50px_rgba(8,36,59,0.07)] sm:p-7"
                 >
+                  {/* Number */}
+
                   <div className="flex items-start justify-between">
-                    <span className={`${mono.className} text-[8px] font-semibold tracking-[0.16em] text-[#176B9C]`}>
+                    <span
+                      className={`${mono.className} text-[9px] font-semibold tracking-[0.16em] text-[#176B9C]`}
+                    >
                       {benefit.number}
                     </span>
 
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#176B9C]/[0.07] text-[#176B9C] transition-transform duration-300 group-hover:scale-110">
-                      <Icon size={16} strokeWidth={1.6} />
-                    </span>
+                    <div className="flex h-9 w-9 items-center justify-center border border-[#176B9C]/10 bg-[#176B9C]/[0.05] text-[#176B9C] transition-all duration-300 group-hover:border-[#55C7DC]/30 group-hover:bg-[#55C7DC]/10 group-hover:text-[#176B9C]">
+                      <Icon size={16} strokeWidth={1.5} />
+                    </div>
                   </div>
 
-                  <div className="mt-12">
-                    <h3 className="text-[20px] font-semibold tracking-[-0.035em] text-[#08243B]">
+                  {/* Content */}
+
+                  <div className="mt-10">
+                    <h3 className="text-[19px] font-semibold tracking-[-0.04em] text-[#08243B]">
                       {benefit.title}
                     </h3>
 
-                    <p className="mt-3 text-[11px] leading-5 text-[#607484]">
+                    <p className="mt-3 max-w-[250px] text-[11px] leading-5 text-[#607484]">
                       {benefit.text}
                     </p>
                   </div>
 
-                  <div className="mt-7 h-px w-8 bg-[#55C7DC] transition-all duration-300 group-hover:w-14" />
+                  {/* Bottom line */}
+
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#55C7DC] transition-all duration-500 group-hover:w-full" />
+
+                  {/* Corner number */}
+
+                  <span
+                    className={`${mono.className} absolute bottom-5 right-6 text-[26px] font-medium tracking-[-0.05em] text-[#08243B]/[0.035] transition-colors duration-300 group-hover:text-[#176B9C]/[0.08]`}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </motion.div>
               )
             })}
@@ -2666,64 +2996,390 @@ function AboutBenefits() {
 
 function AboutCTA() {
   return (
-    <section className={`${sans.className} relative overflow-hidden bg-[#061522]`}>
-      <div className="pointer-events-none absolute right-[-220px] top-[-240px] h-[560px] w-[560px] rounded-full border border-[#55C7DC]/[0.07]" />
+    <section
+      className={`${sans.className} relative isolate overflow-hidden bg-[#061522]`}
+    >
+      {/* =========================================================
+          CINEMATIC BODY IMAGE
+      ========================================================== */}
+
+      <div className="pointer-events-none absolute inset-0">
+        <motion.div
+          initial={{ opacity: 0, scale: 1.06, x: 30 }}
+          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 1.5,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="absolute right-[-8%] top-0 h-full w-[72%]"
+        >
+          {/* Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage:
+                "url('/images/about-cta.png')",
+            }}
+          />
+
+          {/* LEFT FADE */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `
+                linear-gradient(
+                  90deg,
+                  #061522 0%,
+                  rgba(6,21,34,0.98) 12%,
+                  rgba(6,21,34,0.88) 27%,
+                  rgba(6,21,34,0.48) 45%,
+                  rgba(6,21,34,0.12) 70%,
+                  transparent 100%
+                )
+              `,
+            }}
+          />
+
+          {/* TOP FADE */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `
+                linear-gradient(
+                  180deg,
+                  #061522 0%,
+                  rgba(6,21,34,0.05) 30%,
+                  rgba(6,21,34,0.10) 75%,
+                  #061522 100%
+                )
+              `,
+            }}
+          />
+
+          {/* BOTTOM FADE */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-32"
+            style={{
+              background:
+                "linear-gradient(to bottom, transparent, #061522)",
+            }}
+          />
+        </motion.div>
+
+        {/* =====================================================
+            BLUE ATMOSPHERIC GLOW
+        ====================================================== */}
+
+        <div
+          className="absolute right-[18%] top-[25%] h-[420px] w-[420px] rounded-full blur-[150px]"
+          style={{
+            background: "rgba(65, 190, 220, 0.10)",
+          }}
+        />
+
+        {/* =====================================================
+            DARK LEFT PROTECTION
+        ====================================================== */}
+
+        <div
+          className="absolute inset-y-0 left-0 w-[65%]"
+          style={{
+            background:
+              "linear-gradient(90deg, #061522 0%, #061522 48%, rgba(6,21,34,0.92) 72%, transparent 100%)",
+          }}
+        />
+      </div>
+
+      {/* =========================================================
+          SUBTLE TECH GRID
+      ========================================================== */}
+
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage: `
+            linear-gradient(
+              rgba(255,255,255,0.7) 1px,
+              transparent 1px
+            ),
+            linear-gradient(
+              90deg,
+              rgba(255,255,255,0.7) 1px,
+              transparent 1px
+            )
+          `,
+          backgroundSize: "84px 84px",
+        }}
+      />
+
+      {/* =========================================================
+          DECORATIVE ORBITS
+      ========================================================== */}
+
+      <div className="pointer-events-none absolute right-[-180px] top-[-250px] h-[560px] w-[560px] rounded-full border border-[#55C7DC]/[0.08]" />
+
+      <div className="pointer-events-none absolute right-[-120px] top-[-190px] h-[440px] w-[440px] rounded-full border border-[#55C7DC]/[0.04]" />
+
       <div className="pointer-events-none absolute left-[-180px] bottom-[-220px] h-[440px] w-[440px] rounded-full border border-white/[0.035]" />
+
+      {/* =========================================================
+          CONTENT
+      ========================================================== */}
 
       <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{
+            once: true,
+            amount: 0.15,
+          }}
           variants={reveal}
         >
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#55C7DC]`}>
-                CIO TECH / 2026
-              </p>
+          {/* =====================================================
+              MAIN CONTENT
+          ====================================================== */}
 
-              <h2 className="mt-5 max-w-4xl text-[46px] font-semibold leading-[0.92] tracking-[-0.07em] text-white sm:text-[62px] lg:text-[78px]">
+          <div className="grid min-h-[220px] items-end lg:grid-cols-[0.9fr_1.1fr]">
+            {/* =================================================
+                LEFT CONTENT
+            ================================================== */}
+
+            <div className="relative z-20 pb-2">
+              {/* Eyebrow */}
+
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 12,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  duration: 0.6,
+                }}
+                className="flex items-center gap-3"
+              >
+                <span className="relative h-[6px] w-[6px] rounded-full bg-[#55C7DC] shadow-[0_0_12px_rgba(85,199,220,0.9)]">
+                  <span className="absolute inset-[-4px] animate-ping rounded-full bg-[#55C7DC]/20" />
+                </span>
+
+                <p
+                  className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#55C7DC]`}
+                >
+                  CIO TECH / 2026
+                </p>
+              </motion.div>
+
+              {/* Heading */}
+
+              <motion.h2
+                initial={{
+                  opacity: 0,
+                  y: 25,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  delay: 0.08,
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="mt-6 max-w-[650px] text-[46px] font-semibold leading-[0.91] tracking-[-0.07em] text-white sm:text-[62px] lg:text-[76px]"
+              >
                 The right room
                 <br />
                 can change the
                 <br />
-                <span className="text-[#7DD3E7]">next decision.</span>
-              </h2>
+                <span className="text-[#7DD3E7]">
+                  next decision.
+                </span>
+              </motion.h2>
 
-              <p className="mt-6 max-w-xl text-[14px] leading-6 text-white/50 sm:text-[15px] sm:leading-7">
-                Join a focused community of technology leaders, innovators
-                and decision-makers shaping the next chapter of enterprise
-                technology.
-              </p>
+              {/* Description */}
+
+              <motion.p
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  delay: 0.18,
+                  duration: 0.7,
+                }}
+                className="mt-7 max-w-[510px] text-[14px] leading-6 text-white/55 sm:text-[15px] sm:leading-7"
+              >
+                Join a focused community of technology leaders,
+                innovators and decision-makers shaping the next
+                chapter of enterprise technology.
+              </motion.p>
+
+              {/* =================================================
+                  CTA
+              ================================================== */}
+
+              <motion.a
+                initial={{
+                  opacity: 0,
+                  y: 15,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  delay: 0.28,
+                  duration: 0.7,
+                }}
+                href="#delegateenquiry"
+                className="group mt-8 inline-flex min-w-[245px] items-center justify-between gap-8 border border-white/15 bg-[#071b2a]/80 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC]/50 hover:bg-[#55C7DC]/[0.07]"
+              >
+                <span
+                  className={`${mono.className} text-[9px] font-semibold uppercase tracking-[0.14em] text-white`}
+                >
+                  Attend as Delegate
+                </span>
+
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#55C7DC]/10 text-[#55C7DC] shadow-[0_0_20px_rgba(85,199,220,0.12)] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#55C7DC]/20 group-hover:shadow-[0_0_25px_rgba(85,199,220,0.25)]">
+                  <FiArrowUpRight size={15} />
+                </span>
+              </motion.a>
             </div>
 
-            <a
-              href="#delegateenquiry"
-              className="group inline-flex min-w-[235px] items-center justify-between gap-8 border border-white/15 bg-white/[0.035] px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-white transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC]/50 hover:bg-[#55C7DC]/[0.07]"
-            >
-              <span>Attend as Delegate</span>
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#55C7DC]/10 text-[#55C7DC] transition-transform duration-300 group-hover:rotate-45">
-                <FiArrowUpRight size={14} />
-              </span>
-            </a>
+            {/* =================================================
+                RIGHT VISUAL AREA
+            ================================================== */}
+
+            <div className="pointer-events-none relative hidden h-full lg:block">
+              {/* Floating metadata */}
+
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  x: 30,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  delay: 0.35,
+                  duration: 0.8,
+                }}
+                className="absolute right-4 top-6 z-20"
+              >
+                <div className="border border-white/10 bg-[#061522]/50 px-5 py-4 backdrop-blur-md">
+                  <p
+                    className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-white/35`}
+                  >
+                    PEOPLE
+                  </p>
+
+                  <p
+                    className={`${mono.className} mt-2 text-[9px] uppercase tracking-[0.16em] text-[#55C7DC]`}
+                  >
+                    IDEAS × TECHNOLOGY
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Small vertical line */}
+
+              <div className="absolute right-0 top-0 h-24 w-px bg-gradient-to-b from-[#55C7DC]/60 to-transparent" />
+
+              {/* Bottom visual indicator */}
+
+              <div className="absolute bottom-10 right-5 flex items-center gap-3">
+                <span className="h-px w-12 bg-[#55C7DC]/40" />
+
+                <span
+                  className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-white/35`}
+                >
+                  PEOPLE × IDEAS × TECHNOLOGY
+                </span>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
-            <span className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/35`}>
-              CIO TECH / DELHI / 2026
-            </span>
-            <span className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/25`}>
-              People × Ideas × Technology
-            </span>
-            <span className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/35`}>
-              END / ABOUT
-            </span>
-          </div>
+          {/* =====================================================
+              FOOTER BAR
+          ====================================================== */}
+
+          {/* <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            whileInView={{
+              opacity: 1,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              delay: 0.4,
+              duration: 0.7,
+            }}
+            className="relative z-20 mt-12 border-t border-white/10 pt-5"
+          >
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <span
+                className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/35`}
+              >
+                CIO TECH / DELHI / 2026
+              </span>
+
+              <span
+                className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/25`}
+              >
+                People × Ideas × Technology
+              </span>
+
+              <span
+                className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/35`}
+              >
+                END / ABOUT
+              </span>
+            </div>
+          </motion.div> */}
         </motion.div>
       </div>
+
+      {/* =========================================================
+          BOTTOM AMBIENT LIGHT
+      ========================================================== */}
+
+      <div
+        className="pointer-events-none absolute bottom-[-180px] left-1/2 h-[280px] w-[700px] -translate-x-1/2 rounded-full blur-[130px]"
+        style={{
+          background: "rgba(55,170,210,0.06)",
+        }}
+      />
     </section>
-  )
+  );
 }
 
 export default function About() {

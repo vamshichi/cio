@@ -1027,7 +1027,7 @@ export function Awards() {
   return (
     <main
       id="awards"
-      className="relative overflow-hidden bg-white px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-28"
+      className="relative overflow-hidden bg-white px-5 py-10 sm:px-8 sm:py-15 lg:px-10 lg:py-15"
     >
       <TechBackground />
 
@@ -1044,18 +1044,7 @@ export function Awards() {
           transition={{ duration: 0.7 }}
           className="relative mb-20 lg:mb-24"
         >
-          <div className="mb-7 flex items-center gap-3">
-            <span className="font-mono text-[10px] tracking-[2px] text-cyan-700">
-              07
-            </span>
-
-            <span className="h-px w-8 bg-cyan-400/40" />
-
-            <span className="text-[10px] font-semibold uppercase tracking-[2.8px] text-zinc-500">
-              Leadership Excellence Awards
-            </span>
-          </div>
-
+          
           <div className="grid gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:items-end">
 
             <div>
@@ -1081,21 +1070,7 @@ export function Awards() {
             </div>
           </div>
 
-          <div className="mt-9 flex flex-col gap-3 border-y border-white/[0.08] py-5 text-[10px] uppercase tracking-[2px] text-slate-600 sm:flex-row sm:items-center sm:gap-7">
-            <span>
-              <i className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-cyan-400" />
-              Hosted alongside 3rd CIO Tech Leadership Conference & Awards
-              Delhi 2026
-            </span>
-
-            <span>
-              <i className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-cyan-400" />
-              Deadline:{' '}
-              <strong className="text-cyan-700">
-                15 October 2026
-              </strong>
-            </span>
-          </div>
+         
         </motion.section>
 
         {/* ================================================================ */}
@@ -1103,7 +1078,7 @@ export function Awards() {
         {/* ================================================================ */}
 
         <section className="relative mb-20 lg:mb-24">
-          <SectionHeading number="07.1" title="Who Should Nominate" />
+          {/* <SectionHeading number="07.1" title="Who Should Nominate" /> */}
 
           <div className="relative overflow-hidden border border-black bg-[#050505] shadow-[0_25px_70px_rgba(0,0,0,0.10)]">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -1146,19 +1121,19 @@ export function Awards() {
         <section className="relative mb-20 lg:mb-24">
           <div className="mb-9 flex flex-col justify-between gap-5 border-b border-white/[0.08] pb-5 sm:flex-row sm:items-end">
             <div>
-              <SectionHeading
+              {/* <SectionHeading
                 number="07.2"
                 title="Industry Delegate Categories"
-              />
+              /> */}
 
               <h3 className="text-2xl font-semibold tracking-[-0.035em] text-black sm:text-3xl">
                 Recognising technology leadership.
               </h3>
             </div>
 
-            <span className="font-mono text-[8px] uppercase tracking-[2px] text-slate-700">
+            {/* <span className="font-mono text-[8px] uppercase tracking-[2px] text-slate-700">
               {delegateAwards.length} Categories
-            </span>
+            </span> */}
           </div>
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -1173,11 +1148,7 @@ export function Awards() {
         {/* ================================================================ */}
 
         <section className="relative mb-20 lg:mb-24">
-          <SectionHeading
-            number="07.3"
-            title="Solution Provider Categories"
-          />
-
+          
           <div className="relative overflow-hidden border border-black bg-[#050505] p-7 shadow-[0_25px_80px_rgba(0,0,0,0.12)] sm:p-10">
             <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
               <div>
@@ -1298,19 +1269,7 @@ export function Awards() {
         </motion.section>
 
         {/* Bottom metadata */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-white/[0.07] pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <span className="font-mono text-[8px] uppercase tracking-[2.5px] text-slate-700">
-            CIO TECH 2026
-          </span>
-
-          <span className="font-mono text-[8px] uppercase tracking-[2.5px] text-slate-700">
-            Leadership × Innovation × Impact
-          </span>
-
-          <span className="font-mono text-[8px] uppercase tracking-[2.5px] text-cyan-700/60">
-            Delhi 2026
-          </span>
-        </div>
+       
       </div>
 
       {showModal && (

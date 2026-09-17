@@ -72,54 +72,8 @@ export function Partners() {
       {/* SIDE EDITORIAL MARKERS                                           */}
       {/* ================================================================ */}
 
-      <div className="pointer-events-none absolute left-6 top-28 hidden xl:block">
-        <div className="border-l border-cyan-400/20 pl-4">
-          <div className="flex flex-col gap-2">
-            <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-              People
-            </span>
-
-            <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-              Ideas
-            </span>
-
-            <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-              Technology
-            </span>
-
-            <span className="font-mono text-[8px] uppercase tracking-[3px] text-cyan-400/70">
-              Partnerships
-            </span>
-          </div>
-
-          <div className="mt-5 h-px w-8 bg-cyan-400/40" />
-        </div>
-      </div>
-
-      <div className="pointer-events-none absolute right-6 top-28 hidden xl:block">
-        <div className="text-right">
-          <div className="flex flex-col gap-2">
-            <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-              CIO TECH
-            </span>
-
-            <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-              Delhi
-            </span>
-
-            <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-              2026
-            </span>
-
-            <span className="font-mono text-[8px] uppercase tracking-[3px] text-cyan-400/70">
-              Ecosystem
-            </span>
-          </div>
-
-          <div className="ml-auto mt-5 h-px w-8 bg-cyan-400/40" />
-        </div>
-      </div>
-
+      
+     
       {/* ================================================================ */}
       {/* MAIN CONTENT                                                      */}
       {/* ================================================================ */}
@@ -138,18 +92,7 @@ export function Partners() {
           className="mb-12 sm:mb-14 lg:mb-16"
         >
 
-          {/* Label */}
-          <div className="mb-6 flex items-center gap-3">
-            <span className="font-mono text-[10px] tracking-[2px] text-cyan-400">
-              06
-            </span>
-
-            <span className="h-px w-8 bg-cyan-400/40" />
-
-            <span className="text-[10px] font-semibold uppercase tracking-[2.8px] text-slate-500">
-              Strategic Partnerships
-            </span>
-          </div>
+          
 
           {/* Heading */}
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
@@ -175,16 +118,7 @@ export function Partners() {
             </div>
           </div>
 
-          {/* Metadata */}
-          <div className="mt-8 flex items-center justify-between border-b border-white/[0.08] pb-5">
-            <span className="font-mono text-[8px] uppercase tracking-[2.5px] text-slate-600">
-              Technology · Collaboration · Impact
-            </span>
-
-            <span className="font-mono text-[8px] uppercase tracking-[2.5px] text-slate-600">
-              08 Partners
-            </span>
-          </div>
+          
         </motion.div>
 
         {/* Partner label */}
@@ -309,34 +243,7 @@ export function Partners() {
       {/* BOTTOM STATEMENT                                                  */}
       {/* ================================================================ */}
 
-      <div className="relative z-10 mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-10">
-
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
-        >
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-[9px] uppercase tracking-[2.5px] text-slate-600">
-              CIO TECH 2026
-            </span>
-
-            <span className="h-px w-8 bg-cyan-400/30" />
-
-            <span className="font-mono text-[8px] uppercase tracking-[2px] text-slate-600">
-              Delhi
-            </span>
-          </div>
-
-          <p className="max-w-lg text-sm leading-6 text-slate-500 sm:text-right">
-            Strong partnerships create stronger conversations, deeper
-            connections and greater opportunities.
-          </p>
-        </motion.div>
-      </div>
-
+      
       {/* Bottom glow */}
       <div className="pointer-events-none absolute bottom-[-180px] left-1/2 h-[350px] w-[900px] -translate-x-1/2 rounded-full bg-cyan-500/[0.035] blur-[120px]" />
 

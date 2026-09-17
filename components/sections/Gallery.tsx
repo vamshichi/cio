@@ -187,9 +187,7 @@ export default function GallerySection() {
               </span>
             </div>
 
-            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-[#91A1AD] sm:text-[9px]">
-              Archive / 001
-            </span>
+         
           </header>
 
           {/* Main heading */}

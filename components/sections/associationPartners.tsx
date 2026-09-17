@@ -3,8 +3,12 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Award } from "lucide-react";
+import { Award, ArrowUpRight } from "lucide-react";
 import PartnerRegistrationModal from "./PartnerRegistrationModal";
+
+/* ==========================================================================
+   PARTNER DATA
+============================================================================ */
 
 const strategicPartner = {
   name: "Precision Staffers",
@@ -22,115 +26,163 @@ const StrategicTechnologyPartners = [
   },
 ];
 
+/* ==========================================================================
+   ANIMATION
+============================================================================ */
+
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 28 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
+  initial: {
+    opacity: 0,
+    y: 24,
+  },
+
+  whileInView: {
+    opacity: 1,
+    y: 0,
+  },
+
+  viewport: {
+    once: true,
+    margin: "-60px",
+  },
+
   transition: {
-    duration: 0.7,
+    duration: 0.65,
     ease: [0.22, 1, 0.36, 1] as const,
     delay,
   },
 });
 
-/* -------------------------------------------------------------------------- */
-/* LIGHT TECHNICAL BACKGROUND                                                 */
-/* -------------------------------------------------------------------------- */
+/* ==========================================================================
+   TECH BACKGROUND
+============================================================================ */
 
 function TechBackground() {
   const reduceMotion = useReducedMotion();
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {/* Large technical grid */}
+      {/* Main grid */}
       <div
-        className="absolute inset-0 opacity-[0.55]"
+        className="absolute inset-0 opacity-[0.08]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(8,36,59,0.045) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(8,36,59,0.045) 1px, transparent 1px)
+            linear-gradient(
+              rgba(70,140,255,0.16) 1px,
+              transparent 1px
+            ),
+            linear-gradient(
+              90deg,
+              rgba(70,140,255,0.16) 1px,
+              transparent 1px
+            )
           `,
-          backgroundSize: "72px 72px",
+          backgroundSize: "80px 80px",
         }}
       />
 
       {/* Fine grid */}
       <div
-        className="absolute inset-0 opacity-[0.35]"
+        className="absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(8,36,59,0.025) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(8,36,59,0.025) 1px, transparent 1px)
+            linear-gradient(
+              rgba(255,255,255,0.15) 1px,
+              transparent 1px
+            ),
+            linear-gradient(
+              90deg,
+              rgba(255,255,255,0.15) 1px,
+              transparent 1px
+            )
           `,
-          backgroundSize: "18px 18px",
+          backgroundSize: "20px 20px",
         }}
       />
 
-      {/* Soft atmosphere */}
-      <div className="absolute left-[-180px] top-[15%] h-[420px] w-[420px] rounded-full bg-cyan-300/[0.10] blur-[120px]" />
-      <div className="absolute right-[-180px] top-[30%] h-[500px] w-[500px] rounded-full bg-blue-300/[0.10] blur-[140px]" />
-      <div className="absolute bottom-[-250px] left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-blue-200/[0.12] blur-[130px]" />
+      {/* Soft top glow */}
+      <div className="absolute left-1/2 top-[-300px] h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-blue-600/[0.07] blur-[150px]" />
 
-      {/* Editorial vertical rules */}
-      <div className="absolute left-[6%] top-0 hidden h-full w-px bg-[#08243B]/[0.055] lg:block" />
-      <div className="absolute right-[6%] top-0 hidden h-full w-px bg-[#08243B]/[0.055] lg:block" />
+      {/* Left glow */}
+      <div className="absolute left-[-250px] top-[25%] h-[450px] w-[450px] rounded-full bg-cyan-500/[0.045] blur-[140px]" />
 
-      {/* Subtle scan */}
+      {/* Right glow */}
+      <div className="absolute bottom-[10%] right-[-220px] h-[450px] w-[450px] rounded-full bg-blue-600/[0.05] blur-[140px]" />
+
+      {/* Moving scan */}
       {!reduceMotion && (
         <motion.div
-          animate={{ y: ["-5%", "1000%"] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-          className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#55C7DC]/25 to-transparent"
+          animate={{
+            y: ["-10%", "1000%"],
+          }}
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-cyan-400/15 to-transparent"
         />
       )}
     </div>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* ORBITAL DETAIL                                                             */
-/* -------------------------------------------------------------------------- */
+/* ==========================================================================
+   CORNER BRACKETS
+============================================================================ */
 
-function OrbitalDetail() {
+function CornerBrackets() {
   return (
-    <div className="absolute right-[-90px] top-1/2 hidden h-[360px] w-[360px] -translate-y-1/2 md:block">
-      <div className="absolute inset-[15%] rounded-full border border-[#176B9C]/10" />
-      <div className="absolute inset-[28%] rounded-full border border-[#176B9C]/10" />
-      <div className="absolute inset-[41%] rounded-full border border-[#55C7DC]/15" />
-      <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-[#176B9C]/10 to-transparent" />
-      <div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-gradient-to-r from-transparent via-[#176B9C]/10 to-transparent" />
-      <div className="absolute right-[20%] top-[19%] h-2 w-2 rounded-full bg-[#55C7DC]/50 shadow-[0_0_18px_rgba(85,199,220,0.5)]" />
-    </div>
+    <>
+      <span className="absolute left-3 top-3 h-5 w-5 border-l border-t border-blue-400/40" />
+      <span className="absolute right-3 top-3 h-5 w-5 border-r border-t border-blue-400/40" />
+      <span className="absolute bottom-3 left-3 h-5 w-5 border-b border-l border-blue-400/40" />
+      <span className="absolute bottom-3 right-3 h-5 w-5 border-b border-r border-blue-400/40" />
+    </>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* SECTION LABEL                                                              */
-/* -------------------------------------------------------------------------- */
+/* ==========================================================================
+   SECTION LABEL
+============================================================================ */
 
 function SectionLabel({
+  icon = true,
   children,
-  number,
+  sideText,
 }: {
+  icon?: boolean;
   children: React.ReactNode;
-  number: string;
+  sideText?: string;
 }) {
   return (
-    <div className="mb-6 flex items-center gap-3">
-      <span className="font-mono text-[10px] font-medium tracking-[2px] text-[#176B9C]">
-        {number}
-      </span>
-      <span className="h-px w-8 bg-[#176B9C]/30" />
-      <span className="text-[10px] font-semibold uppercase tracking-[2.8px] text-[#607484]">
+    <div className="mb-4 flex items-center justify-center gap-3">
+      {icon && (
+        <div className="flex h-6 w-6 items-center justify-center rounded-md border border-cyan-400/25 bg-cyan-400/[0.05]">
+          <Award className="h-3 w-3 text-cyan-300" />
+        </div>
+      )}
+
+      <h3 className="text-[10px] font-semibold uppercase tracking-[2.5px] text-cyan-300 sm:text-[11px]">
         {children}
-      </span>
+      </h3>
+
+      {sideText && (
+        <>
+          <span className="hidden h-px w-8 bg-cyan-400/30 sm:block" />
+
+          <span className="hidden font-mono text-[7px] uppercase tracking-[2px] text-slate-600 sm:block">
+            {sideText}
+          </span>
+        </>
+      )}
     </div>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* PARTNER CARD                                                               */
-/* -------------------------------------------------------------------------- */
+/* ==========================================================================
+   TECHNOLOGY PARTNER CARD
+============================================================================ */
 
 function TechnologyPartnerCard({
   partner,
@@ -142,286 +194,348 @@ function TechnologyPartnerCard({
   const reduceMotion = useReducedMotion();
 
   return (
-    <motion.article
-      {...fadeUp(index * 0.1)}
+    <motion.div
+      {...fadeUp(index * 0.08)}
       whileHover={
         reduceMotion
           ? undefined
           : {
-              y: -6,
-              transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+              y: -4,
+              transition: {
+                duration: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+              },
             }
       }
       className="group relative"
     >
-      <div className="absolute -inset-2 rounded-[24px] bg-[#55C7DC]/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+      {/* Hover glow */}
+      <div className="absolute -inset-px rounded-[18px] bg-gradient-to-b from-blue-400/25 via-cyan-400/5 to-transparent opacity-0 blur-md transition-opacity duration-500 group-hover:opacity-100" />
 
-      <div className="relative h-full overflow-hidden border border-[#D9E3E8] bg-white shadow-[0_18px_55px_rgba(8,36,59,0.06)] transition-all duration-500 group-hover:border-[#176B9C]/30 group-hover:shadow-[0_24px_70px_rgba(8,36,59,0.10)]">
+      <div className="relative overflow-hidden rounded-[18px] border border-blue-400/15 bg-[#061326]/80 backdrop-blur-xl transition-colors duration-300 group-hover:border-blue-400/40">
+        <CornerBrackets />
+
         {/* Top accent */}
-        <div className="absolute left-0 top-0 h-[2px] w-0 bg-gradient-to-r from-[#176B9C] to-[#55C7DC] transition-all duration-500 group-hover:w-full" />
+        <div className="absolute left-1/2 top-0 h-px w-20 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-50 transition-all duration-300 group-hover:w-32 group-hover:opacity-100" />
 
-        {/* Card number */}
-        <div className="flex items-center justify-between border-b border-[#D9E3E8]/70 px-6 py-4">
-          <span className="font-mono text-[9px] tracking-[2px] text-[#91A1AD]">
-            ALLIANCE / 0{index + 1}
-          </span>
-          <ArrowUpRight className="h-4 w-4 text-[#91A1AD] transition-colors group-hover:text-[#176B9C]" />
-        </div>
-
-        {/* Logo stage */}
-        <div className="relative flex min-h-[235px] items-center justify-center px-8 py-12">
-          <div className="absolute left-1/2 top-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#55C7DC]/[0.045] blur-3xl" />
-
-          <div className="relative flex h-[118px] w-full max-w-[290px] items-center justify-center border border-[#D9E3E8]/80 bg-[#F7FAFC] px-8 transition-all duration-500 group-hover:border-[#176B9C]/20 group-hover:bg-[#F3F8FB]">
+        {/* Logo */}
+        <div className="flex min-h-[155px] items-center justify-center px-6 py-7">
+          <div className="relative flex h-[88px] w-full max-w-[235px] items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.025] p-4 transition-colors duration-300 group-hover:border-blue-400/15 group-hover:bg-white/[0.035]">
             <Image
               src={partner.logo}
               alt={partner.name}
-              width={420}
-              height={180}
-              className="max-h-[72px] w-auto max-w-[220px] object-contain transition-transform duration-500 group-hover:scale-[1.035]"
+              width={320}
+              height={140}
+              className="max-h-[58px] w-auto max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-[1.03]"
             />
           </div>
         </div>
 
         {/* Footer */}
-        <div className="border-t border-[#D9E3E8]/80 px-6 py-5">
-          <p className="font-mono text-[8px] uppercase tracking-[2.5px] text-[#91A1AD]">
-            Technology Partner
-          </p>
-          <div className="mt-2 flex items-end justify-between gap-4">
-            <h3 className="text-sm font-semibold tracking-[-0.01em] text-[#08243B]">
-              {partner.name}
-            </h3>
-            <span className="text-[9px] uppercase tracking-[1.5px] text-[#176B9C]">
-              Collaborate
-            </span>
+        <div className="border-t border-white/[0.05] px-5 py-4">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <p className="font-mono text-[7px] uppercase tracking-[2.5px] text-slate-600">
+                Technology Alliance
+              </p>
+
+              <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[1.8px] text-slate-300">
+                {partner.name}
+              </p>
+            </div>
+
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-blue-400/15 bg-blue-500/[0.04] transition-colors duration-300 group-hover:border-cyan-400/40 group-hover:bg-cyan-400/[0.06]">
+              <ArrowUpRight className="h-3 w-3 text-blue-300" />
+            </div>
           </div>
         </div>
       </div>
-    </motion.article>
+    </motion.div>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* STRATEGIC PARTNER                                                          */
-/* -------------------------------------------------------------------------- */
+/* ==========================================================================
+   TECHNOLOGY PARTNERS FRAME
+============================================================================ */
+
+function TechnologyPartnersFrame() {
+  return (
+    <motion.div
+      {...fadeUp(0.05)}
+      className="relative mx-auto max-w-5xl"
+    >
+      {/* Glow */}
+      {/* <div className="absolute -inset-2 rounded-[24px] bg-blue-500/[0.025] blur-2xl" /> */}
+
+      {/* Frame */}
+      <div >
+        {/* <CornerBrackets /> */}
+
+        {/* Header */}
+        <div className="mb-4 flex items-center justify-between px-1 sm:px-2">
+          {/* <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+
+            <span className="font-mono text-[7px] uppercase tracking-[2.5px] text-slate-500">
+              Technology Alliance Network
+            </span>
+          </div> */}
+
+          {/* <span className="font-mono text-[7px] tracking-[2px] text-slate-700">
+            01 / 02
+          </span> */}
+        </div>
+
+        {/* Cards */}
+        <div className="grid gap-3 md:grid-cols-2">
+          {StrategicTechnologyPartners.map((partner, index) => (
+            <TechnologyPartnerCard
+              key={partner.name}
+              partner={partner}
+              index={index}
+            />
+          ))}
+        </div>
+
+        {/* Small footer */}
+        {/* <div className="mt-4 flex items-center justify-center gap-3">
+          <span className="h-px w-7 bg-gradient-to-r from-transparent to-blue-500/30" />
+
+          <span className="font-mono text-[6px] uppercase tracking-[2.5px] text-slate-700">
+            Powering Tomorrow
+          </span>
+
+          <span className="h-px w-7 bg-gradient-to-l from-transparent to-blue-500/30" />
+        </div> */}
+      </div>
+    </motion.div>
+  );
+}
+
+/* ==========================================================================
+   STRATEGIC PARTNER
+============================================================================ */
 
 function StrategicPartnerCard() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <motion.article
-      {...fadeUp(0.15)}
+    <motion.div
+      {...fadeUp(0.12)}
       whileHover={
         reduceMotion
           ? undefined
           : {
-              y: -6,
-              transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+              y: -4,
+              transition: {
+                duration: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+              },
             }
       }
-      className="group relative"
+      className="group relative mx-auto max-w-5xl"
     >
-      <div className="absolute -inset-2 rounded-[24px] bg-[#55C7DC]/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+      {/* Glow */}
+      <div className="absolute -inset-2 rounded-[24px] bg-cyan-400/[0.025] blur-2xl transition-opacity duration-500 group-hover:bg-cyan-400/[0.05]" />
 
-      <div className="relative overflow-hidden border border-[#176B9C]/20 bg-[#08243B] shadow-[0_25px_70px_rgba(8,36,59,0.14)]">
-        {/* Decorative line */}
-        <div className="absolute left-0 top-0 h-[2px] w-full bg-gradient-to-r from-[#176B9C] via-[#55C7DC] to-transparent" />
+      <div className="relative overflow-hidden rounded-[22px] border border-cyan-400/20 bg-[#031021]/65 shadow-[0_20px_70px_rgba(0,0,0,0.25)] backdrop-blur-xl">
+        <CornerBrackets />
 
-        <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
-          {/* Editorial copy */}
-          <div className="relative flex min-h-[280px] flex-col justify-between overflow-hidden border-b border-white/10 p-7 sm:p-10 lg:border-b-0 lg:border-r">
+        {/* Accent */}
+        <div className="absolute left-1/2 top-0 h-px w-24 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-70 transition-all duration-300 group-hover:w-40" />
+
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-white/[0.05] px-5 py-3.5 sm:px-7">
+          {/* <div className="flex items-center gap-2.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+
+            <span className="font-mono text-[7px] uppercase tracking-[2.5px] text-slate-500">
+              Strategic Alliance
+            </span>
+          </div>
+
+          <span className="font-mono text-[7px] tracking-[2px] text-slate-700">
+            02 / 02
+          </span> */}
+        </div>
+
+        {/* Logo */}
+        <div className="relative flex min-h-[175px] items-center justify-center px-6 py-7">
+          {/* Glow */}
+          <div className="absolute left-1/2 top-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.05] blur-[65px]" />
+
+          <div className="relative flex h-[100px] w-[250px] items-center justify-center rounded-lg border border-white/[0.06] bg-white/[0.025] p-5 transition-colors duration-300 group-hover:border-cyan-400/15">
+            <Image
+              src={strategicPartner.logo}
+              alt={strategicPartner.name}
+              width={340}
+              height={150}
+              className="max-h-[68px] w-auto max-w-[210px] object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+            />
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-white/[0.05] px-5 py-4 sm:px-7">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <span className="font-mono text-[9px] uppercase tracking-[2.8px] text-[#55C7DC]">
-                Strategic Alliance
-              </span>
+              <p className="font-mono text-[7px] uppercase tracking-[2.5px] text-slate-600">
+                People · Power · Progress
+              </p>
 
-              <h3 className="mt-5 max-w-sm text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-white sm:text-4xl">
-                Built around
-                <br />
-                <span className="text-[#BDECF4]">shared ambition.</span>
-              </h3>
-
-              <p className="mt-5 max-w-md text-sm leading-6 text-white/55">
-                Strategic collaboration that strengthens the technology
-                ecosystem and creates meaningful executive connections.
+              <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[2px] text-slate-300">
+                {strategicPartner.name}
               </p>
             </div>
 
-            <div className="mt-8 flex items-center gap-3">
-              <span className="h-px w-10 bg-[#55C7DC]/50" />
-              <span className="font-mono text-[8px] uppercase tracking-[2px] text-white/35">
-                People · Power · Progress
+            <div className="flex items-center gap-2">
+              <span className="h-px w-6 bg-cyan-400/30" />
+
+              <span className="font-mono text-[7px] uppercase tracking-[1.8px] text-cyan-300/70">
+                Strategic Partner
               </span>
             </div>
-
-            <div className="absolute bottom-[-100px] right-[-100px] h-64 w-64 rounded-full border border-[#55C7DC]/10" />
           </div>
-
-          {/* Logo */}
-          <div className="relative flex min-h-[280px] items-center justify-center bg-white p-8 sm:p-12">
-            <div className="absolute inset-0 opacity-50"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(8,36,59,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(8,36,59,0.035) 1px, transparent 1px)",
-                backgroundSize: "32px 32px",
-              }}
-            />
-
-            <div className="relative flex h-[145px] w-full max-w-[340px] items-center justify-center border border-[#D9E3E8] bg-[#F7FAFC] px-10 shadow-[0_12px_40px_rgba(8,36,59,0.06)] transition-all duration-500 group-hover:border-[#176B9C]/25">
-              <Image
-                src={strategicPartner.logo}
-                alt={strategicPartner.name}
-                width={440}
-                height={190}
-                className="max-h-[90px] w-auto max-w-[260px] object-contain transition-transform duration-500 group-hover:scale-[1.035]"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col justify-between gap-3 border-t border-white/10 bg-[#061A2A] px-7 py-4 sm:flex-row sm:items-center sm:px-10">
-          <span className="font-mono text-[8px] uppercase tracking-[2.5px] text-white/35">
-            Featured Strategic Partner
-          </span>
-          <span className="text-xs font-medium tracking-[1px] text-[#BDECF4]">
-            {strategicPartner.name}
-          </span>
         </div>
       </div>
-    </motion.article>
+    </motion.div>
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* MAIN SECTION                                                               */
-/* -------------------------------------------------------------------------- */
+/* ==========================================================================
+   MAIN SECTION
+============================================================================ */
 
 export default function PartnersSection() {
   const [openModal, setOpenModal] = useState(false);
 
+  /* ------------------------------------------------------------------------
+     HASH / MODAL
+  ------------------------------------------------------------------------ */
+
   useEffect(() => {
     const checkHash = () => {
-      setOpenModal(
-        window.location.hash === "#centricsoftware-registration"
-      );
+      if (window.location.hash === "#centricsoftware-registration") {
+        setOpenModal(true);
+      } else {
+        setOpenModal(false);
+      }
     };
 
     checkHash();
+
     window.addEventListener("hashchange", checkHash);
 
-    return () => window.removeEventListener("hashchange", checkHash);
+    return () => {
+      window.removeEventListener("hashchange", checkHash);
+    };
   }, []);
 
   return (
     <section
       id="partners"
-      className="relative overflow-hidden bg-[#F5F8FC] py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden bg-[#020817] py-12 sm:py-16 lg:py-20"
     >
-      <TechBackground />
-      <OrbitalDetail />
+      {/* =========================================================
+          BACKGROUND
+      ========================================================== */}
 
-      <div className="relative z-10 mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-10">
-        {/* HERO */}
-        <motion.header
+      <TechBackground />
+
+      {/* =========================================================
+          CONTENT
+      ========================================================== */}
+
+      <div className="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10">
+        {/* =======================================================
+            HERO
+        ======================================================== */}
+
+        <motion.div
           {...fadeUp()}
-          className="relative mb-16 max-w-4xl sm:mb-20 lg:mb-24"
+          className="mx-auto mb-10 max-w-4xl text-center sm:mb-12"
         >
-          <SectionLabel number="05">
-            Partnerships
+          {/* Eyebrow */}
+
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-400/20 bg-blue-500/[0.05] px-4 py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+
+            <span className="text-[8px] font-medium uppercase tracking-[2.5px] text-blue-200">
+              Stronger Together
+            </span>
+          </div>
+
+          {/* Heading */}
+
+          <h2 className="mt-5 text-[48px] font-bold leading-[0.95] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[76px]">
+            Our{" "}
+            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Partners
+            </span>
+          </h2>
+
+          {/* Divider */}
+
+          <div className="mx-auto mt-5 flex items-center justify-center gap-2.5">
+            <span className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/50 sm:w-14" />
+
+            <span className="relative flex h-2 w-2 items-center justify-center">
+              <span className="absolute h-3.5 w-3.5 rounded-full border border-blue-400/20" />
+
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+            </span>
+
+            <span className="h-px w-10 bg-gradient-to-l from-transparent to-blue-500/50 sm:w-14" />
+          </div>
+
+          {/* Description */}
+
+          <p className="mx-auto mt-5 max-w-2xl text-[13px] leading-6 text-slate-400 sm:text-sm sm:leading-6">
+            Collaborating with industry-leading organizations to drive
+            meaningful conversations, innovation, executive networking and
+            technology leadership.
+          </p>
+        </motion.div>
+
+        {/* =======================================================
+            TECHNOLOGY PARTNERS
+        ======================================================== */}
+
+        <div className="mb-10 sm:mb-12">
+          <SectionLabel >
+            Strategic Technology Partners
           </SectionLabel>
 
-          <div className="max-w-3xl">
-            <h2 className="text-[46px] font-semibold leading-[0.98] tracking-[-0.055em] text-[#08243B] sm:text-6xl lg:text-[78px]">
-              The ecosystem
-              <br />
-              <span className="text-[#176B9C]">behind the conversation.</span>
-            </h2>
-
-            <p className="mt-7 max-w-2xl text-sm leading-6 text-[#607484] sm:text-base sm:leading-7">
-              CIO Tech brings together technology organizations and strategic
-              partners that help shape meaningful conversations, connections
-              and opportunities across the leadership ecosystem.
-            </p>
-          </div>
-
-          <div className="mt-9 flex items-center gap-4">
-            <div className="h-px w-20 bg-[#176B9C]/30" />
-            <span className="font-mono text-[9px] uppercase tracking-[2.5px] text-[#91A1AD]">
-              Technology · Collaboration · Impact
-            </span>
-          </div>
-        </motion.header>
-
-        {/* TECHNOLOGY PARTNERS */}
-        <div className="mb-20 sm:mb-24 lg:mb-28">
-          <div className="mb-8 flex flex-col justify-between gap-4 border-b border-[#D9E3E8] pb-5 sm:flex-row sm:items-end">
-            <div>
-              <SectionLabel number="05.1">
-                Technology Partners
-              </SectionLabel>
-              <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#08243B] sm:text-3xl">
-                Technology that moves the conversation forward.
-              </h3>
-            </div>
-
-            <span className="font-mono text-[9px] uppercase tracking-[2px] text-[#91A1AD]">
-              02 Organizations
-            </span>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2">
-            {StrategicTechnologyPartners.map((partner, index) => (
-              <TechnologyPartnerCard
-                key={partner.name}
-                partner={partner}
-                index={index}
-              />
-            ))}
-          </div>
+          <TechnologyPartnersFrame />
         </div>
 
-        {/* STRATEGIC PARTNER */}
-        <div>
-          <div className="mb-8 flex flex-col justify-between gap-4 border-b border-[#D9E3E8] pb-5 sm:flex-row sm:items-end">
-            <div>
-              <SectionLabel number="05.2">
-                Strategic Partner
-              </SectionLabel>
-              <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#08243B] sm:text-3xl">
-                Collaboration with purpose.
-              </h3>
-            </div>
+        {/* =======================================================
+            STRATEGIC PARTNER
+        ======================================================== */}
 
-            <span className="font-mono text-[9px] uppercase tracking-[2px] text-[#91A1AD]">
-              Featured Alliance
-            </span>
-          </div>
+        <div>
+          <SectionLabel sideText="People · Power · Progress">
+            Strategic Partner
+          </SectionLabel>
 
           <StrategicPartnerCard />
         </div>
 
-        {/* BOTTOM STATEMENT */}
-        <motion.div
-          {...fadeUp(0.25)}
-          className="mt-16 flex flex-col gap-6 border-t border-[#D9E3E8] pt-7 sm:mt-20 sm:flex-row sm:items-center sm:justify-between"
-        >
-          <div className="flex items-center gap-3">
-            <span className="h-2 w-2 rounded-full bg-[#55C7DC]" />
-            <span className="font-mono text-[9px] uppercase tracking-[2.5px] text-[#607484]">
-              CIO TECH 2026
-            </span>
-          </div>
-
-          <p className="max-w-xl text-sm leading-6 text-[#607484] sm:text-right">
-            Strong partnerships create stronger rooms — and stronger rooms
-            create better conversations.
-          </p>
-        </motion.div>
       </div>
 
-      {/* Bottom rule */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 h-px w-[72%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#176B9C]/25 to-transparent" />
+      {/* =========================================================
+          BOTTOM GLOW
+      ========================================================== */}
+
+      <div className="pointer-events-none absolute bottom-[-150px] left-1/2 h-[280px] w-[800px] -translate-x-1/2 rounded-[50%] bg-blue-600/[0.045] blur-[100px]" />
+
+      {/* Bottom line */}
+
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-px w-[60%] -translate-x-1/2 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
+
+      {/* =========================================================
+          REGISTRATION MODAL
+      ========================================================== */}
 
       <PartnerRegistrationModal
         open={openModal}
