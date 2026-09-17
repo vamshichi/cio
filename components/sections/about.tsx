@@ -21,7 +21,13 @@ import {
   FiTarget,
   FiUsers,
   FiZap,
+  FiBriefcase,
+  FiGlobe,
+  FiLayers,
+  FiTrendingUp,
 } from 'react-icons/fi'
+
+import Image from 'next/image'
 
 /* =========================================================
    FONTS
@@ -141,6 +147,54 @@ const metrics = [
     number: '40+',
     label: 'MEETINGS',
     caption: 'Strategic connections',
+  },
+]
+
+const industries = [
+  'Banking & Financial Services',
+  'Insurance',
+  'FinTech',
+  'Manufacturing',
+  'Automotive',
+  'Healthcare',
+  'IT & Technology',
+  'Telecom',
+  'Retail & E-commerce',
+  'Energy & Utilities',
+  'Infrastructure',
+  'Logistics & Transportation',
+  'Government & Public Sector',
+  'Media & Entertainment',
+  'Real Estate',
+  'Education',
+  'Travel & Hospitality',
+  'Consumer & FMCG',
+]
+
+const aboutBenefits = [
+  {
+    number: '01',
+    title: 'Gain Insights',
+    text: 'Hear real-world perspectives on emerging technologies, enterprise transformation and the decisions shaping tomorrow.',
+    icon: FiTrendingUp,
+  },
+  {
+    number: '02',
+    title: 'Build Connections',
+    text: 'Meet senior technology leaders, peers and solution partners in a focused executive environment.',
+    icon: FiUsers,
+  },
+  {
+    number: '03',
+    title: 'Discover Solutions',
+    text: 'Explore practical ideas, platforms and technologies designed around real business challenges.',
+    icon: FiLayers,
+  },
+  {
+    number: '04',
+    title: 'Create Opportunity',
+    text: 'Turn meaningful conversations into partnerships, collaborations and strategic relationships.',
+    icon: FiBriefcase,
   },
 ]
 
@@ -895,12 +949,10 @@ function TechnologySection() {
     <section
       className={`${sans.className} relative overflow-hidden`}
       style={{
-        background:
-          COLORS.midnight,
+        background: COLORS.midnight,
       }}
     >
       {/* Technical grid */}
-
       <div
         className="
           pointer-events-none
@@ -913,27 +965,41 @@ function TechnologySection() {
             linear-gradient(rgba(255,255,255,0.7) 1px, transparent 1px),
             linear-gradient(90deg, rgba(255,255,255,0.7) 1px, transparent 1px)
           `,
-          backgroundSize:
-            '90px 90px',
+          backgroundSize: "90px 90px",
         }}
       />
 
-      {/* Glow */}
-
+      {/* Ambient glow */}
       <div
         className="
           pointer-events-none
           absolute
-          right-[-200px]
-          top-[-200px]
+          -right-[180px]
+          -top-[180px]
           h-[500px]
           w-[500px]
           rounded-full
-          blur-[120px]
+          blur-[130px]
         "
         style={{
-          background:
-            'rgba(85,199,220,0.045)',
+          background: "rgba(85,199,220,0.055)",
+        }}
+      />
+
+      {/* Bottom glow */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-[250px]
+          left-[30%]
+          h-[500px]
+          w-[500px]
+          rounded-full
+          blur-[150px]
+        "
+        style={{
+          background: "rgba(42,120,160,0.035)",
         }}
       />
 
@@ -959,117 +1025,385 @@ function TechnologySection() {
           }}
           variants={stagger}
         >
-          {/* <motion.div variants={reveal}>
-            <SectionLabel
-              label="Technology Core"
-              number="01 / 04"
-              dark
-            />
-          </motion.div> */}
-
           <div
             className="
-              mt-8
+              mt-2
               grid
-              gap-7
+              gap-10
               lg:grid-cols-[0.72fr_1.28fr]
               lg:items-center
-              lg:gap-10
+              lg:gap-14
             "
           >
-            <motion.div variants={reveal}>
-              <p
-                className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em]`}
-                style={{
-                  color:
-                    COLORS.cyan,
-                }}
-              >
-                The intelligent enterprise
-              </p>
+            {/* =========================================
+                LEFT — CONTENT
+            ========================================= */}
+            <motion.div
+              variants={reveal}
+              className="relative z-10"
+            >
+              {/* Eyebrow */}
+              <div className="flex items-center gap-3">
+                <span
+                  className="h-px w-7"
+                  style={{
+                    background: COLORS.cyan,
+                  }}
+                />
 
+                <p
+                  className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em]`}
+                  style={{
+                    color: COLORS.cyan,
+                  }}
+                >
+                  The intelligent enterprise
+                </p>
+              </div>
+
+              {/* Heading */}
               <h2
                 className="
-                  mt-4
+                  mt-5
                   max-w-xl
-                  text-[42px]
+                  text-[44px]
                   font-semibold
-                  leading-[0.95]
-                  tracking-[-0.06em]
+                  leading-[0.92]
+                  tracking-[-0.065em]
                   text-white
-                  sm:text-[52px]
-                  lg:text-[64px]
+                  sm:text-[54px]
+                  lg:text-[68px]
+                  xl:text-[74px]
                 "
               >
                 Where ideas
                 <br />
-                become{' '}
+                become{" "}
                 <span
                   style={{
-                    color:
-                      '#7DD3E7',
+                    color: "#7DD3E7",
                   }}
                 >
                   action.
                 </span>
               </h2>
 
+              {/* Description */}
               <p
                 className="
-                  mt-6
-                  max-w-md
+                  mt-7
+                  max-w-[470px]
                   text-[14px]
                   leading-6
                   sm:text-[15px]
                   sm:leading-7
                 "
                 style={{
-                  color:
-                    'rgba(255,255,255,0.54)',
+                  color: "rgba(255,255,255,0.54)",
                 }}
               >
-                The technology core represents
-                the interconnected ecosystem of
-                people, ideas and technologies
-                driving the next generation of
-                enterprise leadership.
+                The technology core represents the
+                interconnected ecosystem of people,
+                ideas and technologies driving the next
+                generation of enterprise leadership.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-2">
+              {/* Topics */}
+              <div className="mt-8 flex flex-wrap gap-2">
                 {[
-                  'AI',
-                  'CLOUD',
-                  'DATA',
-                  'SECURITY',
-                  'LEADERSHIP',
+                  "AI",
+                  "CLOUD",
+                  "DATA",
+                  "SECURITY",
+                  "LEADERSHIP",
                 ].map((item) => (
                   <span
                     key={item}
-                    className={`${mono.className} border px-3 py-2 text-[7px] uppercase tracking-[0.14em]`}
+                    className={`${mono.className}
+                      border
+                      px-3
+                      py-2
+                      text-[7px]
+                      uppercase
+                      tracking-[0.14em]
+                      transition-all
+                      duration-300
+                    `}
                     style={{
                       borderColor:
-                        'rgba(255,255,255,0.12)',
+                        "rgba(255,255,255,0.12)",
                       color:
-                        'rgba(255,255,255,0.48)',
+                        "rgba(255,255,255,0.48)",
                     }}
                   >
                     {item}
                   </span>
                 ))}
               </div>
+
+              {/* Bottom statement */}
+              <div className="mt-10 flex items-center gap-3">
+                <span
+                  className="h-px w-10"
+                  style={{
+                    background:
+                      "rgba(255,255,255,0.25)",
+                  }}
+                />
+
+                <p
+                  className={`${mono.className} text-[8px] uppercase tracking-[0.22em]`}
+                  style={{
+                    color:
+                      "rgba(255,255,255,0.38)",
+                  }}
+                >
+                  People × Ideas × Technology
+                </p>
+              </div>
             </motion.div>
 
+            {/* =========================================
+                RIGHT — HUMAN IMAGE
+            ========================================= */}
             <motion.div
               variants={reveal}
-              className="relative"
+              className="
+                relative
+                min-h-[380px]
+                sm:min-h-[460px]
+                lg:min-h-[540px]
+              "
             >
-              <TechnologyCore />
+              {/* Main image frame */}
+              <div
+                className="
+                  absolute
+                  inset-0
+                  overflow-hidden
+                  rounded-[26px]
+                  border
+                "
+                style={{
+                  borderColor:
+                    "rgba(255,255,255,0.10)",
+                  background: "#081925",
+                  boxShadow:
+                    "0 30px 100px rgba(0,0,0,0.30)",
+                }}
+              >
+                {/* Image */}
+                <img
+                  src="/images/technology-leadership.png"
+                  alt="Technology leaders discussing enterprise innovation"
+                  className="
+                    h-full
+                    w-full
+                    object-cover
+                    object-center
+                    transition-transform
+                    duration-[1200ms]
+                    ease-out
+                    hover:scale-[1.025]
+                  "
+                />
+
+                {/* Dark cinematic overlay */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                  "
+                  style={{
+                    background: `
+                      linear-gradient(
+                        90deg,
+                        rgba(6,21,34,0.40) 0%,
+                        rgba(6,21,34,0.08) 45%,
+                        rgba(6,21,34,0.18) 100%
+                      ),
+                      linear-gradient(
+                        180deg,
+                        rgba(6,21,34,0.05) 40%,
+                        rgba(6,21,34,0.58) 100%
+                      )
+                    `,
+                  }}
+                />
+
+                {/* Subtle cyan light */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    -right-20
+                    top-1/3
+                    h-56
+                    w-56
+                    rounded-full
+                    blur-[100px]
+                  "
+                  style={{
+                    background:
+                      "rgba(85,199,220,0.10)",
+                  }}
+                />
+
+                {/* Image label */}
+                <div
+                  className="
+                    absolute
+                    left-5
+                    top-5
+                    sm:left-7
+                    sm:top-7
+                  "
+                >
+                  <div className="flex items-center gap-3">
+                    <span
+                      className="h-px w-6"
+                      style={{
+                        background:
+                          "rgba(125,211,231,0.75)",
+                      }}
+                    />
+
+                    <span
+                      className={`${mono.className} text-[7px] uppercase tracking-[0.2em]`}
+                      style={{
+                        color:
+                          "rgba(255,255,255,0.65)",
+                      }}
+                    >
+                      Enterprise leadership
+                    </span>
+                  </div>
+                </div>
+
+                {/* Bottom image caption */}
+                <div
+                  className="
+                    absolute
+                    bottom-5
+                    left-5
+                    right-5
+                    flex
+                    items-end
+                    justify-between
+                    sm:bottom-7
+                    sm:left-7
+                    sm:right-7
+                  "
+                >
+                  <div>
+                    <p
+                      className={`${mono.className} text-[7px] uppercase tracking-[0.2em]`}
+                      style={{
+                        color:
+                          "rgba(255,255,255,0.45)",
+                      }}
+                    >
+                      PEOPLE
+                    </p>
+
+                    <p
+                      className="
+                        mt-1
+                        text-[18px]
+                        font-medium
+                        tracking-[-0.02em]
+                        text-white
+                        sm:text-[21px]
+                      "
+                    >
+                      Ideas in motion.
+                    </p>
+                  </div>
+
+                  {/* Small index */}
+                  <div
+                    className="
+                      flex
+                      h-9
+                      w-9
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                    "
+                    style={{
+                      borderColor:
+                        "rgba(255,255,255,0.20)",
+                      background:
+                        "rgba(6,21,34,0.35)",
+                      backdropFilter:
+                        "blur(10px)",
+                    }}
+                  >
+                    <span
+                      className={`${mono.className} text-[7px]`}
+                      style={{
+                        color:
+                          "rgba(255,255,255,0.65)",
+                      }}
+                    >
+                      01
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Small editorial image detail */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  -bottom-5
+                  -left-5
+                  hidden
+                  h-24
+                  w-32
+                  rounded-xl
+                  border
+                  lg:block
+                "
+                style={{
+                  borderColor:
+                    "rgba(255,255,255,0.10)",
+                  background:
+                    "rgba(8,25,37,0.75)",
+                  backdropFilter:
+                    "blur(14px)",
+                }}
+              >
+                <div className="flex h-full flex-col justify-between p-4">
+                  <span
+                    className={`${mono.className} text-[6px] uppercase tracking-[0.18em]`}
+                    style={{
+                      color:
+                        "rgba(255,255,255,0.35)",
+                    }}
+                  >
+                    2026
+                  </span>
+
+                  <span
+                    className={`${mono.className} text-[6px] uppercase tracking-[0.15em]`}
+                    style={{
+                      color: COLORS.cyan,
+                    }}
+                  >
+                    Future / Now
+                  </span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 /* =========================================================
@@ -2009,229 +2343,398 @@ function FinalCTA() {
 }
 
 /* =========================================================
-   ABOUT PAGE
+   ABOUT PAGE — PREMIUM EVENT EXPERIENCE
 ========================================================= */
+
+function EventVisual() {
+  return (
+    <div className="group relative w-full">
+      {/* Outer editorial frame */}
+      <div className="absolute -right-3 -top-3 h-full w-full border border-[#176B9C]/15" />
+
+      {/* Main image container */}
+      <div className="relative overflow-hidden rounded-[28px] border border-[#D9E3E8] bg-[#F4F8FA] p-2 shadow-[0_30px_80px_rgba(8,36,59,0.14)]">
+        <div className="relative aspect-square overflow-hidden rounded-[21px]">
+          <Image
+            src="/images/about-event-collage.png"
+            alt="CIO Tech Leadership Conference and Awards event highlights"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
+          />
+
+          {/* Soft premium overlay */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08243B]/20 via-transparent to-white/5" />
+
+          {/* Subtle glass highlight */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/15 to-transparent" />
+        </div>
+      </div>
+
+      {/* Top-left editorial marker */}
+      <div className="absolute -left-4 top-8 hidden sm:block">
+        <div className="flex items-center gap-3 rounded-full border border-[#D9E3E8] bg-white px-4 py-2.5 shadow-[0_12px_35px_rgba(8,36,59,0.10)]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#176B9C]" />
+
+          <span
+            className={`${mono.className} text-[7px] font-semibold uppercase tracking-[0.2em] text-[#08243B]`}
+          >
+            Event in Motion
+          </span>
+        </div>
+      </div>
+
+      {/* Bottom-right information card */}
+      <div className="absolute -bottom-5 -right-4 hidden sm:block">
+        <div className="border border-[#D9E3E8] bg-white px-5 py-4 shadow-[0_18px_45px_rgba(8,36,59,0.12)]">
+          <p
+            className={`${mono.className} text-[7px] font-semibold uppercase tracking-[0.2em] text-[#176B9C]`}
+          >
+            Where ideas meet
+          </p>
+
+          <p className="mt-1.5 text-[13px] font-semibold tracking-[-0.025em] text-[#08243B]">
+            Leadership • Innovation
+          </p>
+        </div>
+      </div>
+
+      {/* Corner details */}
+      <span className="absolute -right-2 -top-2 h-5 w-5 border-r border-t border-[#176B9C]" />
+      <span className="absolute -bottom-2 -left-2 h-5 w-5 border-b border-l border-[#176B9C]" />
+    </div>
+  )
+}
+
+function AboutEvent() {
+  return (
+    <section className={`${sans.className} relative overflow-hidden bg-white`}>
+      <div className="pointer-events-none absolute right-[-180px] top-[-180px] h-[500px] w-[500px] rounded-full border border-[#176B9C]/[0.045]" />
+      <div className="pointer-events-none absolute bottom-[-240px] left-[-220px] h-[520px] w-[520px] rounded-full border border-[#176B9C]/[0.035]" />
+
+      <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
+          variants={stagger}
+        >
+          <motion.div variants={reveal} className="flex items-center gap-3">
+            <span className="h-[6px] w-[6px] rounded-full bg-[#176B9C]" />
+            <span className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#08243B]`}>
+              About the event
+            </span>
+            <span className="h-px w-10 bg-[#D9E3E8]" />
+          
+          </motion.div>
+
+          <div className="mt-10 grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-16">
+            <motion.div variants={reveal}>
+              <p className={`${mono.className} text-[9px] font-semibold uppercase tracking-[0.24em] text-[#176B9C]`}>
+                The technology leadership platform
+              </p>
+
+              <h1 className="mt-5 max-w-3xl text-[50px] font-semibold leading-[0.9] tracking-[-0.075em] text-[#08243B] sm:text-[68px] lg:text-[86px]">
+                More than
+                <br />
+                an event.
+                <br />
+                <span className="text-[#176B9C]">A catalyst.</span>
+              </h1>
+
+              <p className="mt-7 max-w-xl text-[14px] leading-6 text-[#607484] sm:text-[15px] sm:leading-7">
+                CIO Tech Leadership Conference &amp; Awards brings together
+                senior technology decision-makers, innovators and business
+                leaders for focused conversations around the technologies,
+                strategies and partnerships shaping the enterprise.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-2">
+                {['AI', 'CYBERSECURITY', 'CLOUD', 'DATA', 'DIGITAL TRANSFORMATION'].map((item) => (
+                  <span
+                    key={item}
+                    className={`${mono.className} border border-[#D9E3E8] bg-[#F8FAFC] px-3 py-2 text-[7px] uppercase tracking-[0.14em] text-[#607484]`}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-9 flex items-center gap-4">
+                <div className="h-px w-12 bg-[#176B9C]" />
+                <p className={`${mono.className} text-[8px] uppercase tracking-[0.2em] text-[#91A1AD]`}>
+                  People × Ideas × Technology
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div variants={reveal}>
+              <EventVisual />
+            </motion.div>
+          </div>
+
+          {/* Metrics */}
+          <motion.div
+            variants={reveal}
+            className="mt-14 grid border-y border-[#D9E3E8] sm:grid-cols-3"
+          >
+            {metrics.map((stat, index) => (
+              <div
+                key={stat.label}
+                className={`relative px-1 py-7 sm:px-7 sm:py-9 ${
+                  index !== 0 ? 'border-t border-[#D9E3E8] sm:border-l sm:border-t-0' : ''
+                }`}
+              >
+                <p className="text-[54px] font-semibold leading-none tracking-[-0.075em] text-[#08243B] sm:text-[66px]">
+                  {stat.number}
+                </p>
+
+                <div className="mt-3 flex items-center gap-3">
+                  <span className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.18em] text-[#176B9C]`}>
+                    {stat.label}
+                  </span>
+                  <span className="h-px w-7 bg-[#D9E3E8]" />
+                  <span className="text-[9px] text-[#91A1AD]">{stat.caption}</span>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function IndustryLandscape() {
+  return (
+    <section className={`${sans.className} relative overflow-hidden bg-[#061522]`}>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)
+          `,
+          backgroundSize: '84px 84px',
+        }}
+      />
+
+      <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
+          variants={stagger}
+        >
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16">
+            <motion.div variants={reveal}>
+              <div className="flex items-center gap-3">
+                <span className="h-[6px] w-[6px] rounded-full bg-[#55C7DC] shadow-[0_0_10px_rgba(85,199,220,0.8)]" />
+                <span className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-white/70`}>
+                  Industry ecosystem
+                </span>
+              </div>
+
+              <h2 className="mt-6 max-w-xl text-[46px] font-semibold leading-[0.93] tracking-[-0.065em] text-white sm:text-[60px] lg:text-[70px]">
+                One room.
+                <br />
+                <span className="text-[#7DD3E7]">Many industries.</span>
+              </h2>
+            </motion.div>
+
+            <motion.div variants={reveal}>
+              <p className="max-w-2xl text-[14px] leading-6 text-white/50 sm:text-[15px] sm:leading-7">
+                The conversation extends across the sectors where technology
+                is creating new operating models, customer experiences and
+                competitive advantage.
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div variants={reveal} className="mt-12">
+            <div className="flex flex-wrap gap-2.5">
+              {industries.map((industry, index) => (
+                <motion.span
+                  key={industry}
+                  whileHover={{ y: -2, borderColor: 'rgba(85,199,220,0.55)' }}
+                  transition={{ duration: 0.2 }}
+                  className={`${mono.className} group border border-white/10 bg-white/[0.035] px-4 py-3 text-[8px] uppercase tracking-[0.1em] text-white/60 backdrop-blur-sm transition-colors hover:bg-[#55C7DC]/[0.06] hover:text-[#7DD3E7] sm:text-[9px]`}
+                >
+                  <span className="mr-2 text-[#55C7DC]/60">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  {industry}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div variants={reveal} className="mt-12 border-t border-white/10 pt-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <span className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-white/35`}>
+                Cross-industry leadership exchange
+              </span>
+              <span className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-[#55C7DC]`}>
+                18 sectors represented
+              </span>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function AboutBenefits() {
+  return (
+    <section className={`${sans.className} relative overflow-hidden bg-[#F8FAFC]`}>
+      <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
+          variants={stagger}
+        >
+          <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end lg:gap-14">
+            <motion.div variants={reveal}>
+              <p className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#176B9C]`}>
+                Why leaders attend
+              </p>
+
+              <h2 className="mt-4 max-w-xl text-[46px] font-semibold leading-[0.94] tracking-[-0.065em] text-[#08243B] sm:text-[58px] lg:text-[68px]">
+                Conversations
+                <br />
+                that move
+                <br />
+                <span className="text-[#176B9C]">business forward.</span>
+              </h2>
+            </motion.div>
+
+            <motion.div variants={reveal} className="lg:pb-1">
+              <p className="max-w-2xl text-[14px] leading-6 text-[#607484] sm:text-[15px] sm:leading-7">
+                From boardroom priorities to emerging technology, the
+                experience is designed around the questions senior leaders
+                are actually solving today.
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            variants={reveal}
+            className="mt-12 grid border-l border-t border-[#D9E3E8] sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {aboutBenefits.map((benefit) => {
+              const Icon = benefit.icon
+
+              return (
+                <motion.div
+                  key={benefit.number}
+                  whileHover={{ backgroundColor: '#FFFFFF' }}
+                  className="group min-h-[250px] border-b border-r border-[#D9E3E8] bg-[#F8FAFC] p-6 transition-colors sm:p-7"
+                >
+                  <div className="flex items-start justify-between">
+                    <span className={`${mono.className} text-[8px] font-semibold tracking-[0.16em] text-[#176B9C]`}>
+                      {benefit.number}
+                    </span>
+
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#176B9C]/[0.07] text-[#176B9C] transition-transform duration-300 group-hover:scale-110">
+                      <Icon size={16} strokeWidth={1.6} />
+                    </span>
+                  </div>
+
+                  <div className="mt-12">
+                    <h3 className="text-[20px] font-semibold tracking-[-0.035em] text-[#08243B]">
+                      {benefit.title}
+                    </h3>
+
+                    <p className="mt-3 text-[11px] leading-5 text-[#607484]">
+                      {benefit.text}
+                    </p>
+                  </div>
+
+                  <div className="mt-7 h-px w-8 bg-[#55C7DC] transition-all duration-300 group-hover:w-14" />
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function AboutCTA() {
+  return (
+    <section className={`${sans.className} relative overflow-hidden bg-[#061522]`}>
+      <div className="pointer-events-none absolute right-[-220px] top-[-240px] h-[560px] w-[560px] rounded-full border border-[#55C7DC]/[0.07]" />
+      <div className="pointer-events-none absolute left-[-180px] bottom-[-220px] h-[440px] w-[440px] rounded-full border border-white/[0.035]" />
+
+      <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={reveal}
+        >
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#55C7DC]`}>
+                CIO TECH / 2026
+              </p>
+
+              <h2 className="mt-5 max-w-4xl text-[46px] font-semibold leading-[0.92] tracking-[-0.07em] text-white sm:text-[62px] lg:text-[78px]">
+                The right room
+                <br />
+                can change the
+                <br />
+                <span className="text-[#7DD3E7]">next decision.</span>
+              </h2>
+
+              <p className="mt-6 max-w-xl text-[14px] leading-6 text-white/50 sm:text-[15px] sm:leading-7">
+                Join a focused community of technology leaders, innovators
+                and decision-makers shaping the next chapter of enterprise
+                technology.
+              </p>
+            </div>
+
+            <a
+              href="#delegateenquiry"
+              className="group inline-flex min-w-[235px] items-center justify-between gap-8 border border-white/15 bg-white/[0.035] px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.14em] text-white transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC]/50 hover:bg-[#55C7DC]/[0.07]"
+            >
+              <span>Attend as Delegate</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#55C7DC]/10 text-[#55C7DC] transition-transform duration-300 group-hover:rotate-45">
+                <FiArrowUpRight size={14} />
+              </span>
+            </a>
+          </div>
+
+          <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <span className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/35`}>
+              CIO TECH / DELHI / 2026
+            </span>
+            <span className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/25`}>
+              People × Ideas × Technology
+            </span>
+            <span className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/35`}>
+              END / ABOUT
+            </span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
 
 export default function About() {
   return (
-    <main
-      id="about"
-      className={`${sans.className} overflow-hidden`}
-    >
-      {/* =====================================================
-          HERO
-      ===================================================== */}
-
-      <section className="relative overflow-hidden bg-white">
-        {/* Architectural background */}
-
-        <div
-          className="
-            pointer-events-none
-            absolute
-            right-[-200px]
-            top-[-250px]
-            h-[600px]
-            w-[600px]
-            rounded-full
-            border
-          "
-          style={{
-            borderColor:
-              'rgba(21,90,145,0.045)',
-          }}
-        />
-
-        <div
-          className="
-            pointer-events-none
-            absolute
-            right-[-90px]
-            top-[-130px]
-            h-[350px]
-            w-[350px]
-            rounded-full
-            border
-          "
-          style={{
-            borderColor:
-              'rgba(23,107,156,0.055)',
-          }}
-        />
-
-        {/* Very subtle horizontal line */}
-
-        <div
-          className="
-            pointer-events-none
-            absolute
-            left-0
-            right-0
-            top-[52%]
-            h-px
-          "
-          style={{
-            background:
-              'rgba(8,26,41,0.025)',
-          }}
-        />
-
-        <div
-          className="
-            relative
-            mx-auto
-            max-w-[1380px]
-            px-5
-            pb-12
-            pt-12
-            sm:px-8
-            sm:pb-14
-            sm:pt-14
-            lg:px-12
-            lg:pb-16
-            lg:pt-16
-          "
-        >
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={stagger}
-          >
-            {/* Label */}
-
-            {/* <motion.div variants={reveal}>
-              <SectionLabel
-                label="About CIO Tech"
-                number="ABOUT / 2026"
-              />
-            </motion.div> */}
-
-            <div
-              className="
-                mt-8
-                grid
-                gap-9
-                lg:grid-cols-[1fr_0.60fr]
-                lg:items-end
-                lg:gap-14
-              "
-            >
-              {/* Main headline */}
-
-              <motion.div variants={reveal}>
-                <p
-                  className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em]`}
-                  style={{
-                    color:
-                      COLORS.blue,
-                  }}
-                >
-                  The Technology Leadership Platform
-                </p>
-
-                <h1
-                  className="
-                    mt-4
-                    max-w-5xl
-                    text-[50px]
-                    font-semibold
-                    leading-[0.91]
-                    tracking-[-0.07em]
-                    sm:text-[66px]
-                    lg:text-[82px]
-                  "
-                  style={{
-                    color:
-                      COLORS.navy,
-                  }}
-                >
-                  Where technology
-                  <br />
-                  meets{' '}
-                  <span
-                    style={{
-                      color:
-                        COLORS.blue,
-                    }}
-                  >
-                    leadership.
-                  </span>
-                </h1>
-              </motion.div>
-
-              {/* Description */}
-
-              <motion.div
-                variants={reveal}
-                className="lg:pb-2"
-              >
-                <p
-                  className="
-                    max-w-lg
-                    text-[14px]
-                    leading-6
-                    sm:text-[15px]
-                    sm:leading-7
-                  "
-                  style={{
-                    color:
-                      COLORS.muted,
-                  }}
-                >
-                  CIO Tech Delhi is a curated
-                  platform where senior technology
-                  and business leaders come together
-                  to exchange perspectives, challenge
-                  ideas and shape what comes next in
-                  enterprise technology.
-                </p>
-
-                <div className="mt-6">
-                  <MetaRow />
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Divider */}
-
-        <div
-          className="
-            mx-auto
-            max-w-[1380px]
-            border-t
-          "
-          style={{
-            borderColor:
-              COLORS.line,
-          }}
-        />
-      </section>
-
-      {/* =====================================================
-          TECHNOLOGY CORE
-      ===================================================== */}
-
+    <main id="about" className={`${sans.className} overflow-hidden`}>
+      <AboutEvent />
       <TechnologySection />
-
-      {/* =====================================================
-          STRATEGIC FOCUS
-      ===================================================== */}
-
       <FocusAreas />
-
-      {/* =====================================================
-          MISSION
-      ===================================================== */}
-
-      <Mission />
-
-      {/* =====================================================
-          FINAL CTA
-      ===================================================== */}
-
-      <FinalCTA />
+      <IndustryLandscape />
+      <AboutBenefits />
+      <AboutCTA />
     </main>
   )
 }

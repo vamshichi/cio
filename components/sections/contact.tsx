@@ -1,4 +1,4 @@
-'use client'
+ 'use client'
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
@@ -6,256 +6,344 @@ import { FormModal } from '@/components/common/FormModal'
 import { DelegateForm } from '@/components/sections/DelegateForm'
 import { SponsorForm } from '@/components/sections/SponsorForm'
 
-interface FormData {
-  fullName: string
-  jobTitle: string
-  company: string
-  email: string
-  phone: string
-  interestedIn: string[]
-  briefNote: string
-  brochureConsent: boolean
-  contactConsent: boolean
-}
-
-const initialForm: FormData = {
-  fullName: '',
-  jobTitle: '',
-  company: '',
-  email: '',
-  phone: '',
-  interestedIn: [],
-  briefNote: '',
-  brochureConsent: false,
-  contactConsent: false,
-}
-
-const interestOptions = [
-  'Attending as a Delegate',
-  'Speaking Opportunities',
-  'Sponsorship & Partnership',
-  'Awards Participation',
-  'Media Partner Opportunities',
-  'I want to organise a B2B Conference for my organisation',
-  'I want to organise Bespoke Roundtable for my organisation',
-]
-
 export function Contact() {
- 
-const [showDelegateForm, setShowDelegateForm] = useState(false)
-const [showSponsorForm, setShowSponsorForm] = useState(false)
+  const [showDelegateForm, setShowDelegateForm] = useState(false)
+  const [showSponsorForm, setShowSponsorForm] = useState(false)
 
+  useEffect(() => {
+    const hash = window.location.hash
 
-useEffect(() => {
-  const hash = window.location.hash
+    if (hash === '#delegateenquiry') {
+      setShowDelegateForm(true)
+    }
 
-  if (hash === '#delegateenquiry') {
+    if (hash === '#sponsorenquiry') {
+      setShowSponsorForm(true)
+    }
+  }, [])
+
+  const openDelegate = () => {
+    window.history.pushState(null, '', '#delegateenquiry')
     setShowDelegateForm(true)
   }
 
-  if (hash === '#sponsorenquiry') {
+  const openSponsor = () => {
+    window.history.pushState(null, '', '#sponsorenquiry')
     setShowSponsorForm(true)
   }
-}, [])
-
 
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-slate-950 py-24 md:py-32"
+      className="relative overflow-hidden bg-[#061522] py-20 text-white sm:py-24 lg:py-28"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[150px]" />
-        <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[150px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:80px_80px]" />
+      {/* =========================================================
+          ARCHITECTURAL BACKGROUND
+      ========================================================= */}
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-[0.045]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)
+            `,
+            backgroundSize: '82px 82px',
+            maskImage:
+              'linear-gradient(to bottom, black, transparent 88%)',
+          }}
+        />
+
+        <div className="absolute -left-48 top-[-180px] h-[520px] w-[520px] rounded-full border border-[#55C7DC]/[0.06]" />
+        <div className="absolute -right-52 bottom-[-220px] h-[600px] w-[600px] rounded-full border border-[#55C7DC]/[0.06]" />
+
+        <div className="absolute left-[-100px] top-[30%] h-[300px] w-[300px] rounded-full bg-[#176B9C]/10 blur-[130px]" />
+        <div className="absolute right-[-100px] top-[10%] h-[300px] w-[300px] rounded-full bg-[#55C7DC]/10 blur-[130px]" />
+
+        <div className="absolute left-0 right-0 top-1/2 h-px bg-white/[0.035]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
-        {/* Header */}
+      <div className="relative z-10 mx-auto max-w-[1380px] px-5 sm:px-8 lg:px-12">
+        {/* =========================================================
+            HEADER
+        ========================================================= */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-20 text-center"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.65 }}
+          className="border-b border-white/10 pb-6"
         >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-5 py-2">
-            <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="text-sm font-medium text-cyan-300">
-              Registration Open
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#55C7DC] shadow-[0_0_12px_rgba(85,199,220,0.8)]" />
+              <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.24em] text-white/65 sm:text-[9px]">
+                Connect / CIO Tech 2026
+              </span>
+            </div>
+
+            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-white/30 sm:text-[9px]">
+              Contact / 04
             </span>
           </div>
-
-          <h2 className="text-5xl font-black text-white md:text-7xl">
-            Secure Your
-            <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400 bg-clip-text text-transparent">
-              Executive Pass
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-300 md:text-xl">
-            Fill in your details to access the event brochure and Join India's leading CIOs, CTOs, CISOs and CDOs.
-
-Explore AI, Cybersecurity, Cloud Innovation and Digital Transformation.
-
-Connect with technology leaders driving enterprise growth.
-          </p>
         </motion.div>
 
-        {/* Trust Badges */}
-        <div className="mb-16 flex flex-wrap justify-center gap-4">
-          {['200+ CIOs', '20+ Speakers', '20+ Partners', 'Leadership Awards', 'Executive Networking'].map((item) => (
-            <div key={item} className="rounded-full border border-cyan-500/20 bg-cyan-500/5 px-5 py-2 text-sm text-cyan-300 backdrop-blur-xl">
-              {item}
+        {/* =========================================================
+            MAIN INTRO
+        ========================================================= */}
+        <div className="grid gap-12 py-14 sm:py-18 lg:grid-cols-[1fr_0.7fr] lg:items-end lg:gap-20 lg:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="font-mono text-[8px] font-semibold uppercase tracking-[0.24em] text-[#55C7DC]">
+              The next conversation starts here
+            </p>
+
+            <h2 className="mt-5 max-w-4xl text-[48px] font-semibold leading-[0.9] tracking-[-0.075em] text-white sm:text-[66px] lg:text-[86px]">
+              Be part of the
+              <br />
+              <span className="text-[#7DD3E7]">conversation.</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.08 }}
+          >
+            <p className="max-w-xl text-[14px] leading-6 text-white/52 sm:text-[15px] sm:leading-7">
+              Join India&apos;s leading CIOs, CTOs, CISOs and CDOs for focused
+              conversations around AI, cybersecurity, cloud, innovation and
+              digital transformation.
+            </p>
+
+            <div className="mt-7 flex items-center gap-3">
+              <span className="h-px w-10 bg-[#55C7DC]" />
+              <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/35">
+                People × Ideas × Partnerships × Progress
+              </span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* =========================================================
+            EXECUTIVE STATS
+        ========================================================= */}
+        {/* <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.65 }}
+          className="grid border-y border-white/10 sm:grid-cols-4"
+        >
+          {[
+            ['200+', 'CIOs / CTOs / CISOs'],
+            ['20+', 'Industry Speakers'],
+            ['20+', 'Partners'],
+            ['100+', 'Pre-scheduled Meetings'],
+          ].map(([number, label], index) => (
+            <div
+              key={label}
+              className={`px-1 py-6 sm:px-6 sm:py-7 ${
+                index !== 0
+                  ? 'border-t border-white/10 sm:border-l sm:border-t-0'
+                  : ''
+              }`}
+            >
+              <p className="text-[36px] font-semibold leading-none tracking-[-0.065em] text-white sm:text-[43px]">
+                {number}
+              </p>
+
+              <p className="mt-2 max-w-[170px] font-mono text-[7px] uppercase tracking-[0.16em] text-[#7DD3E7]">
+                {label}
+              </p>
             </div>
           ))}
-        </div>
+        </motion.div> */}
 
-        <div className="mx-auto max-w-3xl">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-10 backdrop-blur-2xl">
+        {/* =========================================================
+            ACTION PANEL
+        ========================================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7 }}
+          className="mt-12 overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.035] backdrop-blur-xl"
+        >
+          <div className="grid lg:grid-cols-[1fr_0.72fr]">
+            {/* Delegate */}
+            <div className="relative p-7 sm:p-10 lg:p-12">
+              <div className="pointer-events-none absolute right-[-100px] top-[-100px] h-[280px] w-[280px] rounded-full border border-[#55C7DC]/10" />
+              <div className="pointer-events-none absolute right-[-60px] top-[-60px] h-[200px] w-[200px] rounded-full border border-white/[0.05]" />
 
-           <div className="mx-auto max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur-2xl">
+              <div className="relative">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[8px] uppercase tracking-[0.22em] text-[#55C7DC]">
+                    01 / Delegate
+                  </span>
 
-  <div className="text-center">
-    <h3 className="text-4xl font-bold text-white">
-      Ready to Join CIO Tech 2026?
-    </h3>
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#55C7DC]/20 bg-[#55C7DC]/[0.06] font-mono text-[9px] text-[#55C7DC]">
+                    01
+                  </span>
+                </div>
 
-    <p className="mx-auto mt-5 max-w-2xl text-slate-300">
-      Register as a delegate to network with India's leading technology executives
-      or become a sponsor to showcase your brand to enterprise decision-makers.
-    </p>
+                <h3 className="mt-10 max-w-xl text-[34px] font-semibold leading-[0.95] tracking-[-0.055em] text-white sm:text-[45px]">
+                  Secure your
+                  <br />
+                  <span className="text-[#7DD3E7]">executive pass.</span>
+                </h3>
 
-    <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <p className="mt-5 max-w-xl text-[13px] leading-6 text-white/45 sm:text-[14px]">
+                  Attend as a delegate and connect with senior technology
+                  leaders shaping the next generation of enterprise growth.
+                </p>
 
-  <button
-    className="rounded-xl border border-cyan-500/30 bg-white/5 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-500/10"
-    onClick={() => {
-      window.history.pushState(null, '', '#sponsorenquiry')
-      setShowSponsorForm(true)
-    }}
-  >
-    Become a Sponsor
-  </button>
+                <button
+                  type="button"
+                  onClick={openDelegate}
+                  className="group mt-8 inline-flex min-w-[225px] items-center justify-between gap-8 rounded-none border border-[#55C7DC]/30 bg-[#55C7DC]/[0.07] px-5 py-4 text-[9px] font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC] hover:bg-[#55C7DC]/[0.13]"
+                >
+                  <span>Attend as Delegate</span>
 
-  <button
-    className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/40"
-    onClick={() => {
-      window.history.pushState(null, '', '#delegateenquiry')
-      setShowDelegateForm(true)
-    }}
-  >
-    Register as Delegate
-  </button>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#55C7DC]/10 text-[#55C7DC] transition-transform duration-300 group-hover:rotate-45">
+                    <span className="text-base">↗</span>
+                  </span>
+                </button>
+              </div>
+            </div>
 
-</div>
-<div className="mt-10 border-t border-white/10 pt-8">
-  <p className="text-center text-sm text-slate-400">
-    Need assistance with registration or sponsorship?
-  </p>
+            {/* Sponsor */}
+            <div className="relative border-t border-white/10 bg-white/[0.018] p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+              <div className="relative">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[8px] uppercase tracking-[0.22em] text-white/40">
+                    02 / Partnership
+                  </span>
 
-  <div className="mt-5  items-center justify-center gap-4 sm:flex-row">
-    <a
-      href="mailto:info@confexmeet.com"
-      className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-white transition hover:border-cyan-400 hover:bg-cyan-500/10 mb-2"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5 text-cyan-400"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M3 8l9 6 9-6m-18 8h18V8l-9 6-9-6v8z"
-        />
-      </svg>
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 font-mono text-[9px] text-white/35">
+                    02
+                  </span>
+                </div>
 
-      enquiry@confexmeet.com
-    </a>
+                <h3 className="mt-10 max-w-md text-[31px] font-semibold leading-[0.97] tracking-[-0.05em] text-white sm:text-[39px]">
+                  Put your brand
+                  <br />
+                  <span className="text-[#7DD3E7]">in the room.</span>
+                </h3>
 
-    <a
-      href="tel:+917975429127"
-      className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-white transition hover:border-cyan-400 hover:bg-cyan-500/10 mb-2"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5 text-cyan-400"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M3 5a2 2 0 012-2h3.28a2 2 0 011.94 1.515l.547 2.19a2 2 0 01-.502 1.93l-1.285 1.285a16 16 0 006.586 6.586l1.285-1.285a2 2 0 011.93-.502l2.19.547A2 2 0 0121 15.72V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-        />
-      </svg>
+                <p className="mt-5 max-w-md text-[13px] leading-6 text-white/45">
+                  Showcase your solutions and build relationships with
+                  enterprise technology decision-makers.
+                </p>
 
-      +91 7975 429 127
-    </a>
-   {/* <a
-  href="https://www.google.com/maps/place/Radisson+Blu+Hotel,+Atria+Bengaluru/@12.980235,77.586061,17z/data=!3m1!4b1!4m9!3m8!1s0x3bae166d3d785ec7:0xe216f7625f066e10!5m2!4m1!1i2!8m2!3d12.980235!4d77.586061!16s%2Fg%2F1tls18p_?entry=ttu"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-white transition hover:border-cyan-400 hover:bg-cyan-500/10"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-5 w-5 text-cyan-400"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
-    />
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-    />
-  </svg>
+                <button
+                  type="button"
+                  onClick={openSponsor}
+                  className="group mt-8 inline-flex min-w-[210px] items-center justify-between gap-7 border border-white/15 bg-white/[0.035] px-5 py-4 text-[9px] font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC]/50 hover:bg-[#55C7DC]/[0.07]"
+                >
+                  <span>Become a Sponsor</span>
 
-  <span>Delhi</span>
-</a> */}
-  </div>
-</div>
-  </div>
-
-</div>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-[#55C7DC] transition-transform duration-300 group-hover:rotate-45">
+                    <span className="text-base">↗</span>
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
+        </motion.div>
+
+        {/* =========================================================
+            CONTACT STRIP
+        ========================================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.65 }}
+          className="mt-8 grid border-y border-white/10 md:grid-cols-2"
+        >
+          <a
+            href="mailto:enquiry@confexmeet.com"
+            className="group flex items-center justify-between gap-5 px-1 py-6 transition-colors hover:bg-white/[0.025] md:px-6"
+          >
+            <div>
+              <p className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/30">
+                Registration / Sponsorship
+              </p>
+              <p className="mt-2 text-[14px] font-medium text-white sm:text-[15px]">
+                enquiry@confexmeet.com
+              </p>
+            </div>
+
+            <span className="font-mono text-[9px] text-[#55C7DC] transition-transform group-hover:translate-x-1">
+              ↗
+            </span>
+          </a>
+
+          <a
+            href="tel:+917975429127"
+            className="group flex items-center justify-between gap-5 border-t border-white/10 px-1 py-6 transition-colors hover:bg-white/[0.025] md:border-l md:border-t-0 md:px-6"
+          >
+            <div>
+              <p className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/30">
+                Speak with the team
+              </p>
+              <p className="mt-2 text-[14px] font-medium text-white sm:text-[15px]">
+                +91 7975 429 127
+              </p>
+            </div>
+
+            <span className="font-mono text-[9px] text-[#55C7DC] transition-transform group-hover:translate-x-1">
+              ↗
+            </span>
+          </a>
+        </motion.div>
+
+        {/* Bottom statement */}
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/25">
+            CIO TECH / 2026
+          </span>
+
+          <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/20">
+            The intelligent enterprise era
+          </span>
+
+          <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/25">
+            END / CONTACT
+          </span>
         </div>
       </div>
-<FormModal
-  open={showDelegateForm}
-  onClose={() => {
-    window.history.pushState({}, '', window.location.pathname)
-    setShowDelegateForm(false)
-  }}
-  title="Delegate Registration"
->
-  <DelegateForm />
-</FormModal>
 
-<FormModal
-  open={showSponsorForm}
-  onClose={() => {
-    window.history.pushState({}, '', window.location.pathname)
-    setShowSponsorForm(false)
-  }}
-  title="Sponsor Enquiry"
->
-  <SponsorForm />
-</FormModal>
+      {/* =========================================================
+          MODALS
+      ========================================================= */}
+      <FormModal
+        open={showDelegateForm}
+        onClose={() => {
+          window.history.pushState({}, '', window.location.pathname)
+          setShowDelegateForm(false)
+        }}
+        title="Delegate Registration"
+      >
+        <DelegateForm />
+      </FormModal>
+
+      <FormModal
+        open={showSponsorForm}
+        onClose={() => {
+          window.history.pushState({}, '', window.location.pathname)
+          setShowSponsorForm(false)
+        }}
+        title="Sponsor Enquiry"
+      >
+        <SponsorForm />
+      </FormModal>
     </section>
   )
 }

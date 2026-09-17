@@ -1,3 +1,4 @@
+
 'use client'
 
 import { Button } from '@/components/ui/button'
@@ -36,10 +37,12 @@ export function Header() {
 
       if (hash.startsWith('#delegateenquiry')) {
         setShowDelegateForm(true)
+        setShowSponsorForm(false)
       }
 
       if (hash.startsWith('#sponsorenquiry')) {
         setShowSponsorForm(true)
+        setShowDelegateForm(false)
       }
     }
 
@@ -78,33 +81,33 @@ export function Header() {
 
   const navItems = [
     {
+      label: 'Home',
+      href: '/#home',
+      icon: FiGrid,
+    },
+    {
       label: 'About',
-      href: '#about',
+      href: '/#about',
       icon: FiInfo,
     },
-    // {
-    //   label: 'Agenda',
-    //   href: '#agenda',
-    //   icon: FiCalendar,
-    // },
     {
       label: 'Speakers',
-      href: '#speakers',
+      href: '/#speakers',
       icon: FiUsers,
     },
     {
       label: 'Partners',
-      href: '#partners',
+      href: '/#partners',
       icon: FiUsers,
     },
     {
       label: 'Past Events',
-      href: '#past-events',
+      href: '/#past-events',
       icon: FiCalendar,
     },
     {
       label: 'Awards',
-      href: '#awards',
+      href: '/#awards',
       icon: FiAward,
     },
   ]
@@ -115,19 +118,23 @@ export function Header() {
 
   const openSponsorForm = () => {
     window.history.pushState(null, '', '#sponsorenquiry')
+
     setShowSponsorForm(true)
+    setShowDelegateForm(false)
   }
 
   const openDelegateForm = () => {
     window.history.pushState(null, '', '#delegateenquiry')
+
     setShowDelegateForm(true)
+    setShowSponsorForm(false)
   }
 
   const closeSponsorForm = () => {
     window.history.pushState(
       {},
       '',
-      window.location.pathname
+      window.location.pathname + window.location.search,
     )
 
     setShowSponsorForm(false)
@@ -137,11 +144,23 @@ export function Header() {
     window.history.pushState(
       {},
       '',
-      window.location.pathname
+      window.location.pathname + window.location.search,
     )
 
     setShowDelegateForm(false)
   }
+
+  /* -------------------------------------------------------------------------- */
+  /* NAVIGATION HANDLER                                                          */
+  /* -------------------------------------------------------------------------- */
+
+  const handleNavClick = () => {
+    setMobileMenuOpen(false)
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /* RENDER                                                                     */
+  /* -------------------------------------------------------------------------- */
 
   return (
     <>
@@ -155,8 +174,8 @@ export function Header() {
           transition-all duration-500
           ${
             isScrolled
-              ? 'bg-[#020817]/75'
-              : 'bg-[#020817]/20'
+              ? 'bg-transparent/90 backdrop-blur-sm'
+              : 'bg-transparent'
           }
         `}
       >
@@ -171,12 +190,12 @@ export function Header() {
             style={{
               backgroundImage: `
                 linear-gradient(
-                  white 1px,
+                  rgba(0,0,0,0.08) 1px,
                   transparent 1px
                 ),
                 linear-gradient(
                   90deg,
-                   1px,
+                  rgba(0,0,0,0.08) 1px,
                   transparent 1px
                 )
               `,
@@ -190,12 +209,12 @@ export function Header() {
             style={{
               backgroundImage: `
                 linear-gradient(
-                  white 1px,
+                  rgba(0,0,0,0.08) 1px,
                   transparent 1px
                 ),
                 linear-gradient(
                   90deg,
-                  white 1px,
+                  rgba(0,0,0,0.045) 1px,
                   transparent 1px
                 )
               `,
@@ -203,17 +222,17 @@ export function Header() {
             }}
           />
 
-          {/* Left blue atmosphere */}
-          <div className="absolute left-[5%] top-[-180px] h-[400px] w-[400px] rounded-full bg-blue-600/[0.06] blur-[130px]" />
+          {/* Left atmosphere */}
+          <div className="absolute left-[5%] top-[-180px] h-[400px] w-[400px] rounded-full bg-blue-600/[0.035] blur-[130px]" />
 
           {/* Center atmosphere */}
-          <div className="absolute left-1/2 top-[-180px] h-[350px] w-[600px] -translate-x-1/2 rounded-full bg-cyan-500/[0.035] blur-[130px]" />
+          <div className="absolute left-1/2 top-[-180px] h-[350px] w-[600px] -translate-x-1/2 rounded-full bg-cyan-500/[0.025] blur-[130px]" />
 
           {/* Right atmosphere */}
-          <div className="absolute right-[5%] top-[-180px] h-[400px] w-[400px] rounded-full bg-blue-600/[0.06] blur-[130px]" />
+          <div className="absolute right-[5%] top-[-180px] h-[400px] w-[400px] rounded-full bg-blue-600/[0.035] blur-[130px]" />
 
           {/* Bottom line */}
-          <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-blue-400/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-black/15 to-transparent" />
         </div>
 
         {/* ==================================================================== */}
@@ -242,7 +261,7 @@ export function Header() {
           <div
             className={`
               relative flex items-center
-              rounded-[24px]
+              rounded-2xl
               border
               px-3
               transition-all duration-500
@@ -251,12 +270,12 @@ export function Header() {
               ${
                 isScrolled
                   ? `
-                    border-blue-400/20
+                    border-black/15
                     bg-white
                     shadow-[0_20px_70px_rgba(0,0,0,0.45)]
                   `
                   : `
-                    border-blue-400/25
+                    border-black/20
                     bg-white
                     shadow-[0_15px_60px_rgba(0,0,0,0.30)]
                   `
@@ -264,29 +283,24 @@ export function Header() {
             `}
           >
             {/* ================================================================ */}
-            {/* NAVBAR OUTER GLOW                                                */}
-            {/* ================================================================ */}
-
-            {/* <div className="pointer-events-none absolute -inset-px rounded-[24px] bg-gradient-to-r from-blue-500/20 via-transparent to-cyan-400/20 opacity-60" /> */}
-
-            {/* ================================================================ */}
             {/* CORNER ACCENTS                                                    */}
             {/* ================================================================ */}
 
-            <span className="absolute left-2 top-2 h-3 w-3 border-l border-t border-blue-400/60" />
+            <span className="absolute left-2 top-2 h-3 w-3 border-l border-t border-black/10" />
 
-            <span className="absolute right-2 top-2 h-3 w-3 border-r border-t border-blue-400/60" />
+            <span className="absolute right-2 top-2 h-3 w-3 border-r border-t border-black/10" />
 
-            <span className="absolute bottom-2 left-2 h-3 w-3 border-b border-l border-blue-400/60" />
+            <span className="absolute bottom-2 left-2 h-3 w-3 border-b border-l border-black/10" />
 
-            <span className="absolute bottom-2 right-2 h-3 w-3 border-b border-r border-blue-400/60" />
+            <span className="absolute bottom-2 right-2 h-3 w-3 border-b border-r border-black/10" />
 
             {/* ================================================================ */}
             {/* LOGO                                                              */}
             {/* ================================================================ */}
 
             <Link
-              href="#home"
+              href="/#home"
+              onClick={handleNavClick}
               className="group relative flex shrink-0 items-center py-2 pl-2 pr-4 sm:pr-6"
             >
               <motion.div
@@ -337,6 +351,7 @@ export function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
+                      onClick={handleNavClick}
                       className="group relative"
                     >
                       <div
@@ -349,7 +364,7 @@ export function Header() {
                           py-2.5
                           transition-all
                           duration-300
-                          hover:bg-blue-500/[0.08]
+                          hover:bg-black/[0.04]
                           xl:px-4
                         "
                       >
@@ -358,10 +373,10 @@ export function Header() {
                           className="
                             h-3.5
                             w-3.5
-                            text-slate-500
+                            text-black/55
                             transition-all
                             duration-300
-                            group-hover:text-cyan-300
+                            group-hover:text-blue-600
                           "
                         />
 
@@ -372,10 +387,10 @@ export function Header() {
                             text-[11px]
                             font-medium
                             tracking-[0.02em]
-                            text-slate-400
+                            text-black/75
                             transition-colors
                             duration-300
-                            group-hover:text-white
+                            group-hover:text-black
                             xl:text-[12px]
                           "
                         >
@@ -431,20 +446,20 @@ export function Header() {
                   overflow-hidden
                   rounded-full
                   border
-                  border-blue-400/30
-                  bg-[#061326]/80
+                  border-blue-400/70
+                  bg-white/[0.05]
                   px-5
                   text-[10px]
                   font-semibold
                   uppercase
                   tracking-[1.2px]
-                  text-slate-300
+                  text-black/75
                   shadow-none
                   backdrop-blur-xl
                   transition-all
                   duration-300
                   hover:border-blue-400/70
-                  hover:bg-blue-500/[0.08]
+                  hover:bg-blue-600
                   hover:text-white
                 "
               >
@@ -456,14 +471,14 @@ export function Header() {
                     -left-[100%]
                     w-[55%]
                     skew-x-[-20deg]
-                    bg-white/[0.08]
+                    bg-black/10
                     transition-all
                     duration-700
                     group-hover:left-[150%]
                   "
                 />
 
-                <span className="relative z-10 flex items-center gap-2.5">
+                <span className="relative z-10 flex items-center gap-2.5 text-black/75 group-hover:text-white">
                   Sponsor Enquiry
 
                   <FiArrowUpRight
@@ -495,8 +510,8 @@ export function Header() {
                   border
                   border-cyan-300/30
                   bg-gradient-to-r
-                  from-blue-600
-                  via-blue-500
+                  from-blue-700
+                  via-blue-600
                   to-cyan-500
                   px-5
                   text-[10px]
@@ -504,7 +519,7 @@ export function Header() {
                   uppercase
                   tracking-[1.1px]
                   text-white
-                  shadow-[0_0_25px_rgba(37,99,235,0.20)]
+                  shadow-[0_10px_30px_rgba(37,99,235,0.20)]
                   transition-all
                   duration-300
                   hover:shadow-[0_0_40px_rgba(34,211,238,0.28)]
@@ -552,35 +567,6 @@ export function Header() {
                   </span>
                 </span>
               </Button>
-
-              {/* ============================================================= */}
-              {/* MENU / SYSTEM ICON                                              */}
-              {/* ============================================================= */}
-
-              {/* <div className="ml-1 hidden h-10 w-10 items-center justify-center border-l border-blue-400/20 pl-2 xl:flex">
-                <motion.button
-                  whileHover={{
-                    scale: 1.05,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                  className="
-                    flex
-                    h-8
-                    w-8
-                    items-center
-                    justify-center
-                    rounded-lg
-                    text-slate-500
-                    transition-colors
-                    hover:text-cyan-300
-                  "
-                  aria-label="Menu"
-                >
-                  <FiGrid className="h-4 w-4" />
-                </motion.button>
-              </div> */}
             </div>
 
             {/* ================================================================= */}
@@ -631,14 +617,14 @@ export function Header() {
                   justify-center
                   rounded-xl
                   border
-                  border-blue-400/25
-                  bg-white/[0.03]
-                  text-slate-300
+                  border-black/20
+                  bg-black/[0.03]
+                  text-black/75
                   transition-all
                   duration-300
                   hover:border-cyan-400/60
-                  hover:bg-blue-500/[0.08]
-                  hover:text-white
+                  hover:bg-black/[0.05]
+                  hover:text-black
                 "
               >
                 {mobileMenuOpen ? (
@@ -687,8 +673,8 @@ export function Header() {
                   overflow-hidden
                   rounded-[22px]
                   border
-                  border-blue-400/20
-                  bg-[#031021]/95
+                  border-black/15
+                  bg-black
                   p-3
                   shadow-[0_25px_70px_rgba(0,0,0,0.45)]
                   backdrop-blur-2xl
@@ -714,23 +700,23 @@ export function Header() {
                 />
 
                 {/* Corner brackets */}
-                <span className="absolute left-2 top-2 h-4 w-4 border-l border-t border-blue-400/50" />
-                <span className="absolute right-2 top-2 h-4 w-4 border-r border-t border-blue-400/50" />
-                <span className="absolute bottom-2 left-2 h-4 w-4 border-b border-l border-blue-400/50" />
-                <span className="absolute bottom-2 right-2 h-4 w-4 border-b border-r border-blue-400/50" />
+                <span className="absolute left-2 top-2 h-4 w-4 border-l border-t border-white/20" />
+                <span className="absolute right-2 top-2 h-4 w-4 border-r border-t border-white/20" />
+                <span className="absolute bottom-2 left-2 h-4 w-4 border-b border-l border-white/20" />
+                <span className="absolute bottom-2 right-2 h-4 w-4 border-b border-r border-white/20" />
 
                 <div className="relative">
                   {/* Mobile header */}
-                  <div className="flex items-center justify-between border-b border-white/[0.06] px-3 py-3">
+                  <div className="flex items-center justify-between border-b border-white/10 px-3 py-3">
                     <div className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.9)]" />
 
-                      <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-500">
+                      <span className="font-mono text-[8px] uppercase tracking-[3px] text-white/55">
                         Navigation
                       </span>
                     </div>
 
-                    <span className="font-mono text-[8px] tracking-[2px] text-slate-700">
+                    <span className="font-mono text-[8px] tracking-[2px] text-white/35">
                       CIO / 2026
                     </span>
                   </div>
@@ -758,9 +744,7 @@ export function Header() {
                         >
                           <Link
                             href={item.href}
-                            onClick={() =>
-                              setMobileMenuOpen(false)
-                            }
+                            onClick={handleNavClick}
                             className="
                               group
                               flex
@@ -771,7 +755,7 @@ export function Header() {
                               py-3
                               transition-all
                               duration-300
-                              hover:bg-blue-500/[0.07]
+                              hover:bg-white/[0.07]
                             "
                           >
                             <div className="flex items-center gap-3">
@@ -784,19 +768,19 @@ export function Header() {
                                   justify-center
                                   rounded-lg
                                   border
-                                  border-white/[0.06]
-                                  bg-white/[0.025]
+                                  border-white/10
+                                  bg-white/[0.045]
                                   transition-all
                                   duration-300
-                                  group-hover:border-blue-400/25
-                                  group-hover:bg-blue-500/[0.07]
+                                  group-hover:border-cyan-400/30
+                                  group-hover:bg-white/[0.07]
                                 "
                               >
                                 <Icon
                                   className="
                                     h-4
                                     w-4
-                                    text-slate-500
+                                    text-white/55
                                     transition-colors
                                     group-hover:text-cyan-300
                                   "
@@ -807,7 +791,7 @@ export function Header() {
                                 className="
                                   text-sm
                                   font-medium
-                                  text-slate-300
+                                  text-white/75
                                   transition-colors
                                   group-hover:text-white
                                 "
@@ -820,7 +804,7 @@ export function Header() {
                               className="
                                 h-4
                                 w-4
-                                text-slate-700
+                                text-white/35
                                 transition-all
                                 duration-300
                                 group-hover:-translate-y-0.5
@@ -835,7 +819,7 @@ export function Header() {
                   </div>
 
                   {/* Mobile CTA */}
-                  <div className="grid gap-2 border-t border-white/[0.06] px-2 py-4 sm:grid-cols-2">
+                  <div className="grid gap-2 border-t border-white/10 px-2 py-4 sm:grid-cols-2">
                     <Button
                       variant="outline"
                       onClick={() => {
@@ -845,15 +829,15 @@ export function Header() {
                       className="
                         h-12
                         rounded-xl
-                        border-blue-400/25
-                        bg-white/[0.025]
+                        border-white/20
+                        bg-white/[0.045]
                         text-[10px]
                         font-semibold
                         uppercase
                         tracking-[1px]
-                        text-slate-300
-                        hover:border-blue-400/60
-                        hover:bg-blue-500/[0.08]
+                        text-white/75
+                        hover:border-white/25
+                        hover:bg-white/[0.07]
                         hover:text-white
                       "
                     >
@@ -887,11 +871,11 @@ export function Header() {
 
                   {/* Mobile footer */}
                   <div className="flex items-center justify-between px-3 pb-2">
-                    <span className="font-mono text-[7px] uppercase tracking-[3px] text-slate-700">
+                    <span className="font-mono text-[7px] uppercase tracking-[3px] text-white/35">
                       Leadership × Innovation × Impact
                     </span>
 
-                    <span className="font-mono text-[7px] uppercase tracking-[2px] text-blue-400/50">
+                    <span className="font-mono text-[7px] uppercase tracking-[2px] text-cyan-300/70">
                       Delhi 2026
                     </span>
                   </div>

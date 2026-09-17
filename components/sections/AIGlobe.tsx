@@ -5,27 +5,15 @@ import { PerspectiveCamera } from '@react-three/drei'
 import * as THREE from 'three'
 import { useMemo, useRef } from 'react'
 
-/* ================================================================
-   TYPES
-================================================================ */
-
 type Point3 = [number, number, number]
 
-/* ================================================================
-   CONFIG
-================================================================ */
-
-const GLOBE_RADIUS = 2.65
-const PARTICLE_COUNT = 1500
+const GLOBE_RADIUS = 2.72
+const PARTICLE_COUNT = 1900
 
 const CYAN = '#67e8f9'
 const ELECTRIC = '#22d3ee'
 const BLUE = '#38bdf8'
 const WHITE = '#ecfeff'
-
-/* ================================================================
-   LAT / LONG → SPHERE
-================================================================ */
 
 function latLongToVector(
   latitude: number,
@@ -42,14 +30,7 @@ function latLongToVector(
   )
 }
 
-/* ================================================================
-   FIBONACCI SPHERE
-================================================================ */
-
-function generateSpherePoints(
-  count: number,
-  radius: number
-) {
+function generateSpherePoints(count: number, radius: number) {
   const positions = new Float32Array(count * 3)
   const colors = new Float32Array(count * 3)
 
@@ -61,68 +42,32 @@ function generateSpherePoints(
 
   for (let i = 0; i < count; i++) {
     const y = 1 - (i / (count - 1)) * 2
-    const radiusAtY = Math.sqrt(
-      Math.max(0, 1 - y * y)
-    )
-
+    const radiusAtY = Math.sqrt(Math.max(0, 1 - y * y))
     const theta = phi * i
 
-    const x =
-      Math.cos(theta) *
-      radiusAtY *
-      radius
-
-    const z =
-      Math.sin(theta) *
-      radiusAtY *
-      radius
-
-    positions[i * 3] = x
+    positions[i * 3] = Math.cos(theta) * radiusAtY * radius
     positions[i * 3 + 1] = y * radius
-    positions[i * 3 + 2] = z
-
-    /*
-     * Mostly cyan / blue.
-     * A few particles become almost white.
-     */
+    positions[i * 3 + 2] = Math.sin(theta) * radiusAtY * radius
 
     const colorChoice = Math.random()
 
     const color =
-      colorChoice > 0.93
+      colorChoice > 0.95
         ? whiteColor
-        : colorChoice > 0.55
-        ? cyanColor
-        : blueColor
+        : colorChoice > 0.52
+          ? cyanColor
+          : blueColor
 
     colors[i * 3] = color.r
     colors[i * 3 + 1] = color.g
     colors[i * 3 + 2] = color.b
   }
 
-  return {
-    positions,
-    colors,
-  }
+  return { positions, colors }
 }
 
-/* ================================================================
-   NETWORK CONNECTIONS
-================================================================ */
-
-function generateConnections(
-  points: Float32Array,
-  count: number
-) {
+function generateConnections(points: Float32Array, count: number) {
   const positions: number[] = []
-
-  /*
-   * Instead of checking every point against every other point,
-   * connect points to a few nearby Fibonacci neighbours.
-   *
-   * This dramatically reduces CPU work.
-   */
-
   const neighbourOffsets = [1, 2, 3, 5, 8, 13]
 
   for (let i = 0; i < count; i++) {
@@ -132,7 +77,6 @@ function generateConnections(
 
     for (const offset of neighbourOffsets) {
       const j = i + offset
-
       if (j >= count) continue
 
       const bx = points[j * 3]
@@ -144,15 +88,8 @@ function generateConnections(
         (ay - by) ** 2 +
         (az - bz) ** 2
 
-      if (distanceSquared < 0.16) {
-        positions.push(
-          ax,
-          ay,
-          az,
-          bx,
-          by,
-          bz
-        )
+      if (distanceSquared < 0.15) {
+        positions.push(ax, ay, az, bx, by, bz)
       }
     }
   }
@@ -160,65 +97,33 @@ function generateConnections(
   return new Float32Array(positions)
 }
 
-/* ================================================================
-   INDIA PARTICLES
-================================================================ */
-
 function generateIndiaParticles() {
   const positions: number[] = []
   const colors: number[] = []
 
-  const cyan = new THREE.Color('#22d3ee')
+  const cyan = new THREE.Color(ELECTRIC)
   const white = new THREE.Color('#ffffff')
 
-  /*
-   * Approximate India geographic region.
-   *
-   * This creates a glowing geographic zone rather than
-   * loading a texture/map.
-   */
-
-  for (let i = 0; i < 280; i++) {
-    const latitude =
-      7 + Math.random() * 28
-
-    const longitude =
-      68 + Math.random() * 30
+  for (let i = 0; i < 360; i++) {
+    const latitude = 7 + Math.random() * 28
+    const longitude = 68 + Math.random() * 30
 
     const point = latLongToVector(
       latitude,
       longitude,
-      GLOBE_RADIUS + 0.018
+      GLOBE_RADIUS + 0.025
     )
-
-    /*
-     * Keep the region slightly irregular.
-     */
 
     const edgeNoise =
-      Math.sin(latitude * 0.8) *
-      Math.cos(longitude * 0.35)
+      Math.sin(latitude * 0.8) * Math.cos(longitude * 0.35)
 
-    point.multiplyScalar(
-      1 + edgeNoise * 0.003
-    )
+    point.multiplyScalar(1 + edgeNoise * 0.003)
 
-    positions.push(
-      point.x,
-      point.y,
-      point.z
-    )
+    positions.push(point.x, point.y, point.z)
 
-    const color =
-      Math.random() > 0.78
-        ? white
-        : cyan
+    const color = Math.random() > 0.76 ? white : cyan
 
-    colors.push(
-      color.r,
-      color.g,
-      color.b
-    )
+    colors.push(color.r, color.g, color.b)
   }
 
   return {
@@ -227,86 +132,22 @@ function generateIndiaParticles() {
   }
 }
 
-/* ================================================================
-   CITY NODES
-================================================================ */
-
 const cities = [
-  {
-    name: 'Delhi',
-    lat: 28.61,
-    lon: 77.20,
-    important: true,
-  },
-  {
-    name: 'Mumbai',
-    lat: 19.07,
-    lon: 72.87,
-    important: false,
-  },
-  {
-    name: 'Bengaluru',
-    lat: 12.97,
-    lon: 77.59,
-    important: true,
-  },
-  {
-    name: 'Hyderabad',
-    lat: 17.38,
-    lon: 78.48,
-    important: false,
-  },
-  {
-    name: 'Chennai',
-    lat: 13.08,
-    lon: 80.27,
-    important: false,
-  },
-  {
-    name: 'Kolkata',
-    lat: 22.57,
-    lon: 88.36,
-    important: false,
-  },
-  {
-    name: 'Singapore',
-    lat: 1.35,
-    lon: 103.81,
-    important: false,
-  },
-  {
-    name: 'Dubai',
-    lat: 25.20,
-    lon: 55.27,
-    important: false,
-  },
-  {
-    name: 'London',
-    lat: 51.50,
-    lon: -0.12,
-    important: false,
-  },
-  {
-    name: 'New York',
-    lat: 40.71,
-    lon: -74.00,
-    important: false,
-  },
+  { name: 'Delhi', lat: 28.61, lon: 77.2, important: true },
+  { name: 'Mumbai', lat: 19.07, lon: 72.87, important: false },
+  { name: 'Bengaluru', lat: 12.97, lon: 77.59, important: true },
+  { name: 'Hyderabad', lat: 17.38, lon: 78.48, important: false },
+  { name: 'Chennai', lat: 13.08, lon: 80.27, important: false },
+  { name: 'Kolkata', lat: 22.57, lon: 88.36, important: false },
+  { name: 'Singapore', lat: 1.35, lon: 103.81, important: false },
+  { name: 'Dubai', lat: 25.2, lon: 55.27, important: false },
+  { name: 'London', lat: 51.5, lon: -0.12, important: false },
+  { name: 'New York', lat: 40.71, lon: -74, important: false },
 ]
 
-/* ================================================================
-   DATA ROUTE
-================================================================ */
-
-function createRoute(
-  start: Point3,
-  end: Point3
-) {
-  const startVector =
-    new THREE.Vector3(...start)
-
-  const endVector =
-    new THREE.Vector3(...end)
+function createRoute(start: Point3, end: Point3) {
+  const startVector = new THREE.Vector3(...start)
+  const endVector = new THREE.Vector3(...end)
 
   const midpoint = startVector
     .clone()
@@ -314,76 +155,37 @@ function createRoute(
     .normalize()
     .multiplyScalar(GLOBE_RADIUS * 1.12)
 
-  const curve =
-    new THREE.QuadraticBezierCurve3(
-      startVector,
-      midpoint,
-      endVector
-    )
-
-  return curve
+  return new THREE.QuadraticBezierCurve3(
+    startVector,
+    midpoint,
+    endVector
+  )
 }
-
-/* ================================================================
-   GLOBE CORE
-================================================================ */
 
 function GlobeCore() {
   const globe = useRef<THREE.Group>(null)
 
-  const mouse = useRef({
-    x: 0,
-    y: 0,
-  })
-
-  /* ================================================================
-     PARTICLES
-  ================================================================ */
+  const mouse = useRef({ x: 0, y: 0 })
 
   const particleData = useMemo(
-    () =>
-      generateSpherePoints(
-        PARTICLE_COUNT,
-        GLOBE_RADIUS
-      ),
+    () => generateSpherePoints(PARTICLE_COUNT, GLOBE_RADIUS),
     []
   )
 
   const connections = useMemo(
-    () =>
-      generateConnections(
-        particleData.positions,
-        PARTICLE_COUNT
-      ),
+    () => generateConnections(particleData.positions, PARTICLE_COUNT),
     [particleData]
   )
 
-  /* ================================================================
-     INDIA
-  ================================================================ */
+  const indiaParticles = useMemo(() => generateIndiaParticles(), [])
 
-  const indiaParticles = useMemo(
-    () => generateIndiaParticles(),
+  const cityPositions = useMemo(
+    () =>
+      cities.map((city) =>
+        latLongToVector(city.lat, city.lon, GLOBE_RADIUS + 0.055)
+      ),
     []
   )
-
-  /* ================================================================
-     CITY POSITIONS
-  ================================================================ */
-
-  const cityPositions = useMemo(() => {
-    return cities.map((city) => {
-      return latLongToVector(
-        city.lat,
-        city.lon,
-        GLOBE_RADIUS + 0.055
-      )
-    })
-  }, [])
-
-  /* ================================================================
-     ROUTES
-  ================================================================ */
 
   const routes = useMemo(() => {
     const routePairs = [
@@ -406,127 +208,82 @@ function GlobeCore() {
     )
   }, [cityPositions])
 
-  /* ================================================================
-     ANIMATION
-  ================================================================ */
-
   useFrame((state) => {
     if (!globe.current) return
 
-    const time =
-      state.clock.elapsedTime
+    const time = state.clock.elapsedTime
 
-    const targetX =
-      state.pointer.y * 0.16
+    const targetX = state.pointer.y * 0.13
+    const targetY = state.pointer.x * 0.24
 
-    const targetY =
-      state.pointer.x * 0.32
+    mouse.current.x = THREE.MathUtils.lerp(
+      mouse.current.x,
+      targetX,
+      0.035
+    )
 
-    mouse.current.x =
-      THREE.MathUtils.lerp(
-        mouse.current.x,
-        targetX,
-        0.035
-      )
-
-    mouse.current.y =
-      THREE.MathUtils.lerp(
-        mouse.current.y,
-        targetY,
-        0.035
-      )
-
-    /*
-     * Slow cinematic rotation
-     */
+    mouse.current.y = THREE.MathUtils.lerp(
+      mouse.current.y,
+      targetY,
+      0.035
+    )
 
     globe.current.rotation.x =
-      mouse.current.x +
-      Math.sin(time * 0.18) * 0.025
+      mouse.current.x + Math.sin(time * 0.18) * 0.018
 
     globe.current.rotation.y =
-      time * 0.045 +
-      mouse.current.y
+      time * 0.038 + mouse.current.y
   })
 
   return (
     <group ref={globe}>
-      {/* ==========================================================
-          INNER DARK CORE
-      ========================================================== */}
-
+      {/* Dark glass core */}
       <mesh>
-        <sphereGeometry
-          args={[2.58, 64, 64]}
-        />
-
+        <sphereGeometry args={[2.63, 64, 64]} />
         <meshBasicMaterial
-          color="#02070A"
+          color="#010609"
           transparent
-          opacity={0.72}
+          opacity={0.88}
         />
       </mesh>
 
-      {/* ==========================================================
-          INNER CYAN ATMOSPHERE
-      ========================================================== */}
-
+      {/* Atmospheric shell */}
       <mesh>
-        <sphereGeometry
-          args={[2.62, 64, 64]}
-        />
-
+        <sphereGeometry args={[2.68, 64, 64]} />
         <meshBasicMaterial
-          color="#0b2830"
+          color="#0a3540"
           transparent
-          opacity={0.18}
+          opacity={0.15}
           side={THREE.BackSide}
-          blending={
-            THREE.AdditiveBlending
-          }
+          blending={THREE.AdditiveBlending}
         />
       </mesh>
 
-      {/* ==========================================================
-          PARTICLE EARTH
-      ========================================================== */}
-
+      {/* Global particles */}
       <points>
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            args={[
-              particleData.positions,
-              3,
-            ]}
+            args={[particleData.positions, 3]}
           />
-
           <bufferAttribute
             attach="attributes-color"
-            args={[
-              particleData.colors,
-              3,
-            ]}
+            args={[particleData.colors, 3]}
           />
         </bufferGeometry>
 
         <pointsMaterial
-          size={0.023}
+          size={0.019}
           sizeAttenuation
           transparent
-          opacity={0.82}
+          opacity={0.72}
           vertexColors
-          blending={
-            THREE.AdditiveBlending
-          }
+          blending={THREE.AdditiveBlending}
           depthWrite={false}
         />
       </points>
 
-      {/* ==========================================================
-          NETWORK
-      ========================================================== */}
-
+      {/* Network */}
       <lineSegments>
         <bufferGeometry>
           <bufferAttribute
@@ -536,206 +293,114 @@ function GlobeCore() {
         </bufferGeometry>
 
         <lineBasicMaterial
-          color="#38bdf8"
+          color={BLUE}
           transparent
-          opacity={0.075}
-          blending={
-            THREE.AdditiveBlending
-          }
+          opacity={0.065}
+          blending={THREE.AdditiveBlending}
           depthWrite={false}
         />
       </lineSegments>
 
-      {/* ==========================================================
-          LATITUDE / LONGITUDE
-      ========================================================== */}
-
+      {/* Latitude / longitude */}
       <mesh>
-        <sphereGeometry
-          args={[2.66, 24, 18]}
-        />
-
+        <sphereGeometry args={[2.70, 24, 18]} />
         <meshBasicMaterial
-          color="#67e8f9"
+          color={CYAN}
           wireframe
           transparent
-          opacity={0.045}
-          blending={
-            THREE.AdditiveBlending
-          }
+          opacity={0.055}
+          blending={THREE.AdditiveBlending}
         />
       </mesh>
 
-      {/* ==========================================================
-          INDIA PARTICLE FIELD
-      ========================================================== */}
-
+      {/* India particle field */}
       <points>
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            args={[
-              indiaParticles.positions,
-              3,
-            ]}
+            args={[indiaParticles.positions, 3]}
           />
-
           <bufferAttribute
             attach="attributes-color"
-            args={[
-              indiaParticles.colors,
-              3,
-            ]}
+            args={[indiaParticles.colors, 3]}
           />
         </bufferGeometry>
 
         <pointsMaterial
-          size={0.038}
+          size={0.035}
           sizeAttenuation
           transparent
-          opacity={1}
+          opacity={0.95}
           vertexColors
-          blending={
-            THREE.AdditiveBlending
-          }
+          blending={THREE.AdditiveBlending}
           depthWrite={false}
         />
       </points>
 
-      {/* ==========================================================
-          INDIA GLOW
-      ========================================================== */}
-
+      {/* India hotspot */}
       <mesh
-        position={latLongToVector(
-          21,
-          79,
-          GLOBE_RADIUS + 0.02
-        )}
+        position={latLongToVector(21, 79, GLOBE_RADIUS + 0.03)}
       >
-        <sphereGeometry
-          args={[0.24, 24, 24]}
-        />
-
+        <sphereGeometry args={[0.23, 24, 24]} />
         <meshBasicMaterial
-          color="#22d3ee"
+          color={ELECTRIC}
           transparent
-          opacity={0.1}
-          blending={
-            THREE.AdditiveBlending
-          }
+          opacity={0.11}
+          blending={THREE.AdditiveBlending}
         />
       </mesh>
 
-      {/* ==========================================================
-          CITY NODES
-      ========================================================== */}
-
-      {cityPositions.map(
-        (position, index) => {
-          const city = cities[index]
-
-          return (
-            <group
-              key={city.name}
-              position={position}
-            >
-              {/* Core */}
-              <mesh>
-                <sphereGeometry
-                  args={[
-                    city.important
-                      ? 0.065
-                      : 0.035,
-                    12,
-                    12,
-                  ]}
-                />
-
-                <meshBasicMaterial
-                  color={
-                    city.important
-                      ? WHITE
-                      : ELECTRIC
-                  }
-                  blending={
-                    THREE.AdditiveBlending
-                  }
-                />
-              </mesh>
-
-              {/* Glow */}
-              <mesh>
-                <sphereGeometry
-                  args={[
-                    city.important
-                      ? 0.16
-                      : 0.10,
-                    12,
-                    12,
-                  ]}
-                />
-
-                <meshBasicMaterial
-                  color={ELECTRIC}
-                  transparent
-                  opacity={
-                    city.important
-                      ? 0.1
-                      : 0.055
-                  }
-                  blending={
-                    THREE.AdditiveBlending
-                  }
-                />
-              </mesh>
-            </group>
-          )
-        }
-      )}
-
-      {/* ==========================================================
-          DATA ROUTES
-      ========================================================== */}
-
-      {routes.map((route, index) => {
-        const points =
-          route.getPoints(80)
-
-        const geometry =
-          new THREE.BufferGeometry().setFromPoints(
-            points
-          )
+      {/* City nodes */}
+      {cityPositions.map((position, index) => {
+        const city = cities[index]
 
         return (
-          <line
-            key={index}
-          >
+          <group key={city.name} position={position}>
+            <mesh>
+              <sphereGeometry
+                args={[city.important ? 0.07 : 0.035, 12, 12]}
+              />
+              <meshBasicMaterial
+                color={city.important ? WHITE : ELECTRIC}
+                blending={THREE.AdditiveBlending}
+              />
+            </mesh>
+
+            <mesh>
+              <sphereGeometry
+                args={[city.important ? 0.17 : 0.095, 12, 12]}
+              />
+              <meshBasicMaterial
+                color={ELECTRIC}
+                transparent
+                opacity={city.important ? 0.11 : 0.045}
+                blending={THREE.AdditiveBlending}
+              />
+            </mesh>
+          </group>
+        )
+      })}
+
+      {/* Global routes */}
+      {routes.map((route, index) => {
+        const geometry = new THREE.BufferGeometry().setFromPoints(
+          route.getPoints(80)
+        )
+
+        return (
+          <line key={index}>
             <bufferGeometry attach="geometry" {...geometry} />
             <lineBasicMaterial
-              color={
-                index % 3 === 0
-                  ? '#ffffff'
-                  : '#22d3ee'
-              }
+              color={index % 3 === 0 ? WHITE : ELECTRIC}
               transparent
-              opacity={
-                index % 3 === 0
-                  ? 0.22
-                  : 0.14
-              }
-              blending={
-                THREE.AdditiveBlending
-              }
+              opacity={index % 3 === 0 ? 0.18 : 0.11}
+              blending={THREE.AdditiveBlending}
             />
           </line>
         )
       })}
 
-      {/* ==========================================================
-          ORBIT 01
-      ========================================================== */}
-
+      {/* Primary orbital ring */}
       <mesh
         rotation={[
           Math.PI / 2.35,
@@ -743,162 +408,89 @@ function GlobeCore() {
           0.25,
         ]}
       >
-        <torusGeometry
-          args={[
-            3.04,
-            0.007,
-            8,
-            220,
-          ]}
-        />
-
+        <torusGeometry args={[3.08, 0.007, 8, 240]} />
         <meshBasicMaterial
-          color="#22d3ee"
+          color={ELECTRIC}
           transparent
-          opacity={0.5}
-          blending={
-            THREE.AdditiveBlending
-          }
+          opacity={0.46}
+          blending={THREE.AdditiveBlending}
         />
       </mesh>
 
-      {/* ==========================================================
-          ORBIT 02
-      ========================================================== */}
-
-      <mesh
-        rotation={[
-          0.5,
-          Math.PI / 3,
-          0.15,
-        ]}
-      >
-        <torusGeometry
-          args={[
-            3.25,
-            0.006,
-            8,
-            220,
-          ]}
-        />
-
+      {/* Secondary orbital ring */}
+      <mesh rotation={[0.5, Math.PI / 3, 0.15]}>
+        <torusGeometry args={[3.27, 0.005, 8, 240]} />
         <meshBasicMaterial
-          color="#67e8f9"
+          color={CYAN}
           transparent
-          opacity={0.27}
-          blending={
-            THREE.AdditiveBlending
-          }
+          opacity={0.22}
+          blending={THREE.AdditiveBlending}
         />
       </mesh>
 
-      {/* ==========================================================
-          ORBIT 03
-      ========================================================== */}
-
-      <mesh
-        rotation={[
-          -0.4,
-          -0.7,
-          0.5,
-        ]}
-      >
-        <torusGeometry
-          args={[
-            3.42,
-            0.004,
-            8,
-            220,
-          ]}
-        />
-
+      {/* Very subtle third orbit */}
+      <mesh rotation={[-0.4, -0.7, 0.5]}>
+        <torusGeometry args={[3.43, 0.0035, 8, 240]} />
         <meshBasicMaterial
-          color="#ffffff"
+          color={WHITE}
           transparent
-          opacity={0.13}
-          blending={
-            THREE.AdditiveBlending
-          }
+          opacity={0.09}
+          blending={THREE.AdditiveBlending}
         />
       </mesh>
     </group>
   )
 }
 
-/* ================================================================
-   FLOATING DATA POINTS
-================================================================ */
-
 function DataPoints() {
-  const group =
-    useRef<THREE.Group>(null)
+  const group = useRef<THREE.Group>(null)
 
   const data = useMemo(
-    () => [
-      [-3.55, 1.25, 0],
-      [3.35, 1.7, -0.5],
-      [3.1, -1.5, 0.4],
-      [-3.3, -1.7, -0.5],
-      [0.1, 3.25, -0.5],
-      [-0.8, -3.15, 0.2],
-      [3.6, 0.15, -1],
-      [-3.7, 0, 0],
-    ] as Point3[],
+    () =>
+      [
+        [-3.55, 1.25, 0],
+        [3.35, 1.7, -0.5],
+        [3.1, -1.5, 0.4],
+        [-3.3, -1.7, -0.5],
+        [0.1, 3.25, -0.5],
+        [-0.8, -3.15, 0.2],
+        [3.6, 0.15, -1],
+        [-3.7, 0, 0],
+      ] as Point3[],
     []
   )
 
   useFrame((state) => {
     if (!group.current) return
 
-    const time =
-      state.clock.elapsedTime
+    const time = state.clock.elapsedTime
 
-    group.current.children.forEach(
-      (child, index) => {
-        child.position.y =
-          data[index][1] +
-          Math.sin(
-            time * 1.15 + index
-          ) *
-            0.075
-      }
-    )
+    group.current.children.forEach((child, index) => {
+      child.position.y =
+        data[index][1] +
+        Math.sin(time * 1.05 + index) * 0.065
+    })
   })
 
   return (
     <group ref={group}>
       {data.map((position, index) => (
-        <group
-          key={index}
-          position={position}
-        >
-          {/* Core */}
+        <group key={index} position={position}>
           <mesh>
-            <sphereGeometry
-              args={[0.045, 12, 12]}
-            />
-
+            <sphereGeometry args={[0.04, 12, 12]} />
             <meshBasicMaterial
-              color="#ecfeff"
-              blending={
-                THREE.AdditiveBlending
-              }
+              color={WHITE}
+              blending={THREE.AdditiveBlending}
             />
           </mesh>
 
-          {/* Glow */}
           <mesh>
-            <sphereGeometry
-              args={[0.15, 12, 12]}
-            />
-
+            <sphereGeometry args={[0.14, 12, 12]} />
             <meshBasicMaterial
-              color="#22d3ee"
+              color={ELECTRIC}
               transparent
-              opacity={0.09}
-              blending={
-                THREE.AdditiveBlending
-              }
+              opacity={0.07}
+              blending={THREE.AdditiveBlending}
             />
           </mesh>
         </group>
@@ -907,90 +499,39 @@ function DataPoints() {
   )
 }
 
-/* ================================================================
-   SCENE
-================================================================ */
-
 function Scene() {
   return (
     <>
       <PerspectiveCamera
         makeDefault
         position={[0, 0, 8]}
-        fov={40}
+        fov={39}
       />
 
-      <ambientLight intensity={0.15} />
-
+      <ambientLight intensity={0.1} />
       <GlobeCore />
-
       <DataPoints />
     </>
   )
 }
 
-/* ================================================================
-   MAIN AI GLOBE
-================================================================ */
-
 export function AIGlobe() {
   return (
-    <div
-      className="
-        pointer-events-none
-        absolute
-        inset-0
-      "
-    >
-      {/* ==========================================================
-          OUTER ATMOSPHERE
-      ========================================================== */}
+    <div className="pointer-events-none absolute inset-0">
+      <div className="absolute left-1/2 top-1/2 h-[76%] w-[76%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.035] blur-[120px]" />
 
-      <div
-        className="
-          absolute
-          left-1/2
-          top-1/2
-          h-[75%]
-          w-[75%]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          bg-cyan-400/[0.035]
-          blur-[120px]
-        "
-      />
-
-      <div
-        className="
-          absolute
-          left-1/2
-          top-1/2
-          h-[48%]
-          w-[48%]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          bg-cyan-300/[0.06]
-          blur-[80px]
-        "
-      />
-
-      {/* ==========================================================
-          CANVAS
-      ========================================================== */}
+      <div className="absolute left-1/2 top-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/[0.055] blur-[70px]" />
 
       <Canvas
         dpr={[1, 1.5]}
         gl={{
           antialias: true,
           alpha: true,
-          powerPreference:
-            'high-performance',
+          powerPreference: 'high-performance',
         }}
         camera={{
           position: [0, 0, 8],
-          fov: 40,
+          fov: 39,
         }}
       >
         <Scene />

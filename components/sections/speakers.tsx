@@ -325,144 +325,286 @@ export function Speakers() {
   return (
     <section
       id="speakers"
-      className="relative overflow-hidden bg-[#020817] py-20 sm:py-24 lg:py-32"
+      className="relative overflow-hidden bg-[#F5F8FC] py-20 sm:py-24 lg:py-28"
     >
-      <TechLines />
+      {/* =========================================================
+          LIGHT TECHNICAL BACKGROUND
+      ========================================================= */}
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-[0.55]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(8,36,59,0.035) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(8,36,59,0.035) 1px, transparent 1px)
+            `,
+            backgroundSize: '72px 72px',
+            maskImage:
+              'linear-gradient(to bottom, black 0%, black 55%, transparent 100%)',
+          }}
+        />
 
-      {/* Vertical decorative labels */}
-      <div className="pointer-events-none absolute left-5 top-32 hidden xl:block">
-        <div className="flex flex-col gap-2 border-l border-blue-400/30 pl-4">
-          <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-            CIO
-          </span>
-          <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-            CTO
-          </span>
-          <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-            CDO
-          </span>
-          <span className="font-mono text-[8px] uppercase tracking-[3px] text-blue-400/60">
-            Leaders
-          </span>
-        </div>
+        <div className="absolute right-[-180px] top-[-180px] h-[500px] w-[500px] rounded-full border border-[#176B9C]/[0.045]" />
+        <div className="absolute right-[-90px] top-[-90px] h-[320px] w-[320px] rounded-full border border-[#55C7DC]/[0.07]" />
+        <div className="absolute bottom-[-250px] left-[-180px] h-[500px] w-[500px] rounded-full border border-[#176B9C]/[0.035]" />
       </div>
 
-      <div className="pointer-events-none absolute right-5 top-32 hidden xl:block">
-        <div className="flex flex-col gap-2 text-right">
-          <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-            People
-          </span>
-          <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-            Ideas
-          </span>
-          <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-            Technology
-          </span>
-          <span className="font-mono text-[8px] uppercase tracking-[3px] text-blue-400/60">
-            Tomorrow
-          </span>
-
-          <div className="ml-auto mt-3 h-px w-8 bg-blue-400/60" />
-        </div>
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10">
-        {/* HEADER */}
+      <div className="relative z-10 mx-auto max-w-[1380px] px-5 sm:px-8 lg:px-12">
+        {/* =========================================================
+            HEADER
+        ========================================================= */}
         <motion.header
           {...fadeUp()}
-          className="mx-auto mb-14 max-w-4xl text-center sm:mb-16 lg:mb-20"
+          className="border-b border-[#D9E3E8] pb-10"
         >
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-3 rounded-full border border-blue-400/30 bg-blue-500/[0.06] px-5 py-2 backdrop-blur-xl">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.9)]" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#176B9C]" />
 
-            <span className="text-[9px] font-medium uppercase tracking-[3px] text-blue-200">
-              Thought Leaders
-            </span>
+              <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.24em] text-[#176B9C] sm:text-[9px]">
+                Thought Leaders / CIO Tech 2026
+              </span>
+            </div>
 
-            <span className="text-[9px] text-slate-600">•</span>
-
-            <span className="text-[9px] font-medium uppercase tracking-[2px] text-slate-500">
-              Real Perspectives
+            <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-[#91A1AD] sm:text-[9px]">
+              Speakers / 03
             </span>
           </div>
 
-          {/* Main heading */}
-          <h2 className="mt-7 text-[48px] font-bold leading-[0.95] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[82px]">
-            Featured{' '}
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-              Speakers
-            </span>
-          </h2>
+          <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-end lg:gap-16">
+            <div>
+              <p className="font-mono text-[8px] font-semibold uppercase tracking-[0.25em] text-[#176B9C]">
+                The people shaping what&apos;s next
+              </p>
 
-          {/* Decorative line */}
-          <div className="mx-auto mt-7 flex items-center justify-center gap-3">
-            <span className="h-px w-12 bg-gradient-to-r from-transparent to-blue-500/60 sm:w-20" />
+              <h2 className="mt-5 text-[49px] font-semibold leading-[0.9] tracking-[-0.075em] text-[#08243B] sm:text-[68px] lg:text-[88px]">
+                Meet the
+                <br />
+                <span className="text-[#176B9C]">voices.</span>
+              </h2>
+            </div>
 
-            <span className="relative flex h-2 w-2 items-center justify-center">
-              <span className="absolute h-4 w-4 rounded-full border border-blue-400/20" />
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.8)]" />
-            </span>
+            <div>
+              <p className="max-w-xl text-[13px] leading-6 text-[#607484] sm:text-[15px] sm:leading-7">
+                Hear directly from senior technology leaders and industry
+                pioneers bringing real-world perspectives to the decisions
+                shaping enterprise transformation.
+              </p>
 
-            <span className="h-px w-12 bg-gradient-to-l from-transparent to-blue-500/60 sm:w-20" />
+              <div className="mt-7 flex items-center gap-3">
+                <span className="h-px w-10 bg-[#176B9C]" />
+                <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-[#91A1AD]">
+                  Leadership × Innovation × Impact
+                </span>
+              </div>
+            </div>
           </div>
-
-          {/* Description */}
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
-            Learn from leading CIOs, CTOs and technology pioneers shaping the
-            future of enterprise innovation.
-          </p>
         </motion.header>
 
-        {/* SPEAKER GRID */}
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {/* =========================================================
+            SPEAKER COUNT STRIP
+        ========================================================= */}
+        <motion.div
+          {...fadeUp(0.08)}
+          className="grid border-b border-[#D9E3E8] sm:grid-cols-3"
+        >
+          {[
+            ['01', 'Featured Speakers', 'Senior technology voices'],
+            ['02', 'Executive Perspective', 'Real-world experience'],
+            ['03', 'More to Come', 'Additional leaders announced soon'],
+          ].map(([number, title, caption], index) => (
+            <div
+              key={number}
+              className={`flex items-start gap-4 px-1 py-6 sm:px-6 sm:py-7 ${
+                index !== 0
+                  ? 'border-t border-[#D9E3E8] sm:border-l sm:border-t-0'
+                  : ''
+              }`}
+            >
+              <span className="font-mono text-[8px] font-semibold tracking-[0.15em] text-[#176B9C]">
+                {number}
+              </span>
+
+              <div>
+                <p className="text-[12px] font-semibold text-[#08243B]">
+                  {title}
+                </p>
+                <p className="mt-1 text-[9px] text-[#91A1AD]">{caption}</p>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* =========================================================
+            SPEAKER GRID
+        ========================================================= */}
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {speakers.map((speaker, index) => (
-            <SpeakerCard
+            <motion.article
               key={speaker.name}
-              speaker={speaker}
-              index={index}
-            />
+              {...fadeUp(index * 0.1)}
+              whileHover={{
+                y: -7,
+                transition: {
+                  duration: 0.3,
+                  ease: [0.22, 1, 0.36, 1],
+                },
+              }}
+              className="group relative"
+            >
+              {/* Hover accent */}
+              <div className="absolute -inset-px rounded-[22px] bg-gradient-to-b from-[#176B9C]/25 via-[#55C7DC]/10 to-transparent opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-100" />
+
+              <div className="relative overflow-hidden rounded-[20px] border border-[#D9E3E8] bg-white shadow-[0_14px_40px_rgba(8,36,59,0.07)] transition-all duration-500 group-hover:border-[#176B9C]/30 group-hover:shadow-[0_22px_55px_rgba(8,36,59,0.12)]">
+                {/* Image */}
+                <div className="relative aspect-[1.08/1] overflow-hidden bg-[#EAF0F4]">
+                  <Image
+                    src={speaker.image}
+                    alt={`${speaker.name} - ${speaker.title} at ${speaker.company}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  />
+
+                  {/* Soft editorial image treatment */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#08243B]/85 via-[#08243B]/5 to-transparent" />
+
+                  <div className="absolute left-5 top-5">
+                    <div className="flex items-center gap-2 rounded-full border border-white/30 bg-[#08243B]/65 px-3 py-1.5 backdrop-blur-md">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#55C7DC]" />
+                      <span className="font-mono text-[7px] font-semibold uppercase tracking-[0.18em] text-white">
+                        Featured
+                      </span>
+                    </div>
+                  </div>
+
+                  <span className="absolute right-5 top-5 font-mono text-[9px] tracking-[0.18em] text-white/55">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+
+                  {/* Image identity */}
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                    <div className="mb-3 flex items-center gap-2">
+                      <span className="h-px w-7 bg-[#55C7DC]" />
+                      <span className="font-mono text-[7px] font-semibold uppercase tracking-[0.18em] text-[#7DD3E7]">
+                        {speaker.company}
+                      </span>
+                    </div>
+
+                    <h3 className="text-[25px] font-semibold leading-[0.98] tracking-[-0.045em] text-white sm:text-[28px]">
+                      {speaker.name}
+                    </h3>
+
+                    <p className="mt-2 max-w-[92%] text-[10px] leading-5 text-white/70 sm:text-[11px]">
+                      {speaker.title}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom information */}
+                <div className="flex items-center justify-between gap-4 border-t border-[#E6EDF2] px-5 py-4 sm:px-6">
+                  <div>
+                    <p className="font-mono text-[7px] font-semibold uppercase tracking-[0.18em] text-[#176B9C]">
+                      Enterprise Leadership
+                    </p>
+
+                    <p className="mt-1 text-[9px] text-[#91A1AD]">
+                      People · Strategy · Technology
+                    </p>
+                  </div>
+
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#D9E3E8] bg-[#F8FAFC] text-[#176B9C] transition-all duration-300 group-hover:border-[#176B9C]/35 group-hover:bg-[#176B9C]/[0.05]">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    >
+                      <path
+                        d="M5 19L19 5M8 5H19V16"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </motion.article>
           ))}
 
           <MoreSpeakersCard />
         </div>
 
-        {/* BOTTOM TECHNOLOGY STATEMENT */}
+        {/* =========================================================
+            MORE SPEAKERS — LIGHT EDITORIAL CARD
+        ========================================================= */}
+        <motion.div
+          {...fadeUp(speakers.length * 0.1)}
+          className="mt-5"
+        >
+          <div className="relative overflow-hidden rounded-[20px] border border-[#D9E3E8] bg-[#08243B] p-7 text-white shadow-[0_16px_45px_rgba(8,36,59,0.10)] sm:p-9">
+            <div className="pointer-events-none absolute right-[-90px] top-[-120px] h-[320px] w-[320px] rounded-full border border-[#55C7DC]/10" />
+            <div className="pointer-events-none absolute right-[-30px] top-[-60px] h-[210px] w-[210px] rounded-full border border-white/[0.06]" />
+
+            <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#55C7DC]" />
+                  <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.2em] text-[#7DD3E7]">
+                    The conversation continues
+                  </span>
+                </div>
+
+                <h3 className="mt-5 text-[32px] font-semibold leading-[0.95] tracking-[-0.05em] sm:text-[42px]">
+                  More leaders.
+                  <br />
+                  <span className="text-[#7DD3E7]">More perspectives.</span>
+                </h3>
+
+                <p className="mt-4 max-w-xl text-[11px] leading-5 text-white/45 sm:text-[12px]">
+                  Additional technology leaders and industry voices will be
+                  announced as the summit programme evolves.
+                </p>
+              </div>
+
+              <div className="relative flex h-24 w-24 shrink-0 items-center justify-center rounded-full border border-[#55C7DC]/25 bg-[#55C7DC]/[0.06] sm:h-28 sm:w-28">
+                <div className="absolute inset-[-10px] rounded-full border border-[#55C7DC]/10" />
+                <span className="text-[40px] font-light leading-none text-[#7DD3E7]">
+                  +
+                </span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* =========================================================
+            BOTTOM STATEMENT
+        ========================================================= */}
         <motion.div
           {...fadeUp(0.35)}
-          className="relative mt-16 flex flex-col items-center justify-between gap-6 border-t border-white/[0.06] pt-8 sm:flex-row"
+          className="mt-12 flex flex-col gap-4 border-t border-[#D9E3E8] pt-7 sm:flex-row sm:items-center sm:justify-between"
         >
           <div className="flex items-center gap-4">
-            <span className="font-mono text-[9px] uppercase tracking-[3px] text-blue-400">
+            <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.2em] text-[#176B9C]">
               CIO TECH 2026
             </span>
 
-            <span className="h-px w-10 bg-blue-500/40" />
+            <span className="h-px w-8 bg-[#D9E3E8]" />
 
-            <span className="font-mono text-[8px] uppercase tracking-[2px] text-slate-600">
-              Leadership × Innovation × Impact
+            <span className="font-mono text-[7px] uppercase tracking-[0.18em] text-[#91A1AD]">
+              Voices that shape decisions
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <span className="font-mono text-[8px] uppercase tracking-[3px] text-slate-600">
-              A More Intelligent Tomorrow
-            </span>
-
-            <span className="h-px w-10 bg-cyan-400/40" />
-
-            <span className="font-mono text-[9px] uppercase tracking-[3px] text-blue-300">
-              Delhi 2026
+          <div className="flex items-center gap-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#55C7DC]" />
+            <span className="font-mono text-[7px] uppercase tracking-[0.18em] text-[#91A1AD]">
+              Leadership · Innovation · Impact
             </span>
           </div>
         </motion.div>
       </div>
-
-      {/* Bottom horizon glow */}
-      <div className="pointer-events-none absolute bottom-[-180px] left-1/2 h-[300px] w-[900px] -translate-x-1/2 rounded-[50%] border border-blue-500/10 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.12),transparent_65%)] blur-[1px]" />
-
-      {/* Bottom blue line */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 h-px w-[70%] -translate-x-1/2 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
     </section>
   )
 }
