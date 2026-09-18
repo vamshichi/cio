@@ -427,13 +427,13 @@ function TechnologyCore() {
     const x =
       ((event.clientX - rect.left) /
         rect.width) *
-        2 -
+      2 -
       1
 
     const y =
       ((event.clientY - rect.top) /
         rect.height) *
-        2 -
+      2 -
       1
 
     mouseX.set(x)
@@ -605,12 +605,12 @@ function TechnologyCore() {
             reduceMotion
               ? undefined
               : {
-                  boxShadow: [
-                    '0 20px 70px rgba(0,0,0,0.18)',
-                    '0 28px 95px rgba(85,199,220,0.16)',
-                    '0 20px 70px rgba(0,0,0,0.18)',
-                  ],
-                }
+                boxShadow: [
+                  '0 20px 70px rgba(0,0,0,0.18)',
+                  '0 28px 95px rgba(85,199,220,0.16)',
+                  '0 20px 70px rgba(0,0,0,0.18)',
+                ],
+              }
           }
           transition={{
             duration: 5,
@@ -722,12 +722,12 @@ function TechnologyCore() {
                 reduceMotion
                   ? undefined
                   : {
-                      scale: [
-                        1,
-                        1.025,
-                        1,
-                      ],
-                    }
+                    scale: [
+                      1,
+                      1.025,
+                      1,
+                    ],
+                  }
               }
               transition={{
                 duration: 4,
@@ -875,12 +875,12 @@ function TechnologyCore() {
                   reduceMotion
                     ? undefined
                     : {
-                        opacity: [
-                          0.15,
-                          0.75,
-                          0.15,
-                        ],
-                      }
+                      opacity: [
+                        0.15,
+                        0.75,
+                        0.15,
+                      ],
+                    }
                 }
                 transition={{
                   duration:
@@ -1993,10 +1993,9 @@ function Mission() {
                     py-7
                     sm:px-7
                     sm:py-8
-                    ${
-                      index !== 0
-                        ? 'border-t sm:border-l sm:border-t-0'
-                        : ''
+                    ${index !== 0
+                      ? 'border-t sm:border-l sm:border-t-0'
+                      : ''
                     }
                   `}
                   style={{
@@ -2422,11 +2421,11 @@ function AboutEvent() {
         >
           <motion.div variants={reveal} className="flex items-center gap-3">
             <span className="h-[6px] w-[6px] rounded-full bg-[#176B9C]" />
-            <span className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#08243B]`}>
+            <span className={`${mono.className} text-[18px] font-semibold uppercase tracking-[0.22em] text-[#08243B]`}>
               About the event
             </span>
             <span className="h-px w-10 bg-[#D9E3E8]" />
-          
+
           </motion.div>
 
           <div className="mt-10 grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-16">
@@ -2482,9 +2481,8 @@ function AboutEvent() {
             {metrics.map((stat, index) => (
               <div
                 key={stat.label}
-                className={`relative px-1 py-7 sm:px-7 sm:py-9 ${
-                  index !== 0 ? 'border-t border-[#D9E3E8] sm:border-l sm:border-t-0' : ''
-                }`}
+                className={`relative px-1 py-7 sm:px-7 sm:py-9 ${index !== 0 ? 'border-t border-[#D9E3E8] sm:border-l sm:border-t-0' : ''
+                  }`}
               >
                 <p className="text-[54px] font-semibold leading-none tracking-[-0.075em] text-[#08243B] sm:text-[66px]">
                   {stat.number}
@@ -2853,42 +2851,42 @@ function AboutBenefits() {
           ====================================================== */}
 
           <div className="flex justify-center">
-  <motion.div
-    variants={reveal}
-    className="flex flex-col items-center text-center"
-  >
-    {/* Label */}
-    <div className="flex items-center justify-center gap-3">
-      <span className="h-[6px] w-[6px] rounded-full bg-[#176B9C] shadow-[0_0_10px_rgba(23,107,156,0.35)]" />
+            <motion.div
+              variants={reveal}
+              className="flex flex-col items-center text-center"
+            >
+              {/* Label */}
+              <div className="flex items-center justify-center gap-3">
+                <span className="h-[6px] w-[6px] rounded-full bg-[#176B9C] shadow-[0_0_10px_rgba(23,107,156,0.35)]" />
 
-      <p
-        className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#176B9C]`}
-      >
-        Why leaders attend
-      </p>
-    </div>
+                <p
+                  className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#176B9C]`}
+                >
+                  Why leaders attend
+                </p>
+              </div>
 
-    {/* Heading */}
-    <h2 className="mt-5 max-w-[800px] text-[46px] font-semibold leading-[0.92] tracking-[-0.07em] text-[#08243B] sm:text-[58px] lg:text-[70px]">
-      Conversations that move
-      <br />
-      <span className="text-[#176B9C]">
-        business forward.
-      </span>
-    </h2>
+              {/* Heading */}
+              <h2 className="mt-5 max-w-[800px] text-[46px] font-semibold leading-[0.92] tracking-[-0.07em] text-[#08243B] sm:text-[58px] lg:text-[70px]">
+                Conversations that move
+                <br />
+                <span className="text-[#176B9C]">
+                  business forward.
+                </span>
+              </h2>
 
-    {/* Description */}
-    <div className="mt-7 flex flex-col items-center gap-3">
-      <div className="h-px w-10 bg-[#55C7DC]" />
+              {/* Description */}
+              <div className="mt-7 flex flex-col items-center gap-3">
+                <div className="h-px w-10 bg-[#55C7DC]" />
 
-      <p className="max-w-[600px] text-[14px] leading-6 text-[#607484] sm:text-[15px] sm:leading-7">
-        From boardroom priorities to emerging technology,
-        the experience is designed around the questions
-        senior leaders are actually solving today.
-      </p>
-    </div>
-  </motion.div>
-</div>
+                <p className="max-w-[600px] text-[14px] leading-6 text-[#607484] sm:text-[15px] sm:leading-7">
+                  From boardroom priorities to emerging technology,
+                  the experience is designed around the questions
+                  senior leaders are actually solving today.
+                </p>
+              </div>
+            </motion.div>
+          </div>
 
           {/* =====================================================
               BENEFIT INTRO BAR

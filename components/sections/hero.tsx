@@ -112,28 +112,7 @@ export function Hero() {
         />
       </div>
 
-      {/* ============================================================
-          HEADER
-      ============================================================ */}
-
-      <header
-        className="
-          relative
-          z-50
-          mx-auto
-          flex
-          h-[68px]
-          max-w-[1600px]
-          items-center
-          justify-between
-          px-5
-          sm:px-8
-          lg:px-12
-          xl:px-16
-        "
-      >
-        
-      </header>
+      
 
       {/* ============================================================
           CENTERED HERO
@@ -148,7 +127,7 @@ export function Hero() {
           items-center
           justify-center
           px-5
-          pt-5
+          pt-20
           pb-[15px]
           sm:px-8
         "
@@ -291,11 +270,11 @@ export function Hero() {
             className="
               mt-5
               max-w-[500px]
-              text-[14px]
+              text-[24px]
               font-light
               leading-6
               text-white/65
-              sm:text-[15px]
+              sm:text-[25px]
             "
           >
             Where India&apos;s technology leaders meet to
@@ -306,51 +285,57 @@ export function Hero() {
               DATE + LOCATION
           ======================================================== */}
 
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.35,
-              duration: 0.65,
-            }}
-            className="
-              mt-5
-              flex
-              flex-wrap
-              items-center
-              justify-center
-              gap-x-7
-              gap-y-3
-            "
-          >
-            <EventMeta
-              icon={<FiCalendar size={14} />}
-              label="12 November 2026"
-              sub="New Delhi, India"
-            />
+        <motion.div
+  initial={{ opacity: 0, y: 15 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    delay: 0.35,
+    duration: 0.65,
+  }}
+  className="
+    mt-5
+    flex
+    flex-wrap
+    items-center
+    justify-center
+    gap-x-7
+    gap-y-3
+    text-[44px]
+    font-semibold
+    uppercase
+    sm:text-[38px]
+    md:text-[42px]
+    lg:text-[46px]
+  "
+>
+  <EventMeta
+    icon={<FiCalendar size={18} />}
+    label="12 November 2026"
+    sub="New Delhi, India"
+  />
 
-            <span
-              className="
-                hidden
-                h-8
-                w-px
-                bg-white/15
-                sm:block
-              "
-            />
+  <span
+    className="
+      hidden
+      h-9
+      w-px
+      bg-white/15
+      sm:block
+    "
+  />
 
-            <EventMeta
-              icon={<FiMapPin size={14} />}
-              label="Delhi NCR"
-              sub="India"
-            />
-          </motion.div>
+  <EventMeta
+    icon={<FiMapPin size={18} />}
+    label="The LaliT New Delhi"
+    sub="India"
+  />
+</motion.div>
 
           {/* ========================================================
               CTA
           ======================================================== */}
 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -440,7 +425,7 @@ export function Hero() {
                 "
               />
             </button>
-          </motion.div>
+          </motion.div> */}
 
           {/* ========================================================
               ANIMATED NUMBERS

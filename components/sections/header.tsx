@@ -1,4 +1,3 @@
-
 'use client'
 
 import { Button } from '@/components/ui/button'
@@ -76,7 +75,7 @@ export function Header() {
   }, [])
 
   /* -------------------------------------------------------------------------- */
-  /* NAVIGATION                                                                  */
+  /* NAVIGATION ITEMS                                                           */
   /* -------------------------------------------------------------------------- */
 
   const navItems = [
@@ -113,18 +112,78 @@ export function Header() {
   ]
 
   /* -------------------------------------------------------------------------- */
-  /* MODAL ACTIONS                                                               */
+  /* NAVIGATION HANDLER                                                         */
+  /* -------------------------------------------------------------------------- */
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault()
+
+    setMobileMenuOpen(false)
+
+    const hash = href.split('#')[1]
+
+    if (!hash) {
+      window.location.href = href
+      return
+    }
+
+    const element = document.getElementById(hash)
+
+    if (!element) {
+      window.location.href = href
+      return
+    }
+
+    /*
+     * Fixed header height.
+     * This prevents the section heading from being hidden
+     * behind the navbar.
+     */
+    const headerOffset = 110
+
+    const elementPosition =
+      element.getBoundingClientRect().top + window.scrollY
+
+    window.scrollTo({
+      top: Math.max(0, elementPosition - headerOffset),
+      behavior: 'smooth',
+    })
+
+    /*
+     * Update the URL without triggering the browser's
+     * native hash scrolling.
+     */
+    window.history.pushState(
+      null,
+      '',
+      `${window.location.pathname}${window.location.search}#${hash}`,
+    )
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /* MODAL ACTIONS                                                              */
   /* -------------------------------------------------------------------------- */
 
   const openSponsorForm = () => {
-    window.history.pushState(null, '', '#sponsorenquiry')
+    window.history.pushState(
+      null,
+      '',
+      `${window.location.pathname}${window.location.search}#sponsorenquiry`,
+    )
 
     setShowSponsorForm(true)
     setShowDelegateForm(false)
   }
 
   const openDelegateForm = () => {
-    window.history.pushState(null, '', '#delegateenquiry')
+    window.history.pushState(
+      null,
+      '',
+      `${window.location.pathname}${window.location.search}#delegateenquiry`,
+    )
 
     setShowDelegateForm(true)
     setShowSponsorForm(false)
@@ -151,27 +210,24 @@ export function Header() {
   }
 
   /* -------------------------------------------------------------------------- */
-  /* NAVIGATION HANDLER                                                          */
-  /* -------------------------------------------------------------------------- */
-
-  const handleNavClick = () => {
-    setMobileMenuOpen(false)
-  }
-
-  /* -------------------------------------------------------------------------- */
   /* RENDER                                                                     */
   /* -------------------------------------------------------------------------- */
 
   return (
     <>
       {/* ====================================================================== */}
-      {/* HEADER                                                                  */}
+      {/* HEADER                                                                 */}
       {/* ====================================================================== */}
 
       <header
         className={`
-          fixed left-0 top-0 z-50 w-full
-          transition-all duration-500
+          fixed
+          left-0
+          top-0
+          z-50
+          w-full
+          transition-all
+          duration-500
           ${
             isScrolled
               ? 'bg-transparent/90 backdrop-blur-sm'
@@ -180,7 +236,7 @@ export function Header() {
         `}
       >
         {/* ==================================================================== */}
-        {/* ATMOSPHERIC BACKGROUND                                                */}
+        {/* ATMOSPHERIC BACKGROUND                                               */}
         {/* ==================================================================== */}
 
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -236,35 +292,36 @@ export function Header() {
         </div>
 
         {/* ==================================================================== */}
-        {/* MAIN NAVIGATION CONTAINER                                             */}
+        {/* MAIN NAVIGATION CONTAINER                                            */}
         {/* ==================================================================== */}
 
         <div
           className={`
-            relative mx-auto
+            relative
+            mx-auto
             max-w-[1500px]
             px-4
-            transition-all duration-500
+            transition-all
+            duration-500
             sm:px-6
             lg:px-8
-            ${
-              isScrolled
-                ? 'py-2'
-                : 'py-4'
-            }
+            ${isScrolled ? 'py-2' : 'py-4'}
           `}
         >
           {/* ================================================================== */}
-          {/* PREMIUM NAV BAR                                                     */}
+          {/* PREMIUM NAV BAR                                                    */}
           {/* ================================================================== */}
 
           <div
             className={`
-              relative flex items-center
+              relative
+              flex
+              items-center
               rounded-2xl
               border
               px-3
-              transition-all duration-500
+              transition-all
+              duration-500
               sm:px-4
               lg:px-5
               ${
@@ -283,7 +340,7 @@ export function Header() {
             `}
           >
             {/* ================================================================ */}
-            {/* CORNER ACCENTS                                                    */}
+            {/* CORNER ACCENTS                                                   */}
             {/* ================================================================ */}
 
             <span className="absolute left-2 top-2 h-3 w-3 border-l border-t border-black/10" />
@@ -300,7 +357,7 @@ export function Header() {
 
             <Link
               href="/#home"
-              onClick={handleNavClick}
+              onClick={(e) => handleNavClick(e, '/#home')}
               className="group relative flex shrink-0 items-center py-2 pl-2 pr-4 sm:pr-6"
             >
               <motion.div
@@ -339,7 +396,7 @@ export function Header() {
             <div className="hidden h-10 w-px bg-gradient-to-b from-transparent via-blue-400/30 to-transparent lg:block" />
 
             {/* ================================================================= */}
-            {/* DESKTOP NAVIGATION                                                */}
+            {/* DESKTOP NAVIGATION                                                 */}
             {/* ================================================================= */}
 
             <nav className="hidden flex-1 items-center justify-center px-3 lg:flex">
@@ -351,12 +408,13 @@ export function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      onClick={handleNavClick}
+                      onClick={(e) => handleNavClick(e, item.href)}
                       className="group relative"
                     >
                       <div
                         className="
-                          relative flex
+                          relative
+                          flex
                           items-center
                           gap-2
                           rounded-full
@@ -428,14 +486,11 @@ export function Header() {
             </nav>
 
             {/* ================================================================= */}
-            {/* DESKTOP CTA                                                        */}
+            {/* DESKTOP CTA                                                       */}
             {/* ================================================================= */}
 
             <div className="hidden items-center gap-2.5 lg:flex">
-              {/* ============================================================= */}
-              {/* SPONSOR ENQUIRY                                                 */}
-              {/* ============================================================= */}
-
+              {/* Sponsor Enquiry */}
               <Button
                 variant="outline"
                 onClick={openSponsorForm}
@@ -495,10 +550,7 @@ export function Header() {
                 </span>
               </Button>
 
-              {/* ============================================================= */}
-              {/* DELEGATE REGISTRATION                                           */}
-              {/* ============================================================= */}
-
+              {/* Delegate Registration */}
               <Button
                 onClick={openDelegateForm}
                 className="
@@ -570,7 +622,7 @@ export function Header() {
             </div>
 
             {/* ================================================================= */}
-            {/* MOBILE BUTTON                                                      */}
+            {/* MOBILE BUTTON                                                     */}
             {/* ================================================================= */}
 
             <div className="ml-auto flex items-center gap-2 lg:hidden">
@@ -640,7 +692,7 @@ export function Header() {
         </div>
 
         {/* ==================================================================== */}
-        {/* MOBILE MENU                                                           */}
+        {/* MOBILE MENU                                                          */}
         {/* ==================================================================== */}
 
         <AnimatePresence>
@@ -744,7 +796,9 @@ export function Header() {
                         >
                           <Link
                             href={item.href}
-                            onClick={handleNavClick}
+                            onClick={(e) =>
+                              handleNavClick(e, item.href)
+                            }
                             className="
                               group
                               flex
@@ -887,7 +941,7 @@ export function Header() {
       </header>
 
       {/* ====================================================================== */}
-      {/* DELEGATE FORM                                                           */}
+      {/* DELEGATE FORM                                                          */}
       {/* ====================================================================== */}
 
       <FormModal
@@ -899,7 +953,7 @@ export function Header() {
       </FormModal>
 
       {/* ====================================================================== */}
-      {/* SPONSOR FORM                                                            */}
+      {/* SPONSOR FORM                                                           */}
       {/* ====================================================================== */}
 
       <FormModal
