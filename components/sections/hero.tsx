@@ -59,13 +59,13 @@ export function Hero() {
         <div className="absolute inset-0 bg-[#02070A]/30" />
 
         {/* Center readability */}
-          <div
-            className="
+        <div
+          className="
               absolute
               inset-0
               bg-[radial-gradient(circle_at_center,rgba(2,7,10,0.25)_0%,rgba(2,7,10,0.72)_70%,rgba(2,7,10,0.96)_100%)]
             "
-          />
+        />
 
         {/* Top fade */}
         <div
@@ -112,7 +112,7 @@ export function Hero() {
         />
       </div>
 
-      
+
 
       {/* ============================================================
           CENTERED HERO
@@ -170,7 +170,7 @@ export function Hero() {
 
             <span
               className="
-                text-[8px]
+                text-[18px]
                 font-medium
                 uppercase
                 tracking-[0.3em]
@@ -184,7 +184,7 @@ export function Hero() {
 
             <span
               className="
-                text-[8px]
+                text-[18px]
                 font-bold
                 uppercase
                 tracking-[0.2em]
@@ -285,14 +285,14 @@ export function Hero() {
               DATE + LOCATION
           ======================================================== */}
 
-        <motion.div
-  initial={{ opacity: 0, y: 15 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{
-    delay: 0.35,
-    duration: 0.65,
-  }}
-  className="
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.35,
+              duration: 0.65,
+            }}
+            className="
     mt-5
     flex
     flex-wrap
@@ -307,29 +307,29 @@ export function Hero() {
     md:text-[42px]
     lg:text-[46px]
   "
->
-  <EventMeta
-    icon={<FiCalendar size={18} />}
-    label="12 November 2026"
-    sub="New Delhi, India"
-  />
+          >
+            <EventMeta
+              icon={<FiCalendar size={18} />}
+              label="12 November 2026"
+              sub="New Delhi, India"
+            />
 
-  <span
-    className="
+            <span
+              className="
       hidden
       h-9
       w-px
       bg-white/15
       sm:block
     "
-  />
+            />
 
-  <EventMeta
-    icon={<FiMapPin size={18} />}
-    label="The LaliT New Delhi"
-    sub="India"
-  />
-</motion.div>
+            <EventMeta
+              icon={<FiMapPin size={18} />}
+              label="The LaliT New Delhi"
+              sub="India"
+            />
+          </motion.div>
 
           {/* ========================================================
               CTA
@@ -431,7 +431,7 @@ export function Hero() {
               ANIMATED NUMBERS
           ======================================================== */}
 
-          
+
         </div>
       </main>
 
@@ -494,7 +494,7 @@ function EventMeta({
       <div>
         <div
           className="
-            text-[9px]
+            text-[19px]
             font-bold
             uppercase
             tracking-[0.08em]
@@ -507,7 +507,7 @@ function EventMeta({
         <div
           className="
             mt-0.5
-            text-[7px]
+            text-[15px]
             text-white/35
           "
         >

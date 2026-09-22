@@ -1,10 +1,92 @@
- 'use client'
+'use client'
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { Space_Grotesk, Manrope } from 'next/font/google'
 import { FormModal } from '@/components/common/FormModal'
 import { DelegateForm } from '@/components/sections/DelegateForm'
 import { SponsorForm } from '@/components/sections/SponsorForm'
+
+/* =========================================================
+   DESIGN TOKENS — shared dark navy / teal system
+========================================================= */
+
+const COLORS = {
+  base: '#050B18',
+  panel: '#0A1530',
+  raised: '#0E1B33',
+  cream: '#F6F9F8',
+  inkSoft: 'rgba(246,249,248,0.66)',
+  muted: 'rgba(246,249,248,0.52)',
+  faint: 'rgba(246,249,248,0.32)',
+  teal: '#2BC4AE',
+  tealDeep: '#0F5850',
+  tealLight: '#7EE7D3',
+  tealGlow: 'rgba(43,196,174,0.16)',
+  line: 'rgba(246,249,248,0.10)',
+  lineStrong: 'rgba(246,249,248,0.18)',
+}
+
+const display = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  display: 'swap',
+})
+
+const sans = Manrope({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+})
+
+/* =========================================================
+   MONUMENT MOTIF — the one recurring graphic device,
+   used here only as a faint watermark for continuity
+========================================================= */
+
+function MonumentLine({ color = COLORS.tealDeep, className = '' }: { color?: string; className?: string }) {
+  return (
+    <svg viewBox="0 0 640 90" fill="none" className={className} preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 90V72h640v18H0Z" fill={color} opacity="0.9" />
+      <rect x="48" y="22" width="10" height="50" fill={color} />
+      <path d="M48 22h10l-2-10h-6l-2 10Z" fill={color} />
+      <rect x="45" y="12" width="16" height="4" fill={color} />
+      <path
+        d="M180 72V34c0-22 18-34 40-34s40 12 40 34v38h14V20h10v52h14V20h10v52h10V10h10v62h10V20h10v52h10v-38c0-22 18-34 40-34s40 12 40 34v38"
+        stroke={color}
+        strokeWidth="6"
+        strokeLinejoin="round"
+      />
+      <path d="M198 72V44c0-13 10-22 22-22s22 9 22 22v28" stroke={color} strokeWidth="5" />
+      <path d="M298 72V44c0-13 10-22 22-22s22 9 22 22v28" stroke={color} strokeWidth="5" />
+      <circle cx="120" cy="52" r="14" fill={color} />
+      <rect x="117" y="60" width="6" height="12" fill={color} />
+      <circle cx="410" cy="52" r="14" fill={color} />
+      <rect x="407" y="60" width="6" height="12" fill={color} />
+    </svg>
+  )
+}
+
+function Kicker({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-2.5">
+      <span className={`${display.className} text-[12px] font-semibold`} style={{ color: COLORS.tealLight }}>
+        [
+      </span>
+      <span className="h-[6px] w-[6px] rotate-45" style={{ background: COLORS.teal, boxShadow: `0 0 10px ${COLORS.teal}` }} />
+      <span className={`${display.className} text-[13px] font-semibold uppercase tracking-[0.08em]`} style={{ color: COLORS.tealLight }}>
+        {children}
+      </span>
+      <span className={`${display.className} text-[12px] font-semibold`} style={{ color: COLORS.tealLight }}>
+        ]
+      </span>
+    </div>
+  )
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
 
 export function Contact() {
   const [showDelegateForm, setShowDelegateForm] = useState(false)
@@ -35,287 +117,216 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#061522] py-20 text-white sm:py-24 lg:py-28"
+      className={`${sans.className} relative overflow-hidden py-20 sm:py-24 lg:py-28`}
+      style={{ background: COLORS.base, color: COLORS.cream }}
     >
-      {/* =========================================================
-          ARCHITECTURAL BACKGROUND
-      ========================================================= */}
-      <div className="pointer-events-none absolute inset-0">
-        <div
-          className="absolute inset-0 opacity-[0.045]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)
-            `,
-            backgroundSize: '82px 82px',
-            maskImage:
-              'linear-gradient(to bottom, black, transparent 88%)',
-          }}
-        />
+      {/* A single soft glow — warmth, not a tech grid */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 rounded-full blur-[140px]"
+        style={{ background: COLORS.tealGlow }}
+      />
 
-        <div className="absolute -left-48 top-[-180px] h-[520px] w-[520px] rounded-full border border-[#55C7DC]/[0.06]" />
-        <div className="absolute -right-52 bottom-[-220px] h-[600px] w-[600px] rounded-full border border-[#55C7DC]/[0.06]" />
-
-        <div className="absolute left-[-100px] top-[30%] h-[300px] w-[300px] rounded-full bg-[#176B9C]/10 blur-[130px]" />
-        <div className="absolute right-[-100px] top-[10%] h-[300px] w-[300px] rounded-full bg-[#55C7DC]/10 blur-[130px]" />
-
-        <div className="absolute left-0 right-0 top-1/2 h-px bg-white/[0.035]" />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-[1380px] px-5 sm:px-8 lg:px-12">
-        {/* =========================================================
+      <div className="relative z-10 mx-auto max-w-[1180px] px-5 sm:px-8 lg:px-12">
+        {/* ===================================================
             HEADER
-        ========================================================= */}
+        ==================================================== */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.65 }}
-          className="border-b border-white/10 pb-6"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#55C7DC] shadow-[0_0_12px_rgba(85,199,220,0.8)]" />
-              <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.24em] text-white/65 sm:text-[9px]">
-                Connect / CIO Tech 2026
-              </span>
-            </div>
-
-       
-          </div>
+          <Kicker>Connect · CIO Tech 2026</Kicker>
         </motion.div>
 
-        {/* =========================================================
+        {/* ===================================================
             MAIN INTRO
-        ========================================================= */}
-        <div className="grid gap-12 py-14 sm:py-18 lg:grid-cols-[1fr_0.7fr] lg:items-end lg:gap-20 lg:py-20">
+        ==================================================== */}
+        <div className="grid gap-10 pb-14 pt-8 sm:pb-16 sm:pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="font-mono text-[8px] font-semibold uppercase tracking-[0.24em] text-[#55C7DC]">
-              The next conversation starts here
-            </p>
-
-            <h2 className="mt-5 max-w-4xl text-[48px] font-semibold leading-[0.9] tracking-[-0.075em] text-white sm:text-[66px] lg:text-[86px]">
-              Be part of the
-              <br />
-              <span className="text-[#7DD3E7]">conversation.</span>
+            <h2
+              className={`${display.className} max-w-xl text-[42px] font-semibold leading-[1.05] tracking-[-0.015em] sm:text-[56px] lg:text-[66px]`}
+              style={{ color: COLORS.cream }}
+            >
+              Be part of the{' '}
+              <span
+                style={{
+                  background: `linear-gradient(90deg, ${COLORS.tealLight}, ${COLORS.teal})`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                conversation.
+              </span>
             </h2>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: 0.08 }}
+            transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="max-w-xl text-[14px] leading-6 text-white/52 sm:text-[15px] sm:leading-7">
+            <p className="max-w-md text-[15px] leading-[1.7]" style={{ color: COLORS.muted }}>
               Join India&apos;s leading CIOs, CTOs, CISOs and CDOs for focused
               conversations around AI, cybersecurity, cloud, innovation and
               digital transformation.
             </p>
 
-            <div className="mt-7 flex items-center gap-3">
-              <span className="h-px w-10 bg-[#55C7DC]" />
-              <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/35">
-                People × Ideas × Partnerships × Progress
-              </span>
+            <div className="mt-6 flex items-center gap-3 text-[12px]" style={{ color: COLORS.faint }}>
+              <span>People</span>
+              <span className="h-1 w-1 rounded-full" style={{ background: COLORS.teal }} />
+              <span>Ideas</span>
+              <span className="h-1 w-1 rounded-full" style={{ background: COLORS.teal }} />
+              <span>Partnerships</span>
+              <span className="h-1 w-1 rounded-full" style={{ background: COLORS.teal }} />
+              <span>Progress</span>
             </div>
           </motion.div>
         </div>
 
-        {/* =========================================================
-            EXECUTIVE STATS
-        ========================================================= */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.65 }}
-          className="grid border-y border-white/10 sm:grid-cols-4"
-        >
-          {[
-            ['200+', 'CIOs / CTOs / CISOs'],
-            ['20+', 'Industry Speakers'],
-            ['20+', 'Partners'],
-            ['100+', 'Pre-scheduled Meetings'],
-          ].map(([number, label], index) => (
-            <div
-              key={label}
-              className={`px-1 py-6 sm:px-6 sm:py-7 ${
-                index !== 0
-                  ? 'border-t border-white/10 sm:border-l sm:border-t-0'
-                  : ''
-              }`}
-            >
-              <p className="text-[36px] font-semibold leading-none tracking-[-0.065em] text-white sm:text-[43px]">
-                {number}
-              </p>
-
-              <p className="mt-2 max-w-[170px] font-mono text-[7px] uppercase tracking-[0.16em] text-[#7DD3E7]">
-                {label}
-              </p>
-            </div>
-          ))}
-        </motion.div> */}
-
-        {/* =========================================================
-            ACTION PANEL
-        ========================================================= */}
+        {/* ===================================================
+            ACTION PANEL — Delegate / Sponsor
+        ==================================================== */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.7 }}
-          className="mt-12 overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.035] backdrop-blur-xl"
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          className="overflow-hidden rounded-sm border"
+          style={{ borderColor: COLORS.line, background: COLORS.raised }}
         >
-          <div className="grid lg:grid-cols-[1fr_0.72fr]">
+          <div className="grid lg:grid-cols-2">
             {/* Delegate */}
-            <div className="relative p-7 sm:p-10 lg:p-12">
-              <div className="pointer-events-none absolute right-[-100px] top-[-100px] h-[280px] w-[280px] rounded-full border border-[#55C7DC]/10" />
-              <div className="pointer-events-none absolute right-[-60px] top-[-60px] h-[200px] w-[200px] rounded-full border border-white/[0.05]" />
+            <div className="p-7 sm:p-10 lg:p-12">
+              <span className="text-[12px] font-semibold uppercase tracking-[0.1em]" style={{ color: COLORS.tealLight }}>
+                01 &middot; Delegate
+              </span>
 
-              <div className="relative">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[8px] uppercase tracking-[0.22em] text-[#55C7DC]">
-                    01 / Delegate
-                  </span>
+              <h3
+                className={`${display.className} mt-6 max-w-sm text-[28px] font-semibold leading-[1.15] tracking-[-0.01em] sm:text-[34px]`}
+                style={{ color: COLORS.cream }}
+              >
+                Secure your executive pass.
+              </h3>
 
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#55C7DC]/20 bg-[#55C7DC]/[0.06] font-mono text-[9px] text-[#55C7DC]">
-                    01
-                  </span>
-                </div>
+              <p className="mt-4 max-w-sm text-[13.5px] leading-[1.65]" style={{ color: COLORS.muted }}>
+                Attend as a delegate and connect with senior technology
+                leaders shaping the next generation of enterprise growth.
+              </p>
 
-                <h3 className="mt-10 max-w-xl text-[34px] font-semibold leading-[0.95] tracking-[-0.055em] text-white sm:text-[45px]">
-                  Secure your
-                  <br />
-                  <span className="text-[#7DD3E7]">executive pass.</span>
-                </h3>
-
-                <p className="mt-5 max-w-xl text-[13px] leading-6 text-white/45 sm:text-[14px]">
-                  Attend as a delegate and connect with senior technology
-                  leaders shaping the next generation of enterprise growth.
-                </p>
-
-                <button
-                  type="button"
-                  onClick={openDelegate}
-                  className="group mt-8 inline-flex min-w-[225px] items-center justify-between gap-8 rounded-none border border-[#55C7DC]/30 bg-[#55C7DC]/[0.07] px-5 py-4 text-[9px] font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC] hover:bg-[#55C7DC]/[0.13]"
-                >
-                  <span>Attend as Delegate</span>
-
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#55C7DC]/10 text-[#55C7DC] transition-transform duration-300 group-hover:rotate-45">
-                    <span className="text-base">↗</span>
-                  </span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={openDelegate}
+                className="group mt-8 inline-flex items-center gap-3 rounded-sm px-6 py-3.5 text-[13px] font-semibold transition-transform duration-300 hover:-translate-y-0.5"
+                style={{ background: `linear-gradient(90deg, ${COLORS.tealLight}, ${COLORS.teal})`, color: COLORS.base }}
+              >
+                Attend as Delegate
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </button>
             </div>
 
             {/* Sponsor */}
-            <div className="relative border-t border-white/10 bg-white/[0.018] p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
-              <div className="relative">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[8px] uppercase tracking-[0.22em] text-white/40">
-                    02 / Partnership
-                  </span>
+            <div
+              className="border-t p-7 sm:p-10 lg:border-l lg:border-t-0 lg:p-12"
+              style={{ borderColor: COLORS.line }}
+            >
+              <span className="text-[12px] font-semibold uppercase tracking-[0.1em]" style={{ color: COLORS.muted }}>
+                02 &middot; Partnership
+              </span>
 
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 font-mono text-[9px] text-white/35">
-                    02
-                  </span>
-                </div>
+              <h3
+                className={`${display.className} mt-6 max-w-sm text-[28px] font-semibold leading-[1.15] tracking-[-0.01em] sm:text-[34px]`}
+                style={{ color: COLORS.cream }}
+              >
+                Put your brand in the room.
+              </h3>
 
-                <h3 className="mt-10 max-w-md text-[31px] font-semibold leading-[0.97] tracking-[-0.05em] text-white sm:text-[39px]">
-                  Put your brand
-                  <br />
-                  <span className="text-[#7DD3E7]">in the room.</span>
-                </h3>
+              <p className="mt-4 max-w-sm text-[13.5px] leading-[1.65]" style={{ color: COLORS.muted }}>
+                Showcase your solutions and build relationships with
+                enterprise technology decision-makers.
+              </p>
 
-                <p className="mt-5 max-w-md text-[13px] leading-6 text-white/45">
-                  Showcase your solutions and build relationships with
-                  enterprise technology decision-makers.
-                </p>
-
-                <button
-                  type="button"
-                  onClick={openSponsor}
-                  className="group mt-8 inline-flex min-w-[210px] items-center justify-between gap-7 border border-white/15 bg-white/[0.035] px-5 py-4 text-[9px] font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC]/50 hover:bg-[#55C7DC]/[0.07]"
-                >
-                  <span>Become a Sponsor</span>
-
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-[#55C7DC] transition-transform duration-300 group-hover:rotate-45">
-                    <span className="text-base">↗</span>
-                  </span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={openSponsor}
+                className="group mt-8 inline-flex items-center gap-3 rounded-sm border px-6 py-3.5 text-[13px] font-semibold transition-colors duration-300 hover:border-current"
+                style={{ borderColor: COLORS.lineStrong, color: COLORS.cream }}
+              >
+                Become a Sponsor
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </button>
             </div>
           </div>
         </motion.div>
 
-        {/* =========================================================
+        {/* ===================================================
             CONTACT STRIP
-        ========================================================= */}
+        ==================================================== */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.65 }}
-          className="mt-8 grid border-y border-white/10 md:grid-cols-2"
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-6 grid overflow-hidden rounded-sm border md:grid-cols-2"
+          style={{ borderColor: COLORS.line }}
         >
           <a
             href="mailto:enquiry@confexmeet.com"
-            className="group flex items-center justify-between gap-5 px-1 py-6 transition-colors hover:bg-white/[0.025] md:px-6"
+            className="group flex items-center justify-between gap-5 px-6 py-6 transition-colors hover:bg-[rgba(43,196,174,0.05)]"
           >
             <div>
-              <p className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/30">
-                Registration / Sponsorship
+              <p className="text-[11px] uppercase tracking-[0.08em]" style={{ color: COLORS.faint }}>
+                Registration &amp; sponsorship
               </p>
-              <p className="mt-2 text-[14px] font-medium text-white sm:text-[15px]">
+              <p className={`${display.className} mt-1.5 text-[15px] font-medium`} style={{ color: COLORS.cream }}>
                 enquiry@confexmeet.com
               </p>
             </div>
-
-            <span className="font-mono text-[9px] text-[#55C7DC] transition-transform group-hover:translate-x-1">
-              ↗
+            <span className="text-[15px] transition-transform group-hover:translate-x-1" style={{ color: COLORS.tealLight }}>
+              →
             </span>
           </a>
 
           <a
             href="tel:+917975429127"
-            className="group flex items-center justify-between gap-5 border-t border-white/10 px-1 py-6 transition-colors hover:bg-white/[0.025] md:border-l md:border-t-0 md:px-6"
+            className="group flex items-center justify-between gap-5 border-t px-6 py-6 transition-colors hover:bg-[rgba(43,196,174,0.05)] md:border-l md:border-t-0"
+            style={{ borderColor: COLORS.line }}
           >
             <div>
-              <p className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/30">
+              <p className="text-[11px] uppercase tracking-[0.08em]" style={{ color: COLORS.faint }}>
                 Speak with the team
               </p>
-              <p className="mt-2 text-[14px] font-medium text-white sm:text-[15px]">
+              <p className={`${display.className} mt-1.5 text-[15px] font-medium`} style={{ color: COLORS.cream }}>
                 +91 7975 429 127
               </p>
             </div>
-
-            <span className="font-mono text-[9px] text-[#55C7DC] transition-transform group-hover:translate-x-1">
-              ↗
+            <span className="text-[15px] transition-transform group-hover:translate-x-1" style={{ color: COLORS.tealLight }}>
+              →
             </span>
           </a>
         </motion.div>
 
         {/* Bottom statement */}
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/25">
-            CIO TECH / 2026
+        <div className="mt-10 flex flex-col gap-2 border-t pt-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left" style={{ borderColor: COLORS.line }}>
+          <span className="text-[11px] uppercase tracking-[0.08em]" style={{ color: COLORS.faint }}>
+            CIO Tech &middot; 2026
           </span>
-
-          <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/20">
+          <span className="text-[11px] uppercase tracking-[0.08em]" style={{ color: COLORS.faint }}>
             The intelligent enterprise era
           </span>
-
-          <span className="font-mono text-[7px] uppercase tracking-[0.2em] text-white/25">
-            END / CONTACT
-          </span>
         </div>
+      </div>
+
+      {/* Faint monument watermark, echoing the other pages */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[50px] opacity-25">
+        <MonumentLine color={COLORS.tealDeep} className="h-full w-full" />
       </div>
 
       {/* =========================================================

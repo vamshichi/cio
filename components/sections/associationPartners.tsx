@@ -3,8 +3,41 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { Award, ArrowUpRight } from "lucide-react";
+import { Award } from "lucide-react";
+import { Space_Grotesk, Manrope } from "next/font/google";
 import PartnerRegistrationModal from "./PartnerRegistrationModal";
+
+/* ==========================================================================
+   DESIGN TOKENS — shared with the About page
+============================================================================ */
+
+const COLORS = {
+  base: "#050B18",
+  panel: "#0A1530",
+  raised: "#0E1B33",
+  cream: "#F6F9F8",
+  inkSoft: "rgba(246,249,248,0.66)",
+  muted: "rgba(246,249,248,0.52)",
+  faint: "rgba(246,249,248,0.32)",
+  teal: "#2BC4AE",
+  tealDeep: "#0F5850",
+  tealLight: "#7EE7D3",
+  tealGlow: "rgba(43,196,174,0.18)",
+  line: "rgba(246,249,248,0.10)",
+  lineStrong: "rgba(246,249,248,0.18)",
+};
+
+const display = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
+
+const sans = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 /* ==========================================================================
    PARTNER DATA
@@ -54,73 +87,46 @@ const fadeUp = (delay = 0) => ({
 });
 
 /* ==========================================================================
-   TECH BACKGROUND
+   BACKDROP — same hairline grid + glow orbs as the About page
 ============================================================================ */
 
-function TechBackground() {
+function GridGlow() {
   const reduceMotion = useReducedMotion();
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {/* Main grid */}
+      <svg className="absolute inset-0 h-full w-full opacity-[0.06]">
+        <defs>
+          <pattern id="partners-grid" width="56" height="56" patternUnits="userSpaceOnUse">
+            <path d="M56 0H0V56" fill="none" stroke={COLORS.cream} strokeWidth="1" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#partners-grid)" />
+      </svg>
+
       <div
-        className="absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              rgba(70,140,255,0.16) 1px,
-              transparent 1px
-            ),
-            linear-gradient(
-              90deg,
-              rgba(70,140,255,0.16) 1px,
-              transparent 1px
-            )
-          `,
-          backgroundSize: "80px 80px",
-        }}
+        className="absolute left-1/2 top-[-300px] h-[600px] w-[600px] -translate-x-1/2 rounded-full blur-[150px]"
+        style={{ background: COLORS.tealGlow }}
       />
 
-      {/* Fine grid */}
       <div
-        className="absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              rgba(255,255,255,0.15) 1px,
-              transparent 1px
-            ),
-            linear-gradient(
-              90deg,
-              rgba(255,255,255,0.15) 1px,
-              transparent 1px
-            )
-          `,
-          backgroundSize: "20px 20px",
-        }}
+        className="absolute left-[-250px] top-[25%] h-[450px] w-[450px] rounded-full blur-[140px]"
+        style={{ background: "rgba(43,196,174,0.06)" }}
       />
 
-      {/* Soft top glow */}
-      <div className="absolute left-1/2 top-[-300px] h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-blue-600/[0.07] blur-[150px]" />
+      <div
+        className="absolute bottom-[10%] right-[-220px] h-[450px] w-[450px] rounded-full blur-[140px]"
+        style={{ background: "rgba(43,196,174,0.07)" }}
+      />
 
-      {/* Left glow */}
-      <div className="absolute left-[-250px] top-[25%] h-[450px] w-[450px] rounded-full bg-cyan-500/[0.045] blur-[140px]" />
-
-      {/* Right glow */}
-      <div className="absolute bottom-[10%] right-[-220px] h-[450px] w-[450px] rounded-full bg-blue-600/[0.05] blur-[140px]" />
-
-      {/* Moving scan */}
       {!reduceMotion && (
         <motion.div
-          animate={{
-            y: ["-10%", "1000%"],
+          animate={{ y: ["-10%", "1000%"] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+          className="absolute left-0 top-0 h-px w-full"
+          style={{
+            background: `linear-gradient(90deg, transparent, ${COLORS.tealLight}22, transparent)`,
           }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-cyan-400/15 to-transparent"
         />
       )}
     </div>
@@ -134,54 +140,40 @@ function TechBackground() {
 function CornerBrackets() {
   return (
     <>
-      <span className="absolute left-3 top-3 h-5 w-5 border-l border-t border-blue-400/40" />
-      <span className="absolute right-3 top-3 h-5 w-5 border-r border-t border-blue-400/40" />
-      <span className="absolute bottom-3 left-3 h-5 w-5 border-b border-l border-blue-400/40" />
-      <span className="absolute bottom-3 right-3 h-5 w-5 border-b border-r border-blue-400/40" />
+      <span className="absolute left-3 top-3 h-4 w-4 border-l border-t" style={{ borderColor: COLORS.tealLight, opacity: 0.5 }} />
+      <span className="absolute right-3 top-3 h-4 w-4 border-r border-t" style={{ borderColor: COLORS.tealLight, opacity: 0.5 }} />
+      <span className="absolute bottom-3 left-3 h-4 w-4 border-b border-l" style={{ borderColor: COLORS.tealLight, opacity: 0.5 }} />
+      <span className="absolute bottom-3 right-3 h-4 w-4 border-b border-r" style={{ borderColor: COLORS.tealLight, opacity: 0.5 }} />
     </>
   );
 }
 
 /* ==========================================================================
-   SECTION LABEL
+   SECTION LABEL — bracketed kicker, matching the About page
 ============================================================================ */
 
-function SectionLabel({
-  icon = true,
-  children,
-  sideText,
-}: {
-  icon?: boolean;
-  children: React.ReactNode;
-  sideText?: string;
-}) {
+function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mb-4 flex items-center justify-center gap-3">
-      {icon && (
-        <div className="flex h-6 w-6 items-center justify-center rounded-md border border-cyan-400/25 bg-cyan-400/[0.05]">
-          <Award className="h-3 w-3 text-cyan-300" />
-        </div>
-      )}
+    <div className="mb-6 flex items-center justify-center gap-3">
+      <div
+        className="flex h-6 w-6 items-center justify-center rounded-sm border"
+        style={{ borderColor: COLORS.line, background: COLORS.raised }}
+      >
+        <Award className="h-3 w-3" style={{ color: COLORS.tealLight }} />
+      </div>
 
-      <h3 className="text-[10px] font-semibold uppercase tracking-[2.5px] text-cyan-300 sm:text-[11px]">
+      <h3
+        className={`${display.className} text-[25px] font-semibold uppercase tracking-[0.08em] sm:text-[20px]`}
+        style={{ color: COLORS.tealLight }}
+      >
         {children}
       </h3>
-
-      {sideText && (
-        <>
-          <span className="hidden h-px w-8 bg-cyan-400/30 sm:block" />
-
-          <span className="hidden font-mono text-[7px] uppercase tracking-[2px] text-slate-600 sm:block">
-            {sideText}
-          </span>
-        </>
-      )}
     </div>
   );
 }
 
 /* ==========================================================================
-   TECHNOLOGY PARTNER CARD
+   TECHNOLOGY PARTNER CARD — larger logo stage
 ============================================================================ */
 
 function TechnologyPartnerCard({
@@ -201,55 +193,44 @@ function TechnologyPartnerCard({
           ? undefined
           : {
               y: -4,
-              transition: {
-                duration: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-              },
+              transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
             }
       }
-      className="group relative"
+      
     >
-      {/* Hover glow */}
-      <div className="absolute -inset-px rounded-[18px] bg-gradient-to-b from-blue-400/25 via-cyan-400/5 to-transparent opacity-0 blur-md transition-opacity duration-500 group-hover:opacity-100" />
+      {/* <CornerBrackets /> */}
 
-      <div className="relative overflow-hidden rounded-[18px] border border-blue-400/15 bg-[#061326]/80 backdrop-blur-xl transition-colors duration-300 group-hover:border-blue-400/40">
-        <CornerBrackets />
+      {/* Top accent */}
+      {/* <div
+        className="absolute left-1/2 top-0 h-px w-20 -translate-x-1/2 opacity-50 transition-all duration-300 group-hover:w-32 group-hover:opacity-100"
+        style={{ background: `linear-gradient(90deg, transparent, ${COLORS.teal}, transparent)` }}
+      /> */}
 
-        {/* Top accent */}
-        <div className="absolute left-1/2 top-0 h-px w-20 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-50 transition-all duration-300 group-hover:w-32 group-hover:opacity-100" />
-
-        {/* Logo */}
-        <div className="flex min-h-[155px] items-center justify-center px-6 py-7">
-          <div className="relative flex h-[88px] w-full max-w-[235px] items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.025] p-4 transition-colors duration-300 group-hover:border-blue-400/15 group-hover:bg-white/[0.035]">
-            <Image
-              src={partner.logo}
-              alt={partner.name}
-              width={320}
-              height={140}
-              className="max-h-[58px] w-auto max-w-[190px] object-contain transition-transform duration-300 group-hover:scale-[1.03]"
-            />
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="border-t border-white/[0.05] px-5 py-4">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="font-mono text-[7px] uppercase tracking-[2.5px] text-slate-600">
-                Technology Alliance
-              </p>
-
-              <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[1.8px] text-slate-300">
-                {partner.name}
-              </p>
-            </div>
-
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-blue-400/15 bg-blue-500/[0.04] transition-colors duration-300 group-hover:border-cyan-400/40 group-hover:bg-cyan-400/[0.06]">
-              <ArrowUpRight className="h-3 w-3 text-blue-300" />
-            </div>
-          </div>
+      {/* Logo stage — enlarged */}
+      <div className="flex min-h-[220px] items-center justify-center px-8 py-10">
+        <div
+          className=""
+          style={{ borderColor: COLORS.line, background: "rgba(246,249,248,0.03)" }}
+        >
+          <Image
+            src={partner.logo}
+            alt={partner.name}
+            width={480}
+            height={220}
+            className="max-h-[96px] w-auto max-w-[300px] object-contain transition-transform duration-300 group-hover:scale-[1.04]"
+          />
         </div>
       </div>
+
+      {/* Footer */}
+      {/* <div className="border-t px-5 py-4" style={{ borderColor: COLORS.line }}>
+        <p
+          className={`${sans.className} text-center text-[11px] font-semibold uppercase tracking-[0.12em]`}
+          style={{ color: COLORS.muted }}
+        >
+          {partner.name}
+        </p>
+      </div> */}
     </motion.div>
   );
 }
@@ -260,60 +241,18 @@ function TechnologyPartnerCard({
 
 function TechnologyPartnersFrame() {
   return (
-    <motion.div
-      {...fadeUp(0.05)}
-      className="relative mx-auto max-w-5xl"
-    >
-      {/* Glow */}
-      {/* <div className="absolute -inset-2 rounded-[24px] bg-blue-500/[0.025] blur-2xl" /> */}
-
-      {/* Frame */}
-      <div >
-        {/* <CornerBrackets /> */}
-
-        {/* Header */}
-        <div className="mb-4 flex items-center justify-between px-1 sm:px-2">
-          {/* <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-
-            <span className="font-mono text-[7px] uppercase tracking-[2.5px] text-slate-500">
-              Technology Alliance Network
-            </span>
-          </div> */}
-
-          {/* <span className="font-mono text-[7px] tracking-[2px] text-slate-700">
-            01 / 02
-          </span> */}
-        </div>
-
-        {/* Cards */}
-        <div className="grid gap-3 md:grid-cols-2">
-          {StrategicTechnologyPartners.map((partner, index) => (
-            <TechnologyPartnerCard
-              key={partner.name}
-              partner={partner}
-              index={index}
-            />
-          ))}
-        </div>
-
-        {/* Small footer */}
-        {/* <div className="mt-4 flex items-center justify-center gap-3">
-          <span className="h-px w-7 bg-gradient-to-r from-transparent to-blue-500/30" />
-
-          <span className="font-mono text-[6px] uppercase tracking-[2.5px] text-slate-700">
-            Powering Tomorrow
-          </span>
-
-          <span className="h-px w-7 bg-gradient-to-l from-transparent to-blue-500/30" />
-        </div> */}
+    <motion.div {...fadeUp(0.05)} className="relative mx-auto max-w-5xl">
+      <div className="grid gap-5 md:grid-cols-2">
+        {StrategicTechnologyPartners.map((partner, index) => (
+          <TechnologyPartnerCard key={partner.name} partner={partner} index={index} />
+        ))}
       </div>
     </motion.div>
   );
 }
 
 /* ==========================================================================
-   STRATEGIC PARTNER
+   STRATEGIC PARTNER — largest logo stage on the page
 ============================================================================ */
 
 function StrategicPartnerCard() {
@@ -327,77 +266,58 @@ function StrategicPartnerCard() {
           ? undefined
           : {
               y: -4,
-              transition: {
-                duration: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-              },
+              transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
             }
       }
-      className="group relative mx-auto max-w-5xl"
+      
     >
-      {/* Glow */}
-      <div className="absolute -inset-2 rounded-[24px] bg-cyan-400/[0.025] blur-2xl transition-opacity duration-500 group-hover:bg-cyan-400/[0.05]" />
+      {/* <CornerBrackets /> */}
 
-      <div className="relative overflow-hidden rounded-[22px] border border-cyan-400/20 bg-[#031021]/65 shadow-[0_20px_70px_rgba(0,0,0,0.25)] backdrop-blur-xl">
-        <CornerBrackets />
+      {/* Accent */}
+      <div
+        className=""
+        style={{ background: `linear-gradient(90deg, transparent, ${COLORS.teal}, transparent)` }}
+      />
 
-        {/* Accent */}
-        <div className="absolute left-1/2 top-0 h-px w-24 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-70 transition-all duration-300 group-hover:w-40" />
+      {/* Logo stage — enlarged */}
+      <div className="relative flex min-h-[260px] items-center justify-center px-8 py-12">
+        <div
+          className=""
+          style={{ background: COLORS.tealGlow }}
+        />
 
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-white/[0.05] px-5 py-3.5 sm:px-7">
-          {/* <div className="flex items-center gap-2.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-
-            <span className="font-mono text-[7px] uppercase tracking-[2.5px] text-slate-500">
-              Strategic Alliance
-            </span>
-          </div>
-
-          <span className="font-mono text-[7px] tracking-[2px] text-slate-700">
-            02 / 02
-          </span> */}
-        </div>
-
-        {/* Logo */}
-        <div className="relative flex min-h-[175px] items-center justify-center px-6 py-7">
-          {/* Glow */}
-          <div className="absolute left-1/2 top-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/[0.05] blur-[65px]" />
-
-          <div className="relative flex h-[100px] w-[250px] items-center justify-center rounded-lg border border-white/[0.06] bg-white/[0.025] p-5 transition-colors duration-300 group-hover:border-cyan-400/15">
-            <Image
-              src={strategicPartner.logo}
-              alt={strategicPartner.name}
-              width={340}
-              height={150}
-              className="max-h-[68px] w-auto max-w-[210px] object-contain transition-transform duration-300 group-hover:scale-[1.03]"
-            />
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="border-t border-white/[0.05] px-5 py-4 sm:px-7">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="font-mono text-[7px] uppercase tracking-[2.5px] text-slate-600">
-                People · Power · Progress
-              </p>
-
-              <p className="mt-1.5 text-[10px] font-medium uppercase tracking-[2px] text-slate-300">
-                {strategicPartner.name}
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="h-px w-6 bg-cyan-400/30" />
-
-              <span className="font-mono text-[7px] uppercase tracking-[1.8px] text-cyan-300/70">
-                Strategic Partner
-              </span>
-            </div>
-          </div>
+        <div
+          className=""
+          style={{ borderColor: COLORS.lineStrong, background: "rgba(246,249,248,0.03)" }}
+        >
+          <Image
+            src={strategicPartner.logo}
+            alt={strategicPartner.name}
+            width={560}
+            height={260}
+            className="max-h-[120px] w-auto max-w-[380px] object-contain transition-transform duration-300 group-hover:scale-[1.04]"
+          />
         </div>
       </div>
+
+      {/* Footer */}
+      {/* <div className="border-t px-5 py-5 sm:px-7" style={{ borderColor: COLORS.line }}>
+        <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-4">
+          <p
+            className={`${display.className} text-[13px] font-semibold uppercase tracking-[0.1em]`}
+            style={{ color: COLORS.cream }}
+          >
+            {strategicPartner.name}
+          </p>
+          <span className="hidden h-1 w-1 rounded-full sm:block" style={{ background: COLORS.teal }} />
+          <p
+            className={`${sans.className} text-[11px] uppercase tracking-[0.12em]`}
+            style={{ color: COLORS.tealLight }}
+          >
+            Strategic Partner
+          </p>
+        </div>
+      </div> */}
     </motion.div>
   );
 }
@@ -408,10 +328,6 @@ function StrategicPartnerCard() {
 
 export default function PartnersSection() {
   const [openModal, setOpenModal] = useState(false);
-
-  /* ------------------------------------------------------------------------
-     HASH / MODAL
-  ------------------------------------------------------------------------ */
 
   useEffect(() => {
     const checkHash = () => {
@@ -434,108 +350,70 @@ export default function PartnersSection() {
   return (
     <section
       id="partners"
-      className="relative overflow-hidden bg-[#020817] py-12 sm:py-16 lg:py-20"
+      className={`${sans.className} relative overflow-hidden py-12 sm:py-16 lg:py-20`}
+      style={{ background: COLORS.base }}
     >
-      {/* =========================================================
-          BACKGROUND
-      ========================================================== */}
-
-      <TechBackground />
-
-      {/* =========================================================
-          CONTENT
-      ========================================================== */}
+      <GridGlow />
 
       <div className="relative z-10 mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-10">
-        {/* =======================================================
-            HERO
-        ======================================================== */}
-
-        <motion.div
-          {...fadeUp()}
-          className="mx-auto mb-10 max-w-4xl text-center sm:mb-12"
-        >
-          {/* Eyebrow */}
-
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-400/20 bg-blue-500/[0.05] px-4 py-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-
-            <span className="text-[8px] font-medium uppercase tracking-[2.5px] text-blue-200">
-              Stronger Together
-            </span>
-          </div>
-
-          {/* Heading */}
-
-          <h2 className="mt-5 text-[48px] font-bold leading-[0.95] tracking-[-0.055em] text-white sm:text-6xl md:text-7xl lg:text-[76px]">
+        {/* HERO */}
+        <motion.div {...fadeUp()} className="mx-auto mb-14 max-w-4xl text-center sm:mb-16">
+          <h2
+            className={`${display.className} text-[48px] font-semibold leading-[0.95] tracking-[-0.015em] sm:text-6xl md:text-7xl lg:text-[76px]`}
+            style={{ color: COLORS.cream }}
+          >
             Our{" "}
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            <span
+              style={{
+                background: `linear-gradient(90deg, ${COLORS.tealLight}, ${COLORS.teal})`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
               Partners
             </span>
           </h2>
 
-          {/* Divider */}
-
-          <div className="mx-auto mt-5 flex items-center justify-center gap-2.5">
-            <span className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/50 sm:w-14" />
-
-            <span className="relative flex h-2 w-2 items-center justify-center">
-              <span className="absolute h-3.5 w-3.5 rounded-full border border-blue-400/20" />
-
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-            </span>
-
-            <span className="h-px w-10 bg-gradient-to-l from-transparent to-blue-500/50 sm:w-14" />
+          <div className="mx-auto mt-6 flex items-center justify-center gap-2.5">
+            <span className="h-px w-10 sm:w-14" style={{ background: `linear-gradient(90deg, transparent, ${COLORS.lineStrong})` }} />
+            <span
+              className="h-[6px] w-[6px] rotate-45"
+              style={{ background: COLORS.teal, boxShadow: `0 0 12px ${COLORS.teal}` }}
+            />
+            <span className="h-px w-10 sm:w-14" style={{ background: `linear-gradient(90deg, ${COLORS.lineStrong}, transparent)` }} />
           </div>
 
-          {/* Description */}
-
-          <p className="mx-auto mt-5 max-w-2xl text-[13px] leading-6 text-slate-400 sm:text-sm sm:leading-6">
+          <p className="mx-auto mt-6 max-w-2xl text-[14px] leading-6 sm:text-[15px]" style={{ color: COLORS.muted }}>
             Collaborating with industry-leading organizations to drive
             meaningful conversations, innovation, executive networking and
             technology leadership.
           </p>
         </motion.div>
 
-        {/* =======================================================
-            TECHNOLOGY PARTNERS
-        ======================================================== */}
-
-        <div className="mb-10 sm:mb-12">
-          <SectionLabel >
-            Strategic Technology Partners
-          </SectionLabel>
-
+        {/* TECHNOLOGY PARTNERS */}
+        <div className="mb-14 sm:mb-16">
+          <SectionLabel>Strategic Technology Partners</SectionLabel>
           <TechnologyPartnersFrame />
         </div>
 
-        {/* =======================================================
-            STRATEGIC PARTNER
-        ======================================================== */}
-
+        {/* STRATEGIC PARTNER */}
         <div>
-          <SectionLabel sideText="People · Power · Progress">
-            Strategic Partner
-          </SectionLabel>
-
+          <SectionLabel>Strategic Partner</SectionLabel>
           <StrategicPartnerCard />
         </div>
-
       </div>
 
-      {/* =========================================================
-          BOTTOM GLOW
-      ========================================================== */}
+      {/* BOTTOM GLOW */}
+      {/* <div
+        className="pointer-events-none absolute bottom-[-150px] left-1/2 h-[280px] w-[800px] -translate-x-1/2 rounded-[50%] blur-[100px]"
+        style={{ background: "rgba(43,196,174,0.05)" }}
+      /> */}
 
-      <div className="pointer-events-none absolute bottom-[-150px] left-1/2 h-[280px] w-[800px] -translate-x-1/2 rounded-[50%] bg-blue-600/[0.045] blur-[100px]" />
-
-      {/* Bottom line */}
-
-      <div className="pointer-events-none absolute bottom-0 left-1/2 h-px w-[60%] -translate-x-1/2 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
-
-      {/* =========================================================
-          REGISTRATION MODAL
-      ========================================================== */}
+      {/* <div
+        className="pointer-events-none absolute bottom-0 left-1/2 h-px w-[60%] -translate-x-1/2"
+        style={{ background: `linear-gradient(90deg, transparent, ${COLORS.lineStrong}, transparent)` }}
+      /> */}
 
       <PartnerRegistrationModal
         open={openModal}
