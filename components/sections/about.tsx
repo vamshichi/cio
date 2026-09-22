@@ -10,7 +10,6 @@ import {
 } from 'framer-motion'
 
 import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
-import type { IconType } from 'react-icons'
 
 import {
   FiArrowUpRight,
@@ -22,7 +21,6 @@ import {
   FiUsers,
   FiZap,
   FiBriefcase,
-  FiGlobe,
   FiLayers,
   FiTrendingUp,
 } from 'react-icons/fi'
@@ -464,6 +462,7 @@ function TechnologyCore() {
       ===================================================== */}
 
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -487,6 +486,7 @@ function TechnologyCore() {
       ===================================================== */}
 
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -506,6 +506,7 @@ function TechnologyCore() {
       />
 
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -528,24 +529,29 @@ function TechnologyCore() {
           ORBITS
       ===================================================== */}
 
-      <Orbit
-        size={330}
-        duration={38}
-        tilt={67}
-      />
+      {!reduceMotion && (
+        <div aria-hidden="true">
+          <Orbit
+            size={330}
+            duration={38}
+            tilt={67}
+          />
 
-      <Orbit
-        size={255}
-        duration={30}
-        reverse
-        tilt={70}
-      />
+          <Orbit
+            size={255}
+            duration={30}
+            reverse
+            tilt={70}
+          />
+        </div>
+      )}
 
       {/* =====================================================
           CORE
       ===================================================== */}
 
       <motion.div
+        aria-hidden="true"
         style={{
           rotateX: reduceMotion
             ? 0
@@ -911,6 +917,7 @@ function TechnologyCore() {
         "
       >
         <span
+          aria-hidden="true"
           className="h-px w-8"
           style={{
             background:
@@ -929,6 +936,7 @@ function TechnologyCore() {
         </span>
 
         <span
+          aria-hidden="true"
           className="h-px w-8"
           style={{
             background:
@@ -954,6 +962,7 @@ function TechnologySection() {
     >
       {/* Technical grid */}
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -971,6 +980,7 @@ function TechnologySection() {
 
       {/* Ambient glow */}
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -988,6 +998,7 @@ function TechnologySection() {
 
       {/* Bottom glow */}
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -1009,11 +1020,11 @@ function TechnologySection() {
           mx-auto
           max-w-[1380px]
           px-5
-          py-14
+          py-16
           sm:px-8
-          sm:py-16
+          sm:py-20
           lg:px-12
-          lg:py-20
+          lg:py-24
         "
       >
         <motion.div
@@ -1045,6 +1056,7 @@ function TechnologySection() {
               {/* Eyebrow */}
               <div className="flex items-center gap-3">
                 <span
+                  aria-hidden="true"
                   className="h-px w-7"
                   style={{
                     background: COLORS.cyan,
@@ -1126,7 +1138,7 @@ function TechnologySection() {
                       text-[7px]
                       uppercase
                       tracking-[0.14em]
-                      transition-all
+                      transition-colors
                       duration-300
                     `}
                     style={{
@@ -1144,6 +1156,7 @@ function TechnologySection() {
               {/* Bottom statement */}
               <div className="mt-10 flex items-center gap-3">
                 <span
+                  aria-hidden="true"
                   className="h-px w-10"
                   style={{
                     background:
@@ -1193,23 +1206,27 @@ function TechnologySection() {
                 }}
               >
                 {/* Image */}
-                <img
+                <Image
                   src="/images/technology-leadership.png"
                   alt="Technology leaders discussing enterprise innovation"
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 60vw"
                   className="
-                    h-full
-                    w-full
                     object-cover
                     object-center
                     transition-transform
                     duration-[1200ms]
                     ease-out
                     hover:scale-[1.025]
+                    motion-reduce:transition-none
+                    motion-reduce:hover:scale-100
                   "
                 />
 
                 {/* Dark cinematic overlay */}
                 <div
+                  aria-hidden="true"
                   className="
                     pointer-events-none
                     absolute
@@ -1234,6 +1251,7 @@ function TechnologySection() {
 
                 {/* Subtle cyan light */}
                 <div
+                  aria-hidden="true"
                   className="
                     pointer-events-none
                     absolute
@@ -1262,6 +1280,7 @@ function TechnologySection() {
                 >
                   <div className="flex items-center gap-3">
                     <span
+                      aria-hidden="true"
                       className="h-px w-6"
                       style={{
                         background:
@@ -1323,6 +1342,7 @@ function TechnologySection() {
 
                   {/* Small index */}
                   <div
+                    aria-hidden="true"
                     className="
                       flex
                       h-9
@@ -1356,6 +1376,7 @@ function TechnologySection() {
 
               {/* Small editorial image detail */}
               <div
+                aria-hidden="true"
                 className="
                   pointer-events-none
                   absolute
@@ -1418,6 +1439,7 @@ function FocusAreas() {
       {/* Background circle */}
 
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -1440,11 +1462,11 @@ function FocusAreas() {
           mx-auto
           max-w-[1380px]
           px-5
-          py-14
+          py-16
           sm:px-8
-          sm:py-16
+          sm:py-20
           lg:px-12
-          lg:py-20
+          lg:py-24
         "
       >
         <motion.div
@@ -1594,6 +1616,7 @@ function FocusAreas() {
                       <Icon
                         size={17}
                         strokeWidth={1.5}
+                        aria-hidden="true"
                         style={{
                           color:
                             COLORS.blue,
@@ -1604,6 +1627,7 @@ function FocusAreas() {
                     {/* Accent line */}
 
                     <div
+                      aria-hidden="true"
                       className="
                         mt-5
                         h-px
@@ -1682,11 +1706,15 @@ function FocusAreas() {
 
                       <FiArrowUpRight
                         size={15}
+                        aria-hidden="true"
                         className="
                           transition-all
                           duration-300
                           group-hover:-translate-y-1
                           group-hover:translate-x-1
+                          motion-reduce:transition-none
+                          motion-reduce:group-hover:translate-y-0
+                          motion-reduce:group-hover:translate-x-0
                         "
                         style={{
                           color:
@@ -1717,6 +1745,7 @@ function Mission() {
       {/* Architectural background */}
 
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -1734,6 +1763,7 @@ function Mission() {
       />
 
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -1756,11 +1786,11 @@ function Mission() {
           mx-auto
           max-w-[1380px]
           px-5
-          py-14
+          py-16
           sm:px-8
-          sm:py-16
+          sm:py-20
           lg:px-12
-          lg:py-20
+          lg:py-24
         "
       >
         <motion.div
@@ -1955,6 +1985,7 @@ function Mission() {
 
                         <FiCheck
                           size={12}
+                          aria-hidden="true"
                           className="ml-auto"
                           style={{
                             color:
@@ -2031,6 +2062,7 @@ function Mission() {
                     </span>
 
                     <span
+                      aria-hidden="true"
                       className="h-px w-7"
                       style={{
                         background:
@@ -2074,6 +2106,7 @@ function FinalCTA() {
       {/* Large architectural circle */}
 
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -2091,6 +2124,7 @@ function FinalCTA() {
       />
 
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -2110,6 +2144,7 @@ function FinalCTA() {
       {/* Horizontal architectural line */}
 
       <div
+        aria-hidden="true"
         className="
           pointer-events-none
           absolute
@@ -2130,11 +2165,11 @@ function FinalCTA() {
           mx-auto
           max-w-[1380px]
           px-5
-          py-14
+          py-16
           sm:px-8
-          sm:py-16
+          sm:py-20
           lg:px-12
-          lg:py-20
+          lg:py-24
         "
       >
         <motion.div
@@ -2229,6 +2264,7 @@ function FinalCTA() {
 
             <a
               href="#delegateenquiry"
+              aria-label="Attend as Delegate — go to registration"
               className="
                 group
                 inline-flex
@@ -2246,6 +2282,12 @@ function FinalCTA() {
                 transition-all
                 duration-300
                 hover:-translate-y-1
+                focus-visible:outline
+                focus-visible:outline-2
+                focus-visible:outline-offset-4
+                focus-visible:outline-[#55C7DC]
+                motion-reduce:transition-none
+                motion-reduce:hover:translate-y-0
               "
               style={{
                 borderColor:
@@ -2261,16 +2303,19 @@ function FinalCTA() {
               </span>
 
               <span
+                aria-hidden="true"
                 className="
                   flex
-                  h-8
-                  w-8
+                  h-9
+                  w-9
                   items-center
                   justify-center
                   rounded-full
                   transition-transform
                   duration-300
                   group-hover:rotate-45
+                  motion-reduce:transition-none
+                  motion-reduce:group-hover:rotate-0
                 "
                 style={{
                   background:
@@ -2349,7 +2394,7 @@ function EventVisual() {
   return (
     <div className="group relative w-full">
       {/* Outer editorial frame */}
-      <div className="absolute -right-3 -top-3 h-full w-full border border-[#176B9C]/15" />
+      <div aria-hidden="true" className="absolute -right-3 -top-3 h-full w-full border border-[#176B9C]/15" />
 
       {/* Main image container */}
       <div className="relative overflow-hidden rounded-[28px] border border-[#D9E3E8] bg-[#F4F8FA] p-2 shadow-[0_30px_80px_rgba(8,36,59,0.14)]">
@@ -2360,19 +2405,19 @@ function EventVisual() {
             fill
             priority
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
+            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
           />
 
           {/* Soft premium overlay */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08243B]/20 via-transparent to-white/5" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08243B]/20 via-transparent to-white/5" />
 
           {/* Subtle glass highlight */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/15 to-transparent" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/15 to-transparent" />
         </div>
       </div>
 
       {/* Top-left editorial marker */}
-      <div className="absolute -left-4 top-8 hidden sm:block">
+      <div aria-hidden="true" className="absolute -left-4 top-8 hidden sm:block">
         <div className="flex items-center gap-3 rounded-full border border-[#D9E3E8] bg-white px-4 py-2.5 shadow-[0_12px_35px_rgba(8,36,59,0.10)]">
           <span className="h-1.5 w-1.5 rounded-full bg-[#176B9C]" />
 
@@ -2385,7 +2430,7 @@ function EventVisual() {
       </div>
 
       {/* Bottom-right information card */}
-      <div className="absolute -bottom-5 -right-4 hidden sm:block">
+      <div aria-hidden="true" className="absolute -bottom-5 -right-4 hidden sm:block">
         <div className="border border-[#D9E3E8] bg-white px-5 py-4 shadow-[0_18px_45px_rgba(8,36,59,0.12)]">
           <p
             className={`${mono.className} text-[7px] font-semibold uppercase tracking-[0.2em] text-[#176B9C]`}
@@ -2400,8 +2445,8 @@ function EventVisual() {
       </div>
 
       {/* Corner details */}
-      <span className="absolute -right-2 -top-2 h-5 w-5 border-r border-t border-[#176B9C]" />
-      <span className="absolute -bottom-2 -left-2 h-5 w-5 border-b border-l border-[#176B9C]" />
+      <span aria-hidden="true" className="absolute -right-2 -top-2 h-5 w-5 border-r border-t border-[#176B9C]" />
+      <span aria-hidden="true" className="absolute -bottom-2 -left-2 h-5 w-5 border-b border-l border-[#176B9C]" />
     </div>
   )
 }
@@ -2409,8 +2454,8 @@ function EventVisual() {
 function AboutEvent() {
   return (
     <section className={`${sans.className} relative overflow-hidden bg-white`}>
-      <div className="pointer-events-none absolute right-[-180px] top-[-180px] h-[500px] w-[500px] rounded-full border border-[#176B9C]/[0.045]" />
-      <div className="pointer-events-none absolute bottom-[-240px] left-[-220px] h-[520px] w-[520px] rounded-full border border-[#176B9C]/[0.035]" />
+      <div aria-hidden="true" className="pointer-events-none absolute right-[-180px] top-[-180px] h-[500px] w-[500px] rounded-full border border-[#176B9C]/[0.045]" />
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-[-240px] left-[-220px] h-[520px] w-[520px] rounded-full border border-[#176B9C]/[0.035]" />
 
       <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <motion.div
@@ -2424,7 +2469,7 @@ function AboutEvent() {
             <span className={`${mono.className} text-[18px] font-semibold uppercase tracking-[0.22em] text-[#08243B]`}>
               About the event
             </span>
-            <span className="h-px w-10 bg-[#D9E3E8]" />
+            <span aria-hidden="true" className="h-px w-10 bg-[#D9E3E8]" />
 
           </motion.div>
 
@@ -2461,7 +2506,7 @@ function AboutEvent() {
               </div>
 
               <div className="mt-9 flex items-center gap-4">
-                <div className="h-px w-12 bg-[#176B9C]" />
+                <div aria-hidden="true" className="h-px w-12 bg-[#176B9C]" />
                 <p className={`${mono.className} text-[8px] uppercase tracking-[0.2em] text-[#91A1AD]`}>
                   People × Ideas × Technology
                 </p>
@@ -2492,7 +2537,7 @@ function AboutEvent() {
                   <span className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.18em] text-[#176B9C]`}>
                     {stat.label}
                   </span>
-                  <span className="h-px w-7 bg-[#D9E3E8]" />
+                  <span aria-hidden="true" className="h-px w-7 bg-[#D9E3E8]" />
                   <span className="text-[9px] text-[#91A1AD]">{stat.caption}</span>
                 </div>
               </div>
@@ -2513,7 +2558,7 @@ function IndustryLandscape() {
           BACKGROUND IMAGE
       ========================================================== */}
 
-      <div className="pointer-events-none absolute inset-0">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         {/* Main visual */}
         <motion.div
           initial={{ opacity: 0, scale: 1.06, x: 30 }}
@@ -2593,6 +2638,7 @@ function IndustryLandscape() {
       ========================================================== */}
 
       <div
+        aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.035]"
         style={{
           backgroundImage: `
@@ -2605,6 +2651,7 @@ function IndustryLandscape() {
 
       {/* Fine radial glow */}
       <div
+        aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           background: `
@@ -2636,8 +2683,8 @@ function IndustryLandscape() {
             {/* LEFT */}
             <motion.div variants={reveal}>
               <div className="flex items-center gap-3">
-                <span className="relative h-[6px] w-[6px] rounded-full bg-[#55C7DC] shadow-[0_0_12px_rgba(85,199,220,0.9)]">
-                  <span className="absolute inset-[-4px] animate-ping rounded-full bg-[#55C7DC]/20" />
+                <span aria-hidden="true" className="relative h-[6px] w-[6px] rounded-full bg-[#55C7DC] shadow-[0_0_12px_rgba(85,199,220,0.9)]">
+                  <span className="absolute inset-[-4px] animate-ping rounded-full bg-[#55C7DC]/20 motion-reduce:animate-none" />
                 </span>
 
                 <span
@@ -2662,7 +2709,7 @@ function IndustryLandscape() {
               className="relative z-10 lg:pb-2"
             >
               <div className="max-w-2xl">
-                <div className="mb-4 h-px w-10 bg-[#55C7DC]/50" />
+                <div aria-hidden="true" className="mb-4 h-px w-10 bg-[#55C7DC]/50" />
 
                 <p className="max-w-2xl text-[14px] leading-6 text-white/60 sm:text-[15px] sm:leading-7">
                   The conversation extends across the sectors where
@@ -2722,16 +2769,16 @@ function IndustryLandscape() {
                     tracking-[0.1em]
                     text-white/65
                     backdrop-blur-md
-                    transition-all
+                    transition-colors
                     duration-300
                     hover:text-[#7DD3E7]
                     sm:text-[9px]
                   `}
                 >
                   {/* Hover light */}
-                  <span className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#55C7DC] to-transparent transition-transform duration-300 group-hover:scale-x-100" />
+                  <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#55C7DC] to-transparent transition-transform duration-300 group-hover:scale-x-100" />
 
-                  <span className="mr-2 text-[#55C7DC]/70">
+                  <span aria-hidden="true" className="mr-2 text-[#55C7DC]/70">
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
@@ -2739,36 +2786,6 @@ function IndustryLandscape() {
                 </motion.span>
               ))}
             </div>
-          </motion.div>
-
-          {/* =====================================================
-              VISUAL STATEMENT
-          ====================================================== */}
-
-          <motion.div
-            variants={reveal}
-            className="relative mt-1"
-          >
-            {/* Thin line */}
-            {/* <div className="border-t border-white/10 pt-5">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <span
-                  className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-white/35`}
-                >
-                  Cross-industry leadership exchange
-                </span>
-
-                <div className="flex items-center gap-3">
-                  <span className="h-px w-8 bg-[#55C7DC]/40" />
-
-                  <span
-                    className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-[#55C7DC]`}
-                  >
-                    18 sectors represented
-                  </span>
-                </div>
-              </div>
-            </div> */}
           </motion.div>
         </motion.div>
       </div>
@@ -2779,6 +2796,7 @@ function IndustryLandscape() {
 
       {/* Right edge glow */}
       <div
+        aria-hidden="true"
         className="pointer-events-none absolute right-0 top-1/2 h-[380px] w-[2px] -translate-y-1/2 opacity-50"
         style={{
           background:
@@ -2789,6 +2807,7 @@ function IndustryLandscape() {
 
       {/* Bottom ambient glow */}
       <div
+        aria-hidden="true"
         className="pointer-events-none absolute bottom-[-180px] left-1/2 h-[280px] w-[700px] -translate-x-1/2 rounded-full blur-[120px]"
         style={{
           background: "rgba(40,150,190,0.07)",
@@ -2808,6 +2827,7 @@ function AboutBenefits() {
       ========================================================== */}
 
       <div
+        aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.45]"
         style={{
           backgroundImage: `
@@ -2824,13 +2844,13 @@ function AboutBenefits() {
 
       {/* Large atmospheric circle */}
 
-      <div className="pointer-events-none absolute -right-[280px] top-[-220px] h-[650px] w-[650px] rounded-full border border-[#176B9C]/[0.06]" />
+      <div aria-hidden="true" className="pointer-events-none absolute -right-[280px] top-[-220px] h-[650px] w-[650px] rounded-full border border-[#176B9C]/[0.06]" />
 
-      <div className="pointer-events-none absolute -right-[180px] top-[-120px] h-[450px] w-[450px] rounded-full border border-[#55C7DC]/[0.08]" />
+      <div aria-hidden="true" className="pointer-events-none absolute -right-[180px] top-[-120px] h-[450px] w-[450px] rounded-full border border-[#55C7DC]/[0.08]" />
 
       {/* Cyan glow */}
 
-      <div className="pointer-events-none absolute right-[10%] top-[18%] h-[280px] w-[280px] rounded-full bg-[#55C7DC]/[0.06] blur-[110px]" />
+      <div aria-hidden="true" className="pointer-events-none absolute right-[10%] top-[18%] h-[280px] w-[280px] rounded-full bg-[#55C7DC]/[0.06] blur-[110px]" />
 
       {/* =========================================================
           MAIN CONTAINER
@@ -2857,7 +2877,7 @@ function AboutBenefits() {
             >
               {/* Label */}
               <div className="flex items-center justify-center gap-3">
-                <span className="h-[6px] w-[6px] rounded-full bg-[#176B9C] shadow-[0_0_10px_rgba(23,107,156,0.35)]" />
+                <span aria-hidden="true" className="h-[6px] w-[6px] rounded-full bg-[#176B9C] shadow-[0_0_10px_rgba(23,107,156,0.35)]" />
 
                 <p
                   className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#176B9C]`}
@@ -2877,7 +2897,7 @@ function AboutBenefits() {
 
               {/* Description */}
               <div className="mt-7 flex flex-col items-center gap-3">
-                <div className="h-px w-10 bg-[#55C7DC]" />
+                <div aria-hidden="true" className="h-px w-10 bg-[#55C7DC]" />
 
                 <p className="max-w-[600px] text-[14px] leading-6 text-[#607484] sm:text-[15px] sm:leading-7">
                   From boardroom priorities to emerging technology,
@@ -2955,7 +2975,7 @@ function AboutBenefits() {
                     </span>
 
                     <div className="flex h-9 w-9 items-center justify-center border border-[#176B9C]/10 bg-[#176B9C]/[0.05] text-[#176B9C] transition-all duration-300 group-hover:border-[#55C7DC]/30 group-hover:bg-[#55C7DC]/10 group-hover:text-[#176B9C]">
-                      <Icon size={16} strokeWidth={1.5} />
+                      <Icon size={16} strokeWidth={1.5} aria-hidden="true" />
                     </div>
                   </div>
 
@@ -2973,11 +2993,12 @@ function AboutBenefits() {
 
                   {/* Bottom line */}
 
-                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#55C7DC] transition-all duration-500 group-hover:w-full" />
+                  <div aria-hidden="true" className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#55C7DC] transition-all duration-500 group-hover:w-full" />
 
                   {/* Corner number */}
 
                   <span
+                    aria-hidden="true"
                     className={`${mono.className} absolute bottom-5 right-6 text-[26px] font-medium tracking-[-0.05em] text-[#08243B]/[0.035] transition-colors duration-300 group-hover:text-[#176B9C]/[0.08]`}
                   >
                     {String(index + 1).padStart(2, "0")}
@@ -3001,7 +3022,7 @@ function AboutCTA() {
           CINEMATIC BODY IMAGE
       ========================================================== */}
 
-      <div className="pointer-events-none absolute inset-0">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <motion.div
           initial={{ opacity: 0, scale: 1.06, x: 30 }}
           whileInView={{ opacity: 1, scale: 1, x: 0 }}
@@ -3094,6 +3115,7 @@ function AboutCTA() {
       ========================================================== */}
 
       <div
+        aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage: `
@@ -3115,11 +3137,11 @@ function AboutCTA() {
           DECORATIVE ORBITS
       ========================================================== */}
 
-      <div className="pointer-events-none absolute right-[-180px] top-[-250px] h-[560px] w-[560px] rounded-full border border-[#55C7DC]/[0.08]" />
+      <div aria-hidden="true" className="pointer-events-none absolute right-[-180px] top-[-250px] h-[560px] w-[560px] rounded-full border border-[#55C7DC]/[0.08]" />
 
-      <div className="pointer-events-none absolute right-[-120px] top-[-190px] h-[440px] w-[440px] rounded-full border border-[#55C7DC]/[0.04]" />
+      <div aria-hidden="true" className="pointer-events-none absolute right-[-120px] top-[-190px] h-[440px] w-[440px] rounded-full border border-[#55C7DC]/[0.04]" />
 
-      <div className="pointer-events-none absolute left-[-180px] bottom-[-220px] h-[440px] w-[440px] rounded-full border border-white/[0.035]" />
+      <div aria-hidden="true" className="pointer-events-none absolute left-[-180px] bottom-[-220px] h-[440px] w-[440px] rounded-full border border-white/[0.035]" />
 
       {/* =========================================================
           CONTENT
@@ -3164,8 +3186,8 @@ function AboutCTA() {
                 }}
                 className="flex items-center gap-3"
               >
-                <span className="relative h-[6px] w-[6px] rounded-full bg-[#55C7DC] shadow-[0_0_12px_rgba(85,199,220,0.9)]">
-                  <span className="absolute inset-[-4px] animate-ping rounded-full bg-[#55C7DC]/20" />
+                <span aria-hidden="true" className="relative h-[6px] w-[6px] rounded-full bg-[#55C7DC] shadow-[0_0_12px_rgba(85,199,220,0.9)]">
+                  <span className="absolute inset-[-4px] animate-ping rounded-full bg-[#55C7DC]/20 motion-reduce:animate-none" />
                 </span>
 
                 <p
@@ -3251,7 +3273,8 @@ function AboutCTA() {
                   duration: 0.7,
                 }}
                 href="#delegateenquiry"
-                className="group mt-8 inline-flex min-w-[245px] items-center justify-between gap-8 border border-white/15 bg-[#071b2a]/80 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC]/50 hover:bg-[#55C7DC]/[0.07]"
+                aria-label="Attend as Delegate — go to registration"
+                className="group mt-8 inline-flex min-w-[245px] items-center justify-between gap-8 border border-white/15 bg-[#071b2a]/80 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC]/50 hover:bg-[#55C7DC]/[0.07] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#55C7DC] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
               >
                 <span
                   className={`${mono.className} text-[9px] font-semibold uppercase tracking-[0.14em] text-white`}
@@ -3259,7 +3282,7 @@ function AboutCTA() {
                   Attend as Delegate
                 </span>
 
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#55C7DC]/10 text-[#55C7DC] shadow-[0_0_20px_rgba(85,199,220,0.12)] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#55C7DC]/20 group-hover:shadow-[0_0_25px_rgba(85,199,220,0.25)]">
+                <span aria-hidden="true" className="flex h-9 w-9 items-center justify-center rounded-full bg-[#55C7DC]/10 text-[#55C7DC] shadow-[0_0_20px_rgba(85,199,220,0.12)] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#55C7DC]/20 group-hover:shadow-[0_0_25px_rgba(85,199,220,0.25)] motion-reduce:transition-none motion-reduce:group-hover:rotate-0">
                   <FiArrowUpRight size={15} />
                 </span>
               </motion.a>
@@ -3307,12 +3330,12 @@ function AboutCTA() {
 
               {/* Small vertical line */}
 
-              <div className="absolute right-0 top-0 h-24 w-px bg-gradient-to-b from-[#55C7DC]/60 to-transparent" />
+              <div aria-hidden="true" className="absolute right-0 top-0 h-24 w-px bg-gradient-to-b from-[#55C7DC]/60 to-transparent" />
 
               {/* Bottom visual indicator */}
 
               <div className="absolute bottom-10 right-5 flex items-center gap-3">
-                <span className="h-px w-12 bg-[#55C7DC]/40" />
+                <span aria-hidden="true" className="h-px w-12 bg-[#55C7DC]/40" />
 
                 <span
                   className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-white/35`}
@@ -3371,6 +3394,7 @@ function AboutCTA() {
       ========================================================== */}
 
       <div
+        aria-hidden="true"
         className="pointer-events-none absolute bottom-[-180px] left-1/2 h-[280px] w-[700px] -translate-x-1/2 rounded-full blur-[130px]"
         style={{
           background: "rgba(55,170,210,0.06)",
