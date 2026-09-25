@@ -51,7 +51,7 @@ const speakers = [
     name: 'Saurabh Gupta',
     title: 'Group Chief Digital and Information officer',
     company: 'Gujarat Fluorochemicals Limited',
-    image: '/speakers/Saurabh.jpg',
+    image: '/speakers/Saurabh.png',
   }
   
   
