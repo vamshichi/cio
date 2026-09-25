@@ -46,6 +46,12 @@ const speakers = [
     title: 'Vice President – Digital',
     company: 'CKA Birla Group',
     image: '/speakers/Mitali.png',
+  },
+  {
+    name: 'Saurabh Gupta',
+    title: 'Group Chief Digital and Information officer',
+    company: 'Gujarat Fluorochemicals Limited',
+    image: '/speakers/Saurabh.jpg',
   }
   
   
