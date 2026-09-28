@@ -9,7 +9,7 @@ import {
   useTransform,
 } from 'framer-motion'
 
-import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 
 import {
   FiArrowUpRight,
@@ -31,17 +31,12 @@ import Image from 'next/image'
    FONTS
 ========================================================= */
 
-const sans = IBM_Plex_Sans({
+const sans = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   display: 'swap',
 })
 
-const mono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-})
 
 /* =========================================================
    CIO TECH — EXECUTIVE EDITORIAL DESIGN SYSTEM
@@ -252,7 +247,7 @@ function SectionLabel({
       />
 
       <span
-        className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em]`}
+        className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em]`}
         style={{
           color: dark
             ? 'rgba(255,255,255,0.82)'
@@ -272,7 +267,7 @@ function SectionLabel({
       />
 
       <span
-        className={`${mono.className} text-[8px] uppercase tracking-[0.18em]`}
+        className={`${sans.className} text-[12px] uppercase tracking-[0.18em]`}
         style={{
           color: dark
             ? COLORS.cyan
@@ -297,7 +292,7 @@ function MetaRow({
   return (
     <div className="flex items-center gap-3">
       <span
-        className={`${mono.className} text-[8px] uppercase tracking-[0.18em]`}
+        className={`${sans.className} text-[12px] uppercase tracking-[0.18em]`}
         style={{
           color: dark
             ? COLORS.cyan
@@ -317,7 +312,7 @@ function MetaRow({
       />
 
       <span
-        className={`${mono.className} text-[8px] uppercase tracking-[0.18em]`}
+        className={`${sans.className} text-[12px] uppercase tracking-[0.18em]`}
         style={{
           color: dark
             ? 'rgba(255,255,255,0.42)'
@@ -334,619 +329,9 @@ function MetaRow({
    ORBIT
 ========================================================= */
 
-function Orbit({
-  size,
-  duration,
-  reverse = false,
-  tilt = 65,
-}: {
-  size: number
-  duration: number
-  reverse?: boolean
-  tilt?: number
-}) {
-  return (
-    <motion.div
-      animate={{
-        rotateZ: reverse ? -360 : 360,
-      }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: 'linear',
-      }}
-      className="absolute left-1/2 top-1/2 rounded-full border"
-      style={{
-        width: size,
-        height: size,
-        borderColor: reverse
-          ? 'rgba(82,195,218,0.10)'
-          : 'rgba(82,195,218,0.18)',
-        transform:
-          `translate(-50%, -50%) rotateX(${tilt}deg)`,
-        transformStyle: 'preserve-3d',
-      }}
-    >
-      <span
-        className="
-          absolute
-          left-1/2
-          top-0
-          h-1.5
-          w-1.5
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-        "
-        style={{
-          background: COLORS.cyan,
-          boxShadow:
-            `0 0 12px ${COLORS.cyan}`,
-        }}
-      />
-    </motion.div>
-  )
-}
-
 /* =========================================================
    TECHNOLOGY CORE
 ========================================================= */
-
-function TechnologyCore() {
-  const reduceMotion = useReducedMotion()
-
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-
-  const rotateX = useSpring(
-    useTransform(mouseY, [-1, 1], [4, -4]),
-    {
-      stiffness: 120,
-      damping: 25,
-    }
-  )
-
-  const rotateY = useSpring(
-    useTransform(mouseX, [-1, 1], [-4, 4]),
-    {
-      stiffness: 120,
-      damping: 25,
-    }
-  )
-
-  const handleMouseMove = (
-    event: React.MouseEvent<HTMLDivElement>
-  ) => {
-    if (reduceMotion) return
-
-    const rect =
-      event.currentTarget.getBoundingClientRect()
-
-    const x =
-      ((event.clientX - rect.left) /
-        rect.width) *
-      2 -
-      1
-
-    const y =
-      ((event.clientY - rect.top) /
-        rect.height) *
-      2 -
-      1
-
-    mouseX.set(x)
-    mouseY.set(y)
-  }
-
-  const handleMouseLeave = () => {
-    mouseX.set(0)
-    mouseY.set(0)
-  }
-
-  return (
-    <div
-      className="
-        relative
-        h-[340px]
-        w-full
-        overflow-hidden
-        sm:h-[390px]
-        lg:h-[450px]
-        [perspective:1400px]
-      "
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* =====================================================
-          AMBIENT LIGHT
-      ===================================================== */}
-
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-1/2
-          h-[300px]
-          w-[300px]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          blur-[100px]
-        "
-        style={{
-          background:
-            'radial-gradient(circle, rgba(85,199,220,0.14), transparent 68%)',
-        }}
-      />
-
-      {/* =====================================================
-          ARCHITECTURAL RINGS
-      ===================================================== */}
-
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-1/2
-          h-[410px]
-          w-[410px]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          border
-        "
-        style={{
-          borderColor:
-            'rgba(255,255,255,0.045)',
-        }}
-      />
-
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-1/2
-          h-[330px]
-          w-[330px]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          border
-        "
-        style={{
-          borderColor:
-            'rgba(85,199,220,0.055)',
-        }}
-      />
-
-      {/* =====================================================
-          ORBITS
-      ===================================================== */}
-
-      {!reduceMotion && (
-        <div aria-hidden="true">
-          <Orbit
-            size={330}
-            duration={38}
-            tilt={67}
-          />
-
-          <Orbit
-            size={255}
-            duration={30}
-            reverse
-            tilt={70}
-          />
-        </div>
-      )}
-
-      {/* =====================================================
-          CORE
-      ===================================================== */}
-
-      <motion.div
-        aria-hidden="true"
-        style={{
-          rotateX: reduceMotion
-            ? 0
-            : rotateX,
-          rotateY: reduceMotion
-            ? 0
-            : rotateY,
-          transformStyle:
-            'preserve-3d',
-        }}
-        className="
-          absolute
-          left-1/2
-          top-1/2
-          h-[190px]
-          w-[190px]
-          -translate-x-1/2
-          -translate-y-1/2
-          sm:h-[220px]
-          sm:w-[220px]
-        "
-      >
-        {/* Outer ring */}
-
-        <div
-          className="
-            absolute
-            inset-[-14px]
-            rounded-full
-            border
-          "
-          style={{
-            borderColor:
-              'rgba(85,199,220,0.16)',
-          }}
-        />
-
-        {/* Inner ring */}
-
-        <div
-          className="
-            absolute
-            inset-[-6px]
-            rounded-full
-            border
-          "
-          style={{
-            borderColor:
-              'rgba(23,107,156,0.30)',
-          }}
-        />
-
-        {/* Sphere */}
-
-        <motion.div
-          animate={
-            reduceMotion
-              ? undefined
-              : {
-                boxShadow: [
-                  '0 20px 70px rgba(0,0,0,0.18)',
-                  '0 28px 95px rgba(85,199,220,0.16)',
-                  '0 20px 70px rgba(0,0,0,0.18)',
-                ],
-              }
-          }
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="
-            absolute
-            inset-0
-            overflow-hidden
-            rounded-full
-            border
-            bg-[#F8FAFC]
-          "
-          style={{
-            borderColor:
-              'rgba(85,199,220,0.32)',
-            transform:
-              'translateZ(25px)',
-          }}
-        >
-          {/* Fine technical grid */}
-
-          <div
-            className="
-              absolute
-              inset-0
-              opacity-45
-            "
-            style={{
-              backgroundImage: `
-                linear-gradient(rgba(6,21,34,0.065) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(6,21,34,0.065) 1px, transparent 1px)
-              `,
-              backgroundSize:
-                '23px 23px',
-            }}
-          />
-
-          {/* Light */}
-
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `
-                radial-gradient(
-                  circle at 30% 24%,
-                  rgba(85,199,220,0.25),
-                  transparent 28%
-                ),
-                radial-gradient(
-                  circle at 72% 70%,
-                  rgba(23,107,156,0.10),
-                  transparent 45%
-                )
-              `,
-            }}
-          />
-
-          {/* Latitude */}
-
-          <div
-            className="
-              absolute
-              left-1/2
-              top-1/2
-              h-[125px]
-              w-[190px]
-              -translate-x-1/2
-              -translate-y-1/2
-              rounded-[50%]
-              border
-            "
-            style={{
-              borderColor:
-                'rgba(85,199,220,0.22)',
-              transform:
-                'translate(-50%, -50%) rotateX(68deg)',
-            }}
-          />
-
-          {/* Longitude */}
-
-          <div
-            className="
-              absolute
-              left-1/2
-              top-1/2
-              h-[190px]
-              w-[72px]
-              -translate-x-1/2
-              -translate-y-1/2
-              rounded-[50%]
-              border
-            "
-            style={{
-              borderColor:
-                'rgba(23,107,156,0.18)',
-            }}
-          />
-
-          {/* =================================================
-              CENTER BRAND
-          ================================================= */}
-
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.div
-              animate={
-                reduceMotion
-                  ? undefined
-                  : {
-                    scale: [
-                      1,
-                      1.025,
-                      1,
-                    ],
-                  }
-              }
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="
-                relative
-                flex
-                h-[88px]
-                w-[88px]
-                items-center
-                justify-center
-                rounded-full
-                border
-                bg-white/95
-                shadow-[0_18px_55px_rgba(6,21,34,0.14)]
-                backdrop-blur-xl
-              "
-              style={{
-                borderColor:
-                  'rgba(23,107,156,0.30)',
-              }}
-            >
-              <div className="text-center">
-                <div
-                  className="
-                    mx-auto
-                    mb-2
-                    flex
-                    h-7
-                    w-7
-                    items-center
-                    justify-center
-                    rounded-full
-                  "
-                  style={{
-                    background:
-                      'rgba(23,107,156,0.09)',
-                    color:
-                      COLORS.blue,
-                  }}
-                >
-                  <FiCpu size={14} />
-                </div>
-
-                <p
-                  className={`${mono.className} text-[6px] uppercase tracking-[0.20em]`}
-                  style={{
-                    color:
-                      COLORS.muted,
-                  }}
-                >
-                  Intelligent
-                </p>
-
-                <p
-                  className="
-                    mt-1
-                    text-[13px]
-                    font-bold
-                    tracking-[-0.02em]
-                  "
-                  style={{
-                    color:
-                      COLORS.navy,
-                  }}
-                >
-                  CIO TECH
-                </p>
-
-                <p
-                  className={`${mono.className} mt-1 text-[6px] uppercase tracking-[0.20em]`}
-                  style={{
-                    color:
-                      COLORS.blue,
-                  }}
-                >
-                  DELHI
-                </p>
-              </div>
-
-              <span
-                className="
-                  absolute
-                  right-[-3px]
-                  top-1/2
-                  h-2
-                  w-2
-                  -translate-y-1/2
-                  rounded-full
-                "
-                style={{
-                  background:
-                    COLORS.cyan,
-                  boxShadow:
-                    `0 0 14px ${COLORS.cyan}`,
-                }}
-              />
-            </motion.div>
-          </div>
-
-          {/* Minimal signal points */}
-
-          {Array.from({
-            length: 10,
-          }).map((_, index) => {
-            const angle =
-              (index / 10) *
-              Math.PI *
-              2
-
-            const radius =
-              82 +
-              (index % 2) * 10
-
-            const x =
-              Math.cos(angle) *
-              radius
-
-            const y =
-              Math.sin(angle) *
-              radius
-
-            return (
-              <motion.span
-                key={index}
-                className="
-                  absolute
-                  left-1/2
-                  top-1/2
-                  h-[3px]
-                  w-[3px]
-                  rounded-full
-                "
-                style={{
-                  marginLeft: x,
-                  marginTop: y,
-                  background:
-                    index % 2 === 0
-                      ? COLORS.blue
-                      : COLORS.cyan,
-                }}
-                animate={
-                  reduceMotion
-                    ? undefined
-                    : {
-                      opacity: [
-                        0.15,
-                        0.75,
-                        0.15,
-                      ],
-                    }
-                }
-                transition={{
-                  duration:
-                    2.5 +
-                    (index % 3),
-                  delay:
-                    index * 0.14,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
-            )
-          })}
-        </motion.div>
-      </motion.div>
-
-      {/* Bottom statement */}
-
-      <div
-        className="
-          absolute
-          bottom-2
-          left-1/2
-          flex
-          -translate-x-1/2
-          items-center
-          gap-3
-        "
-      >
-        <span
-          aria-hidden="true"
-          className="h-px w-8"
-          style={{
-            background:
-              'rgba(255,255,255,0.15)',
-          }}
-        />
-
-        <span
-          className={`${mono.className} whitespace-nowrap text-[7px] uppercase tracking-[0.22em]`}
-          style={{
-            color:
-              'rgba(255,255,255,0.38)',
-          }}
-        >
-          PEOPLE × IDEAS × TECHNOLOGY
-        </span>
-
-        <span
-          aria-hidden="true"
-          className="h-px w-8"
-          style={{
-            background:
-              'rgba(255,255,255,0.15)',
-          }}
-        />
-      </div>
-    </div>
-  )
-}
 
 /* =========================================================
    TECHNOLOGY SECTION
@@ -954,469 +339,44 @@ function TechnologyCore() {
 
 function TechnologySection() {
   return (
-    <section
-      className={`${sans.className} relative overflow-hidden`}
-      style={{
-        background: COLORS.midnight,
-      }}
-    >
-      {/* Technical grid */}
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          opacity-[0.025]
-        "
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.7) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.7) 1px, transparent 1px)
-          `,
-          backgroundSize: "90px 90px",
-        }}
-      />
-
-      {/* Ambient glow */}
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          -right-[180px]
-          -top-[180px]
-          h-[500px]
-          w-[500px]
-          rounded-full
-          blur-[130px]
-        "
-        style={{
-          background: "rgba(85,199,220,0.055)",
-        }}
-      />
-
-      {/* Bottom glow */}
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          -bottom-[250px]
-          left-[30%]
-          h-[500px]
-          w-[500px]
-          rounded-full
-          blur-[150px]
-        "
-        style={{
-          background: "rgba(42,120,160,0.035)",
-        }}
-      />
-
-      <div
-        className="
-          relative
-          mx-auto
-          max-w-[1380px]
-          px-5
-          py-16
-          sm:px-8
-          sm:py-20
-          lg:px-12
-          lg:py-24
-        "
-      >
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
-          variants={stagger}
-        >
-          <div
-            className="
-              mt-2
-              grid
-              gap-10
-              lg:grid-cols-[0.72fr_1.28fr]
-              lg:items-center
-              lg:gap-14
-            "
-          >
-            {/* =========================================
-                LEFT — CONTENT
-            ========================================= */}
-            <motion.div
-              variants={reveal}
-              className="relative z-10"
-            >
-              {/* Eyebrow */}
-              <div className="flex items-center gap-3">
-                <span
-                  aria-hidden="true"
-                  className="h-px w-7"
-                  style={{
-                    background: COLORS.cyan,
-                  }}
-                />
-
-                <p
-                  className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em]`}
-                  style={{
-                    color: COLORS.cyan,
-                  }}
-                >
-                  The intelligent enterprise
-                </p>
-              </div>
-
-              {/* Heading */}
-              <h2
-                className="
-                  mt-5
-                  max-w-xl
-                  text-[44px]
-                  font-semibold
-                  leading-[0.92]
-                  tracking-[-0.065em]
-                  text-white
-                  sm:text-[54px]
-                  lg:text-[68px]
-                  xl:text-[74px]
-                "
-              >
+    <section className={`${sans.className} relative overflow-hidden bg-white`}>
+      <div className="mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={stagger}>
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+            <motion.div variants={reveal}>
+              <p className="text-[13px] font-semibold uppercase tracking-[0.16em]" style={{ color: COLORS.blue }}>
+                The Intelligent Enterprise
+              </p>
+              <h2 className="mt-5 max-w-2xl text-[50px] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[62px] lg:text-[76px]" style={{ color: COLORS.navy }}>
                 Where ideas
                 <br />
-                become{" "}
-                <span
-                  style={{
-                    color: "#7DD3E7",
-                  }}
-                >
-                  action.
-                </span>
+                become <span style={{ color: COLORS.blue }}>action.</span>
               </h2>
-
-              {/* Description */}
-              <p
-                className="
-                  mt-7
-                  max-w-[470px]
-                  text-[14px]
-                  leading-6
-                  sm:text-[15px]
-                  sm:leading-7
-                "
-                style={{
-                  color: "rgba(255,255,255,0.54)",
-                }}
-              >
-                The technology core represents the
-                interconnected ecosystem of people,
-                ideas and technologies driving the next
-                generation of enterprise leadership.
+              <p className="mt-7 max-w-[560px] text-[16px] leading-7 sm:text-[18px] sm:leading-8" style={{ color: COLORS.muted }}>
+                A welcoming space for senior technology leaders to share experiences,
+                discover practical ideas and build meaningful business connections.
               </p>
-
-              {/* Topics */}
-              <div className="mt-8 flex flex-wrap gap-2">
-                {[
-                  "AI",
-                  "CLOUD",
-                  "DATA",
-                  "SECURITY",
-                  "LEADERSHIP",
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className={`${mono.className}
-                      border
-                      px-3
-                      py-2
-                      text-[7px]
-                      uppercase
-                      tracking-[0.14em]
-                      transition-colors
-                      duration-300
-                    `}
-                    style={{
-                      borderColor:
-                        "rgba(255,255,255,0.12)",
-                      color:
-                        "rgba(255,255,255,0.48)",
-                    }}
-                  >
+              <div className="mt-8 flex flex-wrap gap-3">
+                {['AI', 'Cloud & Data', 'Cybersecurity', 'Innovation', 'Leadership'].map((item) => (
+                  <span key={item} className="rounded-full border px-5 py-2.5 text-[13px] font-medium" style={{ borderColor: COLORS.line, color: COLORS.navy, background: COLORS.ivory }}>
                     {item}
                   </span>
                 ))}
               </div>
-
-              {/* Bottom statement */}
-              <div className="mt-10 flex items-center gap-3">
-                <span
-                  aria-hidden="true"
-                  className="h-px w-10"
-                  style={{
-                    background:
-                      "rgba(255,255,255,0.25)",
-                  }}
-                />
-
-                <p
-                  className={`${mono.className} text-[8px] uppercase tracking-[0.22em]`}
-                  style={{
-                    color:
-                      "rgba(255,255,255,0.38)",
-                  }}
-                >
-                  People × Ideas × Technology
-                </p>
-              </div>
             </motion.div>
 
-            {/* =========================================
-                RIGHT — HUMAN IMAGE
-            ========================================= */}
-            <motion.div
-              variants={reveal}
-              className="
-                relative
-                min-h-[380px]
-                sm:min-h-[460px]
-                lg:min-h-[540px]
-              "
-            >
-              {/* Main image frame */}
-              <div
-                className="
-                  absolute
-                  inset-0
-                  overflow-hidden
-                  rounded-[26px]
-                  border
-                "
-                style={{
-                  borderColor:
-                    "rgba(255,255,255,0.10)",
-                  background: "#081925",
-                  boxShadow:
-                    "0 30px 100px rgba(0,0,0,0.30)",
-                }}
-              >
-                {/* Image */}
-                <Image
-                  src="/images/technology-leadership.png"
-                  alt="Technology leaders discussing enterprise innovation"
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  className="
-                    object-cover
-                    object-center
-                    transition-transform
-                    duration-[1200ms]
-                    ease-out
-                    hover:scale-[1.025]
-                    motion-reduce:transition-none
-                    motion-reduce:hover:scale-100
-                  "
-                />
-
-                {/* Dark cinematic overlay */}
-                <div
-                  aria-hidden="true"
-                  className="
-                    pointer-events-none
-                    absolute
-                    inset-0
-                  "
-                  style={{
-                    background: `
-                      linear-gradient(
-                        90deg,
-                        rgba(6,21,34,0.40) 0%,
-                        rgba(6,21,34,0.08) 45%,
-                        rgba(6,21,34,0.18) 100%
-                      ),
-                      linear-gradient(
-                        180deg,
-                        rgba(6,21,34,0.05) 40%,
-                        rgba(6,21,34,0.58) 100%
-                      )
-                    `,
-                  }}
-                />
-
-                {/* Subtle cyan light */}
-                <div
-                  aria-hidden="true"
-                  className="
-                    pointer-events-none
-                    absolute
-                    -right-20
-                    top-1/3
-                    h-56
-                    w-56
-                    rounded-full
-                    blur-[100px]
-                  "
-                  style={{
-                    background:
-                      "rgba(85,199,220,0.10)",
-                  }}
-                />
-
-                {/* Image label */}
-                <div
-                  className="
-                    absolute
-                    left-5
-                    top-5
-                    sm:left-7
-                    sm:top-7
-                  "
-                >
-                  <div className="flex items-center gap-3">
-                    <span
-                      aria-hidden="true"
-                      className="h-px w-6"
-                      style={{
-                        background:
-                          "rgba(125,211,231,0.75)",
-                      }}
-                    />
-
-                    <span
-                      className={`${mono.className} text-[7px] uppercase tracking-[0.2em]`}
-                      style={{
-                        color:
-                          "rgba(255,255,255,0.65)",
-                      }}
-                    >
-                      Enterprise leadership
-                    </span>
-                  </div>
+            <motion.div variants={reveal} className="relative min-h-[360px] sm:min-h-[460px] lg:min-h-[560px]">
+              <div className="absolute inset-0 overflow-hidden rounded-[28px] bg-[#F3F7F9] shadow-[0_24px_70px_rgba(6,21,34,0.10)]">
+                <Image src="/images/technology-leadership.png" alt="Technology leaders discussing enterprise innovation" fill loading="lazy" sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover object-center transition-transform duration-[1000ms] ease-out hover:scale-[1.02]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                <div className="absolute left-6 top-6 rounded-full bg-white/90 px-5 py-2.5 shadow-sm backdrop-blur-sm">
+                  <p className="text-[13px] font-semibold text-[#08243B]">Executive Leadership</p>
                 </div>
-
-                {/* Bottom image caption */}
-                <div
-                  className="
-                    absolute
-                    bottom-5
-                    left-5
-                    right-5
-                    flex
-                    items-end
-                    justify-between
-                    sm:bottom-7
-                    sm:left-7
-                    sm:right-7
-                  "
-                >
-                  <div>
-                    <p
-                      className={`${mono.className} text-[7px] uppercase tracking-[0.2em]`}
-                      style={{
-                        color:
-                          "rgba(255,255,255,0.45)",
-                      }}
-                    >
-                      PEOPLE
-                    </p>
-
-                    <p
-                      className="
-                        mt-1
-                        text-[18px]
-                        font-medium
-                        tracking-[-0.02em]
-                        text-white
-                        sm:text-[21px]
-                      "
-                    >
-                      Ideas in motion.
-                    </p>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="inline-block rounded-2xl bg-white/92 px-6 py-4 shadow-sm backdrop-blur-sm">
+                    <p className="text-[12px] font-semibold uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>CIO Tech Delhi 2026</p>
+                    <p className="mt-1 text-[18px] font-semibold text-[#08243B]">Connect. Learn. Lead.</p>
                   </div>
-
-                  {/* Small index */}
-                  <div
-                    aria-hidden="true"
-                    className="
-                      flex
-                      h-9
-                      w-9
-                      items-center
-                      justify-center
-                      rounded-full
-                      border
-                    "
-                    style={{
-                      borderColor:
-                        "rgba(255,255,255,0.20)",
-                      background:
-                        "rgba(6,21,34,0.35)",
-                      backdropFilter:
-                        "blur(10px)",
-                    }}
-                  >
-                    <span
-                      className={`${mono.className} text-[7px]`}
-                      style={{
-                        color:
-                          "rgba(255,255,255,0.65)",
-                      }}
-                    >
-                      01
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Small editorial image detail */}
-              <div
-                aria-hidden="true"
-                className="
-                  pointer-events-none
-                  absolute
-                  -bottom-5
-                  -left-5
-                  hidden
-                  h-24
-                  w-32
-                  rounded-xl
-                  border
-                  lg:block
-                "
-                style={{
-                  borderColor:
-                    "rgba(255,255,255,0.10)",
-                  background:
-                    "rgba(8,25,37,0.75)",
-                  backdropFilter:
-                    "blur(14px)",
-                }}
-              >
-                <div className="flex h-full flex-col justify-between p-4">
-                  <span
-                    className={`${mono.className} text-[6px] uppercase tracking-[0.18em]`}
-                    style={{
-                      color:
-                        "rgba(255,255,255,0.35)",
-                    }}
-                  >
-                    2026
-                  </span>
-
-                  <span
-                    className={`${mono.className} text-[6px] uppercase tracking-[0.15em]`}
-                    style={{
-                      color: COLORS.cyan,
-                    }}
-                  >
-                    Future / Now
-                  </span>
                 </div>
               </div>
             </motion.div>
@@ -1424,7 +384,7 @@ function TechnologySection() {
         </motion.div>
       </div>
     </section>
-  );
+  )
 }
 
 /* =========================================================
@@ -1502,12 +462,12 @@ function FocusAreas() {
               <h2
                 className="
                   max-w-2xl
-                  text-[43px]
+                  text-[50px]
                   font-semibold
                   leading-[0.94]
                   tracking-[-0.06em]
-                  sm:text-[55px]
-                  lg:text-[66px]
+                  sm:text-[70px]
+                  lg:text-[82px]
                 "
                 style={{
                   color:
@@ -1532,9 +492,9 @@ function FocusAreas() {
             <div className="max-w-lg lg:ml-auto">
               <p
                 className="
-                  text-[14px]
+                  text-[16px]
                   leading-6
-                  sm:text-[15px]
+                  sm:text-[17px]
                   sm:leading-7
                 "
                 style={{
@@ -1604,7 +564,7 @@ function FocusAreas() {
 
                     <div className="flex items-start justify-between">
                       <span
-                        className={`${mono.className} text-[9px] font-semibold tracking-[0.12em]`}
+                        className={`${sans.className} text-[12px] font-semibold tracking-[0.12em]`}
                         style={{
                           color:
                             COLORS.blue,
@@ -1679,7 +639,7 @@ function FocusAreas() {
                       <p
                         className="
                           mt-3
-                          text-[11px]
+                          text-[13px]
                           leading-5
                         "
                         style={{
@@ -1695,7 +655,7 @@ function FocusAreas() {
 
                     <div className="mt-5 flex items-center justify-between">
                       <span
-                        className={`${mono.className} text-[7px] uppercase tracking-[0.15em]`}
+                        className={`${sans.className} text-[11px] uppercase tracking-[0.15em]`}
                         style={{
                           color:
                             COLORS.soft,
@@ -1822,7 +782,7 @@ function Mission() {
 
             <motion.div variants={reveal}>
               <p
-                className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em]`}
+                className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em]`}
                 style={{
                   color:
                     COLORS.blue,
@@ -1835,12 +795,12 @@ function Mission() {
                 className="
                   mt-4
                   max-w-3xl
-                  text-[45px]
+                  text-[54px]
                   font-semibold
                   leading-[0.93]
                   tracking-[-0.065em]
-                  sm:text-[58px]
-                  lg:text-[70px]
+                  sm:text-[66px]
+                  lg:text-[80px]
                 "
                 style={{
                   color:
@@ -1866,9 +826,9 @@ function Mission() {
                 className="
                   mt-6
                   max-w-xl
-                  text-[14px]
+                  text-[16px]
                   leading-6
-                  sm:text-[15px]
+                  sm:text-[17px]
                   sm:leading-7
                 "
                 style={{
@@ -1913,7 +873,7 @@ function Mission() {
                   }}
                 >
                   <p
-                    className={`${mono.className} text-[8px] uppercase tracking-[0.18em]`}
+                    className={`${sans.className} text-[12px] uppercase tracking-[0.18em]`}
                     style={{
                       color:
                         COLORS.blue,
@@ -1960,7 +920,7 @@ function Mission() {
                         }}
                       >
                         <span
-                          className={`${mono.className} text-[8px]`}
+                          className={`${sans.className} text-[12px]`}
                           style={{
                             color:
                               COLORS.blue,
@@ -1971,7 +931,7 @@ function Mission() {
 
                         <span
                           className="
-                            text-[12px]
+                            text-[14px]
                             transition-colors
                             duration-200
                           "
@@ -2040,7 +1000,7 @@ function Mission() {
                       font-semibold
                       leading-none
                       tracking-[-0.07em]
-                      sm:text-[62px]
+                      sm:text-[70px]
                     "
                     style={{
                       color:
@@ -2052,7 +1012,7 @@ function Mission() {
 
                   <div className="mt-3 flex items-center gap-3">
                     <span
-                      className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.18em]`}
+                      className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.18em]`}
                       style={{
                         color:
                           COLORS.blue,
@@ -2071,7 +1031,7 @@ function Mission() {
                     />
 
                     <span
-                      className="text-[9px]"
+                      className="text-[12px]"
                       style={{
                         color:
                           COLORS.soft,
@@ -2199,7 +1159,7 @@ function FinalCTA() {
           >
             <div>
               <p
-                className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em]`}
+                className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em]`}
                 style={{
                   color:
                     COLORS.cyan,
@@ -2212,13 +1172,13 @@ function FinalCTA() {
                 className="
                   mt-4
                   max-w-4xl
-                  text-[43px]
+                  text-[50px]
                   font-semibold
                   leading-[0.92]
                   tracking-[-0.065em]
                   text-white
-                  sm:text-[56px]
-                  lg:text-[74px]
+                  sm:text-[64px]
+                  lg:text-[82px]
                 "
               >
                 Connect with the
@@ -2239,9 +1199,9 @@ function FinalCTA() {
                 className="
                   mt-6
                   max-w-xl
-                  text-[14px]
+                  text-[16px]
                   leading-6
-                  sm:text-[15px]
+                  sm:text-[17px]
                   sm:leading-7
                 "
                 style={{
@@ -2275,7 +1235,7 @@ function FinalCTA() {
                 border
                 px-5
                 py-4
-                text-[10px]
+                text-[13px]
                 font-semibold
                 uppercase
                 tracking-[0.14em]
@@ -2351,7 +1311,7 @@ function FinalCTA() {
             }}
           >
             <span
-              className={`${mono.className} text-[7px] uppercase tracking-[0.18em]`}
+              className={`${sans.className} text-[11px] uppercase tracking-[0.18em]`}
               style={{
                 color:
                   'rgba(255,255,255,0.40)',
@@ -2361,7 +1321,7 @@ function FinalCTA() {
             </span>
 
             <span
-              className={`${mono.className} text-[7px] uppercase tracking-[0.18em]`}
+              className={`${sans.className} text-[11px] uppercase tracking-[0.18em]`}
               style={{
                 color:
                   'rgba(255,255,255,0.27)',
@@ -2371,7 +1331,7 @@ function FinalCTA() {
             </span>
 
             <span
-              className={`${mono.className} text-[7px] uppercase tracking-[0.18em]`}
+              className={`${sans.className} text-[11px] uppercase tracking-[0.18em]`}
               style={{
                 color:
                   'rgba(255,255,255,0.40)',
@@ -2422,7 +1382,7 @@ function EventVisual() {
           <span className="h-1.5 w-1.5 rounded-full bg-[#176B9C]" />
 
           <span
-            className={`${mono.className} text-[7px] font-semibold uppercase tracking-[0.2em] text-[#08243B]`}
+            className={`${sans.className} text-[11px] font-semibold uppercase tracking-[0.2em] text-[#08243B]`}
           >
             Event in Motion
           </span>
@@ -2433,12 +1393,12 @@ function EventVisual() {
       <div aria-hidden="true" className="absolute -bottom-5 -right-4 hidden sm:block">
         <div className="border border-[#D9E3E8] bg-white px-5 py-4 shadow-[0_18px_45px_rgba(8,36,59,0.12)]">
           <p
-            className={`${mono.className} text-[7px] font-semibold uppercase tracking-[0.2em] text-[#176B9C]`}
+            className={`${sans.className} text-[11px] font-semibold uppercase tracking-[0.2em] text-[#176B9C]`}
           >
             Where ideas meet
           </p>
 
-          <p className="mt-1.5 text-[13px] font-semibold tracking-[-0.025em] text-[#08243B]">
+          <p className="mt-1.5 text-[15px] font-semibold tracking-[-0.025em] text-[#08243B]">
             Leadership • Innovation
           </p>
         </div>
@@ -2466,7 +1426,7 @@ function AboutEvent() {
         >
           <motion.div variants={reveal} className="flex items-center gap-3">
             <span className="h-[6px] w-[6px] rounded-full bg-[#176B9C]" />
-            <span className={`${mono.className} text-[18px] font-semibold uppercase tracking-[0.22em] text-[#08243B]`}>
+            <span className={`${sans.className} text-[18px] font-semibold uppercase tracking-[0.22em] text-[#08243B]`}>
               About the event
             </span>
             <span aria-hidden="true" className="h-px w-10 bg-[#D9E3E8]" />
@@ -2475,7 +1435,7 @@ function AboutEvent() {
 
           <div className="mt-10 grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-16">
             <motion.div variants={reveal}>
-              <p className={`${mono.className} text-[9px] font-semibold uppercase tracking-[0.24em] text-[#176B9C]`}>
+              <p className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.24em] text-[#176B9C]`}>
                 The technology leadership platform
               </p>
 
@@ -2487,7 +1447,7 @@ function AboutEvent() {
                 <span className="text-[#176B9C]">A catalyst.</span>
               </h1>
 
-              <p className="mt-7 max-w-xl text-[14px] leading-6 text-[#607484] sm:text-[15px] sm:leading-7">
+              <p className="mt-7 max-w-xl text-[16px] leading-6 text-[#607484] sm:text-[17px] sm:leading-7">
                 CIO Tech Leadership Conference &amp; Awards brings together
                 senior technology decision-makers, innovators and business
                 leaders for focused conversations around the technologies,
@@ -2498,7 +1458,7 @@ function AboutEvent() {
                 {['AI', 'CYBERSECURITY', 'CLOUD', 'DATA', 'DIGITAL TRANSFORMATION'].map((item) => (
                   <span
                     key={item}
-                    className={`${mono.className} border border-[#D9E3E8] bg-[#F8FAFC] px-3 py-2 text-[7px] uppercase tracking-[0.14em] text-[#607484]`}
+                    className={`${sans.className} border border-[#D9E3E8] bg-[#F8FAFC] px-3 py-2 text-[11px] uppercase tracking-[0.14em] text-[#607484]`}
                   >
                     {item}
                   </span>
@@ -2507,8 +1467,8 @@ function AboutEvent() {
 
               <div className="mt-9 flex items-center gap-4">
                 <div aria-hidden="true" className="h-px w-12 bg-[#176B9C]" />
-                <p className={`${mono.className} text-[8px] uppercase tracking-[0.2em] text-[#91A1AD]`}>
-                  People × Ideas × Technology
+                <p className={`${sans.className} text-[12px] uppercase tracking-[0.2em] text-[#91A1AD]`}>
+                  People • Ideas • Connections
                 </p>
               </div>
             </motion.div>
@@ -2534,11 +1494,11 @@ function AboutEvent() {
                 </p>
 
                 <div className="mt-3 flex items-center gap-3">
-                  <span className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.18em] text-[#176B9C]`}>
+                  <span className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.18em] text-[#176B9C]`}>
                     {stat.label}
                   </span>
                   <span aria-hidden="true" className="h-px w-7 bg-[#D9E3E8]" />
-                  <span className="text-[9px] text-[#91A1AD]">{stat.caption}</span>
+                  <span className="text-[12px] text-[#91A1AD]">{stat.caption}</span>
                 </div>
               </div>
             ))}
@@ -2688,13 +1648,13 @@ function IndustryLandscape() {
                 </span>
 
                 <span
-                  className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-white/70`}
+                  className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em] text-white/70`}
                 >
                   Industry ecosystem
                 </span>
               </div>
 
-              <h2 className="mt-6 max-w-xl text-[46px] font-semibold leading-[0.93] tracking-[-0.065em] text-white sm:text-[60px] lg:text-[70px]">
+              <h2 className="mt-6 max-w-xl text-[54px] font-semibold leading-[0.93] tracking-[-0.065em] text-white sm:text-[60px] lg:text-[80px]">
                 One room.
                 <br />
                 <span className="text-[#7DD3E7]">
@@ -2711,7 +1671,7 @@ function IndustryLandscape() {
               <div className="max-w-2xl">
                 <div aria-hidden="true" className="mb-4 h-px w-10 bg-[#55C7DC]/50" />
 
-                <p className="max-w-2xl text-[14px] leading-6 text-white/60 sm:text-[15px] sm:leading-7">
+                <p className="max-w-2xl text-[16px] leading-6 text-white/60 sm:text-[17px] sm:leading-7">
                   The conversation extends across the sectors where
                   technology is creating new operating models,
                   customer experiences and competitive advantage.
@@ -2755,7 +1715,7 @@ function IndustryLandscape() {
                     backgroundColor: "rgba(85,199,220,0.07)",
                   }}
                   className={`
-                    ${mono.className}
+                    ${sans.className}
                     group
                     relative
                     overflow-hidden
@@ -2764,7 +1724,7 @@ function IndustryLandscape() {
                     bg-[#071b2a]/80
                     px-4
                     py-3
-                    text-[8px]
+                    text-[12px]
                     uppercase
                     tracking-[0.1em]
                     text-white/65
@@ -2772,7 +1732,7 @@ function IndustryLandscape() {
                     transition-colors
                     duration-300
                     hover:text-[#7DD3E7]
-                    sm:text-[9px]
+                    sm:text-[12px]
                   `}
                 >
                   {/* Hover light */}
@@ -2880,14 +1840,14 @@ function AboutBenefits() {
                 <span aria-hidden="true" className="h-[6px] w-[6px] rounded-full bg-[#176B9C] shadow-[0_0_10px_rgba(23,107,156,0.35)]" />
 
                 <p
-                  className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#176B9C]`}
+                  className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em] text-[#176B9C]`}
                 >
                   Why leaders attend
                 </p>
               </div>
 
               {/* Heading */}
-              <h2 className="mt-5 max-w-[800px] text-[46px] font-semibold leading-[0.92] tracking-[-0.07em] text-[#08243B] sm:text-[58px] lg:text-[70px]">
+              <h2 className="mt-5 max-w-[800px] text-[54px] font-semibold leading-[0.92] tracking-[-0.07em] text-[#08243B] sm:text-[66px] lg:text-[80px]">
                 Conversations that move
                 <br />
                 <span className="text-[#176B9C]">
@@ -2899,7 +1859,7 @@ function AboutBenefits() {
               <div className="mt-7 flex flex-col items-center gap-3">
                 <div aria-hidden="true" className="h-px w-10 bg-[#55C7DC]" />
 
-                <p className="max-w-[600px] text-[14px] leading-6 text-[#607484] sm:text-[15px] sm:leading-7">
+                <p className="max-w-[600px] text-[16px] leading-6 text-[#607484] sm:text-[17px] sm:leading-7">
                   From boardroom priorities to emerging technology,
                   the experience is designed around the questions
                   senior leaders are actually solving today.
@@ -2917,13 +1877,13 @@ function AboutBenefits() {
             className="mt-14 flex items-center justify-between border-y border-[#D9E3E8] py-4"
           >
             <span
-              className={`${mono.className} text-[7px] uppercase tracking-[0.22em] text-[#78909E]`}
+              className={`${sans.className} text-[11px] uppercase tracking-[0.22em] text-[#78909E]`}
             >
               What the room gives you
             </span>
 
             <span
-              className={`${mono.className} hidden text-[7px] uppercase tracking-[0.22em] text-[#176B9C] sm:block`}
+              className={`${sans.className} hidden text-[11px] uppercase tracking-[0.22em] text-[#176B9C] sm:block`}
             >
               04 leadership outcomes
             </span>
@@ -2969,7 +1929,7 @@ function AboutBenefits() {
 
                   <div className="flex items-start justify-between">
                     <span
-                      className={`${mono.className} text-[9px] font-semibold tracking-[0.16em] text-[#176B9C]`}
+                      className={`${sans.className} text-[12px] font-semibold tracking-[0.16em] text-[#176B9C]`}
                     >
                       {benefit.number}
                     </span>
@@ -2986,7 +1946,7 @@ function AboutBenefits() {
                       {benefit.title}
                     </h3>
 
-                    <p className="mt-3 max-w-[250px] text-[11px] leading-5 text-[#607484]">
+                    <p className="mt-3 max-w-[250px] text-[13px] leading-5 text-[#607484]">
                       {benefit.text}
                     </p>
                   </div>
@@ -2999,7 +1959,7 @@ function AboutBenefits() {
 
                   <span
                     aria-hidden="true"
-                    className={`${mono.className} absolute bottom-5 right-6 text-[26px] font-medium tracking-[-0.05em] text-[#08243B]/[0.035] transition-colors duration-300 group-hover:text-[#176B9C]/[0.08]`}
+                    className={`${sans.className} absolute bottom-5 right-6 text-[26px] font-medium tracking-[-0.05em] text-[#08243B]/[0.035] transition-colors duration-300 group-hover:text-[#176B9C]/[0.08]`}
                   >
                     {String(index + 1).padStart(2, "0")}
                   </span>
@@ -3191,7 +2151,7 @@ function AboutCTA() {
                 </span>
 
                 <p
-                  className={`${mono.className} text-[8px] font-semibold uppercase tracking-[0.22em] text-[#55C7DC]`}
+                  className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em] text-[#55C7DC]`}
                 >
                   CIO TECH / 2026
                 </p>
@@ -3216,7 +2176,7 @@ function AboutCTA() {
                   duration: 0.8,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="mt-6 max-w-[650px] text-[46px] font-semibold leading-[0.91] tracking-[-0.07em] text-white sm:text-[62px] lg:text-[76px]"
+                className="mt-6 max-w-[650px] text-[54px] font-semibold leading-[0.91] tracking-[-0.07em] text-white sm:text-[70px] lg:text-[84px]"
               >
                 The right room
                 <br />
@@ -3245,7 +2205,7 @@ function AboutCTA() {
                   delay: 0.18,
                   duration: 0.7,
                 }}
-                className="mt-7 max-w-[510px] text-[14px] leading-6 text-white/55 sm:text-[15px] sm:leading-7"
+                className="mt-7 max-w-[510px] text-[16px] leading-6 text-white/55 sm:text-[17px] sm:leading-7"
               >
                 Join a focused community of technology leaders,
                 innovators and decision-makers shaping the next
@@ -3277,7 +2237,7 @@ function AboutCTA() {
                 className="group mt-8 inline-flex min-w-[245px] items-center justify-between gap-8 border border-white/15 bg-[#071b2a]/80 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC]/50 hover:bg-[#55C7DC]/[0.07] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#55C7DC] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
               >
                 <span
-                  className={`${mono.className} text-[9px] font-semibold uppercase tracking-[0.14em] text-white`}
+                  className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.14em] text-white`}
                 >
                   Attend as Delegate
                 </span>
@@ -3315,13 +2275,13 @@ function AboutCTA() {
               >
                 <div className="border border-white/10 bg-[#061522]/50 px-5 py-4 backdrop-blur-md">
                   <p
-                    className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-white/35`}
+                    className={`${sans.className} text-[11px] uppercase tracking-[0.2em] text-white/35`}
                   >
                     PEOPLE
                   </p>
 
                   <p
-                    className={`${mono.className} mt-2 text-[9px] uppercase tracking-[0.16em] text-[#55C7DC]`}
+                    className={`${sans.className} mt-2 text-[12px] uppercase tracking-[0.16em] text-[#55C7DC]`}
                   >
                     IDEAS × TECHNOLOGY
                   </p>
@@ -3338,9 +2298,9 @@ function AboutCTA() {
                 <span aria-hidden="true" className="h-px w-12 bg-[#55C7DC]/40" />
 
                 <span
-                  className={`${mono.className} text-[7px] uppercase tracking-[0.2em] text-white/35`}
+                  className={`${sans.className} text-[11px] uppercase tracking-[0.2em] text-white/35`}
                 >
-                  PEOPLE × IDEAS × TECHNOLOGY
+                  PEOPLE • IDEAS • CONNECTIONS
                 </span>
               </div>
             </div>
@@ -3368,19 +2328,19 @@ function AboutCTA() {
           >
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <span
-                className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/35`}
+                className={`${sans.className} text-[11px] uppercase tracking-[0.18em] text-white/35`}
               >
                 CIO TECH / DELHI / 2026
               </span>
 
               <span
-                className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/25`}
+                className={`${sans.className} text-[11px] uppercase tracking-[0.18em] text-white/25`}
               >
-                People × Ideas × Technology
+                People • Ideas • Connections
               </span>
 
               <span
-                className={`${mono.className} text-[7px] uppercase tracking-[0.18em] text-white/35`}
+                className={`${sans.className} text-[11px] uppercase tracking-[0.18em] text-white/35`}
               >
                 END / ABOUT
               </span>

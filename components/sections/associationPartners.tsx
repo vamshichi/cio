@@ -59,6 +59,11 @@ const StrategicTechnologyPartners = [
   },
 ];
 
+const BroadcastPartner = {
+  name: "Broadcast Partner",
+  logo: "/partners/Broadcast.png",
+};
+
 /* ==========================================================================
    ANIMATION
 ============================================================================ */
@@ -322,6 +327,72 @@ function StrategicPartnerCard() {
   );
 }
 
+function BroadcastPartnerCard() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      {...fadeUp(0.12)}
+      whileHover={
+        reduceMotion
+          ? undefined
+          : {
+              y: -4,
+              transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+            }
+      }
+    >
+      {/* <CornerBrackets /> */}
+
+      {/* Accent */}
+      <div
+        className=""
+        style={{ background: `linear-gradient(90deg, transparent, ${COLORS.teal}, transparent)` }}
+      />
+
+      {/* Logo stage — enlarged */}
+      <div className="relative flex min-h-[260px] items-center justify-center px-8 py-12">
+        <div
+          className=""
+          style={{ background: COLORS.tealGlow }}
+        />
+
+        <div
+          className=""
+          style={{ borderColor: COLORS.lineStrong, background: "rgba(246,249,248,0.03)" }}
+        >
+          <Image
+            src={BroadcastPartner.logo}
+            alt={BroadcastPartner.name}
+            width={560}
+            height={260}
+            className="max-h-[120px] w-auto max-w-[380px] object-contain transition-transform duration-300 group-hover:scale-[1.04]"
+          />
+        </div>
+      </div>
+
+      {/* Footer */}
+      {/* <div className="border-t px-5 py-5 sm:px-7" style={{ borderColor: COLORS.line }}>
+        <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-4">
+          <p
+            className={`${display.className} text-[13px] font-semibold uppercase tracking-[0.1em]`}
+            style={{ color: COLORS.cream }}
+          >
+            {broadcastPartner.name}
+          </p>
+          <span className="hidden h-1 w-1 rounded-full sm:block" style={{ background: COLORS.teal }} />
+          <p
+            className={`${sans.className} text-[11px] uppercase tracking-[0.12em]`}
+            style={{ color: COLORS.tealLight }}
+          >
+            Broadcast Partner
+          </p>
+        </div>
+      </div> */}
+    </motion.div>
+  );
+}
+
 /* ==========================================================================
    MAIN SECTION
 ============================================================================ */
@@ -402,6 +473,12 @@ export default function PartnersSection() {
           <SectionLabel>Strategic Partner</SectionLabel>
           <StrategicPartnerCard />
         </div>
+      </div>
+
+      {/* BROADCAST PARTNER */}
+      <div className="mb-14 sm:mb-16">
+        <SectionLabel>Broadcast Partner</SectionLabel>
+        <BroadcastPartnerCard />
       </div>
 
       {/* BOTTOM GLOW */}
