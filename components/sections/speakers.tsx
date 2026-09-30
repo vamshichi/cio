@@ -52,6 +52,18 @@ const speakers = [
     title: 'Group Chief Digital and Information officer',
     company: 'Gujarat Fluorochemicals Limited',
     image: '/speakers/Saurabh.png',
+  },
+  {
+    name: 'Sushil Meher',
+    title: 'CIO & CISO',
+    company: 'AIIMS',
+    image: '/speakers/Sushil Meher.jpg',
+  },
+  {
+    name: 'Shobit Agarwal',
+    title: ' Director AI/ML Data Engineering ',
+    company: 'Mastercard',
+    image: '/speakers/Rohit Kumar.png',
   }
   
   
