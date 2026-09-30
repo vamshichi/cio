@@ -63,9 +63,14 @@ const speakers = [
     name: 'Shobit Agarwal',
     title: ' Director AI/ML Data Engineering ',
     company: 'Mastercard',
-    image: '/speakers/Rohit Kumar.png',
+    image: '/speakers/Shobit Agarwal.png',
+  },
+  {
+    name: 'Lt. Rajesh Pant',
+    title: 'Chairman',
+    company: ' Cyber Security Association of India',
+    image: '/speakers/Rajesh Pant.png',
   }
-  
   
 
   // Add more speakers here
@@ -547,7 +552,7 @@ export function Speakers() {
         </motion.div>
 
         {/* Speaker grid */}
-        <div className="mt-14 grid gap-6 sm:mt-16 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-14 grid gap-5 sm:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {speakers.map((speaker, index) => (
             <SpeakerCard
               key={speaker.name}
