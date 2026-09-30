@@ -57,7 +57,7 @@ const speakers = [
     name: 'Sushil Meher',
     title: 'CIO & CISO',
     company: 'AIIMS',
-    image: '/speakers/Sushil Meher.jpg',
+    image: '/speakers/Sushil Meher.png',
   },
   {
     name: 'Shobit Agarwal',
