@@ -278,143 +278,143 @@ function SpeakerCard({
   )
 }
 
-function MoreSpeakersCard() {
-  const reduceMotion = useReducedMotion()
+// function MoreSpeakersCard() {
+//   const reduceMotion = useReducedMotion()
 
-  return (
-    <motion.article
-      {...fadeUp(speakers.length * 0.12)}
-      whileHover={
-        reduceMotion
-          ? undefined
-          : {
-              y: -8,
-              transition: {
-                duration: 0.35,
-                ease: [0.22, 1, 0.36, 1],
-              },
-            }
-      }
-      className="group relative"
-    >
-      <div
-        className="
-          absolute
-          -inset-1
-          rounded-[28px]
-          bg-[#176B9C]/15
-          opacity-0
-          blur-2xl
-          transition-opacity
-          duration-500
-          group-hover:opacity-100
-        "
-      />
+//   return (
+//     <motion.article
+//       {...fadeUp(speakers.length * 0.12)}
+//       whileHover={
+//         reduceMotion
+//           ? undefined
+//           : {
+//               y: -8,
+//               transition: {
+//                 duration: 0.35,
+//                 ease: [0.22, 1, 0.36, 1],
+//               },
+//             }
+//       }
+//       className="group relative"
+//     >
+//       <div
+//         className="
+//           absolute
+//           -inset-1
+//           rounded-[28px]
+//           bg-[#176B9C]/15
+//           opacity-0
+//           blur-2xl
+//           transition-opacity
+//           duration-500
+//           group-hover:opacity-100
+//         "
+//       />
 
-      <div
-        className="
-          relative
-          flex
-          min-h-full
-          flex-col
-          overflow-hidden
-          rounded-[24px]
-          border
-          border-[#D9E3E8]
-          bg-[#08243B]
-          p-7
-          text-white
-          transition-all
-          duration-500
-          group-hover:border-[#55C7DC]/40
-          group-hover:shadow-[0_25px_60px_rgba(8,36,59,0.16)]
-          sm:p-8
-        "
-      >
-        {/* Background glow */}
-        <div
-          className="
-            pointer-events-none
-            absolute
-            -right-24
-            -top-24
-            h-64
-            w-64
-            rounded-full
-            bg-[#176B9C]/20
-            blur-3xl
-            transition-transform
-            duration-700
-            group-hover:scale-125
-          "
-        />
+//       <div
+//         className="
+//           relative
+//           flex
+//           min-h-full
+//           flex-col
+//           overflow-hidden
+//           rounded-[24px]
+//           border
+//           border-[#D9E3E8]
+//           bg-[#08243B]
+//           p-7
+//           text-white
+//           transition-all
+//           duration-500
+//           group-hover:border-[#55C7DC]/40
+//           group-hover:shadow-[0_25px_60px_rgba(8,36,59,0.16)]
+//           sm:p-8
+//         "
+//       >
+//         {/* Background glow */}
+//         <div
+//           className="
+//             pointer-events-none
+//             absolute
+//             -right-24
+//             -top-24
+//             h-64
+//             w-64
+//             rounded-full
+//             bg-[#176B9C]/20
+//             blur-3xl
+//             transition-transform
+//             duration-700
+//             group-hover:scale-125
+//           "
+//         />
 
-        <div className="relative flex flex-1 flex-col items-center justify-center py-12 text-center">
-          {/* Plus */}
-          <div className="relative">
-            <div
-              className="
-                absolute
-                -inset-4
-                rounded-full
-                border
-                border-[#55C7DC]/10
-                transition-transform
-                duration-700
-                group-hover:scale-125
-              "
-            />
+//         <div className="relative flex flex-1 flex-col items-center justify-center py-12 text-center">
+//           {/* Plus */}
+//           <div className="relative">
+//             <div
+//               className="
+//                 absolute
+//                 -inset-4
+//                 rounded-full
+//                 border
+//                 border-[#55C7DC]/10
+//                 transition-transform
+//                 duration-700
+//                 group-hover:scale-125
+//               "
+//             />
 
-            <div
-              className="
-                relative
-                flex
-                h-16
-                w-16
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-[#55C7DC]/35
-                bg-[#55C7DC]/10
-                transition-all
-                duration-500
-                group-hover:border-[#55C7DC]/70
-                group-hover:bg-[#55C7DC]/15
-              "
-            >
-              <span className="text-3xl font-light text-[#7DD3E7]">
-                +
-              </span>
-            </div>
-          </div>
+//             <div
+//               className="
+//                 relative
+//                 flex
+//                 h-16
+//                 w-16
+//                 items-center
+//                 justify-center
+//                 rounded-full
+//                 border
+//                 border-[#55C7DC]/35
+//                 bg-[#55C7DC]/10
+//                 transition-all
+//                 duration-500
+//                 group-hover:border-[#55C7DC]/70
+//                 group-hover:bg-[#55C7DC]/15
+//               "
+//             >
+//               <span className="text-3xl font-light text-[#7DD3E7]">
+//                 +
+//               </span>
+//             </div>
+//           </div>
 
-          <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">
-            More Speakers
-          </h3>
+//           <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">
+//             More Speakers
+//           </h3>
 
-          <p className="mt-3 max-w-[240px] text-[11px] leading-5 text-white/50">
-            More technology leaders and industry voices will be announced soon.
-          </p>
-        </div>
+//           <p className="mt-3 max-w-[240px] text-[11px] leading-5 text-white/50">
+//             More technology leaders and industry voices will be announced soon.
+//           </p>
+//         </div>
 
-        <div className="relative border-t border-white/10 pt-5 text-center">
-          <p
-            className="
-              text-[8px]
-              font-semibold
-              uppercase
-              tracking-[0.2em]
-              text-[#7DD3E7]
-            "
-          >
-            The conversation continues
-          </p>
-        </div>
-      </div>
-    </motion.article>
-  )
-}
+//         <div className="relative border-t border-white/10 pt-5 text-center">
+//           <p
+//             className="
+//               text-[8px]
+//               font-semibold
+//               uppercase
+//               tracking-[0.2em]
+//               text-[#7DD3E7]
+//             "
+//           >
+//             The conversation continues
+//           </p>
+//         </div>
+//       </div>
+//     </motion.article>
+//   )
+// }
 
 export function Speakers() {
   return (
