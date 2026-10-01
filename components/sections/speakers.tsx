@@ -70,6 +70,12 @@ const speakers = [
     title: 'Chairman',
     company: ' Cyber Security Association of India',
     image: '/speakers/Rajesh Pant.png',
+  },
+  {
+    name: 'Pramod Krs Palla',
+    title: 'Founder | CEO & CTO',
+    company: 'RuleGrid (Beauto Systems)',
+    image: '/speakers/Pramod Krs Palla.png',
   }
   
 
