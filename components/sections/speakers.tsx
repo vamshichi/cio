@@ -561,7 +561,7 @@ export function Speakers() {
             />
           ))}
 
-          <MoreSpeakersCard />
+          {/* <MoreSpeakersCard /> */}
         </div>
 
         {/* Bottom event message */}
