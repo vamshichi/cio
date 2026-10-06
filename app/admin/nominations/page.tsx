@@ -47,6 +47,9 @@ export default async function NominationsPage() {
               </th>
 
               <th className="p-4 text-left text-white">
+                Number
+              </th>
+              <th className="p-4 text-left text-white">
                 Date
               </th>
 
@@ -80,6 +83,10 @@ export default async function NominationsPage() {
 
                 <td className="p-4 text-slate-300">
                   {nomination.nominatorEmail}
+                </td>
+
+                <td className="p-4 text-slate-300">
+                  {nomination.nominatorPhone}
                 </td>
 
                 <td className="p-4 text-slate-300">
