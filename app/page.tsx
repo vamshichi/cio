@@ -2,7 +2,7 @@
 
 import { Header } from '@/components/sections/header'
 import { Hero } from '@/components/sections/hero'
-import  About  from '@/components/sections/about'
+import About from '@/components/sections/about'
 // import { Agenda } from '@/components/sections/mainAgenda'
 import { Speakers } from '@/components/sections/speakers'
 import { Partners } from '@/components/sections/partners'
@@ -10,16 +10,19 @@ import { Awards } from '@/components/sections/awards'
 import { Contact } from '@/components/sections/contact'
 import { Footer } from '@/components/sections/footer'
 // import { Sponsors } from '@/components/sections/sponsors'
-import Gallery  from '@/components/sections/Gallery'
+import Gallery from '@/components/sections/Gallery'
 import AssociationPartners from '@/components/sections/associationPartners'
 // import ChiefGuestSection from '@/components/sections/ChiefGuestSection'
-import { Agenda }from "@/components/sections/AgendaSection"
+import { Agenda } from "@/components/sections/AgendaSection"
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema'
+import WhyNow from '@/components/sections/WhyNow'
+import WhoAttends from '@/components/sections/WhoAttends'
+import AgendaPillars from '@/components/sections/AgendaPillars'
 
 export default function Home() {
   return (
     <>
-     <BreadcrumbSchema
+      <BreadcrumbSchema
         name="CIO Tech Leadership Conference & Awards"
         url="https://ciotech.in/"
       />
@@ -28,11 +31,14 @@ export default function Home() {
         <Hero />
         {/* <ChiefGuestSection /> */}
         <About />
+        <WhyNow />
+        <WhoAttends />
+        <AgendaPillars />
         {/* <Agenda /> */}
         <Speakers />
         <AssociationPartners />
         <Partners />
-        
+
         {/* <Sponsors /> */}
         <Awards />
         <Gallery />

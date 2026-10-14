@@ -1,2378 +1,561 @@
-'use client'
+
+
+"use client";
+
+
+
+import Image from "next/image";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import {
-  motion,
-  Variants,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-} from 'framer-motion'
 
-import { Poppins } from 'next/font/google'
+  FiArrowDownRight,
 
-import {
   FiArrowUpRight,
-  FiCheck,
-  FiCloud,
-  FiCpu,
+
+
+  FiDatabase,
+
   FiShield,
-  FiTarget,
-  FiUsers,
-  FiZap,
-  FiBriefcase,
-  FiLayers,
+
   FiTrendingUp,
-} from 'react-icons/fi'
 
-import Image from 'next/image'
-
-/* =========================================================
-   FONTS
-========================================================= */
-
-const sans = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-})
+} from "react-icons/fi";
 
 
-/* =========================================================
-   CIO TECH — EXECUTIVE EDITORIAL DESIGN SYSTEM
-========================================================= */
 
-const COLORS = {
-  // Core
-  midnight: '#061522',
-  navy: '#08243B',
-  navyLight: '#103A5B',
+const priorities = [
 
-  // Accent
-  blue: '#176B9C',
-  cyan: '#55C7DC',
-
-  // Neutral
-  white: '#FFFFFF',
-  ivory: '#F8FAFC',
-  mist: '#EDF3F6',
-
-  // Typography
-  ink: '#081A29',
-  muted: '#607484',
-  soft: '#91A1AD',
-
-  // Borders
-  line: '#D9E3E8',
-}
-
-/* =========================================================
-   DATA
-========================================================= */
-
-const focusAreas = [
   {
-    number: '01',
-    code: 'AI-01',
-    title: 'AI-Led',
-    subtitle: 'Enterprise',
+
+    number: "01",
+
+    title: "Build the foundation",
+
+    category: "DATA & INFRASTRUCTURE",
+
     description:
-      'Exploring how artificial intelligence is reshaping enterprise strategy, operations and decision-making.',
-    icon: FiCpu,
+
+      "Connect enterprise data, systems and infrastructure to create a reliable foundation for AI at scale.",
+
+    icon: FiDatabase,
+
   },
+
   {
-    number: '02',
-    code: 'CL-02',
-    title: 'Cloud, Data',
-    subtitle: '& FinOps',
+
+    number: "02",
+
+    title: "Establish trust",
+
+    category: "SECURITY & GOVERNANCE",
+
     description:
-      'Building scalable, intelligent and financially responsible digital infrastructure.',
-    icon: FiCloud,
-  },
-  {
-    number: '03',
-    code: 'CY-03',
-    title: 'Cybersecurity',
-    subtitle: '& Resilience',
-    description:
-      'Strengthening digital trust, enterprise security and organisational resilience.',
+
+      "Make security, regulatory compliance and responsible AI integral to every deployment.",
+
     icon: FiShield,
+
   },
+
   {
-    number: '04',
-    code: 'CX-04',
-    title: 'Customer',
-    subtitle: 'Experience',
+
+    number: "03",
+
+    title: "Prove the value",
+
+    category: "BUSINESS TRANSFORMATION",
+
     description:
-      'Connecting technology innovation with meaningful customer and business outcomes.',
-    icon: FiZap,
-  },
-  {
-    number: '05',
-    code: 'LD-05',
-    title: 'CIO',
-    subtitle: 'Leadership',
-    description:
-      'Creating stronger connections between technology leadership and business strategy.',
-    icon: FiTarget,
-  },
-]
 
-const leadershipPoints = [
-  'Senior technology leadership conversations',
-  'Enterprise technology perspectives',
-  'Peer-to-peer knowledge exchange',
-  'Strategic business connections',
-]
+      "Translate AI investments into measurable outcomes, operational improvements and business impact.",
 
-const metrics = [
-  {
-    number: '20+',
-    label: 'SPEAKERS',
-    caption: 'Industry perspectives',
-  },
-  {
-    number: '200+',
-    label: 'DELEGATES',
-    caption: 'Technology leaders',
-  },
-  {
-    number: '40+',
-    label: 'MEETINGS',
-    caption: 'Strategic connections',
-  },
-]
-
-const industries = [
-  'Banking & Financial Services',
-  'Insurance',
-  'FinTech',
-  'Manufacturing',
-  'Automotive',
-  'Healthcare',
-  'IT & Technology',
-  'Telecom',
-  'Retail & E-commerce',
-  'Energy & Utilities',
-  'Infrastructure',
-  'Logistics & Transportation',
-  'Government & Public Sector',
-  'Media & Entertainment',
-  'Real Estate',
-  'Education',
-  'Travel & Hospitality',
-  'Consumer & FMCG',
-]
-
-const aboutBenefits = [
-  {
-    number: '01',
-    title: 'Gain Insights',
-    text: 'Hear real-world perspectives on emerging technologies, enterprise transformation and the decisions shaping tomorrow.',
     icon: FiTrendingUp,
+
   },
+
+];
+
+
+
+const journey = [
+
   {
-    number: '02',
-    title: 'Build Connections',
-    text: 'Meet senior technology leaders, peers and solution partners in a focused executive environment.',
-    icon: FiUsers,
+
+    number: "01",
+
+    label: "THE PILOT",
+
+    title: "It works in isolation.",
+
+    description:
+
+      "Promising experiments demonstrate what AI can achieve.",
+
+    status: "PROVEN POTENTIAL",
+
   },
+
   {
-    number: '03',
-    title: 'Discover Solutions',
-    text: 'Explore practical ideas, platforms and technologies designed around real business challenges.',
-    icon: FiLayers,
+
+    number: "02",
+
+    label: "THE CHALLENGE",
+
+    title: "Can it work everywhere?",
+
+    description:
+
+      "Data, security, governance and operating models determine what scales.",
+
+    status: "THE CRITICAL GAP",
+
   },
+
   {
-    number: '04',
-    title: 'Create Opportunity',
-    text: 'Turn meaningful conversations into partnerships, collaborations and strategic relationships.',
-    icon: FiBriefcase,
+
+    number: "03",
+
+    label: "THE OUTCOME",
+
+    title: "Built for production.",
+
+    description:
+
+      "Enterprise-wide deployment delivers accountable, measurable value.",
+
+    status: "THE OBJECTIVE",
+
   },
-]
 
-/* =========================================================
-   ANIMATION
-========================================================= */
+];
 
-const reveal: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 22,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.65,
-      ease: 'easeOut',
-    },
-  },
-}
 
-const stagger: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.07,
-    },
-  },
-}
 
-/* =========================================================
-   SECTION LABEL
-========================================================= */
+export default function AboutEvent() {
 
-function SectionLabel({
-  label,
-  number,
-  dark = false,
-}: {
-  label: string
-  number: string
-  dark?: boolean
-}) {
+  const reduceMotion = useReducedMotion();
+
+  const imageRef = useRef<HTMLDivElement>(null);
+
+const { scrollYProgress } = useScroll({
+  target: imageRef,
+  offset: ["start end", "end start"],
+});
+
+const imageY = useTransform(
+  scrollYProgress,
+  [0, 1],
+  [10, -10]
+);
+
   return (
-    <div className="flex items-center gap-3">
-      <span
-        className="h-[6px] w-[6px] rounded-full"
-        style={{
-          background: dark
-            ? COLORS.cyan
-            : COLORS.blue,
-          boxShadow: dark
-            ? `0 0 10px ${COLORS.cyan}`
-            : 'none',
-        }}
-      />
 
-      <span
-        className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em]`}
-        style={{
-          color: dark
-            ? 'rgba(255,255,255,0.82)'
-            : COLORS.navy,
-        }}
-      >
-        {label}
-      </span>
-
-      <span
-        className="h-px w-9"
-        style={{
-          background: dark
-            ? 'rgba(255,255,255,0.16)'
-            : COLORS.line,
-        }}
-      />
-
-      <span
-        className={`${sans.className} text-[12px] uppercase tracking-[0.18em]`}
-        style={{
-          color: dark
-            ? COLORS.cyan
-            : COLORS.blue,
-        }}
-      >
-        {number}
-      </span>
-    </div>
-  )
-}
-
-/* =========================================================
-   SMALL META
-========================================================= */
-
-function MetaRow({
-  dark = false,
-}: {
-  dark?: boolean
-}) {
-  return (
-    <div className="flex items-center gap-3">
-      <span
-        className={`${sans.className} text-[12px] uppercase tracking-[0.18em]`}
-        style={{
-          color: dark
-            ? COLORS.cyan
-            : COLORS.blue,
-        }}
-      >
-        DELHI
-      </span>
-
-      <span
-        className="h-px w-8"
-        style={{
-          background: dark
-            ? 'rgba(255,255,255,0.18)'
-            : COLORS.line,
-        }}
-      />
-
-      <span
-        className={`${sans.className} text-[12px] uppercase tracking-[0.18em]`}
-        style={{
-          color: dark
-            ? 'rgba(255,255,255,0.42)'
-            : COLORS.soft,
-        }}
-      >
-        2026
-      </span>
-    </div>
-  )
-}
-
-/* =========================================================
-   ORBIT
-========================================================= */
-
-/* =========================================================
-   TECHNOLOGY CORE
-========================================================= */
-
-/* =========================================================
-   TECHNOLOGY SECTION
-========================================================= */
-
-function TechnologySection() {
-  return (
-    <section className={`${sans.className} relative overflow-hidden bg-white`}>
-      <div className="mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={stagger}>
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
-            <motion.div variants={reveal}>
-              <p className="text-[13px] font-semibold uppercase tracking-[0.16em]" style={{ color: COLORS.blue }}>
-                The Intelligent Enterprise
-              </p>
-              <h2 className="mt-5 max-w-2xl text-[50px] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-[62px] lg:text-[76px]" style={{ color: COLORS.navy }}>
-                Where ideas
-                <br />
-                become <span style={{ color: COLORS.blue }}>action.</span>
-              </h2>
-              <p className="mt-7 max-w-[560px] text-[16px] leading-7 sm:text-[18px] sm:leading-8" style={{ color: COLORS.muted }}>
-                A welcoming space for senior technology leaders to share experiences,
-                discover practical ideas and build meaningful business connections.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                {['AI', 'Cloud & Data', 'Cybersecurity', 'Innovation', 'Leadership'].map((item) => (
-                  <span key={item} className="rounded-full border px-5 py-2.5 text-[13px] font-medium" style={{ borderColor: COLORS.line, color: COLORS.navy, background: COLORS.ivory }}>
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div variants={reveal} className="relative min-h-[360px] sm:min-h-[460px] lg:min-h-[560px]">
-              <div className="absolute inset-0 overflow-hidden rounded-[28px] bg-[#F3F7F9] shadow-[0_24px_70px_rgba(6,21,34,0.10)]">
-                <Image src="/images/technology-leadership.png" alt="Technology leaders discussing enterprise innovation" fill loading="lazy" sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover object-center transition-transform duration-[1000ms] ease-out hover:scale-[1.02]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-                <div className="absolute left-6 top-6 rounded-full bg-white/90 px-5 py-2.5 shadow-sm backdrop-blur-sm">
-                  <p className="text-[13px] font-semibold text-[#08243B]">Executive Leadership</p>
-                </div>
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="inline-block rounded-2xl bg-white/92 px-6 py-4 shadow-sm backdrop-blur-sm">
-                    <p className="text-[12px] font-semibold uppercase tracking-[0.12em]" style={{ color: COLORS.blue }}>CIO Tech Delhi 2026</p>
-                    <p className="mt-1 text-[18px] font-semibold text-[#08243B]">Connect. Learn. Lead.</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-/* =========================================================
-   FOCUS AREAS
-========================================================= */
-
-function FocusAreas() {
-  return (
     <section
-      className={`${sans.className} relative overflow-hidden bg-white`}
+
+      id="about"
+
+      className="relative overflow-hidden bg-[#F5F8FB] px-5 py-20 text-[#102746] sm:px-8 sm:py-28 lg:px-14 lg:py-32"
+
     >
-      {/* Background circle */}
 
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          right-[-230px]
-          top-[-230px]
-          h-[520px]
-          w-[520px]
-          rounded-full
-          border
-        "
-        style={{
-          borderColor:
-            'rgba(21,90,145,0.04)',
-        }}
-      />
+      {/* Subtle editorial background details */}
 
-      <div
-        className="
-          relative
-          mx-auto
-          max-w-[1380px]
-          px-5
-          py-16
-          sm:px-8
-          sm:py-20
-          lg:px-12
-          lg:py-24
-        "
-      >
+      <div className="pointer-events-none absolute right-0 top-0 h-[420px] w-[420px] rounded-full bg-[#0D9488]/[0.035] blur-[100px]" />
+
+
+
+      <div className="relative mx-auto max-w-[1380px]">
+
+        {/* Section identity */}
+
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
-          variants={stagger}
+
+          initial={reduceMotion ? undefined : { opacity: 0, y: 12 }}
+
+          whileInView={{ opacity: 1, y: 0 }}
+
+          viewport={{ once: true, amount: 0.3 }}
+
+          transition={{ duration: 0.6 }}
+
+          className="flex flex-wrap items-center justify-between gap-4 border-b border-[#DCE5ED] pb-5"
+
         >
-          {/* <motion.div variants={reveal}>
-            <SectionLabel
-              label="Strategic Focus"
-              number="02 / 04"
-            />
-          </motion.div> */}
 
-          {/* Heading */}
+          <div className="flex items-center gap-3">
 
-          <motion.div
-            variants={reveal}
-            className="
-              mt-7
-              grid
-              gap-7
-              lg:grid-cols-[0.95fr_1.05fr]
-              lg:items-end
-              lg:gap-12
-            "
-          >
-            <div>
-              <h2
-                className="
-                  max-w-2xl
-                  text-[50px]
-                  font-semibold
-                  leading-[0.94]
-                  tracking-[-0.06em]
-                  sm:text-[70px]
-                  lg:text-[82px]
-                "
-                style={{
-                  color:
-                    COLORS.navy,
-                }}
-              >
-                Conversations
-                <br />
-                that shape
-                <br />
-                <span
-                  style={{
-                    color:
-                      COLORS.blue,
-                  }}
-                >
-                  what&apos;s next.
-                </span>
-              </h2>
-            </div>
+            <span className="h-2 w-2 rounded-full bg-[#0D9488]" />
 
-            <div className="max-w-lg lg:ml-auto">
-              <p
-                className="
-                  text-[16px]
-                  leading-6
-                  sm:text-[17px]
-                  sm:leading-7
-                "
-                style={{
-                  color:
-                    COLORS.muted,
-                }}
-              >
-                CIO Tech brings together senior
-                technology leaders around the
-                priorities shaping modern
-                enterprises — from AI and cloud
-                to cybersecurity, innovation and
-                leadership.
-              </p>
-            </div>
-          </motion.div>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0B2E68] sm:text-xs">
 
-          {/* Cards */}
+              About the conference
 
-          <motion.div
-            variants={reveal}
-            className="
-              mt-9
-              grid
-              border-l
-              border-t
-              sm:grid-cols-2
-              lg:grid-cols-5
-            "
-            style={{
-              borderColor:
-                COLORS.line,
-            }}
-          >
-            {focusAreas.map(
-              (area, index) => {
-                const Icon = area.icon
-
-                return (
-                  <motion.div
-                    key={area.code}
-                    whileHover={{
-                      backgroundColor:
-                        '#F7FAFC',
-                    }}
-                    transition={{
-                      duration: 0.25,
-                    }}
-                    className="
-                      group
-                      relative
-                      flex
-                      min-h-[215px]
-                      flex-col
-                      border-b
-                      border-r
-                      bg-white
-                      p-5
-                      sm:p-6
-                    "
-                    style={{
-                      borderColor:
-                        COLORS.line,
-                    }}
-                  >
-                    {/* Top */}
-
-                    <div className="flex items-start justify-between">
-                      <span
-                        className={`${sans.className} text-[12px] font-semibold tracking-[0.12em]`}
-                        style={{
-                          color:
-                            COLORS.blue,
-                        }}
-                      >
-                        {area.number}
-                      </span>
-
-                      <Icon
-                        size={17}
-                        strokeWidth={1.5}
-                        aria-hidden="true"
-                        style={{
-                          color:
-                            COLORS.blue,
-                        }}
-                      />
-                    </div>
-
-                    {/* Accent line */}
-
-                    <div
-                      aria-hidden="true"
-                      className="
-                        mt-5
-                        h-px
-                        w-8
-                        transition-all
-                        duration-300
-                        group-hover:w-14
-                      "
-                      style={{
-                        background:
-                          COLORS.cyan,
-                      }}
-                    />
-
-                    {/* Content */}
-
-                    <div className="mt-auto pt-7">
-                      <p
-                        className="
-                          text-[19px]
-                          font-semibold
-                          leading-[1.05]
-                          tracking-[-0.025em]
-                        "
-                        style={{
-                          color:
-                            COLORS.navy,
-                        }}
-                      >
-                        {area.title}
-                      </p>
-
-                      <p
-                        className="
-                          mt-1
-                          text-[19px]
-                          font-semibold
-                          leading-[1.05]
-                          tracking-[-0.025em]
-                        "
-                        style={{
-                          color:
-                            COLORS.blue,
-                        }}
-                      >
-                        {area.subtitle}
-                      </p>
-
-                      <p
-                        className="
-                          mt-3
-                          text-[13px]
-                          leading-5
-                        "
-                        style={{
-                          color:
-                            COLORS.muted,
-                        }}
-                      >
-                        {area.description}
-                      </p>
-                    </div>
-
-                    {/* Footer */}
-
-                    <div className="mt-5 flex items-center justify-between">
-                      <span
-                        className={`${sans.className} text-[11px] uppercase tracking-[0.15em]`}
-                        style={{
-                          color:
-                            COLORS.soft,
-                        }}
-                      >
-                        {area.code}
-                      </span>
-
-                      <FiArrowUpRight
-                        size={15}
-                        aria-hidden="true"
-                        className="
-                          transition-all
-                          duration-300
-                          group-hover:-translate-y-1
-                          group-hover:translate-x-1
-                          motion-reduce:transition-none
-                          motion-reduce:group-hover:translate-y-0
-                          motion-reduce:group-hover:translate-x-0
-                        "
-                        style={{
-                          color:
-                            COLORS.blue,
-                        }}
-                      />
-                    </div>
-                  </motion.div>
-                )
-              }
-            )}
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-/* =========================================================
-   MISSION
-========================================================= */
-
-function Mission() {
-  return (
-    <section
-      className={`${sans.className} relative overflow-hidden bg-[#F8FAFC]`}
-    >
-      {/* Architectural background */}
-
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          bottom-[-220px]
-          left-[-200px]
-          h-[480px]
-          w-[480px]
-          rounded-full
-          border
-        "
-        style={{
-          borderColor:
-            'rgba(21,90,145,0.045)',
-        }}
-      />
-
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          right-[-180px]
-          top-[-180px]
-          h-[360px]
-          w-[360px]
-          rounded-full
-          border
-        "
-        style={{
-          borderColor:
-            'rgba(22,119,168,0.035)',
-        }}
-      />
-
-      <div
-        className="
-          relative
-          mx-auto
-          max-w-[1380px]
-          px-5
-          py-16
-          sm:px-8
-          sm:py-20
-          lg:px-12
-          lg:py-24
-        "
-      >
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
-          variants={stagger}
-        >
-          {/* <motion.div variants={reveal}>
-            <SectionLabel
-              label="The CIO Tech Mission"
-              number="03 / 04"
-            />
-          </motion.div> */}
-
-          <div
-            className="
-              mt-8
-              grid
-              gap-10
-              lg:grid-cols-[1.12fr_0.88fr]
-              lg:gap-16
-            "
-          >
-            {/* Main statement */}
-
-            <motion.div variants={reveal}>
-              <p
-                className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em]`}
-                style={{
-                  color:
-                    COLORS.blue,
-                }}
-              >
-                Technology × Leadership
-              </p>
-
-              <h2
-                className="
-                  mt-4
-                  max-w-3xl
-                  text-[54px]
-                  font-semibold
-                  leading-[0.93]
-                  tracking-[-0.065em]
-                  sm:text-[66px]
-                  lg:text-[80px]
-                "
-                style={{
-                  color:
-                    COLORS.navy,
-                }}
-              >
-                Turn insight
-                <br />
-                into{' '}
-                <span
-                  style={{
-                    color:
-                      COLORS.blue,
-                  }}
-                >
-                  business
-                </span>
-                <br />
-                advantage.
-              </h2>
-
-              <p
-                className="
-                  mt-6
-                  max-w-xl
-                  text-[16px]
-                  leading-6
-                  sm:text-[17px]
-                  sm:leading-7
-                "
-                style={{
-                  color:
-                    COLORS.muted,
-                }}
-              >
-                CIO Tech Delhi brings together
-                technology leaders, innovators and
-                decision-makers to explore the ideas,
-                technologies and strategies shaping
-                the intelligent enterprise.
-              </p>
-
-              <div className="mt-6">
-                <MetaRow />
-              </div>
-            </motion.div>
-
-            {/* Leadership principles */}
-
-            <motion.div
-              variants={reveal}
-              className="
-                border-t
-                lg:border-t-0
-              "
-              style={{
-                borderColor:
-                  COLORS.line,
-              }}
-            >
-              <div className="lg:pl-8">
-                <div
-                  className="
-                    border-b
-                    py-6
-                  "
-                  style={{
-                    borderColor:
-                      COLORS.line,
-                  }}
-                >
-                  <p
-                    className={`${sans.className} text-[12px] uppercase tracking-[0.18em]`}
-                    style={{
-                      color:
-                        COLORS.blue,
-                    }}
-                  >
-                    What happens here
-                  </p>
-
-                  <h3
-                    className="
-                      mt-3
-                      text-[27px]
-                      font-semibold
-                      leading-tight
-                      tracking-[-0.04em]
-                    "
-                    style={{
-                      color:
-                        COLORS.navy,
-                    }}
-                  >
-                    A platform for
-                    <br />
-                    technology leaders.
-                  </h3>
-                </div>
-
-                <div>
-                  {leadershipPoints.map(
-                    (point, index) => (
-                      <div
-                        key={point}
-                        className="
-                          group
-                          flex
-                          items-center
-                          gap-4
-                          border-b
-                          py-4
-                        "
-                        style={{
-                          borderColor:
-                            COLORS.line,
-                        }}
-                      >
-                        <span
-                          className={`${sans.className} text-[12px]`}
-                          style={{
-                            color:
-                              COLORS.blue,
-                          }}
-                        >
-                          0{index + 1}
-                        </span>
-
-                        <span
-                          className="
-                            text-[14px]
-                            transition-colors
-                            duration-200
-                          "
-                          style={{
-                            color:
-                              COLORS.ink,
-                          }}
-                        >
-                          {point}
-                        </span>
-
-                        <FiCheck
-                          size={12}
-                          aria-hidden="true"
-                          className="ml-auto"
-                          style={{
-                            color:
-                              COLORS.blue,
-                          }}
-                        />
-                      </div>
-                    )
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Metrics */}
-
-          <motion.div
-            variants={reveal}
-            className="
-              mt-12
-              grid
-              border-y
-              sm:grid-cols-3
-            "
-            style={{
-              borderColor:
-                COLORS.line,
-            }}
-          >
-            {metrics.map(
-              (stat, index) => (
-                <div
-                  key={stat.label}
-                  className={`
-                    relative
-                    py-7
-                    sm:px-7
-                    sm:py-8
-                    ${index !== 0
-                      ? 'border-t sm:border-l sm:border-t-0'
-                      : ''
-                    }
-                  `}
-                  style={{
-                    borderColor:
-                      COLORS.line,
-                  }}
-                >
-                  <p
-                    className="
-                      text-[54px]
-                      font-semibold
-                      leading-none
-                      tracking-[-0.07em]
-                      sm:text-[70px]
-                    "
-                    style={{
-                      color:
-                        COLORS.navy,
-                    }}
-                  >
-                    {stat.number}
-                  </p>
-
-                  <div className="mt-3 flex items-center gap-3">
-                    <span
-                      className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.18em]`}
-                      style={{
-                        color:
-                          COLORS.blue,
-                      }}
-                    >
-                      {stat.label}
-                    </span>
-
-                    <span
-                      aria-hidden="true"
-                      className="h-px w-7"
-                      style={{
-                        background:
-                          COLORS.line,
-                      }}
-                    />
-
-                    <span
-                      className="text-[12px]"
-                      style={{
-                        color:
-                          COLORS.soft,
-                      }}
-                    >
-                      {stat.caption}
-                    </span>
-                  </div>
-                </div>
-              )
-            )}
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-/* =========================================================
-   FINAL CTA
-========================================================= */
-
-function FinalCTA() {
-  return (
-    <section
-      className={`${sans.className} relative overflow-hidden`}
-      style={{
-        background:
-          COLORS.midnight,
-      }}
-    >
-      {/* Large architectural circle */}
-
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          right-[-210px]
-          top-[-210px]
-          h-[540px]
-          w-[540px]
-          rounded-full
-          border
-        "
-        style={{
-          borderColor:
-            'rgba(85,199,220,0.07)',
-        }}
-      />
-
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          right-[-70px]
-          top-[-70px]
-          h-[260px]
-          w-[260px]
-          rounded-full
-          border
-        "
-        style={{
-          borderColor:
-            'rgba(255,255,255,0.045)',
-        }}
-      />
-
-      {/* Horizontal architectural line */}
-
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none
-          absolute
-          left-0
-          right-0
-          top-1/2
-          h-px
-        "
-        style={{
-          background:
-            'rgba(255,255,255,0.035)',
-        }}
-      />
-
-      <div
-        className="
-          relative
-          mx-auto
-          max-w-[1380px]
-          px-5
-          py-16
-          sm:px-8
-          sm:py-20
-          lg:px-12
-          lg:py-24
-        "
-      >
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{
-            once: true,
-            amount: 0.2,
-          }}
-          variants={reveal}
-        >
-          {/* <SectionLabel
-            label="Join The Conversation"
-            number="04 / 04"
-            dark
-          /> */}
-
-          <div
-            className="
-              relative
-              mt-8
-              grid
-              gap-10
-              lg:grid-cols-[1fr_auto]
-              lg:items-end
-            "
-          >
-            <div>
-              <p
-                className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em]`}
-                style={{
-                  color:
-                    COLORS.cyan,
-                }}
-              >
-                CIO TECH / DELHI
-              </p>
-
-              <h2
-                className="
-                  mt-4
-                  max-w-4xl
-                  text-[50px]
-                  font-semibold
-                  leading-[0.92]
-                  tracking-[-0.065em]
-                  text-white
-                  sm:text-[64px]
-                  lg:text-[82px]
-                "
-              >
-                Connect with the
-                <br />
-                people shaping
-                <br />
-                <span
-                  style={{
-                    color:
-                      '#7DD3E7',
-                  }}
-                >
-                  what comes next.
-                </span>
-              </h2>
-
-              <p
-                className="
-                  mt-6
-                  max-w-xl
-                  text-[16px]
-                  leading-6
-                  sm:text-[17px]
-                  sm:leading-7
-                "
-                style={{
-                  color:
-                    'rgba(255,255,255,0.52)',
-                }}
-              >
-                A focused platform for technology
-                leaders to connect, exchange ideas
-                and explore the future of enterprise
-                technology.
-              </p>
-
-              <div className="mt-7">
-                <MetaRow dark />
-              </div>
-            </div>
-
-            {/* CTA BUTTON */}
-
-            <a
-              href="#delegateenquiry"
-              aria-label="Attend as Delegate — go to registration"
-              className="
-                group
-                inline-flex
-                min-w-[230px]
-                items-center
-                justify-between
-                gap-7
-                border
-                px-5
-                py-4
-                text-[13px]
-                font-semibold
-                uppercase
-                tracking-[0.14em]
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                focus-visible:outline
-                focus-visible:outline-2
-                focus-visible:outline-offset-4
-                focus-visible:outline-[#55C7DC]
-                motion-reduce:transition-none
-                motion-reduce:hover:translate-y-0
-              "
-              style={{
-                borderColor:
-                  'rgba(255,255,255,0.18)',
-                background:
-                  'rgba(255,255,255,0.035)',
-                color:
-                  COLORS.white,
-              }}
-            >
-              <span>
-                Attend as Delegate
-              </span>
-
-              <span
-                aria-hidden="true"
-                className="
-                  flex
-                  h-9
-                  w-9
-                  items-center
-                  justify-center
-                  rounded-full
-                  transition-transform
-                  duration-300
-                  group-hover:rotate-45
-                  motion-reduce:transition-none
-                  motion-reduce:group-hover:rotate-0
-                "
-                style={{
-                  background:
-                    'rgba(85,199,220,0.12)',
-                  color:
-                    COLORS.cyan,
-                }}
-              >
-                <FiArrowUpRight
-                  size={14}
-                />
-              </span>
-            </a>
-          </div>
-
-          {/* Footer */}
-
-          <div
-            className="
-              mt-12
-              flex
-              flex-col
-              gap-3
-              border-t
-              pt-5
-              sm:flex-row
-              sm:items-center
-              sm:justify-between
-            "
-            style={{
-              borderColor:
-                'rgba(255,255,255,0.10)',
-            }}
-          >
-            <span
-              className={`${sans.className} text-[11px] uppercase tracking-[0.18em]`}
-              style={{
-                color:
-                  'rgba(255,255,255,0.40)',
-              }}
-            >
-              CIO TECH / DELHI / 2026
             </span>
 
-            <span
-              className={`${sans.className} text-[11px] uppercase tracking-[0.18em]`}
-              style={{
-                color:
-                  'rgba(255,255,255,0.27)',
-              }}
-            >
-              Intelligent Enterprise Era
-            </span>
-
-            <span
-              className={`${sans.className} text-[11px] uppercase tracking-[0.18em]`}
-              style={{
-                color:
-                  'rgba(255,255,255,0.40)',
-              }}
-            >
-              END / ABOUT
-            </span>
           </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
 
-/* =========================================================
-   ABOUT PAGE — PREMIUM EVENT EXPERIENCE
-========================================================= */
 
-function EventVisual() {
-  return (
-    <div className="group relative w-full">
-      {/* Outer editorial frame */}
-      <div aria-hidden="true" className="absolute -right-3 -top-3 h-full w-full border border-[#176B9C]/15" />
 
-      {/* Main image container */}
-      <div className="relative overflow-hidden rounded-[28px] border border-[#D9E3E8] bg-[#F4F8FA] p-2 shadow-[0_30px_80px_rgba(8,36,59,0.14)]">
-        <div className="relative aspect-square overflow-hidden rounded-[21px]">
-          <Image
-            src="/images/about-event-collage.png"
-            alt="CIO Tech Leadership Conference and Awards event highlights"
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-          />
+          <span className="text-[10px] uppercase tracking-[0.16em] text-[#7A8999] sm:text-xs">
 
-          {/* Soft premium overlay */}
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08243B]/20 via-transparent to-white/5" />
+            New Delhi / India / 2026
 
-          {/* Subtle glass highlight */}
-          <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/15 to-transparent" />
-        </div>
-      </div>
-
-      {/* Top-left editorial marker */}
-      <div aria-hidden="true" className="absolute -left-4 top-8 hidden sm:block">
-        <div className="flex items-center gap-3 rounded-full border border-[#D9E3E8] bg-white px-4 py-2.5 shadow-[0_12px_35px_rgba(8,36,59,0.10)]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#176B9C]" />
-
-          <span
-            className={`${sans.className} text-[11px] font-semibold uppercase tracking-[0.2em] text-[#08243B]`}
-          >
-            Event in Motion
           </span>
-        </div>
-      </div>
 
-      {/* Bottom-right information card */}
-      <div aria-hidden="true" className="absolute -bottom-5 -right-4 hidden sm:block">
-        <div className="border border-[#D9E3E8] bg-white px-5 py-4 shadow-[0_18px_45px_rgba(8,36,59,0.12)]">
-          <p
-            className={`${sans.className} text-[11px] font-semibold uppercase tracking-[0.2em] text-[#176B9C]`}
+        </motion.div>
+
+
+
+        {/* Centered conference introduction */}
+        <div className="mx-auto max-w-5xl pt-12 text-center sm:pt-16 lg:pt-20">
+          <motion.p
+            initial={reduceMotion ? undefined : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55 }}
+            className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0D9488] sm:text-xs"
           >
-            Where ideas meet
-          </p>
-
-          <p className="mt-1.5 text-[15px] font-semibold tracking-[-0.025em] text-[#08243B]">
-            Leadership • Innovation
-          </p>
-        </div>
-      </div>
-
-      {/* Corner details */}
-      <span aria-hidden="true" className="absolute -right-2 -top-2 h-5 w-5 border-r border-t border-[#176B9C]" />
-      <span aria-hidden="true" className="absolute -bottom-2 -left-2 h-5 w-5 border-b border-l border-[#176B9C]" />
-    </div>
-  )
-}
-
-function AboutEvent() {
-  return (
-    <section className={`${sans.className} relative overflow-hidden bg-white`}>
-      <div aria-hidden="true" className="pointer-events-none absolute right-[-180px] top-[-180px] h-[500px] w-[500px] rounded-full border border-[#176B9C]/[0.045]" />
-      <div aria-hidden="true" className="pointer-events-none absolute bottom-[-240px] left-[-220px] h-[520px] w-[520px] rounded-full border border-[#176B9C]/[0.035]" />
-
-      <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.12 }}
-          variants={stagger}
-        >
-          <motion.div variants={reveal} className="flex items-center gap-3">
-            <span className="h-[6px] w-[6px] rounded-full bg-[#176B9C]" />
-            <span className={`${sans.className} text-[18px] font-semibold uppercase tracking-[0.22em] text-[#08243B]`}>
-              About the event
-            </span>
-            <span aria-hidden="true" className="h-px w-10 bg-[#D9E3E8]" />
-
-          </motion.div>
-
-          <div className="mt-10 grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-16">
-            <motion.div variants={reveal}>
-              <p className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.24em] text-[#176B9C]`}>
-                The technology leadership platform
-              </p>
-
-              <h1 className="mt-5 max-w-3xl text-[50px] font-semibold leading-[0.9] tracking-[-0.075em] text-[#08243B] sm:text-[68px] lg:text-[86px]">
-                More than
-                <br />
-                an event.
-                <br />
-                <span className="text-[#176B9C]">A catalyst.</span>
-              </h1>
-
-              <p className="mt-7 max-w-xl text-[16px] leading-6 text-[#607484] sm:text-[17px] sm:leading-7">
-                CIO Tech Leadership Conference &amp; Awards brings together
-                senior technology decision-makers, innovators and business
-                leaders for focused conversations around the technologies,
-                strategies and partnerships shaping the enterprise.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-2">
-                {['AI', 'CYBERSECURITY', 'CLOUD', 'DATA', 'DIGITAL TRANSFORMATION'].map((item) => (
-                  <span
-                    key={item}
-                    className={`${sans.className} border border-[#D9E3E8] bg-[#F8FAFC] px-3 py-2 text-[11px] uppercase tracking-[0.14em] text-[#607484]`}
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-9 flex items-center gap-4">
-                <div aria-hidden="true" className="h-px w-12 bg-[#176B9C]" />
-                <p className={`${sans.className} text-[12px] uppercase tracking-[0.2em] text-[#91A1AD]`}>
-                  People • Ideas • Connections
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div variants={reveal}>
-              <EventVisual />
-            </motion.div>
-          </div>
-
-          {/* Metrics */}
+            The theme for 2026
+          </motion.p>
+          <motion.h2
+            initial={reduceMotion ? undefined : { opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.7 }}
+            className="mx-auto mt-5 max-w-4xl text-[clamp(40px,5.5vw,76px)] font-semibold leading-[1.04] tracking-[-0.06em]"
+          >
+            The pilot was only <span className="text-[#0D9488]">the beginning.</span>
+          </motion.h2>
           <motion.div
-            variants={reveal}
-            className="mt-14 grid border-y border-[#D9E3E8] sm:grid-cols-3"
+            initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.1 }}
+            className="mx-auto mt-7 max-w-4xl space-y-4 text-sm leading-7 text-[#596B7F] sm:text-base sm:leading-8"
           >
-            {metrics.map((stat, index) => (
-              <div
-                key={stat.label}
-                className={`relative px-1 py-7 sm:px-7 sm:py-9 ${index !== 0 ? 'border-t border-[#D9E3E8] sm:border-l sm:border-t-0' : ''
-                  }`}
-              >
-                <p className="text-[54px] font-semibold leading-none tracking-[-0.075em] text-[#08243B] sm:text-[66px]">
-                  {stat.number}
-                </p>
-
-                <div className="mt-3 flex items-center gap-3">
-                  <span className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.18em] text-[#176B9C]`}>
-                    {stat.label}
-                  </span>
-                  <span aria-hidden="true" className="h-px w-7 bg-[#D9E3E8]" />
-                  <span className="text-[12px] text-[#91A1AD]">{stat.caption}</span>
-                </div>
-              </div>
-            ))}
+            <p>
+              Indian enterprises have proved that AI works. The next challenge is making it work across business units, on production data, within regulatory guardrails and with measurable business value.
+            </p>
+            <p>
+              The distance between a successful pilot and enterprise-wide impact is where the real work begins. It takes more than a capable model: it requires trusted data, robust security, effective governance, new operating models and people prepared to work differently.
+            </p>
+            <p>
+              The 3rd CIO Tech Leadership Conference &amp; Awards brings technology leaders together to address these challenges through practical experiences, strategic conversations and lessons from real-world implementation.
+            </p>
           </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
+        </div>
 
-function IndustryLandscape() {
-  return (
-    <section
-      className={`${sans.className} relative isolate overflow-hidden bg-[#061522]`}
-    >
-      {/* =========================================================
-          BACKGROUND IMAGE
-      ========================================================== */}
-
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        {/* Main visual */}
-        <motion.div
-          initial={{ opacity: 0, scale: 1.06, x: 30 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{
-            duration: 1.4,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-          className="absolute right-[-8%] top-0 h-full w-[78%]"
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('/images/industry-landscape.png')",
-            }}
-          />
-
-          {/* Fade image into left side */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `
-                linear-gradient(
-                  90deg,
-                  #061522 0%,
-                  rgba(6,21,34,0.94) 8%,
-                  rgba(6,21,34,0.72) 22%,
-                  rgba(6,21,34,0.25) 45%,
-                  rgba(6,21,34,0.05) 75%,
-                  rgba(6,21,34,0) 100%
-                )
-              `,
-            }}
-          />
-
-          {/* Top fade */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, #061522 0%, rgba(6,21,34,0.05) 28%, rgba(6,21,34,0.12) 100%)",
-            }}
-          />
-
-          {/* Bottom fade */}
-          <div
-            className="absolute inset-x-0 bottom-0 h-40"
-            style={{
-              background:
-                "linear-gradient(180deg, transparent, #061522)",
-            }}
-          />
-        </motion.div>
-
-        {/* Atmospheric blue glow */}
-        <div
-          className="absolute right-[15%] top-[18%] h-[420px] w-[420px] rounded-full blur-[140px]"
-          style={{
-            background: "rgba(55, 190, 225, 0.10)",
-          }}
-        />
-
-        {/* Dark left protection layer */}
-        <div
-          className="absolute inset-y-0 left-0 w-[65%]"
-          style={{
-            background:
-              "linear-gradient(90deg, #061522 0%, rgba(6,21,34,0.98) 45%, rgba(6,21,34,0.75) 75%, transparent 100%)",
-          }}
-        />
-      </div>
-
-      {/* =========================================================
-          TECH GRID
-      ========================================================== */}
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)
-          `,
-          backgroundSize: "84px 84px",
-        }}
-      />
-
-      {/* Fine radial glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: `
-            radial-gradient(
-              circle at 72% 42%,
-              rgba(85,199,220,0.08),
-              transparent 32%
-            )
-          `,
-        }}
-      />
-
-      {/* =========================================================
-          CONTENT
-      ========================================================== */}
-
-      <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.12 }}
-          variants={stagger}
-        >
-          {/* =====================================================
-              HEADER
-          ====================================================== */}
-
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16">
-            {/* LEFT */}
-            <motion.div variants={reveal}>
-              <div className="flex items-center gap-3">
-                <span aria-hidden="true" className="relative h-[6px] w-[6px] rounded-full bg-[#55C7DC] shadow-[0_0_12px_rgba(85,199,220,0.9)]">
-                  <span className="absolute inset-[-4px] animate-ping rounded-full bg-[#55C7DC]/20 motion-reduce:animate-none" />
-                </span>
-
-                <span
-                  className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em] text-white/70`}
-                >
-                  Industry ecosystem
-                </span>
-              </div>
-
-              <h2 className="mt-6 max-w-xl text-[54px] font-semibold leading-[0.93] tracking-[-0.065em] text-white sm:text-[60px] lg:text-[80px]">
-                One room.
-                <br />
-                <span className="text-[#7DD3E7]">
-                  Many industries.
-                </span>
-              </h2>
-            </motion.div>
-
-            {/* RIGHT COPY */}
-            <motion.div
-              variants={reveal}
-              className="relative z-10 lg:pb-2"
+        {/* Conference image and transformation journey side by side */}
+        <div className="mt-12 grid items-stretch gap-6 lg:mt-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+          <motion.div
+            ref={imageRef}
+            initial={reduceMotion ? undefined : { opacity: 0, x: -18 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="min-w-0"
+          >
+            <motion.figure
+              style={{ y: reduceMotion ? 0 : imageY }}
+              className="relative isolate h-full min-h-[340px] overflow-hidden rounded-2xl border border-[#DCE5ED] bg-[#E7EEF4] shadow-[0_18px_45px_rgba(16,39,70,0.10)] sm:min-h-[500px]"
             >
-              <div className="max-w-2xl">
-                <div aria-hidden="true" className="mb-4 h-px w-10 bg-[#55C7DC]/50" />
-
-                <p className="max-w-2xl text-[16px] leading-6 text-white/60 sm:text-[17px] sm:leading-7">
-                  The conversation extends across the sectors where
-                  technology is creating new operating models,
-                  customer experiences and competitive advantage.
+              <Image
+                src="/images/about/previous-event.png"
+                alt="CIO and technology leaders attending a previous conference"
+                fill
+                sizes="(max-width: 1024px) 100vw, 52vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#06172F]/75 via-[#06172F]/5 to-transparent" />
+              <figcaption className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                <span className="mb-3 inline-flex rounded-full border border-white/30 bg-[#06172F]/35 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm sm:text-xs">
+                  Previous editions
+                </span>
+                <p className="max-w-sm text-lg font-semibold leading-snug text-white sm:text-xl">
+                  Conversations that move enterprise technology forward.
                 </p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* =====================================================
-              INDUSTRY CARDS
-          ====================================================== */}
+              </figcaption>
+            </motion.figure>
+          </motion.div>
 
           <motion.div
-            variants={reveal}
-            className="relative z-10 mt-12"
+            initial={reduceMotion ? undefined : { opacity: 0, x: 18 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.08 }}
+            className="flex min-w-0 flex-col"
           >
-            <div className="flex flex-wrap gap-2.5">
-              {industries.map((industry, index) => (
-                <motion.span
-                  key={industry}
-                  initial={{
-                    opacity: 0,
-                    y: 10,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                    amount: 0.2,
-                  }}
-                  transition={{
-                    delay: index * 0.025,
-                    duration: 0.45,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  whileHover={{
-                    y: -3,
-                    borderColor: "rgba(85,199,220,0.6)",
-                    backgroundColor: "rgba(85,199,220,0.07)",
-                  }}
-                  className={`
-                    ${sans.className}
-                    group
-                    relative
-                    overflow-hidden
-                    border
-                    border-white/[0.12]
-                    bg-[#071b2a]/80
-                    px-4
-                    py-3
-                    text-[12px]
-                    uppercase
-                    tracking-[0.1em]
-                    text-white/65
-                    backdrop-blur-md
-                    transition-colors
-                    duration-300
-                    hover:text-[#7DD3E7]
-                    sm:text-[12px]
-                  `}
+            <div className="mb-4 flex items-center justify-between border-b border-[#DCE5ED] pb-4">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#102746] sm:text-xs">
+                The transformation journey
+              </p>
+              <span className="font-mono text-xs text-[#8B99A8]">01 — 03</span>
+            </div>
+            <div className="grid flex-1 gap-3">
+              {journey.map((item, index) => (
+                <motion.article
+                  key={item.number}
+                  initial={reduceMotion ? undefined : { opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.45, delay: reduceMotion ? 0 : index * 0.1 }}
+                  className={`relative flex flex-col justify-center border p-4 sm:p-5 ${index === 2 ? "border-[#0D9488]/30 bg-white shadow-[0_10px_35px_rgba(16,39,70,0.055)]" : "border-[#E0E7EE] bg-white/65"}`}
                 >
-                  {/* Hover light */}
-                  <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#55C7DC] to-transparent transition-transform duration-300 group-hover:scale-x-100" />
-
-                  <span aria-hidden="true" className="mr-2 text-[#55C7DC]/70">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  {industry}
-                </motion.span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#0D9488] sm:text-[10px]">{item.label}</span>
+                    <span className="font-mono text-[10px] text-[#8A98A8]">{item.number}</span>
+                  </div>
+                  <h3 className="mt-3 text-base font-semibold leading-snug tracking-[-0.025em] text-[#102746] sm:text-lg">{item.title}</h3>
+                  <p className="mt-2 text-xs leading-5 text-[#68798B] sm:text-sm sm:leading-6">{item.description}</p>
+                  <p className={`mt-3 text-[8px] font-semibold uppercase tracking-[0.12em] sm:text-[9px] ${index === 2 ? "text-[#0D9488]" : "text-[#8A98A8]"}`}>{item.status}</p>
+                </motion.article>
               ))}
             </div>
+            <div className="mt-4 flex items-center justify-between border-t border-[#DCE5ED] pt-4">
+              <p className="text-[10px] uppercase tracking-[0.13em] text-[#7A8999]">From experimentation to impact</p>
+              <FiArrowUpRight className="text-[#0D9488]" size={18} />
+            </div>
           </motion.div>
-        </motion.div>
-      </div>
+        </div>
 
-      {/* =========================================================
-          DECORATIVE FOREGROUND ELEMENTS
-      ========================================================== */}
-
-      {/* Right edge glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-1/2 h-[380px] w-[2px] -translate-y-1/2 opacity-50"
-        style={{
-          background:
-            "linear-gradient(transparent, #55C7DC, transparent)",
-          filter: "blur(1px)",
-        }}
-      />
-
-      {/* Bottom ambient glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-[-180px] left-1/2 h-[280px] w-[700px] -translate-x-1/2 rounded-full blur-[120px]"
-        style={{
-          background: "rgba(40,150,190,0.07)",
-        }}
-      />
-    </section>
-  );
-}
-
-function AboutBenefits() {
-  return (
-    <section
-      className={`${sans.className} relative overflow-hidden bg-[#F8FAFC]`}
-    >
-      {/* =========================================================
-          BACKGROUND DECORATION
-      ========================================================== */}
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.45]"
-        style={{
-          backgroundImage: `
-            linear-gradient(#DCE7EC 1px, transparent 1px),
-            linear-gradient(90deg, #DCE7EC 1px, transparent 1px)
-          `,
-          backgroundSize: "84px 84px",
-          maskImage:
-            "linear-gradient(to bottom, black, transparent 85%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, black, transparent 85%)",
-        }}
-      />
-
-      {/* Large atmospheric circle */}
-
-      <div aria-hidden="true" className="pointer-events-none absolute -right-[280px] top-[-220px] h-[650px] w-[650px] rounded-full border border-[#176B9C]/[0.06]" />
-
-      <div aria-hidden="true" className="pointer-events-none absolute -right-[180px] top-[-120px] h-[450px] w-[450px] rounded-full border border-[#55C7DC]/[0.08]" />
-
-      {/* Cyan glow */}
-
-      <div aria-hidden="true" className="pointer-events-none absolute right-[10%] top-[18%] h-[280px] w-[280px] rounded-full bg-[#55C7DC]/[0.06] blur-[110px]" />
-
-      {/* =========================================================
-          MAIN CONTAINER
-      ========================================================== */}
-
-      <div className="relative mx-auto max-w-[1380px] px-5 py-14 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{
-            once: true,
-            amount: 0.12,
-          }}
-          variants={stagger}
+          initial={reduceMotion ? undefined : { opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mx-auto mt-10 flex max-w-3xl items-start justify-center gap-4 border-t border-[#DCE5ED] pt-6 text-center"
         >
-          {/* =====================================================
-              TOP SECTION
-          ====================================================== */}
-
-          <div className="flex justify-center">
-            <motion.div
-              variants={reveal}
-              className="flex flex-col items-center text-center"
-            >
-              {/* Label */}
-              <div className="flex items-center justify-center gap-3">
-                <span aria-hidden="true" className="h-[6px] w-[6px] rounded-full bg-[#176B9C] shadow-[0_0_10px_rgba(23,107,156,0.35)]" />
-
-                <p
-                  className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em] text-[#176B9C]`}
-                >
-                  Why leaders attend
-                </p>
-              </div>
-
-              {/* Heading */}
-              <h2 className="mt-5 max-w-[800px] text-[54px] font-semibold leading-[0.92] tracking-[-0.07em] text-[#08243B] sm:text-[66px] lg:text-[80px]">
-                Conversations that move
-                <br />
-                <span className="text-[#176B9C]">
-                  business forward.
-                </span>
-              </h2>
-
-              {/* Description */}
-              <div className="mt-7 flex flex-col items-center gap-3">
-                <div aria-hidden="true" className="h-px w-10 bg-[#55C7DC]" />
-
-                <p className="max-w-[600px] text-[16px] leading-6 text-[#607484] sm:text-[17px] sm:leading-7">
-                  From boardroom priorities to emerging technology,
-                  the experience is designed around the questions
-                  senior leaders are actually solving today.
-                </p>
-              </div>
-            </motion.div>
+          <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#0D9488]/25 text-[#0D9488]">
+            <FiArrowDownRight size={19} />
           </div>
+          <div className="text-left">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#7A8999]">The leadership question</p>
+            <p className="mt-2 text-lg font-medium leading-snug tracking-tight text-[#102746] sm:text-xl">How do we make enterprise AI work at scale?</p>
+          </div>
+        </motion.div>
 
-          {/* =====================================================
-              BENEFIT INTRO BAR
-          ====================================================== */}
+                {/* Three strategic priorities */}
+
+        <div className="mt-20 border-t border-[#DCE5ED] pt-10 sm:mt-28 sm:pt-14">
 
           <motion.div
-            variants={reveal}
-            className="mt-14 flex items-center justify-between border-y border-[#D9E3E8] py-4"
-          >
-            <span
-              className={`${sans.className} text-[11px] uppercase tracking-[0.22em] text-[#78909E]`}
-            >
-              What the room gives you
-            </span>
 
-            <span
-              className={`${sans.className} hidden text-[11px] uppercase tracking-[0.22em] text-[#176B9C] sm:block`}
-            >
-              04 leadership outcomes
-            </span>
+            initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
+
+            whileInView={{ opacity: 1, y: 0 }}
+
+            viewport={{ once: true, amount: 0.25 }}
+
+            transition={{ duration: 0.6 }}
+
+            className="flex flex-col justify-between gap-4 md:flex-row md:items-end"
+
+          >
+
+            <div>
+
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0D9488] sm:text-xs">
+
+                What leaders need to solve
+
+              </p>
+
+
+
+              <h3 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight tracking-[-0.045em] text-[#102746] sm:text-4xl lg:text-5xl">
+
+                Turning ambition into execution.
+
+              </h3>
+
+            </div>
+
+
+
+            <p className="max-w-sm text-sm leading-7 text-[#68798B]">
+
+              Three connected priorities shaping the enterprise AI agenda.
+
+            </p>
+
           </motion.div>
 
-          {/* =====================================================
-              BENEFIT CARDS
-          ====================================================== */}
 
-          <motion.div
-            variants={reveal}
-            className="mt-0 grid border-l border-[#D9E3E8] sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {aboutBenefits.map((benefit, index) => {
-              const Icon = benefit.icon
+
+          <div className="mt-9 grid border-t border-[#DCE5ED] md:grid-cols-3">
+
+            {priorities.map((priority, index) => {
+
+              const Icon = priority.icon;
+
+
 
               return (
-                <motion.div
-                  key={benefit.number}
-                  initial={{
-                    opacity: 0,
-                    y: 20,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                    amount: 0.15,
-                  }}
-                  transition={{
-                    delay: index * 0.08,
-                    duration: 0.6,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  whileHover={{
-                    y: -5,
-                  }}
-                  className="group relative min-h-[235px] overflow-hidden border-b border-r border-[#D9E3E8] bg-[#F8FAFC] p-6 transition-all duration-300 hover:bg-white hover:shadow-[0_20px_50px_rgba(8,36,59,0.07)] sm:p-7"
-                >
-                  {/* Number */}
 
-                  <div className="flex items-start justify-between">
-                    <span
-                      className={`${sans.className} text-[12px] font-semibold tracking-[0.16em] text-[#176B9C]`}
-                    >
-                      {benefit.number}
+                <motion.article
+
+                  key={priority.number}
+
+                  initial={
+
+                    reduceMotion ? undefined : { opacity: 0, y: 15 }
+
+                  }
+
+                  whileInView={{ opacity: 1, y: 0 }}
+
+                  viewport={{ once: true, amount: 0.2 }}
+
+                  transition={{
+
+                    duration: 0.55,
+
+                    delay: reduceMotion ? 0 : index * 0.12,
+
+                  }}
+
+                  className={`group relative py-7 md:py-8 md:pr-7 ${
+
+                    index > 0
+
+                      ? "border-t border-[#DCE5ED] md:border-l md:border-t-0 md:pl-7"
+
+                      : ""
+
+                  }`}
+
+                >
+
+                  <div className="flex items-center justify-between">
+
+                    <span className="font-mono text-xs text-[#0D9488]">
+
+                      {priority.number}
+
                     </span>
 
-                    <div className="flex h-9 w-9 items-center justify-center border border-[#176B9C]/10 bg-[#176B9C]/[0.05] text-[#176B9C] transition-all duration-300 group-hover:border-[#55C7DC]/30 group-hover:bg-[#55C7DC]/10 group-hover:text-[#176B9C]">
-                      <Icon size={16} strokeWidth={1.5} aria-hidden="true" />
-                    </div>
+
+
+                    <Icon
+
+                      size={20}
+
+                      strokeWidth={1.5}
+
+                      className="text-[#0B2E68] transition-colors duration-300 group-hover:text-[#0D9488]"
+
+                    />
+
                   </div>
 
-                  {/* Content */}
 
-                  <div className="mt-10">
-                    <h3 className="text-[19px] font-semibold tracking-[-0.04em] text-[#08243B]">
-                      {benefit.title}
-                    </h3>
 
-                    <p className="mt-3 max-w-[250px] text-[13px] leading-5 text-[#607484]">
-                      {benefit.text}
-                    </p>
+                  <p className="mt-7 text-[9px] font-semibold uppercase tracking-[0.16em] text-[#0D9488]">
+
+                    {priority.category}
+
+                  </p>
+
+
+
+                  <h4 className="mt-3 text-xl font-semibold tracking-tight text-[#102746]">
+
+                    {priority.title}
+
+                  </h4>
+
+
+
+                  <p className="mt-3 max-w-sm text-sm leading-7 text-[#68798B]">
+
+                    {priority.description}
+
+                  </p>
+
+
+
+                  <div className="mt-6 h-px w-full bg-[#E2E9EF]">
+
+                    <motion.div
+
+                      initial={{ scaleX: 0 }}
+
+                      whileInView={{ scaleX: 1 }}
+
+                      viewport={{ once: true }}
+
+                      transition={{
+
+                        duration: 0.7,
+
+                        delay: reduceMotion ? 0 : index * 0.15,
+
+                      }}
+
+                      className="h-px w-12 origin-left bg-[#0D9488]"
+
+                    />
+
                   </div>
 
-                  {/* Bottom line */}
+                </motion.article>
 
-                  <div aria-hidden="true" className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#55C7DC] transition-all duration-500 group-hover:w-full" />
+              );
 
-                  {/* Corner number */}
-
-                  <span
-                    aria-hidden="true"
-                    className={`${sans.className} absolute bottom-5 right-6 text-[26px] font-medium tracking-[-0.05em] text-[#08243B]/[0.035] transition-colors duration-300 group-hover:text-[#176B9C]/[0.08]`}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </motion.div>
-              )
             })}
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
 
-function AboutCTA() {
-  return (
-    <section
-      className={`${sans.className} relative isolate overflow-hidden bg-[#061522]`}
-    >
-      {/* =========================================================
-          CINEMATIC BODY IMAGE
-      ========================================================== */}
-
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <motion.div
-          initial={{ opacity: 0, scale: 1.06, x: 30 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{
-            duration: 1.5,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-          className="absolute right-[-8%] top-0 h-full w-[72%]"
-        >
-          {/* Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('/images/about-cta.png')",
-            }}
-          />
-
-          {/* LEFT FADE */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `
-                linear-gradient(
-                  90deg,
-                  #061522 0%,
-                  rgba(6,21,34,0.98) 12%,
-                  rgba(6,21,34,0.88) 27%,
-                  rgba(6,21,34,0.48) 45%,
-                  rgba(6,21,34,0.12) 70%,
-                  transparent 100%
-                )
-              `,
-            }}
-          />
-
-          {/* TOP FADE */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `
-                linear-gradient(
-                  180deg,
-                  #061522 0%,
-                  rgba(6,21,34,0.05) 30%,
-                  rgba(6,21,34,0.10) 75%,
-                  #061522 100%
-                )
-              `,
-            }}
-          />
-
-          {/* BOTTOM FADE */}
-          <div
-            className="absolute inset-x-0 bottom-0 h-32"
-            style={{
-              background:
-                "linear-gradient(to bottom, transparent, #061522)",
-            }}
-          />
-        </motion.div>
-
-        {/* =====================================================
-            BLUE ATMOSPHERIC GLOW
-        ====================================================== */}
-
-        <div
-          className="absolute right-[18%] top-[25%] h-[420px] w-[420px] rounded-full blur-[150px]"
-          style={{
-            background: "rgba(65, 190, 220, 0.10)",
-          }}
-        />
-
-        {/* =====================================================
-            DARK LEFT PROTECTION
-        ====================================================== */}
-
-        <div
-          className="absolute inset-y-0 left-0 w-[65%]"
-          style={{
-            background:
-              "linear-gradient(90deg, #061522 0%, #061522 48%, rgba(6,21,34,0.92) 72%, transparent 100%)",
-          }}
-        />
-      </div>
-
-      {/* =========================================================
-          SUBTLE TECH GRID
-      ========================================================== */}
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              rgba(255,255,255,0.7) 1px,
-              transparent 1px
-            ),
-            linear-gradient(
-              90deg,
-              rgba(255,255,255,0.7) 1px,
-              transparent 1px
-            )
-          `,
-          backgroundSize: "84px 84px",
-        }}
-      />
-
-      {/* =========================================================
-          DECORATIVE ORBITS
-      ========================================================== */}
-
-      <div aria-hidden="true" className="pointer-events-none absolute right-[-180px] top-[-250px] h-[560px] w-[560px] rounded-full border border-[#55C7DC]/[0.08]" />
-
-      <div aria-hidden="true" className="pointer-events-none absolute right-[-120px] top-[-190px] h-[440px] w-[440px] rounded-full border border-[#55C7DC]/[0.04]" />
-
-      <div aria-hidden="true" className="pointer-events-none absolute left-[-180px] bottom-[-220px] h-[440px] w-[440px] rounded-full border border-white/[0.035]" />
-
-      {/* =========================================================
-          CONTENT
-      ========================================================== */}
-
-      <div className="relative mx-auto max-w-[1380px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
-          variants={reveal}
-        >
-          {/* =====================================================
-              MAIN CONTENT
-          ====================================================== */}
-
-          <div className="grid min-h-[220px] items-end lg:grid-cols-[0.9fr_1.1fr]">
-            {/* =================================================
-                LEFT CONTENT
-            ================================================== */}
-
-            <div className="relative z-20 pb-2">
-              {/* Eyebrow */}
-
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 12,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.6,
-                }}
-                className="flex items-center gap-3"
-              >
-                <span aria-hidden="true" className="relative h-[6px] w-[6px] rounded-full bg-[#55C7DC] shadow-[0_0_12px_rgba(85,199,220,0.9)]">
-                  <span className="absolute inset-[-4px] animate-ping rounded-full bg-[#55C7DC]/20 motion-reduce:animate-none" />
-                </span>
-
-                <p
-                  className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.22em] text-[#55C7DC]`}
-                >
-                  CIO TECH / 2026
-                </p>
-              </motion.div>
-
-              {/* Heading */}
-
-              <motion.h2
-                initial={{
-                  opacity: 0,
-                  y: 25,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: 0.08,
-                  duration: 0.8,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="mt-6 max-w-[650px] text-[54px] font-semibold leading-[0.91] tracking-[-0.07em] text-white sm:text-[70px] lg:text-[84px]"
-              >
-                The right room
-                <br />
-                can change the
-                <br />
-                <span className="text-[#7DD3E7]">
-                  next decision.
-                </span>
-              </motion.h2>
-
-              {/* Description */}
-
-              <motion.p
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: 0.18,
-                  duration: 0.7,
-                }}
-                className="mt-7 max-w-[510px] text-[16px] leading-6 text-white/55 sm:text-[17px] sm:leading-7"
-              >
-                Join a focused community of technology leaders,
-                innovators and decision-makers shaping the next
-                chapter of enterprise technology.
-              </motion.p>
-
-              {/* =================================================
-                  CTA
-              ================================================== */}
-
-              <motion.a
-                initial={{
-                  opacity: 0,
-                  y: 15,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: 0.28,
-                  duration: 0.7,
-                }}
-                href="#delegateenquiry"
-                aria-label="Attend as Delegate — go to registration"
-                className="group mt-8 inline-flex min-w-[245px] items-center justify-between gap-8 border border-white/15 bg-[#071b2a]/80 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#55C7DC]/50 hover:bg-[#55C7DC]/[0.07] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#55C7DC] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-              >
-                <span
-                  className={`${sans.className} text-[12px] font-semibold uppercase tracking-[0.14em] text-white`}
-                >
-                  Attend as Delegate
-                </span>
-
-                <span aria-hidden="true" className="flex h-9 w-9 items-center justify-center rounded-full bg-[#55C7DC]/10 text-[#55C7DC] shadow-[0_0_20px_rgba(85,199,220,0.12)] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[#55C7DC]/20 group-hover:shadow-[0_0_25px_rgba(85,199,220,0.25)] motion-reduce:transition-none motion-reduce:group-hover:rotate-0">
-                  <FiArrowUpRight size={15} />
-                </span>
-              </motion.a>
-            </div>
-
-            {/* =================================================
-                RIGHT VISUAL AREA
-            ================================================== */}
-
-            <div className="pointer-events-none relative hidden h-full lg:block">
-              {/* Floating metadata */}
-
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  x: 30,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: 0.35,
-                  duration: 0.8,
-                }}
-                className="absolute right-4 top-6 z-20"
-              >
-                <div className="border border-white/10 bg-[#061522]/50 px-5 py-4 backdrop-blur-md">
-                  <p
-                    className={`${sans.className} text-[11px] uppercase tracking-[0.2em] text-white/35`}
-                  >
-                    PEOPLE
-                  </p>
-
-                  <p
-                    className={`${sans.className} mt-2 text-[12px] uppercase tracking-[0.16em] text-[#55C7DC]`}
-                  >
-                    IDEAS × TECHNOLOGY
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Small vertical line */}
-
-              <div aria-hidden="true" className="absolute right-0 top-0 h-24 w-px bg-gradient-to-b from-[#55C7DC]/60 to-transparent" />
-
-              {/* Bottom visual indicator */}
-
-              <div className="absolute bottom-10 right-5 flex items-center gap-3">
-                <span aria-hidden="true" className="h-px w-12 bg-[#55C7DC]/40" />
-
-                <span
-                  className={`${sans.className} text-[11px] uppercase tracking-[0.2em] text-white/35`}
-                >
-                  PEOPLE • IDEAS • CONNECTIONS
-                </span>
-              </div>
-            </div>
           </div>
 
-          {/* =====================================================
-              FOOTER BAR
-          ====================================================== */}
+        </div>
 
-          {/* <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            whileInView={{
-              opacity: 1,
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              delay: 0.4,
-              duration: 0.7,
-            }}
-            className="relative z-20 mt-12 border-t border-white/10 pt-5"
-          >
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <span
-                className={`${sans.className} text-[11px] uppercase tracking-[0.18em] text-white/35`}
-              >
-                CIO TECH / DELHI / 2026
-              </span>
 
-              <span
-                className={`${sans.className} text-[11px] uppercase tracking-[0.18em] text-white/25`}
-              >
-                People • Ideas • Connections
-              </span>
 
-              <span
-                className={`${sans.className} text-[11px] uppercase tracking-[0.18em] text-white/35`}
-              >
-                END / ABOUT
-              </span>
-            </div>
-          </motion.div> */}
+        {/* Closing statement */}
+
+        <motion.div
+
+          initial={reduceMotion ? undefined : { opacity: 0, y: 12 }}
+
+          whileInView={{ opacity: 1, y: 0 }}
+
+          viewport={{ once: true, amount: 0.3 }}
+
+          transition={{ duration: 0.65 }}
+
+          className="mt-12 flex flex-col justify-between gap-5 border-t border-[#DCE5ED] pt-7 sm:mt-16 sm:flex-row sm:items-center"
+
+        >
+
+          <p className="max-w-3xl text-lg font-medium leading-relaxed tracking-tight text-[#102746] sm:text-xl">
+
+            Less experimentation for its own sake.
+
+            <span className="text-[#0D9488]">
+
+              {" "}More AI that delivers.
+
+            </span>
+
+          </p>
+
+
+
+          <div className="shrink-0 text-xs leading-6 text-[#7A8999]">
+
+            <p>12 November 2026</p>
+
+            <p>The LaLiT, New Delhi</p>
+
+          </div>
+
         </motion.div>
+
       </div>
 
-      {/* =========================================================
-          BOTTOM AMBIENT LIGHT
-      ========================================================== */}
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-[-180px] left-1/2 h-[280px] w-[700px] -translate-x-1/2 rounded-full blur-[130px]"
-        style={{
-          background: "rgba(55,170,210,0.06)",
-        }}
-      />
     </section>
-  );
-}
 
-export default function About() {
-  return (
-    <main id="about" className={`${sans.className} overflow-hidden`}>
-      <AboutEvent />
-      <TechnologySection />
-      <FocusAreas />
-      <IndustryLandscape />
-      <AboutBenefits />
-      <AboutCTA />
-    </main>
-  )
+  );
+
 }

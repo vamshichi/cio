@@ -1,661 +1,854 @@
 
-'use client'
 
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+
+
+"use client";
+
+
+
+import { useEffect, useRef, useState } from "react";
+
+
+
 import {
+
+  animate,
+
+  motion,
+
+  useInView,
+
+  useMotionValue,
+
+  useReducedMotion,
+
+  useTransform,
+
+} from "framer-motion";
+
+
+
+import {
+
+
+
   FiArrowRight,
+
+
+
   FiCalendar,
+
+
+
   FiMapPin,
-} from 'react-icons/fi'
 
-import { DelegateForm } from '@/components/sections/DelegateForm'
-import { SponsorForm } from '@/components/sections/SponsorForm'
-import { FormModal } from '@/components/common/FormModal'
 
-export function Hero() {
-  const [showDelegateForm, setShowDelegateForm] = useState(false)
-  const [showSponsorForm, setShowSponsorForm] = useState(false)
+
+  FiCpu,
+
+
+
+} from "react-icons/fi";
+
+
+
+import { DelegateForm } from "@/components/sections/DelegateForm";
+
+
+
+import { SponsorForm } from "@/components/sections/SponsorForm";
+
+
+
+import { FormModal } from "@/components/common/FormModal";
+
+
+
+const eventStats = [
+
+  { value: 200, suffix: "+", label: "Technology leaders", countUp: true },
+
+  { value: 25, suffix: "+", label: "Industry speakers", countUp: true },
+
+  { value: 70, suffix: "+", label: "Curated 1:1 meetings", countUp: true },
+
+  { value: 2026, suffix: "", label: "Leadership awards", countUp: false },
+
+];
+
+
+
+function AnimatedStat({
+
+  value,
+
+  suffix = "",
+
+  countUp = true,
+
+}: {
+
+  value: number;
+
+  suffix?: string;
+
+  countUp?: boolean;
+
+}) {
+
+  const ref = useRef<HTMLSpanElement>(null);
+
+  const isInView = useInView(ref, { once: true, amount: 0.65 });
+  const reduceMotion = useReducedMotion();
+  const motionValue = useMotionValue(countUp && !reduceMotion ? 0 : value);
+
+  const rounded = useTransform(motionValue, (latest) =>
+
+    Math.round(latest).toLocaleString("en-IN")
+
+  );
+
+
+
+  useEffect(() => {
+
+    if (!isInView) return;
+    if (!countUp || reduceMotion) {
+      motionValue.set(value);
+      return;
+    }
+    const controls = animate(motionValue, value, {
+
+      duration: 1.7,
+
+      ease: [0.16, 1, 0.3, 1],
+
+    });
+
+    return controls.stop;
+
+  }, [isInView, countUp, motionValue, value, reduceMotion]);
+
+
 
   return (
-    <section
-      id="home"
-      className="
-        relative
-        h-[100svh]
-        min-h-[620px]
-        w-full
-        overflow-hidden
-        bg-[#02070A]
-        text-white
-      "
-    >
-      {/* ============================================================
-          BACKGROUND VIDEO
-      ============================================================ */}
 
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          className="
-            absolute
-            inset-0
-            h-full
-            w-full
-            object-cover
-          "
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        >
-          <source
-            src="/videos/cio-tech-hero.mp4"
-            type="video/mp4"
+    <span ref={ref} className="tabular-nums">
+
+      {countUp ? <motion.span>{rounded}</motion.span> : value.toLocaleString("en-IN")}
+
+      {suffix}
+
+    </span>
+
+  );
+
+}
+
+
+
+const orbitNodes = [
+
+
+
+  { top: "12%", left: "50%", delay: 0 },
+
+
+
+  { top: "29%", left: "84%", delay: 0.7 },
+
+
+
+  { top: "72%", left: "80%", delay: 1.4 },
+
+
+
+  { top: "86%", left: "40%", delay: 0.3 },
+
+
+
+  { top: "54%", left: "14%", delay: 1.1 },
+
+
+
+  { top: "22%", left: "23%", delay: 1.8 },
+
+
+
+];
+
+
+
+function TechnologyVisual() {
+
+
+
+  const reduceMotion = useReducedMotion();
+
+
+
+  return (
+    <div className="relative mx-auto aspect-square w-full max-w-[460px]">
+
+      {/* Ambient lighting */}
+      <div className="absolute inset-[12%] rounded-full bg-teal-400/[0.09] blur-[70px]" />
+      <div className="absolute inset-[25%] rounded-full bg-blue-500/[0.13] blur-[60px]" />
+
+      {/* Technical grid */}
+
+      <div
+        className="absolute inset-0 opacity-[0.10]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(94,234,212,.22) 1px, transparent 1px), linear-gradient(90deg, rgba(94,234,212,.22) 1px, transparent 1px)",
+          backgroundSize: "34px 34px",
+          maskImage:
+            "radial-gradient(ellipse at center, black 15%, transparent 72%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at center, black 15%, transparent 72%)",
+        }}
+      />
+
+      {/* Outer orbital rings */}
+
+      <motion.div
+        animate={reduceMotion ? undefined : { rotate: 360 }}
+        transition={{
+          duration: 55,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute inset-[7%] rounded-full border border-dashed border-teal-300/15"
+      >
+        <span className="absolute left-[15%] top-[18%] h-2 w-2 rounded-full bg-teal-300 shadow-[0_0_16px_#2dd4bf]" />
+        <span className="absolute bottom-[15%] right-[16%] h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_14px_#60a5fa]" />
+      </motion.div>
+
+      <motion.div
+
+        animate={reduceMotion ? undefined : { rotate: -360 }}
+        transition={{
+          duration: 38,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+
+
+
+        className="absolute inset-[15%] rounded-full border border-teal-300/15"
+
+
+
+      >
+
+
+
+        <span className="absolute right-[10%] top-[22%] h-2.5 w-2.5 rounded-full border border-teal-200 bg-[#0D9488] shadow-[0_0_22px_#14b8a6]" />
+
+
+
+      </motion.div>
+
+
+
+      <motion.div
+
+
+
+        animate={
+
+
+
+          reduceMotion
+
+
+
+            ? undefined
+
+
+
+            : { rotate: [0, 8, 0], scale: [1, 1.025, 1] }
+
+
+
+        }
+
+
+
+        transition={{
+
+
+
+          duration: 9,
+
+
+
+          repeat: Infinity,
+
+
+
+          ease: "easeInOut",
+
+
+
+        }}
+
+
+
+        className="absolute inset-[23%] rounded-full border border-blue-300/25"
+
+
+
+      />
+
+
+
+      {/* Orbit paths */}
+
+
+
+      <div className="absolute inset-[17%] rotate-[-32deg] rounded-[50%] border border-teal-200/25" />
+
+
+
+      <div className="absolute inset-[17%] rotate-[32deg] rounded-[50%] border border-blue-300/20" />
+
+
+
+      {/* Center technology core */}
+
+
+
+      <motion.div
+
+
+
+        initial={{ opacity: 0, scale: 0.7 }}
+
+
+
+        animate={{ opacity: 1, scale: 1 }}
+
+
+
+        transition={{ duration: 1, ease: "easeOut" }}
+
+
+
+        className="absolute inset-0 flex items-center justify-center"
+
+
+
+      >
+
+
+
+        <div className="relative flex h-[43%] w-[43%] items-center justify-center rounded-full border border-teal-300/40 bg-gradient-to-br from-teal-300/[0.15] via-blue-500/[0.09] to-transparent shadow-[0_0_80px_rgba(20,184,166,0.12)] backdrop-blur-sm">
+
+
+
+          <motion.div
+
+
+
+            animate={
+
+
+
+              reduceMotion
+
+
+
+                ? undefined
+
+
+
+                : { opacity: [0.35, 0.8, 0.35], scale: [0.92, 1.05, 0.92] }
+
+
+
+            }
+
+
+
+            transition={{ duration: 4, repeat: Infinity }}
+
+
+
+            className="absolute inset-[12%] rounded-full border border-teal-200/40"
+
+
+
           />
-        </video>
 
-        {/* Cinematic darkness */}
-        <div className="absolute inset-0 bg-[#02070A]/30" />
 
-        {/* Center readability */}
-        <div
-          className="
-              absolute
-              inset-0
-              bg-[radial-gradient(circle_at_center,rgba(2,7,10,0.25)_0%,rgba(2,7,10,0.72)_70%,rgba(2,7,10,0.96)_100%)]
-            "
-        />
 
-        {/* Top fade */}
-        <div
-          className="
-            absolute
-            inset-x-0
-            top-0
-            h-32
-            bg-gradient-to-b
-            from-[#02070A]/90
-            to-transparent
-          "
-        />
+          <div className="relative flex h-[65%] w-[65%] items-center justify-center rounded-full border border-teal-200/30 bg-[#09264A] shadow-[inset_0_0_35px_rgba(20,184,166,0.12)]">
 
-        {/* Bottom fade */}
-        <div
-          className="
-            absolute
-            inset-x-0
-            bottom-0
-            h-40
-            bg-gradient-to-t
-            from-[#02070A]
-            via-[#02070A]/60
-            to-transparent
-          "
-        />
 
-        {/* Subtle cyan glow */}
-        <div
-          className="
-            pointer-events-none
-            absolute
-            left-1/2
-            top-1/2
-            h-[45vh]
-            w-[45vh]
-            -translate-x-1/2
-            -translate-y-1/2
-            rounded-full
-            bg-cyan-400/[0.06]
-            blur-[130px]
-          "
-        />
+
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-teal-300/[0.12] to-transparent" />
+
+
+
+            <FiCpu
+
+
+
+              className="relative text-teal-200 drop-shadow-[0_0_14px_rgba(45,212,191,0.65)]"
+
+
+
+              size="34%"
+
+
+
+              strokeWidth={1.15}
+
+
+
+            />
+
+
+
+          </div>
+
+
+
+          {/* Core signal */}
+
+
+
+          <motion.span
+
+
+
+            animate={reduceMotion ? undefined : { opacity: [0.3, 1, 0.3] }}
+
+
+
+            transition={{ duration: 2, repeat: Infinity }}
+
+
+
+            className="absolute -right-1 top-[27%] h-2.5 w-2.5 rounded-full bg-teal-200 shadow-[0_0_18px_#2dd4bf]"
+
+
+
+          />
+
+
+
+        </div>
+
+
+
+      </motion.div>
+
+
+
+      {/* Connected data nodes */}
+
+
+
+      {orbitNodes.map((node, i) => (
+
+
+
+        <motion.div
+
+
+
+          key={i}
+
+
+
+          className="absolute z-10"
+
+
+
+          style={{ top: node.top, left: node.left }}
+
+
+
+          animate={
+
+
+
+            reduceMotion
+
+
+
+              ? undefined
+
+
+
+              : { y: [0, -9, 0], opacity: [0.55, 1, 0.55] }
+
+
+
+          }
+
+
+
+          transition={{
+
+
+
+            duration: 3 + (i % 3),
+
+
+
+            delay: node.delay,
+
+
+
+            repeat: Infinity,
+
+
+
+            ease: "easeInOut",
+
+
+
+          }}
+
+
+
+        >
+
+
+
+          <div className="relative h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-teal-200/70 bg-teal-300/25">
+
+
+
+            <div className="absolute inset-0 rounded-full bg-teal-200 blur-[5px]" />
+
+
+
+          </div>
+
+
+
+        </motion.div>
+
+
+
+      ))}
+
+
+
+      {/* Visual caption */}
+
+
+
+      <div className="absolute bottom-[3%] left-0 right-0 text-center">
+
+
+
+        <p className="text-[9px] font-medium uppercase tracking-[0.35em] text-teal-200/70 sm:text-[10px]">
+
+
+
+          Intelligence · Security · Transformation
+
+
+
+        </p>
+
+
+
       </div>
 
 
 
-      {/* ============================================================
-          CENTERED HERO
-      ============================================================ */}
+    </div>
 
-      <main
-        className="
-          relative
-          z-20
-          flex
-          h-[calc(100svh-68px)]
-          items-center
-          justify-center
-          px-5
-          pt-20
-          pb-[15px]
-          sm:px-8
-        "
-      >
-        <div
-          className="
-            flex
-            w-full
-            max-w-[1000px]
-            flex-col
-            items-center
-            text-center
-          "
-        >
-          {/* ========================================================
-              EYEBROW
-          ======================================================== */}
+
+
+  );
+
+
+
+}
+
+
+
+export function Hero() {
+
+
+
+  const [showDelegateForm, setShowDelegateForm] = useState(false);
+
+
+
+  const [showSponsorForm, setShowSponsorForm] = useState(false);
+
+
+
+  const reduceMotion = useReducedMotion();
+
+
+
+  const openEnquiry = (type: "delegate" | "sponsor") => {
+
+
+
+    const hash =
+
+
+
+      type === "delegate" ? "#delegateenquiry" : "#sponsorenquiry";
+
+
+
+    window.history.pushState(null, "", hash);
+
+
+
+    if (type === "delegate") {
+
+
+
+      setShowDelegateForm(true);
+
+
+
+    } else {
+
+
+
+      setShowSponsorForm(true);
+
+
+
+    }
+
+
+
+  };
+
+
+
+  return (
+
+
+
+    <section
+
+
+
+      id="home"
+
+
+
+      className="relative isolate overflow-hidden bg-[#06172F] text-white"
+
+
+
+    >
+
+
+
+      {/* Ambient background */}
+
+
+
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-48 top-4 h-[420px] w-[420px] rounded-full bg-teal-500/[0.08] blur-[130px]" />
+        <div className="absolute -right-32 top-0 h-[460px] w-[460px] rounded-full bg-blue-500/[0.12] blur-[140px]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-300/60 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(13,148,136,0.09),transparent_60%)]" />
+      </div>
+
+      {/* Announcement */}
+
+      {/* Hero content */}
+
+      <div className="relative mx-auto max-w-[1360px] px-5 pb-10 pt-8 sm:px-8 sm:pb-14 sm:pt-8 lg:px-12 lg:pb-12 lg:pt-8">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
+
+          {/* Left: messaging */}
+
+          <div className="relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="mb-7 flex flex-wrap items-center gap-3"
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-teal-300/25 bg-teal-300/[0.07] px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-teal-200 sm:text-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-teal-300" />
+                3rd Edition · New Delhi
+              </span>
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.85,
+                delay: 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="max-w-[860px] text-[clamp(38px,6.2vw,68px)] font-semibold leading-[1.02] tracking-[-0.045em]"
+            >
+              The future
+              isn&apos;t a pilot 
+              <span> </span>
+              <span className="relative inline-block bg-gradient-to-r from-teal-200 via-teal-400 to-cyan-300 bg-clip-text pb-2 text-transparent">
+                 It&apos;s production
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 1, delay: 0.8 }}
+                  className="absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-teal-300/80 to-transparent"
+                />
+              </span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              className="mt-7 max-w-[590px] text-base leading-2 text-slate-100 sm:text-sm sm:leading-8"
+            >
+              Where India&apos;s CIOs, CTOs, CISOs and CDOs turn enterprise
+              AI, cybersecurity and digital transformation into secure,
+              governed and measurable business outcomes.
+            </motion.p>
+
+            {/* Event details */}
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="mt-7 flex flex-col gap-3 text-base text-slate-100 sm:flex-row sm:flex-wrap sm:gap-x-6"
+            >
+              <span className="inline-flex items-center gap-2.5">
+                <FiCalendar className="text-teal-300" size={16} />
+                12 November 2026
+              </span>
+              <span className="inline-flex items-center gap-2.5">
+                <FiMapPin className="text-teal-300" size={16} />
+                The Lalit, New Delhi
+              </span>
+            </motion.div>
+            {/* Actions */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.45 }}
+              className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+            >
+              <button
+                type="button"
+                onClick={() => openEnquiry("delegate")}
+                className="group inline-flex min-h-[54px] items-center justify-center gap-3 rounded-lg bg-teal-300 px-6 py-4 text-base font-semibold text-[#06213A] shadow-[0_0_30px_rgba(45,212,191,0.12)] transition-all duration-300 hover:bg-teal-200 hover:shadow-[0_0_40px_rgba(45,212,191,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#06172F]"
+              >
+                Request your executive pass
+                <FiArrowRight
+                  size={17}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </button>
+              <button
+                type="button"
+                onClick={() => openEnquiry("sponsor")}
+                className="group inline-flex min-h-[54px] items-center justify-center gap-3 rounded-lg border border-white/15 bg-white/[0.035] px-6 py-4 text-base font-medium text-white backdrop-blur-md transition-all duration-300 hover:border-teal-300/50 hover:bg-teal-300/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-200"
+              >
+                Explore partnerships
+                <FiArrowRight
+                  size={16}
+                  className="text-teal-200 transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </button>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="mt-5 text-sm tracking-wide text-slate-400"
+            >
+              Built for decision-makers. Designed for what comes next.
+            </motion.p>
+          </div>
+
+          {/* Right: animated visual */}
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65 }}
-            className="
-              mb-4
-              flex
-              items-center
-              justify-center
-              gap-3
-            "
+            initial={{ opacity: 0, scale: 0.92, x: 20 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{
+              duration: 1.1,
+              delay: 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="relative mx-auto w-full max-w-[540px] lg:-mr-3"
           >
-            <span
-              className="
-                h-1.5
-                w-1.5
-                rounded-full
-                bg-cyan-300
-                shadow-[0_0_16px_rgba(103,232,249,0.9)]
-              "
-            />
-
-            <span
-              className="
-                text-[18px]
-                font-medium
-                uppercase
-                tracking-[0.3em]
-                text-white/55
-              "
-            >
-              India&apos;s Technology Leadership Platform
-            </span>
-
-            <span className="h-px w-8 bg-white/20" />
-
-            <span
-              className="
-                text-[18px]
-                font-bold
-                uppercase
-                tracking-[0.2em]
-                text-cyan-300
-              "
-            >
-              Edition 03
-            </span>
+            <TechnologyVisual />
           </motion.div>
-
-          {/* ========================================================
-              TITLE
-          ======================================================== */}
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.08,
-              duration: 0.9,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="
-              max-w-[900px]
-              text-[clamp(48px,6.5vw,92px)]
-              font-semibold
-              leading-[0.88]
-              tracking-[-0.065em]
-            "
-          >
-            <span className="block
-                bg-gradient-to-r
-                from-white
-                via-white
-                to-cyan-100
-                bg-clip-text
-                text-transparent">
-              CIO TECH LEADERSHIP
-            </span>
-
-            <span
-              className="
-                block
-                bg-gradient-to-r
-                from-white
-                via-white
-                to-cyan-100
-                bg-clip-text
-                text-transparent
-              "
-            >
-              CONFERENCE
-            </span>
-
-            <span
-              className="
-                mt-3
-                block
-                font-serif
-                text-[clamp(30px,3.3vw,48px)]
-                font-medium
-                italic
-                tracking-[-0.035em]
-                text-cyan-300
-                drop-shadow-[0_0_25px_rgba(34,211,238,0.25)]
-              "
-            >
-              &amp; Awards
-            </span>
-          </motion.h1>
-
-          {/* ========================================================
-              INTRO
-          ======================================================== */}
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.25,
-              duration: 0.65,
-            }}
-            className="
-              mt-5
-              max-w-[500px]
-              text-[24px]
-              font-light
-              leading-6
-              text-white/65
-              sm:text-[25px]
-            "
-          >
-            Where India&apos;s technology leaders meet to
-            shape what comes next.
-          </motion.p>
-
-          {/* ========================================================
-              DATE + LOCATION
-          ======================================================== */}
-
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.35,
-              duration: 0.65,
-            }}
-            className="
-    mt-5
-    flex
-    flex-wrap
-    items-center
-    justify-center
-    gap-x-7
-    gap-y-3
-    text-[44px]
-    font-semibold
-    uppercase
-    sm:text-[38px]
-    md:text-[42px]
-    lg:text-[46px]
-  "
-          >
-            <EventMeta
-              icon={<FiCalendar size={18} />}
-              label="12 November 2026"
-              sub="New Delhi, India"
-            />
-
-            <span
-              className="
-      hidden
-      h-9
-      w-px
-      bg-white/15
-      sm:block
-    "
-            />
-
-            <EventMeta
-              icon={<FiMapPin size={18} />}
-              label="The LaliT New Delhi"
-              sub="India"
-            />
-          </motion.div>
-
-          {/* ========================================================
-              CTA
-          ======================================================== */}
-
-          {/* <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.45,
-              duration: 0.65,
-            }}
-            className="
-              mt-6
-              flex
-              flex-col
-              items-center
-              justify-center
-              gap-2.5
-              sm:flex-row
-            "
-          >
-            <button
-              onClick={() => setShowDelegateForm(true)}
-              className="
-                group
-                flex
-                h-11
-                min-w-[205px]
-                items-center
-                justify-center
-                gap-3
-                rounded-full
-                bg-cyan-300
-                px-7
-                text-[9px]
-                font-bold
-                uppercase
-                tracking-[0.2em]
-                text-[#021014]
-                shadow-[0_0_40px_rgba(34,211,238,0.18)]
-                transition
-                hover:bg-cyan-200
-                hover:shadow-[0_0_60px_rgba(34,211,238,0.3)]
-              "
-            >
-              Attend as Delegate
-
-              <FiArrowRight
-                size={14}
-                className="
-                  transition-transform
-                  group-hover:translate-x-1
-                "
-              />
-            </button>
-
-            <button
-              onClick={() => setShowSponsorForm(true)}
-              className="
-                group
-                flex
-                h-11
-                min-w-[190px]
-                items-center
-                justify-center
-                gap-3
-                rounded-full
-                border
-                border-white/20
-                bg-white/[0.04]
-                px-7
-                text-[9px]
-                font-semibold
-                uppercase
-                tracking-[0.2em]
-                text-white/85
-                backdrop-blur-xl
-                transition
-                hover:border-cyan-300/50
-                hover:bg-cyan-300/[0.08]
-                hover:text-cyan-200
-              "
-            >
-              Become a Sponsor
-
-              <FiArrowRight
-                size={14}
-                className="
-                  text-cyan-300
-                  transition-transform
-                  group-hover:translate-x-1
-                "
-              />
-            </button>
-          </motion.div> */}
-
-          {/* ========================================================
-              ANIMATED NUMBERS
-          ======================================================== */}
-
-
         </div>
-      </main>
 
-      {/* ============================================================
-          MODALS
-      ============================================================ */}
+        {/* Bottom statistics */}
 
+        {/* <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.65 }}
+          className="relative mt-8 border-t border-white/[0.12] sm:mt-12 lg:mt-7"
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-4">
+            {eventStats.map((stat, index) => (
+              <div
+                key={stat.label}
+                className={`relative py-5 pr-3 sm:py-7 sm:pr-5 ${index % 2 === 1 ? "pl-4 sm:pl-6" : ""
+                  } ${index > 0
+                    ? "sm:border-l sm:border-white/[0.12] sm:pl-6"
+                    : ""
+                  } ${index >= 2 ? "border-t border-white/[0.08] sm:border-t-0" : ""
+                  }`}
+              >
+                <p className="text-4xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">
+
+                  <AnimatedStat
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    countUp={stat.countUp}
+                  />
+
+                </p>
+                <p className="mt-2 text-sm leading-5 text-slate-300 sm:text-base">
+                  {stat.label}
+                </p>
+                <div className="absolute bottom-0 left-0 h-px w-10 bg-teal-300/60 sm:w-12" />
+              </div>
+            ))}
+          </div>
+        </motion.div> */}
+      </div>
+
+      {/* Subtle bottom transition */}
+
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#071C38]/70 to-transparent" />
+      {/* Delegate modal */}
       <FormModal
         open={showDelegateForm}
         onClose={() => setShowDelegateForm(false)}
-        title="Delegate Registration"
+        title="Request Your Executive Pass"
       >
         <DelegateForm />
       </FormModal>
 
+      {/* Sponsor modal */}
       <FormModal
         open={showSponsorForm}
         onClose={() => setShowSponsorForm(false)}
-        title="Sponsor Registration"
+        title="Partner with CIO Tech"
       >
         <SponsorForm />
       </FormModal>
     </section>
-  )
-}
-
-/* ================================================================
-   EVENT META
-================================================================ */
-
-function EventMeta({
-  icon,
-  label,
-  sub,
-}: {
-  icon: React.ReactNode
-  label: string
-  sub: string
-}) {
-  return (
-    <div className="flex items-center gap-2.5 text-left">
-      <span
-        className="
-          flex
-          h-8
-          w-8
-          shrink-0
-          items-center
-          justify-center
-          rounded-full
-          border
-          border-cyan-300/20
-          bg-cyan-300/[0.05]
-          text-cyan-300
-        "
-      >
-        {icon}
-      </span>
-
-      <div>
-        <div
-          className="
-            text-[19px]
-            font-bold
-            uppercase
-            tracking-[0.08em]
-            text-white/90
-          "
-        >
-          {label}
-        </div>
-
-        <div
-          className="
-            mt-0.5
-            text-[15px]
-            text-white/35
-          "
-        >
-          {sub}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ================================================================
-   ANIMATED STAT
-================================================================ */
-
-function AnimatedStat({
-  value,
-  suffix = '',
-  prefix = '',
-  label,
-  delay = 0,
-}: {
-  value: number
-  suffix?: string
-  prefix?: string
-  label: string
-  delay?: number
-}) {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    let startTime: number | null = null
-    let animationFrame: number
-
-    const duration = 1400
-
-    const start = () => {
-      const animate = (time: number) => {
-        if (!startTime) {
-          startTime = time
-        }
-
-        const progress = Math.min(
-          (time - startTime) / duration,
-          1
-        )
-
-        // Smooth ease-out
-        const eased =
-          1 - Math.pow(1 - progress, 3)
-
-        setCount(Math.floor(eased * value))
-
-        if (progress < 1) {
-          animationFrame = requestAnimationFrame(animate)
-        } else {
-          setCount(value)
-        }
-      }
-
-      animationFrame = requestAnimationFrame(animate)
-    }
-
-    const timeout = window.setTimeout(start, delay * 1000)
-
-    return () => {
-      window.clearTimeout(timeout)
-      cancelAnimationFrame(animationFrame)
-    }
-  }, [value, delay])
-
-  return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        y: 20,
-        scale: 0.96,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        scale: 1,
-      }}
-      transition={{
-        delay,
-        duration: 0.7,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      className="text-center"
-    >
-      <div
-        className="
-          tabular-nums
-          text-[28px]
-          font-medium
-          leading-none
-          tracking-[-0.06em]
-          text-white
-          sm:text-[34px]
-        "
-      >
-        {prefix}
-        {count}
-        {suffix}
-      </div>
-
-      <div
-        className="
-          mt-2
-          whitespace-nowrap
-          text-[6px]
-          font-semibold
-          uppercase
-          tracking-[0.18em]
-          text-white/30
-          sm:text-[7px]
-        "
-      >
-        {label}
-      </div>
-    </motion.div>
-  )
-}
-
-/* ================================================================
-   DIVIDER
-================================================================ */
-
-function Divider() {
-  return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        scaleY: 0,
-      }}
-      animate={{
-        opacity: 1,
-        scaleY: 1,
-      }}
-      transition={{
-        delay: 0.7,
-        duration: 0.5,
-      }}
-      className="
-        h-8
-        w-px
-        shrink-0
-        bg-white/10
-      "
-    />
-  )
+  );
 }

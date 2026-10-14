@@ -13,41 +13,41 @@ import {
   FaCogs,
   FaUserTie,
   FaLightbulb,
+  FaBalanceScale,
+  FaBullseye,
+  FaExpandArrowsAlt,
 } from 'react-icons/fa'
 
 import { motion, AnimatePresence, useReducedMotion, type Variants } from 'framer-motion'
-import { Space_Grotesk, Manrope } from 'next/font/google'
+import { Playfair_Display, Inter } from 'next/font/google'
 
-// ─── Design tokens — shared dark navy / teal system ──────────────────────────
+// ─── Design tokens — shared warm ivory / charcoal / bronze site theme ────────
 
 const COLORS = {
-  base: '#050B18',
-  panel: '#0A1530',
-  raised: '#0E1B33',
-  raisedHover: '#122142',
-  cream: '#F6F9F8',
-  inkSoft: 'rgba(246,249,248,0.66)',
-  muted: 'rgba(246,249,248,0.52)',
-  faint: 'rgba(246,249,248,0.32)',
-  teal: '#2BC4AE',
-  tealDeep: '#0F5850',
-  tealLight: '#7EE7D3',
-  tealGlow: 'rgba(43,196,174,0.18)',
-  line: 'rgba(246,249,248,0.10)',
-  lineStrong: 'rgba(246,249,248,0.20)',
-  // Added: a dedicated warning/error tone, distinct from the teal accent so
-  // "something needs attention" never gets confused with "this is selected".
-  warn: '#F0A868',
-  warnSoft: 'rgba(240,168,104,0.12)',
+  base: '#F5F8FB',
+  panel: '#EAF0F6',
+  raised: '#FFFFFF',
+  raisedHover: '#F0F6F8',
+  cream: '#102746',
+  inkSoft: 'rgba(16,39,70,0.88)',
+  muted: 'rgba(16,39,70,0.72)',
+  faint: 'rgba(16,39,70,0.52)',
+  teal: '#0D9488',
+  tealDeep: '#0B6F69',
+  tealLight: '#0D9488',
+  tealGlow: 'rgba(13,148,136,0.16)',
+  line: 'rgba(16,39,70,0.12)',
+  lineStrong: 'rgba(16,39,70,0.22)',
+  warn: '#B54736',
+  warnSoft: 'rgba(181,71,54,0.09)',
 }
-
-const display = Space_Grotesk({
+const display = Playfair_Display({
   subsets: ['latin'],
   weight: ['500', '600', '700'],
   display: 'swap',
 })
 
-const sans = Manrope({
+const sans = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   display: 'swap',
@@ -85,6 +85,12 @@ type FormErrors = Partial<Record<keyof FormState, string>>
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const delegateAwards: Award[] = [
+  {
+    title: 'Pilot to Production Award',
+    description:
+      'Recognising the enterprise AI initiative that moved most convincingly from experiment to enterprise-wide value in the past 12 months.',
+    icon: FaAward,
+  },
   {
     title: 'CIO of the Year — Enterprise Transformation',
     description:
@@ -168,6 +174,7 @@ const industrySectors = [
 ]
 
 const delegateCategories = [
+  'Pilot to Production Award',
   'CIO of the Year – Enterprise Transformation',
   'Digital Transformation Leader of the Year',
   'AI & Intelligent Automation Leadership Award',
@@ -194,6 +201,43 @@ const sponsorCategories = [
   'Digital Workplace Innovation Award',
   'Enterprise Technology Consulting Firm of the Year',
 ]
+
+const flagshipAward = {
+  title: 'Pilot to Production Award',
+  eyebrow: 'Flagship Award · 2026',
+  description:
+    'For the enterprise AI initiative that moved most convincingly from experiment to enterprise-wide value in the past 12 months.',
+}
+
+const judgingCriteria = [
+  {
+    number: '01',
+    title: 'Impact',
+    description:
+      'Measurable results in revenue, cost, risk, customer or employee outcomes.',
+    icon: FaBullseye,
+  },
+  {
+    number: '02',
+    title: 'Scale',
+    description:
+      'Reach across the business, beyond a single pilot or team.',
+    icon: FaExpandArrowsAlt,
+  },
+  {
+    number: '03',
+    title: 'Responsibility',
+    description:
+      'Governance, security and ethical safeguards built in.',
+    icon: FaBalanceScale,
+  },
+]
+
+const nominationsCloseAt = new Date('2026-10-15T23:59:59+05:30')
+
+function getAwardsPhase(): 'nominations' | 'winners' {
+  return new Date() <= nominationsCloseAt ? 'nominations' : 'winners'
+}
 
 const whoShouldNominate = [
   'CIOs, CTOs & CDOs',
@@ -305,7 +349,7 @@ function GridGlow({ className = '' }: { className?: string }) {
       />
       <div
         className="absolute bottom-[-20%] left-[-8%] h-[420px] w-[420px] rounded-full blur-[130px]"
-        style={{ background: 'rgba(43,196,174,0.10)' }}
+        style={{ background: 'rgba(130,112,79,0.10)' }}
       />
 
       {!reduceMotion && (
@@ -597,7 +641,7 @@ function TileOption({
         )}
         {checked && type === 'radio' && <span className="h-1.5 w-1.5 rounded-full" style={{ background: COLORS.base }} />}
       </span>
-      <span className="text-[13.5px] leading-[1.5]" style={{ color: COLORS.inkSoft }}>
+      <span className="text-sm leading-[1.5]" style={{ color: COLORS.inkSoft }}>
         {children}
       </span>
     </motion.label>
@@ -680,11 +724,11 @@ function NominationModal({ onClose }: { onClose: () => void }) {
 
   const inputStyle: React.CSSProperties = {
     borderColor: COLORS.line,
-    background: 'rgba(246,249,248,0.03)',
+    background: 'rgba(38,39,32,0.025)',
     color: COLORS.cream,
   }
 
-  const inputClass = `w-full rounded-sm border px-4 py-3 text-sm outline-none transition-colors focus:border-current placeholder:text-[13px] placeholder:text-[rgba(246,249,248,0.35)] ${focusRing}`
+  const inputClass = `w-full rounded-sm border px-4 py-3 text-sm outline-none transition-colors focus:border-current placeholder:text-[13px] placeholder:text-[rgba(38,39,32,0.42)] ${focusRing}`
 
   function set(key: keyof FormState) {
     return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -842,7 +886,7 @@ function NominationModal({ onClose }: { onClose: () => void }) {
         style={{
           background: COLORS.raised,
           borderColor: COLORS.line,
-          boxShadow: `0 30px 90px rgba(2,6,15,0.6), 0 0 0 1px ${COLORS.line}`,
+          boxShadow: `0 30px 90px rgba(16,39,70,0.12), 0 0 0 1px ${COLORS.line}`,
         }}
       >
         {submitted ? (
@@ -897,7 +941,7 @@ function NominationModal({ onClose }: { onClose: () => void }) {
               <div>
                 <Kicker>CIO Tech Awards</Kicker>
                 <h2 id={`${dialogId}-title`} className={`${display.className} mt-2.5 text-[22px] font-semibold`} style={{ color: COLORS.cream }}>
-                  Leadership Excellence Awards 2026
+                  CIO Tech Leadership Awards 2026
                 </h2>
                 <p className="mt-2 text-[12px]" style={{ color: COLORS.muted }}>
                   Nomination deadline: <span style={{ color: COLORS.tealLight, fontWeight: 700 }}>15 October 2026</span>
@@ -1099,7 +1143,7 @@ function NominationModal({ onClose }: { onClose: () => void }) {
 
                       <fieldset>
                         <legend className="mb-3 text-[12px] font-semibold uppercase tracking-[0.04em]" style={{ color: COLORS.cream }}>
-                          Industry delegate categories
+                          Leadership categories
                         </legend>
 
                         <div className="flex flex-col gap-2">
@@ -1258,6 +1302,14 @@ const heroLine: Variants = {
 
 export function Awards() {
   const [showModal, setShowModal] = useState(false)
+  const [awardsPhase, setAwardsPhase] = useState<'nominations' | 'winners'>('nominations')
+
+  useEffect(() => {
+    const updatePhase = () => setAwardsPhase(getAwardsPhase())
+    updatePhase()
+    const interval = window.setInterval(updatePhase, 60_000)
+    return () => window.clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     const checkHash = () => {
@@ -1291,7 +1343,7 @@ export function Awards() {
 
         <div className="relative z-10 mx-auto flex max-w-[1240px] flex-col items-center pb-24 sm:pb-28 lg:pb-32">
           <motion.div initial="hidden" animate="visible" custom={0} variants={heroLine}>
-            <Kicker>The CIO Tech Leadership Awards</Kicker>
+            <Kicker>CIO Tech Leadership Awards 2026</Kicker>
           </motion.div>
 
           <div className="mt-6 flex max-w-[900px] flex-col items-center">
@@ -1300,10 +1352,10 @@ export function Awards() {
               initial="hidden"
               animate="visible"
               variants={heroLine}
-              className={`${display.className} text-[38px] font-semibold leading-[1.12] tracking-[-0.01em] sm:text-[52px] lg:text-[62px]`}
+              className={`${display.className} text-[clamp(2.6rem,5.5vw,4.8rem)] font-semibold leading-[1.06] tracking-[-0.04em]`}
               style={{ color: COLORS.cream }}
             >
-              Recognising the people shaping{' '}
+              Recognising AI that made it to{' '}
               <span
                 style={{
                   background: `linear-gradient(90deg, ${COLORS.tealLight}, ${COLORS.teal})`,
@@ -1312,7 +1364,7 @@ export function Awards() {
                   backgroundClip: 'text',
                 }}
               >
-                India&rsquo;s digital future.
+                production.
               </span>
             </motion.h1>
 
@@ -1324,9 +1376,10 @@ export function Awards() {
               className="mt-7 max-w-[680px] text-[15px] leading-[1.7]"
               style={{ color: COLORS.muted }}
             >
-              A recognition platform for leaders, enterprises and solution
-              providers driving measurable transformation across AI, cloud,
-              cybersecurity, data and enterprise modernisation.
+              The CIO Tech Leadership Awards honour technology leaders and
+              organisations whose work has delivered measurable outcomes — not
+              announcements. Entries are judged on evidence: scale achieved,
+              business value delivered, and how responsibly it was done.
             </motion.p>
 
             <motion.div
@@ -1339,32 +1392,87 @@ export function Awards() {
               <motion.button
                 type="button"
                 onClick={() => {
-                  window.location.hash = 'awards-form'
-                  setShowModal(true)
+                  if (awardsPhase === 'nominations') {
+                    window.location.hash = 'awards-form'
+                    setShowModal(true)
+                  } else {
+                    document.getElementById('awards-jury')?.scrollIntoView({ behavior: 'smooth' })
+                  }
                 }}
                 whileHover={{
                   y: -2,
                   boxShadow: `0 14px 34px -12px ${COLORS.tealGlow}`,
                 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group inline-flex items-center gap-3 rounded-sm px-8 py-3.5 text-[13.5px] font-semibold transition-colors ${focusRing}`}
+                className={`group inline-flex items-center gap-3 rounded-sm px-8 py-3.5 text-sm font-semibold transition-colors ${focusRing}`}
                 style={{
                   background: `linear-gradient(90deg, ${COLORS.tealLight}, ${COLORS.teal})`,
                   color: COLORS.base,
                   ...focusRingStyle,
                 }}
               >
-                Submit your nomination
+                {awardsPhase === 'nominations' ? 'Submit a nomination' : 'Meet the jury'}
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </motion.button>
 
               <div className="flex items-center justify-center gap-3 text-[12.5px]" style={{ color: COLORS.faint }}>
-                <span>Deadline</span>
+                <span>{awardsPhase === 'nominations' ? 'Nominations close' : 'Awards ceremony'}</span>
                 <span className="h-px w-6" style={{ background: COLORS.lineStrong }} />
-                <span style={{ color: COLORS.tealLight, fontWeight: 700 }}>15 October 2026</span>
+                <span style={{ color: COLORS.tealLight, fontWeight: 700 }}>{awardsPhase === 'nominations' ? '15 October 2026' : '12 November 2026'}</span>
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 border-y px-5 py-14 sm:px-8 sm:py-20 lg:px-12" style={{ borderColor: COLORS.line, background: COLORS.panel }}>
+        <div className="mx-auto max-w-[1240px]">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} variants={stagger}>
+            <motion.div variants={reveal}>
+              <SectionHeading number="01" title="Evidence before accolades" />
+            </motion.div>
+
+            <motion.div variants={reveal} className="relative mt-7 overflow-hidden rounded-sm border p-7 sm:p-10 lg:p-12" style={{ borderColor: `${COLORS.teal}66`, background: COLORS.raised }}>
+              <CornerBrackets show="always" />
+              <div className="grid gap-8 lg:grid-cols-[0.3fr_1fr] lg:items-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-sm" style={{ background: `linear-gradient(135deg, ${COLORS.tealLight}, ${COLORS.teal})`, color: COLORS.base }}>
+                  <FaAward className="text-3xl" aria-hidden="true" />
+                </div>
+                <div>
+                  <p className={`${display.className} text-xs font-semibold uppercase tracking-[0.18em]`} style={{ color: COLORS.tealLight }}>{flagshipAward.eyebrow}</p>
+                  <h2 className={`${display.className} mt-3 text-3xl font-semibold leading-tight tracking-[-0.03em] sm:text-4xl`} style={{ color: COLORS.cream }}>{flagshipAward.title}</h2>
+                  <p className="mt-4 max-w-3xl text-[15px] leading-7 sm:text-base" style={{ color: COLORS.inkSoft }}>{flagshipAward.description}</p>
+                  <p className="mt-5 text-xs leading-6" style={{ color: COLORS.muted }}>Entries should demonstrate the journey from experimentation to measurable, enterprise-wide business value.</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={reveal} className="mt-12">
+              <h2 className={`${display.className} text-2xl font-semibold sm:text-3xl`} style={{ color: COLORS.cream }}>How entries are judged</h2>
+              <p className="mt-3 max-w-2xl text-[15px] leading-7" style={{ color: COLORS.muted }}>Three evidence-led criteria focus on what was achieved, how widely it was adopted, and whether it was done responsibly.</p>
+              <div className="mt-7 grid gap-4 md:grid-cols-3">
+                {judgingCriteria.map((criterion) => {
+                  const Icon = criterion.icon
+                  return (
+                    <article key={criterion.number} className="border p-6 transition-colors duration-300 hover:border-[#0D9488]/50 sm:p-8" style={{ borderColor: COLORS.line, background: COLORS.raised }}>
+                      <div className="flex items-center justify-between">
+                        <Icon className="text-2xl" style={{ color: COLORS.tealLight }} aria-hidden="true" />
+                        <span className={`${display.className} text-2xl font-bold`} style={{ color: COLORS.faint }}>{criterion.number}</span>
+                      </div>
+                      <h3 className={`${display.className} mt-7 text-xl font-semibold`} style={{ color: COLORS.cream }}>{criterion.title}</h3>
+                      <p className="mt-3 text-[15px] leading-7" style={{ color: COLORS.muted }}>{criterion.description}</p>
+                    </article>
+                  )
+                })}
+              </div>
+            </motion.div>
+
+            <motion.div id="awards-jury" variants={reveal} className="mt-8 border-l-2 py-2 pl-5 sm:pl-7" style={{ borderColor: COLORS.teal }}>
+              <p className="text-[15px] leading-7 sm:text-base" style={{ color: COLORS.inkSoft }}>Shortlists are reviewed by an independent jury of senior technology leaders.</p>
+              <p className="mt-2 text-xs leading-6" style={{ color: COLORS.muted }}>Jury names and professional affiliations will be published here once officially confirmed.</p>
+              <p className="mt-2 text-xs leading-6" style={{ color: COLORS.faint }}>Only confirmed jury members and verified professional affiliations should be listed here.</p>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -1381,7 +1489,7 @@ export function Awards() {
           className="relative mb-20 lg:mb-24"
         >
           <motion.div variants={reveal}>
-            <SectionHeading number="01" title="Who should nominate" />
+            <SectionHeading number="02" title="Who should nominate" />
           </motion.div>
 
           <motion.div variants={reveal} className="overflow-hidden rounded-sm border-l border-t" style={{ borderColor: COLORS.line }}>
@@ -1390,7 +1498,7 @@ export function Awards() {
                 <motion.div
                   key={who}
                   variants={reveal}
-                  whileHover={{ backgroundColor: 'rgba(43,196,174,0.06)' }}
+                  whileHover={{ backgroundColor: 'rgba(13,148,136,0.06)' }}
                   className="group relative border-b border-r p-6 transition-colors duration-200"
                   style={{ borderColor: COLORS.line }}
                 >
@@ -1402,7 +1510,7 @@ export function Awards() {
                     <span className={`${display.className} text-[12px] font-bold`} style={{ color: COLORS.tealLight }} aria-hidden="true">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <span className="text-[13.5px] leading-[1.5]" style={{ color: COLORS.inkSoft }}>
+                    <span className="text-sm leading-[1.5]" style={{ color: COLORS.inkSoft }}>
                       {who}
                     </span>
                   </div>
@@ -1419,8 +1527,8 @@ export function Awards() {
         <section className="relative mb-20 lg:mb-24">
           <div className="mb-9 flex flex-col justify-between gap-5 border-b pb-5 sm:flex-row sm:items-end" style={{ borderColor: COLORS.line }}>
             <div>
-              <SectionHeading number="02" title="Delegate categories" />
-              <h3 className={`${display.className} -mt-1 text-[26px] font-semibold tracking-[-0.01em]`} style={{ color: COLORS.cream }}>
+              <SectionHeading number="03" title="Leadership categories" />
+              <h3 className={`${display.className} -mt-1 text-[28px] font-semibold tracking-[-0.02em] sm:text-[32px]`} style={{ color: COLORS.cream }}>
                 Recognising technology leadership.
               </h3>
             </div>
@@ -1445,7 +1553,7 @@ export function Awards() {
           className="relative mb-20 lg:mb-24"
         >
           <motion.div variants={reveal}>
-            <SectionHeading number="03" title="Solution provider categories" />
+            <SectionHeading number="04" title="Solution provider categories" />
           </motion.div>
 
           <motion.div
@@ -1460,10 +1568,14 @@ export function Awards() {
                   Recognising the technology ecosystem.
                 </h3>
 
-                <p className="mt-5 max-w-md text-[14px] leading-[1.65]" style={{ color: COLORS.muted }}>
+                <p className="mt-5 max-w-md text-[15px] leading-7" style={{ color: COLORS.muted }}>
                   For the AI, cloud, cybersecurity, SaaS, digital transformation,
                   infrastructure and consulting firms enabling measurable
                   enterprise outcomes across India.
+                </p>
+
+                <p className="mt-5 max-w-md text-[15px] leading-7" style={{ color: COLORS.tealLight }}>
+                  Solution-provider awards are judged on verified customer outcomes, with customer references required.
                 </p>
               </div>
 
@@ -1471,7 +1583,7 @@ export function Awards() {
                 {sponsorCategories.map((cat, index) => (
                   <motion.div
                     key={cat}
-                    whileHover={{ backgroundColor: 'rgba(43,196,174,0.06)' }}
+                    whileHover={{ backgroundColor: 'rgba(13,148,136,0.06)' }}
                     className="group relative border-b border-r p-5 transition-colors duration-200"
                     style={{ borderColor: COLORS.line }}
                   >
@@ -1501,9 +1613,9 @@ export function Awards() {
         <section className="relative overflow-hidden rounded-sm border" style={{ background: COLORS.panel, borderColor: COLORS.line }}>
           <GridGlow />
 
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[60px] opacity-40">
+          {/* <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[60px] opacity-40">
             <MonumentLine color={COLORS.tealDeep} className="h-full w-full" />
-          </div>
+          </div> */}
 
           <div className="relative p-8 text-center sm:p-14 lg:p-20">
             <motion.div
@@ -1514,7 +1626,7 @@ export function Awards() {
               className="mx-auto max-w-3xl"
             >
               <motion.div variants={reveal} className="flex justify-center">
-                <Kicker>Nominations open</Kicker>
+                <Kicker>{awardsPhase === 'nominations' ? 'Nominations open' : 'Awards night · 12 November'}</Kicker>
               </motion.div>
 
               <motion.h3
@@ -1522,20 +1634,20 @@ export function Awards() {
                 className={`${display.className} mt-6 text-[32px] font-semibold leading-[1.12] tracking-[-0.01em] sm:text-[42px] lg:text-[50px]`}
                 style={{ color: COLORS.cream }}
               >
-                Recognise a leader shaping India&rsquo;s digital future.
+                {awardsPhase === 'nominations' ? 'Recognise AI that made it to production.' : 'The winners take the stage on 12 November.'}
               </motion.h3>
 
               <motion.p variants={reveal} className="mx-auto mt-6 max-w-xl text-[14.5px] leading-[1.7]" style={{ color: COLORS.muted }}>
-                Recognition is presented live on stage at the 3rd CIO Tech
-                Leadership Conference &amp; Awards, Delhi, before an audience
-                of enterprise technology decision-makers.
+                {awardsPhase === 'nominations'
+                  ? 'Nominations close 15 October 2026. Submit an evidence-led entry showing what your initiative has delivered.'
+                  : 'Winners will be announced live at the CIO Tech Leadership Conference & Awards, The LaLiT, New Delhi, on 12 November 2026.'}
               </motion.p>
 
               <motion.div variants={reveal} className="mt-8 flex flex-col items-center gap-6">
                 <div className="flex items-center gap-3 text-[12.5px]" style={{ color: COLORS.faint }}>
-                  <span>Deadline</span>
+                  <span>{awardsPhase === 'nominations' ? 'Nominations close' : 'Awards ceremony'}</span>
                   <span className="h-px w-6" style={{ background: COLORS.lineStrong }} />
-                  <span style={{ color: COLORS.tealLight, fontWeight: 700 }}>15 October 2026</span>
+                  <span style={{ color: COLORS.tealLight, fontWeight: 700 }}>{awardsPhase === 'nominations' ? '15 October 2026' : '12 November 2026'}</span>
                 </div>
 
                 <motion.button
@@ -1543,13 +1655,17 @@ export function Awards() {
                   whileHover={{ y: -3, boxShadow: `0 16px 38px -14px ${COLORS.tealGlow}` }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => {
-                    window.location.hash = 'awards-form'
-                    setShowModal(true)
+                    if (awardsPhase === 'nominations') {
+                      window.location.hash = 'awards-form'
+                      setShowModal(true)
+                    } else {
+                      document.getElementById('awards-jury')?.scrollIntoView({ behavior: 'smooth' })
+                    }
                   }}
                   className={`group inline-flex items-center gap-3 rounded-sm px-9 py-3.5 text-[14px] font-semibold ${focusRing}`}
                   style={{ background: `linear-gradient(90deg, ${COLORS.tealLight}, ${COLORS.teal})`, color: COLORS.base, ...focusRingStyle }}
                 >
-                  Submit your nomination
+                  {awardsPhase === 'nominations' ? 'Submit a nomination' : 'Meet the jury'}
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </motion.button>
               </motion.div>

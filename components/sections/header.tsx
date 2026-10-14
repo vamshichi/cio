@@ -1,968 +1,724 @@
-'use client'
+"use client";
 
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+
+import { useEffect, useState } from "react";
+
+import Link from "next/link";
+
+import Image from "next/image";
+
 import {
-  FiMenu,
-  FiX,
-  FiCalendar,
-  FiUsers,
-  FiAward,
-  FiInfo,
-  FiArrowUpRight,
-  FiGrid,
-} from 'react-icons/fi'
-import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
 
-import { DelegateForm } from '@/components/sections/DelegateForm'
-import { SponsorForm } from '@/components/sections/SponsorForm'
-import { FormModal } from '@/components/common/FormModal'
+  FiMenu,
+
+  FiX,
+
+  FiCalendar,
+
+  FiUsers,
+
+  FiAward,
+
+  FiInfo,
+
+  FiArrowRight,
+
+} from "react-icons/fi";
+
+import { AnimatePresence, motion } from "framer-motion";
+
+
+
+import { DelegateForm } from "@/components/sections/DelegateForm";
+
+import { SponsorForm } from "@/components/sections/SponsorForm";
+
+import { FormModal } from "@/components/common/FormModal";
+
+
+const navItems = [
+
+  { label: "Home", href: "/#home", icon: null },
+
+  { label: "About", href: "/#about", icon: FiInfo },
+
+  { label: "Speakers", href: "/#speakers", icon: FiUsers },
+
+  { label: "Partners", href: "/#partners", icon: FiUsers },
+
+  { label: "Past Events", href: "/#past-events", icon: FiCalendar },
+
+  { label: "Awards", href: "/#awards", icon: FiAward },
+
+];
+
+
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [showDelegateForm, setShowDelegateForm] = useState(false)
-  const [showSponsorForm, setShowSponsorForm] = useState(false)
 
-  /* -------------------------------------------------------------------------- */
-  /* HASH HANDLING                                                              */
-  /* -------------------------------------------------------------------------- */
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [showDelegateForm, setShowDelegateForm] = useState(false);
+
+  const [showSponsorForm, setShowSponsorForm] = useState(false);
+
+
+
+  // Handle registration links opened directly through the URL.
 
   useEffect(() => {
+
     const checkHash = () => {
-      const hash = window.location.hash
 
-      if (hash.startsWith('#delegateenquiry')) {
-        setShowDelegateForm(true)
-        setShowSponsorForm(false)
+      const hash = window.location.hash;
+
+
+
+      if (hash.startsWith("#delegateenquiry")) {
+
+        setShowDelegateForm(true);
+
+        setShowSponsorForm(false);
+
+      } else if (hash.startsWith("#sponsorenquiry")) {
+
+        setShowSponsorForm(true);
+
+        setShowDelegateForm(false);
+
       }
 
-      if (hash.startsWith('#sponsorenquiry')) {
-        setShowSponsorForm(true)
-        setShowDelegateForm(false)
-      }
-    }
+    };
 
-    checkHash()
 
-    window.addEventListener('hashchange', checkHash)
+
+    checkHash();
+
+    window.addEventListener("hashchange", checkHash);
+
+
 
     return () => {
-      window.removeEventListener('hashchange', checkHash)
-    }
-  }, [])
 
-  /* -------------------------------------------------------------------------- */
-  /* SCROLL                                                                     */
-  /* -------------------------------------------------------------------------- */
+      window.removeEventListener("hashchange", checkHash);
+
+    };
+
+  }, []);
+
+
+
+  // Keep the header subtle while scrolling.
 
   useEffect(() => {
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30)
-    }
 
-    handleScroll()
+      setIsScrolled(window.scrollY > 20);
 
-    window.addEventListener('scroll', handleScroll, {
+    };
+
+
+
+    handleScroll();
+
+
+
+    window.addEventListener("scroll", handleScroll, {
+
       passive: true,
-    })
+
+    });
+
+
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
-  /* -------------------------------------------------------------------------- */
-  /* NAVIGATION ITEMS                                                           */
-  /* -------------------------------------------------------------------------- */
+      window.removeEventListener("scroll", handleScroll);
 
-  const navItems = [
-    {
-      label: 'Home',
-      href: '/#home',
-      icon: FiGrid,
-    },
-    {
-      label: 'About',
-      href: '/#about',
-      icon: FiInfo,
-    },
-    {
-      label: 'Speakers',
-      href: '/#speakers',
-      icon: FiUsers,
-    },
-    {
-      label: 'Partners',
-      href: '/#partners',
-      icon: FiUsers,
-    },
-    {
-      label: 'Past Events',
-      href: '/#past-events',
-      icon: FiCalendar,
-    },
-    {
-      label: 'Awards',
-      href: '/#awards',
-      icon: FiAward,
-    },
-  ]
+    };
 
-  /* -------------------------------------------------------------------------- */
-  /* NAVIGATION HANDLER                                                         */
-  /* -------------------------------------------------------------------------- */
+  }, []);
+
+
+
+  // Lock page scrolling while the mobile menu is open.
+
+  useEffect(() => {
+
+    if (!mobileMenuOpen) return;
+
+
+
+    const handleEscape = (event: KeyboardEvent) => {
+
+      if (event.key === "Escape") {
+
+        setMobileMenuOpen(false);
+
+      }
+
+    };
+
+
+
+    window.addEventListener("keydown", handleEscape);
+
+
+
+    return () => {
+
+      window.removeEventListener("keydown", handleEscape);
+
+    };
+
+  }, [mobileMenuOpen]);
+
+
 
   const handleNavClick = (
+
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
+
+    href: string
+
   ) => {
-    e.preventDefault()
 
-    setMobileMenuOpen(false)
+    e.preventDefault();
 
-    const hash = href.split('#')[1]
+    setMobileMenuOpen(false);
+
+
+
+    const hash = href.split("#")[1];
+
+
 
     if (!hash) {
-      window.location.href = href
-      return
+
+      window.location.href = href;
+
+      return;
+
     }
 
-    const element = document.getElementById(hash)
+
+
+    const element = document.getElementById(hash);
+
+
+
+    // Navigate to the home page if the target isn't on this page.
 
     if (!element) {
-      window.location.href = href
-      return
+
+      window.location.href = href;
+
+      return;
+
     }
 
-    /*
-     * Fixed header height.
-     * This prevents the section heading from being hidden
-     * behind the navbar.
-     */
-    const headerOffset = 110
+
+
+    const headerOffset = 100;
 
     const elementPosition =
-      element.getBoundingClientRect().top + window.scrollY
+
+      element.getBoundingClientRect().top + window.scrollY;
+
+
+
+    window.history.pushState(
+
+      null,
+
+      "",
+
+      `${window.location.pathname}${window.location.search}#${hash}`
+
+    );
+
+
 
     window.scrollTo({
+
       top: Math.max(0, elementPosition - headerOffset),
-      behavior: 'smooth',
-    })
 
-    /*
-     * Update the URL without triggering the browser's
-     * native hash scrolling.
-     */
-    window.history.pushState(
-      null,
-      '',
-      `${window.location.pathname}${window.location.search}#${hash}`,
-    )
-  }
+      behavior: "smooth",
 
-  /* -------------------------------------------------------------------------- */
-  /* MODAL ACTIONS                                                              */
-  /* -------------------------------------------------------------------------- */
+    });
 
-  const openSponsorForm = () => {
-    window.history.pushState(
-      null,
-      '',
-      `${window.location.pathname}${window.location.search}#sponsorenquiry`,
-    )
+  };
 
-    setShowSponsorForm(true)
-    setShowDelegateForm(false)
-  }
+
 
   const openDelegateForm = () => {
+
     window.history.pushState(
+
       null,
-      '',
-      `${window.location.pathname}${window.location.search}#delegateenquiry`,
-    )
 
-    setShowDelegateForm(true)
-    setShowSponsorForm(false)
-  }
+      "",
 
-  const closeSponsorForm = () => {
+      `${window.location.pathname}${window.location.search}#delegateenquiry`
+
+    );
+
+
+
+    setMobileMenuOpen(false);
+
+    setShowSponsorForm(false);
+
+    setShowDelegateForm(true);
+
+  };
+
+
+
+  const openSponsorForm = () => {
+
     window.history.pushState(
-      {},
-      '',
-      window.location.pathname + window.location.search,
-    )
 
-    setShowSponsorForm(false)
-  }
+      null,
 
-  const closeDelegateForm = () => {
+      "",
+
+      `${window.location.pathname}${window.location.search}#sponsorenquiry`
+
+    );
+
+
+
+    setMobileMenuOpen(false);
+
+    setShowDelegateForm(false);
+
+    setShowSponsorForm(true);
+
+  };
+
+
+
+  const closeForms = () => {
+
     window.history.pushState(
-      {},
-      '',
-      window.location.pathname + window.location.search,
-    )
 
-    setShowDelegateForm(false)
-  }
+      null,
 
-  /* -------------------------------------------------------------------------- */
-  /* RENDER                                                                     */
-  /* -------------------------------------------------------------------------- */
+      "",
+
+      window.location.pathname + window.location.search
+
+    );
+
+
+
+    setShowDelegateForm(false);
+
+    setShowSponsorForm(false);
+
+  };
+
+
 
   return (
+
     <>
-      {/* ====================================================================== */}
-      {/* HEADER                                                                 */}
-      {/* ====================================================================== */}
+
+      {/* Editorial navigation */}
 
       <header
-        className={`
-          fixed
-          left-0
-          top-0
-          z-50
-          w-full
-          transition-all
-          duration-500
-          ${
-            isScrolled
-              ? 'bg-transparent/90 backdrop-blur-sm'
-              : 'bg-transparent'
-          }
-        `}
+
+        className={`sticky top-0 z-50 w-full border-b border-[#DCE6EF] bg-[#F5F8FB]/95 backdrop-blur-xl transition-shadow duration-300 ${
+
+          isScrolled ? "shadow-[0_4px_20px_rgba(16,39,70,0.08)]" : ""
+
+        }`}
+
       >
-        {/* ==================================================================== */}
-        {/* ATMOSPHERIC BACKGROUND                                               */}
-        {/* ==================================================================== */}
 
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          {/* Main grid */}
-          <div
-            className="absolute inset-0 opacity-[0.12]"
-            style={{
-              backgroundImage: `
-                linear-gradient(
-                  rgba(0,0,0,0.08) 1px,
-                  transparent 1px
-                ),
-                linear-gradient(
-                  90deg,
-                  rgba(0,0,0,0.08) 1px,
-                  transparent 1px
-                )
-              `,
-              backgroundSize: '60px 60px',
-            }}
-          />
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
 
-          {/* Fine grid */}
-          <div
-            className="absolute inset-0 opacity-[0.035]"
-            style={{
-              backgroundImage: `
-                linear-gradient(
-                  rgba(0,0,0,0.08) 1px,
-                  transparent 1px
-                ),
-                linear-gradient(
-                  90deg,
-                  rgba(0,0,0,0.045) 1px,
-                  transparent 1px
-                )
-              `,
-              backgroundSize: '15px 15px',
-            }}
-          />
+          <div className="flex min-h-[76px] items-center justify-between gap-5 lg:min-h-[88px]">
 
-          {/* Left atmosphere */}
-          <div className="absolute left-[5%] top-[-180px] h-[400px] w-[400px] rounded-full bg-blue-600/[0.035] blur-[130px]" />
-
-          {/* Center atmosphere */}
-          <div className="absolute left-1/2 top-[-180px] h-[350px] w-[600px] -translate-x-1/2 rounded-full bg-cyan-500/[0.025] blur-[130px]" />
-
-          {/* Right atmosphere */}
-          <div className="absolute right-[5%] top-[-180px] h-[400px] w-[400px] rounded-full bg-blue-600/[0.035] blur-[130px]" />
-
-          {/* Bottom line */}
-          <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-black/15 to-transparent" />
-        </div>
-
-        {/* ==================================================================== */}
-        {/* MAIN NAVIGATION CONTAINER                                            */}
-        {/* ==================================================================== */}
-
-        <div
-          className={`
-            relative
-            mx-auto
-            max-w-[1500px]
-            px-4
-            transition-all
-            duration-500
-            sm:px-6
-            lg:px-8
-            ${isScrolled ? 'py-2' : 'py-4'}
-          `}
-        >
-          {/* ================================================================== */}
-          {/* PREMIUM NAV BAR                                                    */}
-          {/* ================================================================== */}
-
-          <div
-            className={`
-              relative
-              flex
-              items-center
-              rounded-2xl
-              border
-              px-3
-              transition-all
-              duration-500
-              sm:px-4
-              lg:px-5
-              ${
-                isScrolled
-                  ? `
-                    border-black/15
-                    bg-white
-                    shadow-[0_20px_70px_rgba(0,0,0,0.45)]
-                  `
-                  : `
-                    border-black/20
-                    bg-white
-                    shadow-[0_15px_60px_rgba(0,0,0,0.30)]
-                  `
-              }
-            `}
-          >
-            {/* ================================================================ */}
-            {/* CORNER ACCENTS                                                   */}
-            {/* ================================================================ */}
-
-            <span className="absolute left-2 top-2 h-3 w-3 border-l border-t border-black/10" />
-
-            <span className="absolute right-2 top-2 h-3 w-3 border-r border-t border-black/10" />
-
-            <span className="absolute bottom-2 left-2 h-3 w-3 border-b border-l border-black/10" />
-
-            <span className="absolute bottom-2 right-2 h-3 w-3 border-b border-r border-black/10" />
-
-            {/* ================================================================ */}
-            {/* LOGO                                                              */}
-            {/* ================================================================ */}
+            {/* Logo */}
 
             <Link
-              href="/#home"
-              onClick={(e) => handleNavClick(e, '/#home')}
-              className="group relative flex shrink-0 items-center py-2 pl-2 pr-4 sm:pr-6"
-            >
-              <motion.div
-                whileHover={{
-                  scale: 1.025,
-                }}
-                whileTap={{
-                  scale: 0.97,
-                }}
-                transition={{
-                  duration: 0.25,
-                }}
-                className="relative"
-              >
-                {/* Logo glow */}
-                <div className="absolute -inset-3 rounded-xl bg-blue-500/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
 
-                <Image
-                  src="/logo.png"
-                  alt="CIO Tech Leadership Summit"
-                  width={220}
-                  height={60}
-                  priority
-                  className="
-                    relative
-                    h-10
-                    w-auto
-                    object-contain
-                    sm:h-11
-                  "
-                />
-              </motion.div>
+              href="/#home"
+
+              onClick={(e) => handleNavClick(e, "/#home")}
+
+              aria-label="CIO Tech Leadership home"
+
+              className="flex shrink-0 items-center"
+
+            >
+
+              <Image
+
+                src="/logo.png"
+
+                alt="CIO Tech Leadership"
+
+                width={220}
+
+                height={60}
+
+                priority
+
+                className="h-15 w-auto object-contain sm:h-16"
+
+              />
+
             </Link>
 
-            {/* Logo divider */}
-            <div className="hidden h-10 w-px bg-gradient-to-b from-transparent via-blue-400/30 to-transparent lg:block" />
 
-            {/* ================================================================= */}
-            {/* DESKTOP NAVIGATION                                                 */}
-            {/* ================================================================= */}
 
-            <nav className="hidden flex-1 items-center justify-center px-3 lg:flex">
-              <div className="flex items-center rounded-full p-1">
-                {navItems.map((item, index) => {
-                  const Icon = item.icon
+            {/* Desktop navigation */}
 
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={(e) => handleNavClick(e, item.href)}
-                      className="group relative"
-                    >
-                      <div
-                        className="
-                          relative
-                          flex
-                          items-center
-                          gap-2
-                          rounded-full
-                          px-3
-                          py-2.5
-                          transition-all
-                          duration-300
-                          hover:bg-black/[0.04]
-                          xl:px-4
-                        "
-                      >
-                        {/* Icon */}
-                        <Icon
-                          className="
-                            h-3.5
-                            w-3.5
-                            text-black/55
-                            transition-all
-                            duration-300
-                            group-hover:text-blue-600
-                          "
-                        />
+            <nav
 
-                        {/* Text */}
-                        <span
-                          className="
-                            whitespace-nowrap
-                            text-[11px]
-                            font-medium
-                            tracking-[0.02em]
-                            text-black/75
-                            transition-colors
-                            duration-300
-                            group-hover:text-black
-                            xl:text-[12px]
-                          "
-                        >
-                          {item.label}
-                        </span>
+              aria-label="Main navigation"
 
-                        {/* Hover line */}
-                        <span
-                          className="
-                            absolute
-                            bottom-0
-                            left-1/2
-                            h-px
-                            w-0
-                            -translate-x-1/2
-                            bg-gradient-to-r
-                            from-cyan-400
-                            to-blue-500
-                            shadow-[0_0_8px_rgba(34,211,238,0.7)]
-                            transition-all
-                            duration-300
-                            group-hover:w-7
-                          "
-                        />
+              className="hidden items-center gap-1 lg:flex"
 
-                        {/* First item indicator */}
-                        {index === 0 && (
-                          <span className="absolute left-1/2 top-0 h-px w-4 -translate-x-1/2 bg-cyan-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                        )}
-                      </div>
-                    </Link>
-                  )
-                })}
-              </div>
+            >
+
+              {navItems.map((item) => (
+
+                <Link
+
+                  key={item.href}
+
+                  href={item.href}
+
+                  onClick={(e) => handleNavClick(e, item.href)}
+
+                  className="group relative px-3 py-3 text-[13px] font-medium text-[#52657A] transition-colors duration-200 hover:text-[#102746] xl:px-3.5"
+                >
+                  {item.label}
+                  <span className="absolute bottom-1 left-3.5 right-3.5 h-px origin-left scale-x-0 bg-[#0D9488] transition-transform duration-300 group-hover:scale-x-100" />
+
+                </Link>
+
+              ))}
+
             </nav>
 
-            {/* ================================================================= */}
-            {/* DESKTOP CTA                                                       */}
-            {/* ================================================================= */}
 
-            <div className="hidden items-center gap-2.5 lg:flex">
-              {/* Sponsor Enquiry */}
-              <Button
-                variant="outline"
+
+            {/* Desktop calls to action */}
+
+            <div className="hidden shrink-0 items-center gap-3 lg:flex">
+
+              <button
+
+                type="button"
+
                 onClick={openSponsorForm}
-                className="
-                  group
-                  relative
-                  h-11
-                  overflow-hidden
-                  rounded-full
-                  border
-                  border-blue-400/70
-                  bg-white/[0.05]
-                  px-5
-                  text-[10px]
-                  font-semibold
-                  uppercase
-                  tracking-[1.2px]
-                  text-black/75
-                  shadow-none
-                  backdrop-blur-xl
-                  transition-all
-                  duration-300
-                  hover:border-blue-400/70
-                  hover:bg-blue-600
-                  hover:text-white
-                "
+
+                className="inline-flex items-center gap-2 px-2 py-3 text-[12px] font-medium text-[#52657A] transition-colors hover:text-[#0D9488] xl:px-3"
+
               >
-                {/* Shine */}
-                <span
-                  className="
-                    absolute
-                    inset-y-0
-                    -left-[100%]
-                    w-[55%]
-                    skew-x-[-20deg]
-                    bg-black/10
-                    transition-all
-                    duration-700
-                    group-hover:left-[150%]
-                  "
-                />
 
-                <span className="relative z-10 flex items-center gap-2.5 text-black/75 group-hover:text-white">
-                  Sponsor Enquiry
+                Partner with us
 
-                  <FiArrowUpRight
-                    className="
-                      h-3.5
-                      w-3.5
-                      text-blue-400
-                      transition-transform
-                      duration-300
-                      group-hover:-translate-y-0.5
-                      group-hover:translate-x-0.5
-                    "
-                  />
-                </span>
-              </Button>
+              </button>
 
-              {/* Delegate Registration */}
-              <Button
+
+
+              <button
+
+                type="button"
+
                 onClick={openDelegateForm}
-                className="
-                  group
-                  relative
-                  h-11
-                  overflow-hidden
-                  rounded-full
-                  border
-                  border-cyan-300/30
-                  bg-gradient-to-r
-                  from-blue-700
-                  via-blue-600
-                  to-cyan-500
-                  px-5
-                  text-[10px]
-                  font-semibold
-                  uppercase
-                  tracking-[1.1px]
-                  text-white
-                  shadow-[0_10px_30px_rgba(37,99,235,0.20)]
-                  transition-all
-                  duration-300
-                  hover:shadow-[0_0_40px_rgba(34,211,238,0.28)]
-                "
+
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#102746] px-4 py-3 text-[12px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#0B2E68] hover:shadow-md xl:px-5"
+
               >
-                {/* Shine */}
-                <span
-                  className="
-                    absolute
-                    inset-y-0
-                    -left-[80%]
-                    w-[45%]
-                    skew-x-[-20deg]
-                    bg-white/20
-                    transition-all
-                    duration-700
-                    group-hover:left-[140%]
-                  "
-                />
 
-                <span className="relative z-10 flex items-center gap-2.5">
-                  Delegate Registration
+                Request a pass
 
-                  <span
-                    className="
-                      flex
-                      h-5
-                      w-5
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-white/15
-                    "
-                  >
-                    <FiArrowUpRight
-                      className="
-                        h-3
-                        w-3
-                        transition-transform
-                        duration-300
-                        group-hover:-translate-y-0.5
-                        group-hover:translate-x-0.5
-                      "
-                    />
-                  </span>
-                </span>
-              </Button>
+                <FiArrowRight size={15} />
+
+              </button>
+
             </div>
 
-            {/* ================================================================= */}
-            {/* MOBILE BUTTON                                                     */}
-            {/* ================================================================= */}
 
-            <div className="ml-auto flex items-center gap-2 lg:hidden">
-              {/* Mobile registration */}
-              <Button
-                onClick={openDelegateForm}
-                className="
-                  hidden
-                  h-10
-                  rounded-full
-                  border
-                  border-cyan-300/30
-                  bg-gradient-to-r
-                  from-blue-600
-                  to-cyan-500
-                  px-4
-                  text-[9px]
-                  font-semibold
-                  uppercase
-                  tracking-[0.8px]
-                  text-white
-                  shadow-[0_0_20px_rgba(37,99,235,0.18)]
-                  sm:flex
-                "
-              >
-                Register
-              </Button>
 
-              {/* Menu */}
+            {/* Mobile controls */}
+
+            <div className="flex items-center gap-2 lg:hidden">
+
               <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label={
-                  mobileMenuOpen
-                    ? 'Close menu'
-                    : 'Open menu'
-                }
-                aria-expanded={mobileMenuOpen}
-                className="
-                  relative
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-                  rounded-xl
-                  border
-                  border-black/20
-                  bg-black/[0.03]
-                  text-black/75
-                  transition-all
-                  duration-300
-                  hover:border-cyan-400/60
-                  hover:bg-black/[0.05]
-                  hover:text-black
-                "
+
+                type="button"
+
+                onClick={openDelegateForm}
+
+                className="hidden rounded-lg bg-[#102746] px-4 py-3 text-xs font-semibold text-white shadow-sm transition-all hover:bg-[#0B2E68] sm:inline-flex"
+
               >
+
+                Request a pass
+
+              </button>
+
+
+
+              <button
+
+                type="button"
+
+                onClick={() => setMobileMenuOpen((open) => !open)}
+
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+
+                aria-expanded={mobileMenuOpen}
+
+                aria-controls="mobile-navigation"
+
+                className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#C7D6E5] bg-white/70 text-[#102746] transition-colors hover:bg-white"
+
+              >
+
                 {mobileMenuOpen ? (
-                  <FiX className="h-5 w-5" />
+
+                  <FiX size={21} />
+
                 ) : (
-                  <FiMenu className="h-5 w-5" />
+
+                  <FiMenu size={21} />
+
                 )}
 
-                <span className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)]" />
               </button>
+
             </div>
+
           </div>
+
         </div>
 
-        {/* ==================================================================== */}
-        {/* MOBILE MENU                                                          */}
-        {/* ==================================================================== */}
 
-        <AnimatePresence>
+
+        {/* Mobile navigation */}
+
+        <AnimatePresence initial={false}>
+
           {mobileMenuOpen && (
+
             <motion.div
-              initial={{
-                opacity: 0,
-                y: -12,
-                height: 0,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                height: 'auto',
-              }}
-              exit={{
-                opacity: 0,
-                y: -12,
-                height: 0,
-              }}
-              transition={{
-                duration: 0.35,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="overflow-hidden px-4 sm:px-6 lg:hidden"
+
+              id="mobile-navigation"
+
+              initial={{ height: 0, opacity: 0 }}
+
+              animate={{ height: "auto", opacity: 1 }}
+
+              exit={{ height: 0, opacity: 0 }}
+
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+
+              className="overflow-hidden border-t border-[#DCE6EF] bg-[#F5F8FB] lg:hidden"
+
             >
-              <div
-                className="
-                  relative
-                  overflow-hidden
-                  rounded-[22px]
-                  border
-                  border-black/15
-                  bg-black
-                  p-3
-                  shadow-[0_25px_70px_rgba(0,0,0,0.45)]
-                  backdrop-blur-2xl
-                "
+
+              <nav
+
+                aria-label="Mobile navigation"
+
+                className="mx-auto max-w-7xl px-5 pb-5 pt-3 sm:px-8"
+
               >
-                {/* Mobile grid */}
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-[0.08]"
-                  style={{
-                    backgroundImage: `
-                      linear-gradient(
-                        rgba(70,140,255,0.2) 1px,
-                        transparent 1px
-                      ),
-                      linear-gradient(
-                        90deg,
-                        rgba(70,140,255,0.2) 1px,
-                        transparent 1px
-                      )
-                    `,
-                    backgroundSize: '40px 40px',
-                  }}
-                />
 
-                {/* Corner brackets */}
-                <span className="absolute left-2 top-2 h-4 w-4 border-l border-t border-white/20" />
-                <span className="absolute right-2 top-2 h-4 w-4 border-r border-t border-white/20" />
-                <span className="absolute bottom-2 left-2 h-4 w-4 border-b border-l border-white/20" />
-                <span className="absolute bottom-2 right-2 h-4 w-4 border-b border-r border-white/20" />
+                {navItems.map((item, index) => {
 
-                <div className="relative">
-                  {/* Mobile header */}
-                  <div className="flex items-center justify-between border-b border-white/10 px-3 py-3">
-                    <div className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.9)]" />
+                  const Icon = item.icon;
 
-                      <span className="font-mono text-[8px] uppercase tracking-[3px] text-white/55">
-                        Navigation
-                      </span>
-                    </div>
 
-                    <span className="font-mono text-[8px] tracking-[2px] text-white/35">
-                      CIO / 2026
-                    </span>
-                  </div>
 
-                  {/* Links */}
-                  <div className="py-2">
-                    {navItems.map((item, index) => {
-                      const Icon = item.icon
+                  return (
 
-                      return (
-                        <motion.div
-                          key={item.href}
-                          initial={{
-                            opacity: 0,
-                            x: -15,
-                          }}
-                          animate={{
-                            opacity: 1,
-                            x: 0,
-                          }}
-                          transition={{
-                            delay: index * 0.04,
-                            duration: 0.3,
-                          }}
-                        >
-                          <Link
-                            href={item.href}
-                            onClick={(e) =>
-                              handleNavClick(e, item.href)
-                            }
-                            className="
-                              group
-                              flex
-                              items-center
-                              justify-between
-                              rounded-xl
-                              px-3
-                              py-3
-                              transition-all
-                              duration-300
-                              hover:bg-white/[0.07]
-                            "
-                          >
-                            <div className="flex items-center gap-3">
-                              <div
-                                className="
-                                  flex
-                                  h-9
-                                  w-9
-                                  items-center
-                                  justify-center
-                                  rounded-lg
-                                  border
-                                  border-white/10
-                                  bg-white/[0.045]
-                                  transition-all
-                                  duration-300
-                                  group-hover:border-cyan-400/30
-                                  group-hover:bg-white/[0.07]
-                                "
-                              >
-                                <Icon
-                                  className="
-                                    h-4
-                                    w-4
-                                    text-white/55
-                                    transition-colors
-                                    group-hover:text-cyan-300
-                                  "
-                                />
-                              </div>
+                    <motion.div
 
-                              <span
-                                className="
-                                  text-sm
-                                  font-medium
-                                  text-white/75
-                                  transition-colors
-                                  group-hover:text-white
-                                "
-                              >
-                                {item.label}
-                              </span>
-                            </div>
+                      key={item.href}
 
-                            <FiArrowUpRight
-                              className="
-                                h-4
-                                w-4
-                                text-white/35
-                                transition-all
-                                duration-300
-                                group-hover:-translate-y-0.5
-                                group-hover:translate-x-0.5
-                                group-hover:text-cyan-300
-                              "
+                      initial={{ opacity: 0, y: 5 }}
+
+                      animate={{ opacity: 1, y: 0 }}
+
+                      transition={{ delay: index * 0.035 }}
+
+                    >
+
+                      <Link
+
+                        href={item.href}
+
+                        onClick={(e) => handleNavClick(e, item.href)}
+
+                        className="flex items-center justify-between border-b border-[#DCE6EF] py-4 text-sm text-[#102746] transition-colors hover:text-[#0D9488]"
+
+                      >
+
+                        <span className="flex items-center gap-3">
+
+                          {Icon && (
+
+                            <Icon
+
+                              size={16}
+
+                              className="text-[#0D9488]"
+
                             />
-                          </Link>
-                        </motion.div>
-                      )
-                    })}
-                  </div>
 
-                  {/* Mobile CTA */}
-                  <div className="grid gap-2 border-t border-white/10 px-2 py-4 sm:grid-cols-2">
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        openSponsorForm()
-                        setMobileMenuOpen(false)
-                      }}
-                      className="
-                        h-12
-                        rounded-xl
-                        border-white/20
-                        bg-white/[0.045]
-                        text-[10px]
-                        font-semibold
-                        uppercase
-                        tracking-[1px]
-                        text-white/75
-                        hover:border-white/25
-                        hover:bg-white/[0.07]
-                        hover:text-white
-                      "
-                    >
-                      Sponsor Enquiry
-                    </Button>
+                          )}
 
-                    <Button
-                      onClick={() => {
-                        openDelegateForm()
-                        setMobileMenuOpen(false)
-                      }}
-                      className="
-                        h-12
-                        rounded-xl
-                        border
-                        border-cyan-300/30
-                        bg-gradient-to-r
-                        from-blue-600
-                        to-cyan-500
-                        text-[10px]
-                        font-semibold
-                        uppercase
-                        tracking-[1px]
-                        text-white
-                        shadow-[0_0_25px_rgba(37,99,235,0.18)]
-                      "
-                    >
-                      Delegate Registration
-                    </Button>
-                  </div>
 
-                  {/* Mobile footer */}
-                  <div className="flex items-center justify-between px-3 pb-2">
-                    <span className="font-mono text-[7px] uppercase tracking-[3px] text-white/35">
-                      Leadership × Innovation × Impact
-                    </span>
 
-                    <span className="font-mono text-[7px] uppercase tracking-[2px] text-cyan-300/70">
-                      Delhi 2026
-                    </span>
-                  </div>
+                          <span>{item.label}</span>
+
+                        </span>
+
+
+
+                        <FiArrowRight
+
+                          size={15}
+
+                          className="text-[#0D9488]"
+
+                        />
+
+                      </Link>
+
+                    </motion.div>
+
+                  );
+
+                })}
+
+
+
+                {/* Mobile action buttons */}
+
+                <div className="grid gap-3 pt-5 sm:grid-cols-2">
+
+                  <button
+
+                    type="button"
+
+                    onClick={openSponsorForm}
+
+                    className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#C7D6E5] px-4 py-3 text-sm font-semibold text-[#102746] transition-colors hover:bg-white"
+
+                  >
+
+                    Partner with us
+
+                    <FiArrowRight size={15} />
+
+                  </button>
+
+
+
+                  <button
+
+                    type="button"
+
+                    onClick={openDelegateForm}
+
+                    className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#102746] px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#0B2E68] hover:shadow-md"
+
+                  >
+
+                    Request your executive pass
+
+                    <FiArrowRight size={15} />
+
+                  </button>
+
                 </div>
-              </div>
+
+
+
+                {/* Event details */}
+
+                <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-[#52657A]">
+
+                  <span className="inline-flex items-center gap-1.5">
+
+                    <FiCalendar size={13} />
+
+                    12 November 2026
+
+                  </span>
+
+
+
+                  <span className="text-[#B7C7D8]">/</span>
+
+
+
+                  <span>New Delhi, India</span>
+
+                </div>
+
+              </nav>
+
             </motion.div>
+
           )}
+
         </AnimatePresence>
+
       </header>
 
-      {/* ====================================================================== */}
-      {/* DELEGATE FORM                                                          */}
-      {/* ====================================================================== */}
+
+
+      {/* Delegate registration modal */}
 
       <FormModal
+
         open={showDelegateForm}
-        onClose={closeDelegateForm}
-        title="Delegate Registration"
+
+        onClose={closeForms}
+
+        title="Request Your Executive Pass"
+
       >
+
         <DelegateForm />
+
       </FormModal>
 
-      {/* ====================================================================== */}
-      {/* SPONSOR FORM                                                           */}
-      {/* ====================================================================== */}
+
+
+      {/* Partnership enquiry modal */}
 
       <FormModal
+
         open={showSponsorForm}
-        onClose={closeSponsorForm}
-        title="Sponsor Registration"
+
+        onClose={closeForms}
+
+        title="Partner with CIO Tech"
+
       >
+
         <SponsorForm />
+
       </FormModal>
+
     </>
-  )
+
+  );
+
 }
