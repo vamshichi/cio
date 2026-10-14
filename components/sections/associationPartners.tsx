@@ -144,9 +144,25 @@ const TIERS: Tier[] = [
 
   },
 
+  
+{
+  number: "03",
+  title: "Networking Partner",
+  note: "Connecting technology leaders and industry innovators",
+  partners: [
+    {
+      name: "Networking Partner",
+      logo: "/partners/Networking.jpeg",
+    },
+  ],
+  logoHeight: "max-h-[66px] sm:max-h-[80px]",
+  icon: FiRadio,
+},
+
+
   {
 
-    number: "03",
+    number: "04",
 
     title: "Strategic Partner",
 
@@ -172,7 +188,7 @@ const TIERS: Tier[] = [
 
   {
 
-    number: "04",
+    number: "05",
 
     title: "Broadcast Partner",
 
