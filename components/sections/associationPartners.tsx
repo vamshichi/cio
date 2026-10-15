@@ -132,7 +132,7 @@ const TIERS: Tier[] = [
 
         name: "TELUS Digital",
 
-        logo: "/sponsors/TELUS_Digital_company_logo.png",
+        logo: "/sponsors/telus.png",
 
       },
 
