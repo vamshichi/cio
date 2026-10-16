@@ -99,6 +99,10 @@ const TIERS: Tier[] = [
         logo: "/sponsors/Gold-Partner.png",
 
       },
+      {
+        name: "Zarthi",
+        logo: "/sponsors/Zarthi.jpg",
+      }
 
     ],
 
@@ -109,10 +113,26 @@ const TIERS: Tier[] = [
     icon: FiShield,
 
   },
+  {
+    number: "02",
+    title: "Innovation & Risk Intelligence Partner",
+    note: "", 
+
+    partners: [
+      {
+        name: "securoq",   
+      logo: "/sponsors/securoq.png",
+  }
+    ],
+
+    logoHeight: "max-h-[92px] sm:max-h-[126px]",
+
+    icon: FiLayers,
+  },
 
   {
 
-    number: "02",
+    number: "03",
 
     title: "Strategic Technology Partners",
 
@@ -146,7 +166,7 @@ const TIERS: Tier[] = [
 
   
 {
-  number: "03",
+  number: "04",
   title: "Networking Partner",
   note: "Connecting technology leaders and industry innovators",
   partners: [
@@ -162,7 +182,7 @@ const TIERS: Tier[] = [
 
   {
 
-    number: "04",
+    number: "05",
 
     title: "Strategic Partner",
 
@@ -188,7 +208,7 @@ const TIERS: Tier[] = [
 
   {
 
-    number: "05",
+    number: "06",
 
     title: "Broadcast Partner",
 
