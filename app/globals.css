@@ -144,3 +144,21 @@
 .animate-marquee-right {
   animation: marquee-right linear infinite;
 }
+
+/* Temporary iPhone layout diagnostic */
+@media (max-width: 767px) {
+  #home {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  #home video,
+  #home iframe {
+    max-width: 100%;
+  }
+
+  #home img {
+    max-width: 100%;
+  }
+}
