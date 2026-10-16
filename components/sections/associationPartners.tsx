@@ -115,8 +115,8 @@ const TIERS: Tier[] = [
   },
   {
     number: "02",
-    title: "Innovation & Risk Intelligence Partner",
-    note: "", 
+    title: "Silver Partner",
+    note: "Innovation & Risk Intelligence Partner", 
 
     partners: [
       {
