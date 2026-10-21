@@ -45,6 +45,7 @@ import {
 
 
 } from "react-icons/fi";
+import ExecutiveProfile from "@/components/sections/ExecutiveProfile";
 
 
 
@@ -1123,7 +1124,7 @@ export function Speakers() {
 
 
 
-
+  <ExecutiveProfile />
 
 
         {/* Category filters */}
@@ -1151,12 +1152,12 @@ export function Speakers() {
 
 
 
-
+        
 
 
             <div className="flex flex-wrap gap-2" aria-label="Filter speakers">
 
-
+        
 
               {filters.map((filter) => {
 
@@ -1630,142 +1631,36 @@ export function Speakers() {
 
                   </p>
 
-
-
                 </div>
-
-
-
               </div>
-
-
-
-
-
-
-
               <div className="flex gap-4 py-5">
-
-
-
                 <span className="font-mono text-sm text-teal-700">02</span>
-
-
-
                 <div>
-
-
-
                   <p className="text-base font-semibold text-slate-900">
-
-
-
                     Extend your industry perspective
-
-
-
                   </p>
-
-
-
                   <p className="mt-1 text-sm leading-6 text-slate-500">
-
-
-
                     Contribute insights to the broader technology leadership
-
-
-
                     community.
-
-
-
                   </p>
-
-
-
                 </div>
-
-
-
               </div>
-
-
-
-
-
-
-
               <div className="flex gap-4 py-5 last:pb-0">
-
-
-
                 <span className="font-mono text-sm text-teal-700">03</span>
-
-
-
                 <div>
-
-
-
                   <p className="text-base font-semibold text-slate-900">
-
-
-
                     Help shape the conversation
-
-
-
                   </p>
-
-
-
                   <p className="mt-1 text-sm leading-6 text-slate-500">
-
-
-
                     Bring forward lessons that can help enterprises move from
-
-
-
                     experimentation to execution.
-
-
-
                   </p>
-
-
-
                 </div>
-
-
-
               </div>
-
-
-
             </div>
-
-
-
           </motion.div>
-
-
-
         </div>
-
-
-
       </div>
-
-
-
     </section>
-
-
-
   );
-
-
-
 }
