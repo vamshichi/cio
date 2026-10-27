@@ -47,6 +47,14 @@ const speakers: Speaker[] = [
     sessionTag: "Proposed · Cybersecurity leadership",
   },
   {
+    name: "Khushhal kaushik",
+    title: "Founder & CEO",
+    company: "Lisianthus tech and DG CSAI",
+    image: "/speakers/Khushhal kaushik.png",
+    category: "Government",
+    sessionTag: "Proposed · Cloud and data center solutions",
+  },
+  {
     name: "Chetansinh Parmar",
     title: "Chief Information Security Officer",
     company: "Acutaas Chemicals Limited",
@@ -142,15 +150,8 @@ const speakers: Speaker[] = [
     image: "/speakers/Afsar Ali.png",
     category: "Enterprise",
     sessionTag: "Proposed · Cloud and data center solutions",
-  },
-  {
-    name: "Khushhal kaushik",
-    title: "Founder & CEO Lisianthus tech and DG CSAI",
-    company: "Lisianthus tech and DG CSAI",
-    image: "/speakers/Khushhal kaushik.png",
-    category: "Government",
-    sessionTag: "Proposed · Cloud and data center solutions",
   }
+  
 ];
 
 
