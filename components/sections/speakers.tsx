@@ -1,486 +1,156 @@
 
-
-
-
 "use client";
 
-
-
-
-
-
-
 import Image from "next/image";
-
-
-
 import { useState } from "react";
-
-
-
 import { motion, useReducedMotion } from "framer-motion";
-
-
-
 import {
-
-
-
   FiArrowUpRight,
-
-
-
   FiMic,
-
-
-
   FiUsers,
-
-
-
   FiMessageCircle,
-
-
-
-
-
 } from "react-icons/fi";
 import ExecutiveProfile from "@/components/sections/ExecutiveProfile";
-
-
-
-
-
-
-
+import image from "next/image";
 type Speaker = {
-
-
-
   name: string;
-
-
-
   title: string;
-
-
-
   company: string;
-
-
-
   image: string;
-
-
-
   category: "Government" | "Enterprise" | "Partner";
-
-
-
   sessionTag: string;
-
-
-
 };
 
-
-
-
-
-
-
 const speakers: Speaker[] = [
-
-
-
   {
-
-
-
     name: "Vinay Thakur",
-
-
-
     title: "Director General",
-
-
-
     company: "BiSAG-N, Ministry of Electronics and IT",
-
-
-
     image: "/speakers/Vinay Thakur.png",
-
-
-
     category: "Government",
-
-
-
     sessionTag: "Proposed · Digital governance",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Ms. Tulika Pandey",
-
-
-
     title: "Scientist ‘G’ and Group Coordinator",
-
-
-
     company: "Ministry of Electronics and Information Technology",
-
-
-
     image: "/speakers/Tulika Pandey.png",
-
-
-
     category: "Government",
-
-
-
     sessionTag: "Proposed · Public-sector technology",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Lt. Rajesh Pant",
-
-
-
     title: "Chairman",
-
-
-
     company: "Cyber Security Association of India",
-
-
-
     image: "/speakers/Rajesh Pant.png",
-
-
-
     category: "Government",
-
-
-
     sessionTag: "Proposed · Cybersecurity leadership",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Chetansinh Parmar",
-
-
-
     title: "Chief Information Security Officer",
-
-
-
     company: "Acutaas Chemicals Limited",
-
-
-
     image: "/speakers/Chetan.png",
-
-
-
     category: "Enterprise",
-
-
-
     sessionTag: "Proposed · Trust and security at scale",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Rajneesh Singh",
-
-
-
     title: "CIO / Vice President IT & SAP",
-
-
-
     company: "Rays Power Infra Limited",
-
-
-
     image: "/speakers/Rajneesh Singh.png",
-
-
-
     category: "Enterprise",
-
-
-
     sessionTag: "Proposed · Enterprise transformation",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Mitali Biswas",
-
-
-
     title: "Vice President – Digital",
-
-
-
     company: "CKA Birla Group",
-
-
-
     image: "/speakers/Mitali.png",
-
-
-
     category: "Enterprise",
-
-
-
     sessionTag: "Proposed · Digital transformation",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Saurabh Gupta",
-
-
-
     title: "Group Chief Digital and Information Officer",
-
-
-
     company: "Gujarat Fluorochemicals Limited",
-
-
-
     image: "/speakers/Saurabh.png",
-
-
-
     category: "Enterprise",
-
-
-
     sessionTag: "Proposed · Scaling enterprise AI",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Sushil Meher",
-
-
-
     title: "CIO & CISO",
-
-
-
     company: "AIIMS",
-
-
-
     image: "/speakers/Sushil Meher.png",
-
-
-
     category: "Enterprise",
-
-
-
     sessionTag: "Proposed · Secure digital infrastructure",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Kapil Uniyal",
-
-
-
     title:
-
-
-
       "Head of Google Cloud Services, Digital Solutions, Vice President - APACA",
-
-
-
     company: "TELUS Digital",
-
-
-
     image: "/speakers/Kapil Uniyal.png",
-
-
-
     category: "Partner",
-
-
-
     sessionTag: "Proposed · Cloud and AI at scale",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Sunil Golani",
-
-
-
     title: "Director, Cloud Sales",
-
-
-
     company: "Ingram Micro India",
-
-
-
     image: "/speakers/Sunil Golani.png",
-
-
-
     category: "Partner",
-
-
-
     sessionTag: "Proposed · Cloud infrastructure economics",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Shobit Agarwal",
-
-
-
     title: "Director AI/ML Data Engineering",
-
-
-
     company: "Mastercard",
-
-
-
     image: "/speakers/Shobit Agarwal.png",
-
-
-
     category: "Partner",
-
-
-
     sessionTag: "Proposed · AI and data engineering",
-
-
-
   },
-
-
-
   {
-
-
-
     name: "Pramod Krs Palla",
-
-
-
     title: "Founder | CEO & CTO",
-
-
-
     company: "RuleGrid (Beauto Systems)",
-
-
-
     image: "/speakers/Pramod Krs Palla.png",
-
-
-
     category: "Partner",
-
-
-
     sessionTag: "Proposed · AI implementation",
-
-
-
   },
-
-
-
+  {
+    name: "Stephen SIMON",
+    title: "Program Manager at Global AI and Microsoft AI MVP",
+    company: "Global AI Community", 
+    image: "/speakers/Stephen SIMON.png",
+    category: "Enterprise",
+    sessionTag: "Proposed · Cloud and data center solutions",
+  },
+  {
+    name: "Farees Fathima",
+    title: "Group Responsible AI LeadGRC , Information Security | IIIT",
+    company: "Carlsberg Group",
+    image: "/speakers/Farees Fathima.png",
+    category: "Enterprise",
+    sessionTag: "Proposed · Cloud and data center solutions",
+  },
+  {
+    name: "Afsar Ali",
+    title: "Founder & Chief Strategist – Analytics & Innovation",
+    company: "08 Consultings",  
+    image: "/speakers/Afsar Ali.png",
+    category: "Enterprise",
+    sessionTag: "Proposed · Cloud and data center solutions",
+  },
+  {
+    name: "Khushhal kaushik",
+    title: "Founder & CEO Lisianthus tech and DG CSAI",
+    company: "Lisianthus tech and DG CSAI",
+    image: "/speakers/Khushhal kaushik.png",
+    category: "Government",
+    sessionTag: "Proposed · Cloud and data center solutions",
+  }
 ];
 
 
