@@ -302,7 +302,7 @@ export function Hero() {
                 </span>
               </motion.div>
 
-              <motion.h1
+              <motion.h2
                 initial={reduceMotion ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.08 }}
@@ -326,7 +326,7 @@ export function Hero() {
                     className="absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-teal-300/80 to-transparent"
                   />
                 </span>
-              </motion.h1>
+              </motion.h2>
 
               <motion.p
                 initial={reduceMotion ? false : { opacity: 0, y: 15 }}

@@ -1347,7 +1347,7 @@ export function Awards() {
           </motion.div>
 
           <div className="mt-6 flex max-w-[900px] flex-col items-center">
-            <motion.h1
+            <motion.h2
               custom={1}
               initial="hidden"
               animate="visible"
@@ -1366,7 +1366,7 @@ export function Awards() {
               >
                 production.
               </span>
-            </motion.h1>
+            </motion.h2>
 
             <motion.p
               custom={2}

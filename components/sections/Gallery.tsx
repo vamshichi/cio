@@ -298,7 +298,7 @@ export default function GallerySection() {
 
 
 
-          <motion.h1
+          <motion.h2
 
             initial={reduceMotion ? false : { opacity: 0, y: 22 }}
 
@@ -318,7 +318,7 @@ export default function GallerySection() {
 
             <span className="font-serif italic font-normal text-[#0B6F69]">stay with you.</span>
 
-          </motion.h1>
+          </motion.h2>
 
 
 

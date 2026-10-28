@@ -217,7 +217,7 @@ Submitted through ConfexMeet website
       "
     >
 
-      <h1
+      <h2
         style="
           margin:0;
           color:#ffffff;
@@ -226,7 +226,7 @@ Submitted through ConfexMeet website
         "
       >
         New ConfexMeet Enquiry from contact page
-      </h1>
+      </h2>
 
       <p
         style="
@@ -903,7 +903,7 @@ ConfexMeet Team
       "
     >
 
-      <h1
+      <h2
         style="
           margin:0;
           color:#ffffff;
@@ -911,7 +911,7 @@ ConfexMeet Team
         "
       >
         Thank You!
-      </h1>
+      </h2>
 
       <p
         style="

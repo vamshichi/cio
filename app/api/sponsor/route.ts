@@ -99,9 +99,9 @@ await transporter.sendMail({
                     <p style="margin:0 0 6px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;">
                       CIO Leadership Summit 2026
                     </p>
-                    <h1 style="margin:0;font-size:22px;color:#fff;">
+                    <h2 style="margin:0;font-size:22px;color:#fff;">
                       🤝 New Sponsorship Enquiry
-                    </h1>
+                    </h2>
                   </td>
 
                   <td align="right">

@@ -168,7 +168,7 @@ width="220"
 alt="Centric Software"
 />
 
-<h1
+<h2
 style="
 margin:30px 0 10px;
 color:#ffffff;
@@ -178,7 +178,7 @@ font-weight:bold;
 >
 VELOCITY
 <span style="color:#22d3ee;">360°</span>
-</h1>
+</h2>
 
 <p
 style="

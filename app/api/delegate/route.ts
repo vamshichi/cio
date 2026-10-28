@@ -42,9 +42,9 @@ function getAdminHtml(data: any, registrationDate: string) {
                     <p style="margin:0 0 6px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;">
                       CIO Leadership Summit 2026
                     </p>
-                    <h1 style="margin:0;font-size:22px;font-weight:700;color:#ffffff;line-height:1.3;">
+                    <h2 style="margin:0;font-size:22px;font-weight:700;color:#ffffff;line-height:1.3;">
                       🆕 New Delegate Registration
-                    </h1>
+                    </h2>
                   </td>
                   <td align="right" style="vertical-align:top;">
                     <div style="background-color:#c9a84c;color:#0a0f1e;font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;white-space:nowrap;letter-spacing:0.5px;">
@@ -225,9 +225,9 @@ function getConfirmHtml(data: any, registrationDate: string) {
 
 <tr>
 <td style="background:#0f2d62;padding:35px;text-align:center;color:#fff;">
-<h1 style="margin:0;">3rd Edition of
+<h2 style="margin:0;">3rd Edition of
 CIO Tech Leadership Conference & Awards
-Delhi 2026</h1>
+Delhi 2026</h2>
 </td>
 </tr>
 
