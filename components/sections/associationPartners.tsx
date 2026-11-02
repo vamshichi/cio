@@ -116,12 +116,12 @@ const TIERS: Tier[] = [
   {
     number: "02",
     title: "Silver Partner",
-    note: "Innovation & Risk Intelligence Partner", 
+    note: "Innovation & Intelligence Partner", 
 
     partners: [
       {
         name: "securoq",   
-      logo: "/sponsors/securoq.png",
+      logo: "/sponsors/systools.jpeg",
   }
     ],
 
