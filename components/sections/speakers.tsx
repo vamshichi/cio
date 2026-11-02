@@ -150,6 +150,22 @@ const speakers: Speaker[] = [
     image: "/speakers/Afsar Ali.png",
     category: "Enterprise",
     sessionTag: "Proposed · Cloud and data center solutions",
+  },
+  {
+    name: "Hemant Bhardwaj",
+    title: "Head of Global Cybersecurity GRC",
+    company: "Global Cybersecurity GRC",
+    image: "/speakers/Hemant Bhardwaj.png",
+    category: "Enterprise",
+    sessionTag: "Proposed · Cloud and data center solutions",
+  },
+  {
+    name: "Namrata Agrawal",
+    title: "Project Manager – Technology & Transformation",
+    company: "Deloitte",
+    image: "/speakers/Namrata Agrawal.png",
+    category: "Enterprise",
+    sessionTag: "Proposed · Cloud and data center solutions",
   }
   
 ];
