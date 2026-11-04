@@ -126,7 +126,11 @@ const TIERS: Tier[] = [
   {
         name: "securoq",
         logo: "/sponsors/securoq.png",
-  }
+  },
+{
+        name: "operate",
+        logo: "/sponsors/operate.jpg",
+}
     ],
 
     logoHeight: "max-h-[92px] sm:max-h-[126px]",
@@ -524,14 +528,12 @@ function TierRow({ tier }: { tier: Tier }) {
             key={partner.name}
 
             className={`flex items-center ${
-
-              multi && index > 0
-
-                ? "border-t sm:border-l sm:border-t-0"
-
-                : ""
-
-            }`}
+  multi && index > 0
+    ? index % 2 === 1
+      ? "border-t sm:border-l sm:border-t-0"
+      : "border-t"
+    : ""
+}`}
 
             style={{ borderColor: C.line }}
 
