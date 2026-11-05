@@ -116,21 +116,21 @@ const TIERS: Tier[] = [
   {
     number: "02",
     title: "Silver Partner",
-    note: "Innovation & Intelligence Partner", 
+    note: "Innovation & Intelligence Partner",
 
     partners: [
       {
-        name: "systools",   
-      logo: "/sponsors/systools.jpeg",
-  },
-  {
+        name: "systools",
+        logo: "/sponsors/systools.jpeg",
+      },
+      {
         name: "securoq",
         logo: "/sponsors/securoq.png",
-  },
-{
+      },
+      {
         name: "operate",
         logo: "/sponsors/operate.jpg",
-}
+      }
     ],
 
     logoHeight: "max-h-[92px] sm:max-h-[126px]",
@@ -172,25 +172,39 @@ const TIERS: Tier[] = [
 
   },
 
-  
-{
-  number: "04",
-  title: "Networking Partner",
-  note: "Connecting technology leaders and industry innovators",
-  partners: [
-    {
-      name: "Networking Partner",
-      logo: "/partners/Networking.jpeg",
-    },
-  ],
-  logoHeight: "max-h-[66px] sm:max-h-[80px]",
-  icon: FiRadio,
-},
+
+  {
+    number: "04",
+    title: "Networking Partner",
+    note: "Connecting technology leaders and industry innovators",
+    partners: [
+      {
+        name: "Networking Partner",
+        logo: "/partners/Networking.jpeg",
+      },
+    ],
+    logoHeight: "max-h-[66px] sm:max-h-[80px]",
+    icon: FiRadio,
+  },
+
+  {
+    number : "05",
+    title : "Knowledge Partner",
+    note : "Knowledge Partner",
+    partners : [
+      {
+        name : "Knowledge Partner",
+        logo : "/partners/Knowledge.jpeg",
+      },
+    ],
+    logoHeight : "max-h-[66px] sm:max-h-[80px]",
+    icon : FiRadio,
+  },
 
 
   {
 
-    number: "05",
+    number: "06",
 
     title: "Strategic Partner",
 
@@ -216,7 +230,7 @@ const TIERS: Tier[] = [
 
   {
 
-    number: "06",
+    number: "07",
 
     title: "Broadcast Partner",
 
@@ -391,15 +405,13 @@ function TierRow({ tier }: { tier: Tier }) {
 
       variants={reveal}
 
-      className={`group relative grid overflow-hidden border-b last:border-b-0 transition-colors duration-300 md:grid-cols-[290px_minmax(0,1fr)] lg:grid-cols-[340px_minmax(0,1fr)] ${
-
-        tier.featured
+      className={`group relative grid overflow-hidden border-b last:border-b-0 transition-colors duration-300 md:grid-cols-[290px_minmax(0,1fr)] lg:grid-cols-[340px_minmax(0,1fr)] ${tier.featured
 
           ? "bg-[#10344D] hover:bg-[#123B53]"
 
           : "bg-[#0A2340] hover:bg-[#0D2B49]"
 
-      }`}
+        }`}
 
       style={{ borderColor: C.line }}
 
@@ -431,11 +443,9 @@ function TierRow({ tier }: { tier: Tier }) {
 
           <span
 
-            className={`font-mono text-xs font-semibold tracking-[0.16em] ${
+            className={`font-mono text-xs font-semibold tracking-[0.16em] ${tier.featured ? "text-[#5EEAD4]" : "text-[#7D93AA]"
 
-              tier.featured ? "text-[#5EEAD4]" : "text-[#7D93AA]"
-
-            }`}
+              }`}
 
           >
 
@@ -499,11 +509,9 @@ function TierRow({ tier }: { tier: Tier }) {
 
         <span
 
-          className={`mt-6 h-[2px] transition-all duration-500 group-hover:w-20 ${
+          className={`mt-6 h-[2px] transition-all duration-500 group-hover:w-20 ${tier.featured ? "w-14 bg-[#5EEAD4]" : "w-9 bg-[#31516D]"
 
-            tier.featured ? "w-14 bg-[#5EEAD4]" : "w-9 bg-[#31516D]"
-
-          }`}
+            }`}
 
         />
 
@@ -513,11 +521,9 @@ function TierRow({ tier }: { tier: Tier }) {
 
       <div
 
-        className={`grid items-stretch ${
+        className={`grid items-stretch ${multi ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"
 
-          multi ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"
-
-        }`}
+          }`}
 
       >
 
@@ -527,13 +533,12 @@ function TierRow({ tier }: { tier: Tier }) {
 
             key={partner.name}
 
-            className={`flex items-center ${
-  multi && index > 0
-    ? index % 2 === 1
-      ? "border-t sm:border-l sm:border-t-0"
-      : "border-t"
-    : ""
-}`}
+            className={`flex items-center ${multi && index > 0
+                ? index % 2 === 1
+                  ? "border-t sm:border-l sm:border-t-0"
+                  : "border-t"
+                : ""
+              }`}
 
             style={{ borderColor: C.line }}
 

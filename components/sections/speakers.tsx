@@ -166,6 +166,14 @@ const speakers: Speaker[] = [
     image: "/speakers/Namrata Agrawal.png",
     category: "Enterprise",
     sessionTag: "Proposed · Cloud and data center solutions",
+  },
+  {
+    name: "Souren Alimchandani",
+    title: "Head International Business Development",
+    company: "Hindustan Coca-Cola Beverages Pvt. Ltd.",
+    image: "/speakers/Souren Alimchandani.png",
+    category: "Partner",
+    sessionTag: "Proposed · Cloud and data center solutions",
   }
   
 ];
