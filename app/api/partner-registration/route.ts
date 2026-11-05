@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
     // Send notification to ConfexMeet Team
     await transporter.sendMail({
       from: `"Velocity 360°" <${process.env.EMAIL_USER}>`,
-      to: "enquiry@confexmeet.com,ramesh.confexmeet@gmail.com",
+      to: "enquiry@confexmeet.com",
       subject: "New Velocity 360° Registration",
 
       html: `
