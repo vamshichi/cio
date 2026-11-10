@@ -544,7 +544,7 @@ const imageY = useTransform(
 
           <div className="shrink-0 text-xs leading-6 text-[#7A8999]">
 
-            <p>12 November 2026</p>
+            <p>4th February 2027</p>
 
             <p>The LaLiT, New Delhi</p>
 

@@ -351,7 +351,7 @@ export function Hero() {
                     className="shrink-0 text-teal-300"
                     size={18}
                   />
-                  <span>12 November 2026</span>
+                  <span>4th February 2027</span>
                 </span>
 
                 <span className="inline-flex items-center gap-2.5">

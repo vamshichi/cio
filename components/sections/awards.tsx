@@ -1418,7 +1418,7 @@ export function Awards() {
               <div className="flex items-center justify-center gap-3 text-[12.5px]" style={{ color: COLORS.faint }}>
                 <span>{awardsPhase === 'nominations' ? 'Nominations close' : 'Awards ceremony'}</span>
                 <span className="h-px w-6" style={{ background: COLORS.lineStrong }} />
-                <span style={{ color: COLORS.tealLight, fontWeight: 700 }}>{awardsPhase === 'nominations' ? '15 October 2026' : '12 November 2026'}</span>
+                <span style={{ color: COLORS.tealLight, fontWeight: 700 }}>{awardsPhase === 'nominations' ? '15 October 2026' : '4th February 2027'}</span>
               </div>
             </motion.div>
           </div>
@@ -1640,14 +1640,14 @@ export function Awards() {
               <motion.p variants={reveal} className="mx-auto mt-6 max-w-xl text-[14.5px] leading-[1.7]" style={{ color: COLORS.muted }}>
                 {awardsPhase === 'nominations'
                   ? 'Nominations close 15 October 2026. Submit an evidence-led entry showing what your initiative has delivered.'
-                  : 'Winners will be announced live at the CIO Tech Leadership Conference & Awards, The LaLiT, New Delhi, on 12 November 2026.'}
+                  : 'Winners will be announced live at the CIO Tech Leadership Conference & Awards, The LaLiT, New Delhi, on 4th February 2027.'}
               </motion.p>
 
               <motion.div variants={reveal} className="mt-8 flex flex-col items-center gap-6">
                 <div className="flex items-center gap-3 text-[12.5px]" style={{ color: COLORS.faint }}>
                   <span>{awardsPhase === 'nominations' ? 'Nominations close' : 'Awards ceremony'}</span>
                   <span className="h-px w-6" style={{ background: COLORS.lineStrong }} />
-                  <span style={{ color: COLORS.tealLight, fontWeight: 700 }}>{awardsPhase === 'nominations' ? '15 October 2026' : '12 November 2026'}</span>
+                  <span style={{ color: COLORS.tealLight, fontWeight: 700 }}>{awardsPhase === 'nominations' ? '15 October 2026' : '4th February 2027'}</span>
                 </div>
 
                 <motion.button

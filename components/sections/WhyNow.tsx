@@ -246,7 +246,7 @@ export default function WhyNow() {
 
           <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-5 text-[10px] uppercase tracking-[0.15em] text-slate-500">
             <span>CIO Tech Leadership Conference & Awards</span>
-            <span>12 November 2026 · New Delhi</span>
+            <span>4th February 2027 · New Delhi</span>
           </div>
         </motion.div>
       </div>

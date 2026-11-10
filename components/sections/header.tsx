@@ -657,7 +657,7 @@ export function Header() {
 
                     <FiCalendar size={13} />
 
-                    12 November 2026
+                    4th February 2027
 
                   </span>
 
