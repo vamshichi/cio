@@ -143,6 +143,14 @@ const speakers: Speaker[] = [
     category: "Enterprise",
     sessionTag: "Proposed · Cloud and data center solutions",
   },
+   {
+    name: "Jai Jalan",
+    title: "Founder & CEO",
+    company: "Better",
+    image: "/speakers/Jai Jalan.png",
+    category: "Partner",
+    sessionTag: "Proposed · Cloud and data center solutions",
+  },
   {
     name: "Afsar Ali",
     title: "Founder & Chief Strategist – Analytics & Innovation",
@@ -174,15 +182,8 @@ const speakers: Speaker[] = [
     image: "/speakers/Souren Alimchandani.png",
     category: "Partner",
     sessionTag: "Proposed · Cloud and data center solutions",
-  },
-  {
-    name: "Jai Jalan",
-    title: "Founder & CEO",
-    company: "Better",
-    image: "/speakers/Jai Jalan.png",
-    category: "Partner",
-    sessionTag: "Proposed · Cloud and data center solutions",
   }
+ 
   
 ];
 
